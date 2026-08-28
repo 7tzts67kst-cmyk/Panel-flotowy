@@ -1,0 +1,1799 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel flotowy Toyota</title>
+<style>
+:root{
+  --bg:#f5f6f7;--card:#fff;--text:#1f2328;--muted:#6b7280;--line:#dde1e6;
+  --accent:#d71920;--green:#168a45;--green-bg:#e9f7ee;--yellow:#9a6b00;--yellow-bg:#fff5d8;
+  --red:#b42318;--red-bg:#fdecea;--shadow:0 2px 8px rgba(0,0,0,.05)
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.top{background:#17191c;color:white;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:900;letter-spacing:.04em}.brand b{color:#ff4248}
+.shell{max-width:1280px;margin:0 auto;padding:22px}
+.view{display:none}.view.active{display:block}
+h1,h2,h3{margin:0}.muted{color:var(--muted)}
+.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 13px;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.back{width:44px;height:44px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:23px;cursor:pointer}
+.header-row,.home-head,.day-head,.vehicle-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}
+.header-left{display:flex;gap:12px;align-items:center}
+
+/* HOME */
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+.module{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:left;cursor:pointer;box-shadow:var(--shadow)}
+.module:hover{border-color:#adb3ba}.module small{font-weight:800;color:var(--muted);text-transform:uppercase}
+.module h2{margin-top:8px;font-size:24px}.module p{color:var(--muted);margin:8px 0 0}.module .go{margin-top:24px;font-weight:900}
+
+/* RELEASES */
+.month{display:flex;justify-content:space-between;align-items:center;padding:18px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:20px}
+.month strong{font-size:36px}
+.folders{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.folder{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;cursor:pointer;box-shadow:var(--shadow);text-align:left}
+.folder:hover{border-color:#bfc4ca}.folder-name{font-size:18px;font-weight:900}.folder-date{font-size:12px;color:var(--muted);margin-top:4px}
+.folder-count{font-size:34px;font-weight:900;margin-top:20px}.folder-meta{font-size:12px;color:var(--muted);margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}.kpi small{color:var(--muted)}.kpi strong{display:block;font-size:26px;margin-top:5px}
+.timeline{display:grid;gap:14px}.time-block{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.time-head{display:flex;justify-content:space-between;align-items:center;background:#f7f7f8;padding:12px 16px;border-bottom:1px solid var(--line)}
+.time-hour{font-size:21px;font-weight:900}.time-head span{font-size:12px;color:var(--muted);font-weight:700}
+.car-row{display:grid;grid-template-columns:1.1fr .85fr 1.25fr auto auto;gap:14px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.car-row:last-child{border-bottom:0}.car-row:hover{background:#fafafa}.car-row.issued{background:#e8f7ed;border-left:5px solid var(--green)}
+.client{font-weight:900}.sub{font-size:12px;color:var(--muted);margin-top:3px}
+.equipment{display:flex;gap:6px;flex-wrap:wrap}.eq{border:1px solid #d5d9de;background:#f2f3f5;color:#5f6670;border-radius:999px;padding:6px 8px;font-size:12px;font-weight:800}
+.eq.done{background:var(--green-bg);border-color:#9ed8b4;color:var(--green)}
+.status{border-radius:999px;padding:7px 9px;font-size:12px;font-weight:900;white-space:nowrap}
+.s-ready{background:var(--green-bg);color:var(--green)}.s-progress{background:var(--yellow-bg);color:var(--yellow)}
+.s-stop{background:var(--red-bg);color:var(--red)}.s-issued{background:#cfeeda;color:#116d38}
+.quick{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;white-space:nowrap}.quick input{width:20px;height:20px}
+.vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.details{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.detail{border:1px solid var(--line);border-radius:10px;padding:11px}.detail small{display:block;color:var(--muted);margin-bottom:4px}
+.checks{display:grid;gap:10px;margin-top:14px}.check{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px}
+.check.checked{background:var(--green-bg);border-color:#9ed8b4}.check input{width:22px;height:22px;margin-top:1px}
+.check strong{display:block}.check small{display:block;color:var(--muted);margin-top:3px}.note{margin-top:14px;padding:12px;background:#f7f7f8;border-radius:10px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* MOUNTS */
+.people{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:16px;margin-top:18px}
+.person{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;cursor:pointer;box-shadow:var(--shadow);text-align:left}
+.person-name{font-size:22px;font-weight:900}.person-role{font-size:13px;color:var(--muted);font-weight:700;margin-top:5px}
+.person-count{font-size:38px;font-weight:900;margin-top:22px}.person-open{display:flex;justify-content:space-between;align-items:center;margin-top:22px;font-weight:900}
+.owner-badge{padding:8px 11px;border-radius:999px;background:#eef1f3;font-size:12px;font-weight:900}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff}
+.mount-table{width:100%;min-width:1180px;border-collapse:collapse}.mount-table th{background:#efc3ec;color:#111;border:2px solid #111;padding:10px 8px;font-size:14px}
+.mount-table td{border:2px solid #111;padding:7px 8px;font-size:12px;color:#111}.mount-table tr.done td{background:#93cf4c}.mount-table tr.warning td{background:#fff600}
+
+/* CAR LIST */
+.vin-tools{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-bottom:16px}
+.tool-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.form-row{display:grid;grid-template-columns:minmax(320px,1fr) auto;gap:8px;align-items:end;margin-top:12px;max-width:650px}
+.field label{display:block;font-size:11px;font-weight:900;color:var(--muted);margin:0 0 5px}.field input,.vin-lookup input,.searchbar input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.small-btn{padding:10px 12px;border-radius:9px;border:1px solid var(--line);font-weight:900;background:#fff;cursor:pointer}.small-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.vin-lookup{position:relative;margin-top:12px}.vin-lookup input{text-transform:uppercase;font-weight:800}
+.vin-suggestions{display:none;position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:260px;overflow:auto}
+.vin-suggestions.open{display:block}.vin-option{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}.vin-option:hover{background:#f5f6f7}
+.vin-full{font-weight:900}.vin-meta{font-size:12px;color:var(--muted);margin-top:3px}.message{font-size:12px;font-weight:800;margin-top:8px;min-height:16px}.message.error{color:#b42318}.message.ok{color:#168a45}
+.searchbar{display:flex;gap:10px;margin-bottom:14px}
+.car-table{width:100%;min-width:900px;border-collapse:collapse}.car-table th,.car-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.car-table th{background:#f2f3f5;font-weight:900}
+.car-status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900}.car-ready{background:#e8f7ed;color:#14733c}.car-departed{background:#e5e7eb;color:#374151}
+.vin-cell{font-family:monospace;font-weight:900}
+
+@media(max-width:950px){.modules{grid-template-columns:1fr}.vin-tools{grid-template-columns:1fr}}
+@media(max-width:900px){.folders{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}.car-row{grid-template-columns:1fr auto}.car-row .equip-col{grid-column:1/-1}.vehicle-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.people{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.shell{padding:14px}.header-row,.home-head,.day-head,.vehicle-head{align-items:flex-start;flex-direction:column}}
+
+.issue-inline{
+  border:0;background:#168a45;color:#fff;border-radius:8px;padding:8px 10px;
+  font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap
+}
+.issue-inline.hidden{display:none}
+.ready-label{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;white-space:nowrap}
+.ready-label input{width:20px;height:20px}
+
+.mount-toolbar{display:flex;justify-content:flex-end;margin-bottom:12px}
+.mount-form-card{display:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.mount-form-card.open{display:block}
+.mount-form-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.mount-vin-wrap{position:relative}
+.mount-vin-wrap input,.mount-extra-input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.mount-vin-wrap input{text-transform:uppercase;font-weight:900}
+.mount-vin-suggestions{display:none;position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:30;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);max-height:240px;overflow:auto}
+.mount-vin-suggestions.open{display:block}
+.mount-option{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.mount-option:hover{background:#f5f6f7}
+.mount-checks{display:grid;gap:10px}
+.mount-check{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:12px;font-weight:900}
+.mount-check.checked{background:var(--green-bg);border-color:#9ed8b4;color:var(--green)}
+.mount-check input{width:22px;height:22px}
+.mount-form-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.mount-message{font-size:12px;font-weight:800;margin-top:8px;min-height:16px}
+.mount-message.error{color:#b42318}.mount-message.ok{color:#168a45}
+.mount-type-badges{display:flex;gap:5px;flex-wrap:wrap}
+.mount-type{display:inline-block;border-radius:999px;padding:5px 7px;font-size:11px;font-weight:900;background:#eef1f3}
+.mount-type.done{background:var(--green-bg);color:var(--green)}
+@media(max-width:760px){.mount-form-grid{grid-template-columns:1fr}}
+
+/* ===== NOWE DOPOSAŻENIA ===== */
+.mount-new-toolbar{display:flex;justify-content:flex-end;margin-bottom:14px}
+.mount-entry{display:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:var(--shadow)}
+.mount-entry.open{display:block}
+.mount-entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mount-entry .field{margin-bottom:12px}
+.mount-entry .field label{display:block;font-size:11px;font-weight:900;color:var(--muted);margin-bottom:5px}
+.mount-entry input[type="text"],.mount-entry input[type="number"]{
+  width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit
+}
+.mount-entry input:disabled{background:#f2f3f5;color:#9aa0a6}
+.mount-vin-box{position:relative}
+.mount-vin-dropdown{display:none;position:absolute;top:calc(100% + 5px);left:0;right:0;z-index:50;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);max-height:240px;overflow:auto}
+.mount-vin-dropdown.open{display:block}
+.mount-vin-hit{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.mount-vin-hit:hover{background:#f5f6f7}
+.mount-choice{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:10px}
+.mount-choice.active{background:var(--green-bg);border-color:#9ed8b4}
+.mount-choice input{width:22px;height:22px;margin-top:1px}
+.mount-choice strong{display:block}.mount-choice small{display:block;color:var(--muted);margin-top:3px}
+.mount-required{color:#b42318;font-weight:900}
+.mount-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:8px}
+.mount-form-msg{min-height:18px;margin-top:10px;font-size:12px;font-weight:900}
+.mount-form-msg.error{color:#b42318}.mount-form-msg.ok{color:#168a45}
+.mount-list-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.mount-new-table{width:100%;min-width:1100px;border-collapse:collapse}
+.mount-new-table th{background:#f2f3f5;padding:11px 10px;text-align:left;font-size:12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.mount-new-table td{padding:11px 10px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:top}
+.mount-new-table tr:last-child td{border-bottom:0}
+.mount-new-table tr.completed td{background:#e9f7ee}
+.mount-badge{display:inline-block;padding:5px 7px;border-radius:999px;font-size:11px;font-weight:900;margin:2px 4px 2px 0}
+.mount-badge.yes{background:#e9f7ee;color:#168a45}.mount-badge.no{background:#eef1f3;color:#69707a}
+.mount-code{font-family:monospace;font-weight:900}
+@media(max-width:760px){.mount-entry-grid{grid-template-columns:1fr}}
+
+.owner-stats{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;justify-content:flex-end}
+.hours-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 14px;min-width:135px;text-align:right;box-shadow:var(--shadow)}
+.hours-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase}
+.hours-kpi strong{display:block;font-size:24px;margin-top:2px}
+
+.mount-edit-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:900;cursor:pointer}
+.mount-edit-btn:hover{background:#f2f3f5}
+.editing-note{display:none;margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#fff5d8;color:#7a5600;font-size:12px;font-weight:900}
+.editing-note.show{display:block}
+
+.urgent-box{display:none;background:#fff1f0;border:2px solid #d92d20;border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.urgent-box.show{display:block}
+.urgent-title{font-size:15px;font-weight:1000;color:#b42318;text-transform:uppercase;letter-spacing:.3px}
+.urgent-list{display:grid;gap:8px;margin-top:10px}
+.urgent-item{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fff;border:1px solid #f3b7b1;border-radius:10px;padding:10px 12px}
+.urgent-item strong{color:#b42318}
+.urgent-mini{display:inline-flex;align-items:center;gap:6px;background:#d92d20;color:#fff;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:1000}
+.person-urgent{margin-top:10px;background:#fff1f0;color:#b42318;border:1px solid #f3b7b1;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:1000}
+
+.release-toolbar{display:flex;justify-content:flex-end;margin:0 0 14px}
+.release-add-card{display:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:var(--shadow)}
+.release-add-card.open{display:block}
+.release-add-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.release-add-card .field label{display:block;font-size:11px;font-weight:900;color:var(--muted);margin-bottom:5px}
+.release-add-card input,.release-add-card select,.release-add-card textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+.release-add-card textarea{min-height:78px;resize:vertical}
+.release-checks{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.release-check{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;font-weight:900}
+.release-check input{width:18px;height:18px}
+.release-vin-wrap{position:relative}
+.release-vin-suggest{display:none;position:absolute;left:0;right:0;top:100%;z-index:80;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);max-height:220px;overflow:auto}
+.release-vin-suggest.open{display:block}
+.release-vin-option{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.release-vin-option:hover{background:#f5f6f7}
+@media(max-width:760px){.release-add-grid{grid-template-columns:1fr}}
+
+.release-edit-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;font-size:11px;font-weight:900;cursor:pointer;margin-left:6px}
+.release-edit-btn:hover{background:#f2f3f5}
+.release-edit-note{display:none;margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#fff5d8;color:#7a5600;font-size:12px;font-weight:900}
+.release-edit-note.show{display:block}
+
+.urgent-work{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.urgent-check{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #f3b7b1;border-radius:9px;padding:7px 9px;font-size:11px;font-weight:900;cursor:pointer}
+.urgent-check.done{background:#e9f7ee;border-color:#9ed8b4;color:#168a45}
+.urgent-check input{width:17px;height:17px}
+.urgent-code{width:115px!important;padding:7px 8px!important;border:1px solid #f3b7b1!important;border-radius:8px!important;font-size:11px!important}
+.urgent-save{border:0;background:#b42318;color:#fff;border-radius:9px;padding:8px 11px;font-size:11px;font-weight:1000;cursor:pointer}
+.urgent-save:disabled{opacity:.45;cursor:not-allowed}
+.urgent-error{font-size:10px;font-weight:900;color:#b42318;margin-top:5px}
+
+.mount-assignment{display:none;background:#fff1f0;border:2px solid #d92d20;border-radius:12px;padding:12px 14px;margin:12px 0 16px}
+.mount-assignment.show{display:block}
+.mount-assignment-title{font-size:12px;font-weight:1000;color:#b42318;text-transform:uppercase}
+.mount-assignment-items{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.mount-assignment-chip{background:#fff;border:1px solid #f3b7b1;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900;color:#b42318}
+.urgent-open-btn{border:0;background:#b42318;color:#fff;border-radius:9px;padding:8px 11px;font-size:11px;font-weight:1000;cursor:pointer}
+
+.battery-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 18px}
+.battery-kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.battery-kpi b{display:block;font-size:22px;margin-top:5px}
+.battery-status{display:inline-flex;align-items:center;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:1000}
+.battery-ok{background:#e9f7ee;color:#168a45}
+.battery-due{background:#fff1f0;color:#b42318}
+.battery-new{background:#fff5d8;color:#8a6200}
+.battery-issued{background:#eef1f4;color:#667085}
+.battery-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.battery-date{max-width:150px}
+.battery-save{border:0;background:#111827;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:900;cursor:pointer}
+.battery-save:hover{background:#2d3748}
+.battery-note{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#475467}
+@media(max-width:700px){.battery-summary{grid-template-columns:1fr}}
+
+.battery-soon{background:#fff4cc;color:#7a5600}
+.battery-today{background:#ffe8c2;color:#9a4b00}
+.battery-overdue{background:#ffe1df;color:#b42318}
+.battery-row-soon td{background:#fffdf4}
+.battery-row-today td{background:#fff9ef}
+.battery-row-overdue td{background:#fff7f6}
+
+.extra-work-box{margin-top:22px;border-top:2px solid var(--line);padding-top:18px}
+.extra-work-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.extra-work-form{display:none;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.extra-work-form.open{display:block}
+.extra-work-grid{display:grid;grid-template-columns:150px 190px 1fr 1fr;gap:10px}
+.extra-work-grid label{font-size:11px;font-weight:900;color:#475467}
+.extra-work-grid input,.extra-work-grid select{width:100%;margin-top:5px}
+.extra-work-status{display:inline-flex;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:1000;background:#fff4cc;color:#7a5600}
+.extra-work-empty{padding:18px;text-align:center;color:#667085}
+@media(max-width:900px){.extra-work-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.extra-work-grid{grid-template-columns:1fr}}
+
+/* GitHub Pages: responsywny widok telefonu bez ingerencji w logikę aplikacji */
+@media (max-width: 760px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .shell{width:auto!important;max-width:none!important;margin:0!important;padding:12px!important}
+  .modules{grid-template-columns:1fr!important;gap:12px!important}
+  .module{width:100%!important;min-width:0!important}
+  input,select,textarea,button{font-size:16px}
+  .table-wrap,.mount-list-wrap{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+}
+
+</style>
+</head>
+<body>
+<div class="top"><div class="brand"><b>TOYOTA</b> • DZIAŁ FLOTOWY</div><div>PANEL OPERACYJNY</div></div>
+
+<main class="shell">
+<section id="mainHome" class="view active">
+  <h1>Panel działu flotowego</h1>
+  <div class="muted" style="margin-top:6px">Wybierz moduł.</div>
+  <div class="modules">
+    <button class="module" id="openReleases"><small>Moduł 1</small><h2>Wydania samochodów</h2><p>Plan tygodnia, gotowość wyposażenia i oznaczanie pojazdu jako wydany.</p><div class="go">Otwórz wydania →</div></button>
+    <button class="module" id="openMounts"><small>Moduł 2</small><h2>Montaże / doposażenia</h2><p>Zlecenia rozdzielone na Jakuba Grzywacza i Mateusza Bodnara.</p><div class="go">Otwórz montaże →</div></button>
+    <button class="module" id="openCars"><small>Moduł 3</small><h2>Lista samochodów</h2><p>Codzienna baza VIN-ów oraz podpowiedzi po końcówce numeru.</p><div class="go">Otwórz listę →</div></button>
+    <button class="module" id="openBattery"><small>Moduł 4</small><h2>Testy akumulatorów</h2><p>Kontrola testu przy przyjęciu auta i ponowienie co 14 dni do momentu wydania.</p><div class="go">Otwórz testy →</div></button>
+  </div>
+</section>
+
+<section id="releaseHome" class="view">
+  <div class="home-head">
+    <div class="header-left"><button class="back" id="backMainFromRelease">←</button><div><h1>Checklista wydań</h1><div class="muted" style="margin-top:6px">Wybierz dzień tygodnia.</div></div></div>
+  </div>
+  <div class="month"><div><b>Wydane auta w tym miesiącu</b><div class="muted" style="margin-top:5px">Licznik aktualizuje się po oznaczeniu WYDANE.</div></div><strong id="monthCount">0</strong></div>
+
+  <div class="release-toolbar"><button class="btn primary" id="toggleReleaseForm">+ Dodaj wydanie</button></div>
+
+  <div class="release-add-card" id="releaseAddCard">
+    <h2 id="releaseFormTitle">Dodaj wydanie samochodu</h2>
+    <div class="release-edit-note" id="releaseEditNote">Edytujesz istniejące wydanie. Po zapisaniu zmiany pojawią się we wszystkich widokach.</div>
+    <div class="muted" style="margin:5px 0 16px">VIN możesz wpisać w całości albo podać ostatnie 5–6 znaków. Następnie zaznacz, jakie prace doposażeniowiec ma wykonać przed wydaniem.</div>
+
+    <div class="release-add-grid">
+      <div class="field">
+        <label>VIN *</label>
+        <div class="release-vin-wrap">
+          <input id="releaseVin" type="text" maxlength="17" autocomplete="off" placeholder="np. 145842">
+          <div class="release-vin-suggest" id="releaseVinSuggestions"></div>
+        </div>
+      </div>
+      <div class="field"><label>KLIENT *</label><input id="releaseClient" type="text" placeholder="np. LUX MED"></div>
+      <div class="field"><label>MODEL *</label><input id="releaseModel" type="text" placeholder="np. Corolla"></div>
+      <div class="field"><label>DATA WYDANIA *</label><input id="releaseDate" type="date"></div>
+      <div class="field"><label>GODZINA *</label><input id="releaseTime" type="time"></div>
+      <div class="field"><label>MIEJSCE</label><input id="releasePlace" type="text" placeholder="np. hala / K1 / pod halą"></div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label>DOPOSAŻENIE / INFORMACJE</label>
+      <textarea id="releaseInfo" placeholder="np. Alarm, dywaniki gumowe, hak"></textarea>
+    </div>
+
+    <div style="margin-top:14px;font-size:12px;font-weight:1000">DO ZROBIENIA PRZEZ DOPOSAŻENIOWCA</div>
+    <div class="muted" style="margin-top:4px">Asystent koordynujący zaznacza, co ma zostać wykonane. Doposażeniowiec później potwierdza wykonanie.</div>
+    <div class="release-checks" style="margin-top:10px">
+      <label class="release-check"><input type="checkbox" id="releaseAlarmRequired"> Alarm do zrobienia</label>
+      <label class="release-check"><input type="checkbox" id="releaseIdCanRequired"> ID CAN do zrobienia</label>
+      <label class="release-check"><input type="checkbox" id="releaseMetaRequired"> META do zrobienia</label>
+      <label class="release-check"><input type="checkbox" id="releaseExtraRequired"> Dodatkowe wyposażenie do zrobienia</label>
+    </div>
+    <div class="release-checks" style="margin-top:10px">
+      <label class="release-check"><input type="checkbox" id="releaseMatsReady"> Dywaniki gotowe</label>
+    </div>
+
+    <div class="actions" style="margin-top:14px">
+      <button class="btn primary" id="saveReleaseEntry">Dodaj do wydań</button>
+      <button class="btn" id="cancelReleaseEntry">Anuluj</button>
+    </div>
+    <div class="message" id="releaseAddMessage"></div>
+  </div>
+
+  <h2 style="margin-bottom:12px">Plan tygodnia</h2><div class="folders" id="folders"></div>
+</section>
+
+<section id="releaseDay" class="view">
+  <div class="day-head"><div class="header-left"><button class="back" id="backReleaseHome">←</button><div><h1 id="dayTitle"></h1><div class="muted" id="daySubtitle" style="margin-top:5px"></div><div class="muted" style="margin-top:4px;font-size:12px">Asystent koordynujący może zaznaczyć „Gotowy do wydania” bezpośrednio na liście. Niewykonane prace pozostaną widoczne jako ostrzeżenie. Po zaznaczeniu pojawi się przycisk „WYDANY”.</div></div></div></div>
+  <div class="kpis">
+    <div class="kpi"><small>Samochody</small><strong id="kAll">0</strong></div>
+    <div class="kpi"><small>Gotowe</small><strong id="kReady">0</strong></div>
+    <div class="kpi"><small>W trakcie / STOP</small><strong id="kOpen">0</strong></div>
+    <div class="kpi"><small>Wydane</small><strong id="kIssued">0</strong></div>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<section id="releaseVehicle" class="view">
+  <div class="vehicle-head"><div class="header-left"><button class="back" id="backReleaseDay">←</button><div><h1 id="vehicleTitle"></h1><div class="muted" id="vehicleSubtitle" style="margin-top:5px"></div></div></div></div>
+  <div class="vehicle-grid">
+    <div class="panel">
+      <h2>Dane pojazdu</h2><div class="details" id="vehicleDetails"></div>
+      <div class="note"><small class="muted">Opis / dodatkowe doposażenie</small><div id="vehicleInfo" style="margin-top:5px"></div></div>
+      <div class="actions"><button class="btn primary" id="markIssued">Oznacz jako WYDANE</button><button class="btn" id="undoIssued">Cofnij WYDANE</button></div>
+    </div>
+    <div class="panel">
+      <h2>Gotowość wyposażenia</h2>
+      <div class="checks">
+        <label class="check" id="labAlarm"><input id="checkAlarm" type="checkbox" disabled><span><strong>Alarm / ID CAN / META</strong><small>Status uzupełnia doposażeniowiec po wykonaniu pracy.</small></span></label>
+        <label class="check" id="labMats"><input id="checkMats" type="checkbox"><span><strong>Dywaniki gumowe</strong><small>Komplet znajduje się w samochodzie.</small></span></label>
+        <label class="check" id="labExtra"><input id="checkExtra" type="checkbox" disabled><span><strong>Dodatkowe doposażenie</strong><small id="extraText">Status uzupełnia doposażeniowiec po wykonaniu pracy.</small></span></label>
+        <label class="check" id="labReleaseReady"><input id="checkReleaseReady" type="checkbox"><span><strong>Gotowy do wydania</strong><small>Potwierdza asystent koordynujący po sprawdzeniu samochodu.</small></span></label>
+      </div>
+      <div class="note" id="checkSummary"></div>
+    </div>
+  </div>
+</section>
+
+<section id="mountOwners" class="view">
+  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromMounts">←</button><div><h1>Montaże / doposażenia</h1><div class="muted" style="margin-top:5px">Wybierz doposażeniowca.</div></div></div></div>
+  <div class="people" id="peopleCards"></div>
+</section>
+
+
+<section id="mountList" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backMountOwners">←</button>
+      <div>
+        <h1 id="ownerTitle"></h1>
+        <div class="muted" style="margin-top:5px">Montaże i doposażenia</div>
+      </div>
+    </div>
+    <div class="owner-stats">
+      <span class="owner-badge" id="ownerCount"></span>
+      <div class="hours-kpi">
+        <small>Łącznie godzin</small>
+        <strong id="ownerHours">0 h</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="urgent-box" id="mountWorkerUrgentBox">
+    <div class="urgent-title">Samochód pilny!!!</div>
+    <div class="muted" style="margin-top:3px">Te auta są już wpisane do wydań. Otwórz samochód — formularz pokaże dokładnie, co koordynator zlecił do zamontowania.</div>
+    <div class="urgent-list" id="mountWorkerUrgentList"></div>
+  </div>
+
+  <div class="mount-new-toolbar">
+    <button class="btn primary" id="toggleMountForm">+ Dodaj montaż</button>
+  </div>
+
+  <div class="mount-entry" id="mountFormCard">
+    <h2 id="mountFormTitle">Nowy montaż</h2>
+    <div class="editing-note" id="mountEditingNote">Edytujesz istniejący wpis. Po zapisaniu tabela i powiązane statusy zostaną zaktualizowane.</div>
+    <div class="muted" style="margin-top:5px">
+      Wpisz końcówkę VIN. Zaznacz tylko te prace, które są do wykonania. Kod jest wymagany wyłącznie przy zwykłym Alarmie — ID CAN i META nie wymagają kodu.
+    </div>
+    <div class="mount-assignment" id="mountAssignment">
+      <div class="mount-assignment-title">SAMOCHÓD PILNY — DO ZAMONTOWANIA</div>
+      <div class="mount-assignment-items" id="mountAssignmentItems"></div>
+      <div class="muted" id="mountAssignmentMeta" style="margin-top:8px"></div>
+    </div>
+
+    <div class="mount-entry-grid" style="margin-top:18px">
+      <div>
+        <div class="field">
+          <label>VIN — wpisz ostatnie 5 lub 6 znaków</label>
+          <div class="mount-vin-box">
+            <input type="text" id="mountVinInput" maxlength="17" autocomplete="off" placeholder="np. 5842 lub 145842">
+            <div class="mount-vin-dropdown" id="mountVinSuggestions"></div>
+          </div>
+          <div class="mount-form-msg" id="mountVinMessage"></div>
+        </div>
+
+        <div class="field">
+          <label>LICZBA GODZIN MONTAŻU <span class="mount-required">*</span></label>
+          <input type="number" id="mountHours" min="0" step="0.5" placeholder="np. 3,5">
+        </div>
+
+        <div class="field">
+          <label>UWAGI</label>
+          <input type="text" id="mountNotes" placeholder="np. brak materiału, auto czeka, do poprawy...">
+        </div>
+      </div>
+
+      <div>
+        <label class="mount-choice" id="mountAlarmLabel">
+          <input type="checkbox" id="mountAlarmDone">
+          <span>
+            <strong>Alarm do montażu</strong>
+            <small>Jeżeli zaznaczysz alarm, kod alarmu staje się obowiązkowy.</small>
+          </span>
+        </label>
+
+        <div class="field">
+          <label>KOD DO ALARMU <span id="alarmCodeRequired" class="mount-required" style="display:none">*</span></label>
+          <input type="text" id="mountAlarmCode" placeholder="Kod alarmu" disabled>
+        </div>
+
+        <label class="mount-choice" id="mountIdCanLabel">
+          <input type="checkbox" id="mountIdCanDone">
+          <span>
+            <strong>ID CAN do montażu</strong>
+            <small>ID CAN nie wymaga wpisywania kodu.</small>
+          </span>
+        </label>
+
+        <label class="mount-choice" id="mountMetaLabel">
+          <input type="checkbox" id="mountMetaDone">
+          <span>
+            <strong>META do montażu</strong>
+            <small>META nie wymaga wpisywania kodu.</small>
+          </span>
+        </label>
+
+        <label class="mount-choice" id="mountExtraLabel">
+          <input type="checkbox" id="mountExtraDone">
+          <span>
+            <strong>Dodatkowe wyposażenie do montażu</strong>
+            <small>Zaznacz, jeśli samochód ma dodatkowe doposażenie.</small>
+          </span>
+        </label>
+
+        <div class="field">
+          <label>JAKIE DODATKOWE WYPOSAŻENIE</label>
+          <input type="text" id="mountExtraDesc" placeholder="np. hak, listwy, roleta, wanna" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="mount-actions">
+      <button class="btn primary" id="saveMountJob">Dodaj do tabeli</button>
+      <button class="btn" id="cancelMountJob">Anuluj</button>
+    </div>
+    <div class="mount-form-msg" id="mountSaveMessage"></div>
+  </div>
+
+  <div class="mount-list-wrap">
+    <table class="mount-new-table">
+      <thead>
+        <tr>
+          <th>DATA</th>
+          <th>VIN</th>
+          <th>ALARM</th>
+          <th>KOD ALARMU</th>
+          <th>ID CAN</th>
+          <th>META</th>
+          <th>DODATKOWE WYPOSAŻENIE</th>
+          <th>GODZINY</th>
+          <th>UWAGI</th>
+          <th>AKCJE</th>
+        </tr>
+      </thead>
+      <tbody id="mountRows"></tbody>
+    </table>
+  </div>
+
+  <div class="extra-work-box">
+    <div class="extra-work-head">
+      <div>
+        <h2 style="margin:0">Prace dodatkowe do premii</h2>
+        <div class="muted" style="margin-top:4px">Doposażeniowiec wpisuje tylko krótki opis wykonanej pracy. Wycenę ustalisz później indywidualnie.</div>
+      </div>
+      <button class="btn primary" id="addExtraWorkBtn" type="button">+ Dodaj pracę dodatkową</button>
+    </div>
+
+    <div class="extra-work-form" id="extraWorkForm">
+      <label style="display:block;font-size:11px;font-weight:900;color:#475467">PRACA DODATKOWA *
+        <input id="extraWorkText" style="width:100%;margin-top:6px" placeholder="Np. transfer samochodu z placu do hali">
+      </label>
+      <div class="mount-actions">
+        <button class="btn primary" id="saveExtraWorkBtn" type="button">Zapisz pracę dodatkową</button>
+        <button class="btn" id="cancelExtraWorkBtn" type="button">Anuluj</button>
+      </div>
+      <div class="mount-form-msg" id="extraWorkMessage"></div>
+    </div>
+
+    <div class="mount-list-wrap">
+      <table class="mount-new-table">
+        <thead>
+          <tr>
+            <th>DATA</th>
+            <th>PRACA DODATKOWA</th>
+            <th>WYCENA</th>
+            <th>AKCJE</th>
+          </tr>
+        </thead>
+        <tbody id="extraWorkRows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="carsView" class="view">
+  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromCars">←</button><div><h1>Lista samochodów</h1><div class="muted" style="margin-top:5px">Codzienna baza VIN-ów.</div></div></div><span class="owner-badge" id="carsCount"></span></div>
+  <div class="vin-tools">
+    <div class="tool-card">
+      <h3>Dodaj samochód do bazy</h3><div class="muted" style="font-size:12px;margin-top:5px">Na tym etapie wpisujemy tylko pełny VIN.</div>
+      <div class="form-row"><div class="field"><label>PEŁNY VIN</label><input id="newVin" maxlength="17" placeholder="np. JTM5DA8V0J0052198"></div><button class="small-btn primary" id="addCarBtn">+ Dodaj VIN</button></div>
+      <div class="message" id="addCarMessage"></div>
+    </div>
+    <div class="tool-card">
+      <h3>Podpowiedz pełny VIN</h3><div class="muted" style="font-size:12px;margin-top:5px">Wpisz końcówkę VIN-u, np. 5842.</div>
+      <div class="vin-lookup"><input id="vinLookup" autocomplete="off" placeholder="Wpisz min. 2 znaki"><div class="vin-suggestions" id="vinSuggestions"></div></div>
+      <div class="message" id="vinLookupMessage"></div>
+    </div>
+  </div>
+  <div class="searchbar"><input id="carSearch" placeholder="Szukaj po VIN lub statusie"></div>
+  <div class="table-wrap"><table class="car-table"><thead><tr><th>VIN</th><th>STATUS</th></tr></thead><tbody id="carRows"></tbody></table></div>
+</section>
+
+<section id="batteryView" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backMainFromBattery">←</button>
+      <div>
+        <h1>Testy akumulatorów</h1>
+        <div class="muted" style="margin-top:5px">Każdy samochód na placu: pierwszy test po przyjęciu, następny co 14 dni. Po wydaniu auta dalsze testy nie są wymagane.</div>
+        <div style="margin-top:8px;display:inline-flex;align-items:center;gap:7px;background:#fff4cc;color:#7a5600;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:1000">SYMULACJA DATY: 12.09.2026</div>
+      </div>
+    </div>
+    <span class="owner-badge" id="batteryCount"></span>
+  </div>
+
+  <div class="battery-summary" style="grid-template-columns:repeat(4,1fr)">
+    <div class="battery-kpi"><span class="muted">Do pierwszego testu</span><b id="batteryNewCount">0</b></div>
+    <div class="battery-kpi"><span class="muted">Test aktualny</span><b id="batteryOkCount">0</b></div>
+    <div class="battery-kpi"><span class="muted">Zbliża się / dziś</span><b id="batterySoonCount">0</b></div>
+    <div class="battery-kpi"><span class="muted">Przeterminowane</span><b id="batteryDueCount">0</b></div>
+  </div>
+
+  <div class="battery-note">
+    Samochody pojawiają się tutaj automatycznie po dodaniu VIN-u do „Listy samochodów”. Test zapisuje datę wykonania i automatycznie wylicza kolejny termin za 14 dni. Dzień przed terminem pojawia się ostrzeżenie „ZBLIŻA SIĘ TEST”, w dniu terminu „TEST DZISIAJ”, a od następnego dnia „PRZETERMINOWANY”. Taki komunikat pozostaje do czasu zapisania nowego testu.
+  </div>
+
+  <div class="searchbar"><input id="batterySearch" placeholder="Szukaj po VIN"></div>
+  <div class="table-wrap">
+    <table class="car-table">
+      <thead>
+        <tr>
+          <th>VIN</th>
+          <th>TEST WYKONANY</th>
+          <th>DATA TESTU</th>
+          <th>NASTĘPNY TEST</th>
+          <th>STATUS</th>
+          <th>AKCJA</th>
+        </tr>
+      </thead>
+      <tbody id="batteryRows"></tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView"];
+function show(id){views.forEach(v=>$("#"+v).classList.toggle("active",v===id))}
+
+/* ---------- RELEASE DATA ---------- */
+const releaseSeed=[
+{id:1,date:"2026-08-31",time:"08:00",client:"EUROCASH",model:"Yaris",vin:"VNKKG3D340A145842",place:"hala",info:"Alarm, dywaniki gumowe",status:"GOTOWY",alarmReady:true,matsReady:true,extraReady:false},
+{id:2,date:"2026-08-31",time:"08:00",client:"ATUT RENTAL",model:"Corolla",vin:"SB1K93BE10E198831",place:"hala",info:"Dywaniki gumowe",status:"GOTOWY",alarmReady:false,matsReady:true,extraReady:false},
+{id:3,date:"2026-08-31",time:"09:00",client:"LUX MED",model:"RAV4",vin:"JTM5DA8V0J0052198",place:"K1",info:"Alarm, ID CAN, dywaniki gumowe, apteczka",status:"GOTOWY",alarmReady:true,matsReady:true,extraReady:true},
+{id:4,date:"2026-08-31",time:"09:00",client:"LUX MED",model:"Yaris Cross",vin:"JTDKABC1234566304",place:"K1",info:"Alarm, ID CAN",status:"STOP",alarmReady:false,matsReady:false,extraReady:false},
+{id:5,date:"2026-08-31",time:"09:00",client:"SANOFI",model:"Camry",vin:"JTNB11HK303147102",place:"hala",info:"Alarm, dywaniki gumowe",status:"W TRAKCIE",alarmReady:true,matsReady:false,extraReady:false},
+{id:6,date:"2026-08-31",time:"13:00",client:"M. ST. WARSZAWA",model:"Proace",vin:"YARVFEHT9GZ124021",place:"pod halą",info:"KARETKA",status:"W TRAKCIE",alarmReady:false,matsReady:false,extraReady:false},
+{id:7,date:"2026-09-01",time:"10:00",client:"Compass",model:"Proace",vin:"YARVFEHT9GZ133410",place:"pod halą",info:"Alarm, dywaniki gumowe",status:"W TRAKCIE",alarmReady:false,matsReady:false,extraReady:false},
+{id:8,date:"2026-08-31",time:"10:30",client:"LUX MED",model:"Corolla",vin:"SB1K93BE10E192345",place:"hala",info:"Alarm, dywaniki gumowe, hak",status:"WYDANE",alarmReady:true,matsReady:true,extraReady:true}
+];
+
+const CLEAN_START_KEY="toyotaFleetCleanStartBatteryTestsV1";
+if(!localStorage.getItem(CLEAN_START_KEY)){
+  localStorage.removeItem("toyotaFleetDemoV2");
+  localStorage.removeItem("toyotaFleetCarsDB3");
+  localStorage.removeItem("toyotaMountJobsV3");
+  localStorage.removeItem("toyotaBatteryTestsV1");
+  localStorage.setItem(CLEAN_START_KEY,"1");
+}
+let releaseData=JSON.parse(localStorage.getItem("toyotaFleetDemoV2")||"null")||[];
+
+function normalizeReleaseRequirements(r){
+  const info=(r.info||"").toLowerCase();
+
+  if(typeof r.alarmRequired!=="boolean") r.alarmRequired=/alarm/.test(info);
+  if(typeof r.idCanRequired!=="boolean") r.idCanRequired=/id\s*can/.test(info);
+  if(typeof r.metaRequired!=="boolean") r.metaRequired=/\bmeta\b/.test(info);
+
+  if(typeof r.extraRequired!=="boolean"){
+    const cleaned=info
+      .replace(/alarm/g,"")
+      .replace(/id\s*can/g,"")
+      .replace(/\bmeta\b/g,"")
+      .replace(/dywaniki gumowe/g,"")
+      .replace(/dywaniki/g,"")
+      .replace(/[,\s]+/g,"")
+      .trim();
+    r.extraRequired=cleaned.length>0;
+  }
+
+  const anyAlarm=r.alarmRequired||r.idCanRequired||r.metaRequired;
+  if(!anyAlarm) r.alarmReady=true;
+  if(!r.extraRequired) r.extraReady=true;
+  if(typeof r.matsReady!=="boolean") r.matsReady=false;
+  if(typeof r.releaseReady!=="boolean") r.releaseReady=(r.status==="GOTOWY"||r.status==="WYDANE");
+  return r;
+}
+releaseData.forEach(normalizeReleaseRequirements);
+
+function releaseIsComplete(r){
+  const alarmDone=!(r.alarmRequired||r.idCanRequired||r.metaRequired) || !!r.alarmReady;
+  const matsDone=!!r.matsReady;
+  const extraDone=!r.extraRequired || !!r.extraReady;
+  return alarmDone && matsDone && extraDone;
+}
+
+function recalcReleaseStatus(r){
+  if(r.status!=="WYDANE" && r.status!=="STOP"){
+    r.status=!!r.releaseReady ? "GOTOWY" : "W TRAKCIE";
+  }
+}
+
+let selectedDay="", selectedVehicle=null;
+function saveRelease(){localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData))}
+saveRelease();
+function fmtDate(v){const [y,m,d]=v.split("-");return `${d}.${m}.${y}`}
+function shortVin(v){return v?`…${v.slice(-4)}`:"—"}
+function statusPill(s){
+  const cls=s==="WYDANE"?"s-issued":s==="GOTOWY"?"s-ready":s==="STOP"?"s-stop":"s-progress";
+  const label=s==="WYDANE"?"✓ WYDANE":s==="GOTOWY"?"✓ GOTOWE":s==="STOP"?"! STOP":"○ W TRAKCIE";
+  return `<span class="status ${cls}">${label}</span>`
+}
+function equipmentBadges(r){
+  normalizeReleaseRequirements(r);
+  const arr=[];
+  if(r.alarmRequired) arr.push(`<span class="eq ${r.alarmReady?"done":""}">Alarm${r.alarmReady?" ✓":" • DO ZROBIENIA"}</span>`);
+  if(r.idCanRequired) arr.push(`<span class="eq ${r.alarmReady?"done":""}">ID CAN${r.alarmReady?" ✓":" • DO ZROBIENIA"}</span>`);
+  if(r.metaRequired) arr.push(`<span class="eq ${r.alarmReady?"done":""}">META${r.alarmReady?" ✓":" • DO ZROBIENIA"}</span>`);
+  if(/dywan/i.test(r.info||"") || r.matsReady) arr.push(`<span class="eq ${r.matsReady?"done":""}">Dywaniki${r.matsReady?" ✓":""}</span>`);
+  if(r.extraRequired) arr.push(`<span class="eq ${r.extraReady?"done":""}">Dodatkowe wyposażenie${r.extraReady?" ✓":" • DO ZROBIENIA"}</span>`);
+  if(!arr.length) arr.push(`<span class="eq done">Brak prac doposażeniowych ✓</span>`);
+  return arr.join("");
+}
+function currentWeek(){const anchor=new Date("2026-08-31T12:00:00");return Array.from({length:5},(_,i)=>{const d=new Date(anchor);d.setDate(anchor.getDate()+i);return d})}
+function iso(d){return d.toISOString().slice(0,10)}
+
+let editingReleaseId=null;
+
+function resetReleaseForm(){
+  editingReleaseId=null;
+  $("#releaseFormTitle").textContent="Dodaj wydanie samochodu";
+  $("#releaseEditNote").classList.remove("show");
+  $("#saveReleaseEntry").textContent="Dodaj do wydań";
+  $("#releaseVin").value="";
+  $("#releaseClient").value="";
+  $("#releaseModel").value="";
+  $("#releaseDate").value="";
+  $("#releaseTime").value="";
+  $("#releasePlace").value="";
+  $("#releaseInfo").value="";
+  $("#releaseAlarmRequired").checked=false;
+  $("#releaseIdCanRequired").checked=false;
+  $("#releaseMetaRequired").checked=false;
+  $("#releaseExtraRequired").checked=false;
+  $("#releaseMatsReady").checked=false;
+  $("#releaseAddMessage").textContent="";
+  $("#releaseVinSuggestions").classList.remove("open");
+  $("#releaseVinSuggestions").innerHTML="";
+}
+
+function releaseVinMatches(query){
+  const q=normalizeVin(query);
+  if(q.length<2)return[];
+  const ending=fleetCars.filter(c=>normalizeVin(c.vin).endsWith(q));
+  const containing=fleetCars.filter(c=>!normalizeVin(c.vin).endsWith(q)&&normalizeVin(c.vin).includes(q));
+  return [...ending,...containing].slice(0,8);
+}
+
+function renderReleaseVinSuggestions(){
+  const q=normalizeVin($("#releaseVin").value);
+  $("#releaseVin").value=q;
+  const box=$("#releaseVinSuggestions");
+  if(q.length<2){box.classList.remove("open");box.innerHTML="";return}
+  const hits=releaseVinMatches(q);
+  if(!hits.length){box.classList.remove("open");box.innerHTML="";return}
+  box.innerHTML=hits.map(c=>`<div class="release-vin-option" data-vin="${c.vin}"><b>${c.vin}</b><div class="muted">${c.status||"AKTYWNY"}</div></div>`).join("");
+  box.classList.add("open");
+  box.querySelectorAll(".release-vin-option").forEach(o=>o.onclick=()=>{
+    $("#releaseVin").value=o.dataset.vin;
+    box.classList.remove("open");
+  });
+}
+
+
+function startEditRelease(id){
+  const r=releaseData.find(x=>String(x.id)===String(id));
+  if(!r) return;
+
+  editingReleaseId=r.id;
+  $("#releaseAddCard").classList.add("open");
+  $("#releaseFormTitle").textContent="Edytuj wydanie";
+  $("#releaseEditNote").classList.add("show");
+  $("#saveReleaseEntry").textContent="Zapisz zmiany";
+
+  $("#releaseVin").value=r.vin||"";
+  $("#releaseClient").value=r.client||"";
+  $("#releaseModel").value=r.model||"";
+  $("#releaseDate").value=r.date||"";
+  $("#releaseTime").value=r.time||"";
+  $("#releasePlace").value=r.place||"";
+  $("#releaseInfo").value=r.info||"";
+  normalizeReleaseRequirements(r);
+  $("#releaseAlarmRequired").checked=!!r.alarmRequired;
+  $("#releaseIdCanRequired").checked=!!r.idCanRequired;
+  $("#releaseMetaRequired").checked=!!r.metaRequired;
+  $("#releaseExtraRequired").checked=!!r.extraRequired;
+  $("#releaseMatsReady").checked=!!r.matsReady;
+  $("#releaseAddMessage").textContent="";
+  $("#releaseVinSuggestions").classList.remove("open");
+
+  show("releaseHome");
+  $("#releaseAddCard").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function addReleaseEntry(){
+  const msg=$("#releaseAddMessage");
+  let vin=normalizeVin($("#releaseVin").value);
+  if(vin.length<17){
+    const hits=releaseVinMatches(vin);
+    if(hits.length===1) vin=normalizeVin(hits[0].vin);
+    else{
+      msg.textContent=hits.length>1?"Jest kilka pasujących VIN-ów — wybierz właściwy z podpowiedzi.":"Nie znaleziono VIN-u na Liście samochodów.";
+      msg.className="message error";return;
+    }
+  }
+  if(!fleetCars.some(c=>normalizeVin(c.vin)===vin)){
+    msg.textContent="Ten VIN nie znajduje się na Liście samochodów.";
+    msg.className="message error";return;
+  }
+
+  const client=$("#releaseClient").value.trim();
+  const model=$("#releaseModel").value.trim();
+  const date=$("#releaseDate").value;
+  const time=$("#releaseTime").value;
+  if(!client||!model||!date||!time){
+    msg.textContent="Uzupełnij VIN, klienta, model, datę i godzinę wydania.";
+    msg.className="message error";return;
+  }
+
+  const alarmRequired=$("#releaseAlarmRequired").checked;
+  const idCanRequired=$("#releaseIdCanRequired").checked;
+  const metaRequired=$("#releaseMetaRequired").checked;
+  const extraRequired=$("#releaseExtraRequired").checked;
+  const matsReady=$("#releaseMatsReady").checked;
+
+  const previous=editingReleaseId!==null ? releaseData.find(x=>String(x.id)===String(editingReleaseId)) : null;
+  const prevAnyAlarm=previous ? !!(previous.alarmRequired||previous.idCanRequired||previous.metaRequired) : false;
+  const anyAlarm=alarmRequired||idCanRequired||metaRequired;
+
+  // Coordinator only defines the work. New required work starts as NOT completed.
+  const alarmReady = anyAlarm ? (previous && prevAnyAlarm ? !!previous.alarmReady : false) : true;
+  const extraReady = extraRequired ? (previous && previous.extraRequired ? !!previous.extraReady : false) : true;
+
+  const payload={
+    id:editingReleaseId!==null ? editingReleaseId : Date.now(),
+    date,time,client,model,vin,
+    place:$("#releasePlace").value.trim(),
+    info:$("#releaseInfo").value.trim(),
+    status:"W TRAKCIE",
+    alarmRequired,idCanRequired,metaRequired,extraRequired,
+    alarmReady,matsReady,extraReady,
+    releaseReady: previous ? !!previous.releaseReady : false
+  };
+  payload.status=payload.releaseReady?"GOTOWY":"W TRAKCIE";
+
+  if(editingReleaseId!==null){
+    const idx=releaseData.findIndex(x=>String(x.id)===String(editingReleaseId));
+    if(idx>=0){
+      // Preserve WYDANE only if it was already issued and user is just editing metadata.
+      if(releaseData[idx].status==="WYDANE") payload.status="WYDANE";
+      releaseData[idx]=payload;
+    }
+  }else{
+    releaseData.push(payload);
+  }
+
+  saveRelease();
+  ensureCar(vin);saveCars();
+  renderReleaseHome();
+  if(selectedDay) renderDay();
+  if(typeof renderUrgentMountAlerts==="function")renderUrgentMountAlerts();
+  resetReleaseForm();
+  $("#releaseAddCard").classList.remove("open");
+}
+
+function renderReleaseHome(){
+  $("#monthCount").textContent=releaseData.filter(r=>r.status==="WYDANE").length;
+  const names=["Poniedziałek","Wtorek","Środa","Czwartek","Piątek"]; $("#folders").innerHTML="";
+  currentWeek().forEach((d,i)=>{
+    const key=iso(d),items=releaseData.filter(r=>r.date===key),ready=items.filter(r=>r.status==="GOTOWY").length,issued=items.filter(r=>r.status==="WYDANE").length;
+    const b=document.createElement("button"); b.className="folder"; b.innerHTML=`<div class="folder-name">${names[i]}</div><div class="folder-date">${fmtDate(key)}</div><div class="folder-count">${items.length}</div><div class="folder-meta">${ready} gotowych • ${issued} wydanych</div>`;
+    b.onclick=()=>openDay(key,names[i]); $("#folders").appendChild(b);
+  });
+}
+function openDay(key,name){selectedDay=key;$("#dayTitle").textContent=name;$("#daySubtitle").textContent=`${fmtDate(key)} • harmonogram wydań`;show("releaseDay");renderDay()}
+function renderDay(){
+  const items=releaseData.filter(r=>r.date===selectedDay).sort((a,b)=>(a.time||"99:99").localeCompare(b.time||"99:99"));
+  $("#kAll").textContent=items.length;$("#kReady").textContent=items.filter(r=>r.status==="GOTOWY").length;$("#kOpen").textContent=items.filter(r=>["W TRAKCIE","STOP"].includes(r.status)).length;$("#kIssued").textContent=items.filter(r=>r.status==="WYDANE").length;
+  const groups={};items.forEach(r=>(groups[r.time||"Bez godziny"]??=[]).push(r));$("#timeline").innerHTML="";
+  Object.entries(groups).forEach(([time,rows])=>{
+    const block=document.createElement("section");block.className="time-block";block.innerHTML=`<div class="time-head"><div class="time-hour">${time}</div><span>${rows.length} ${rows.length===1?"wydanie":"wydania"}</span></div>`;
+    rows.forEach(r=>{
+      normalizeReleaseRequirements(r);
+      recalcReleaseStatus(r);
+      const row=document.createElement("div");row.className="car-row"+(r.status==="WYDANE"?" issued":"");
+      const isReady=r.status==="GOTOWY"||r.status==="WYDANE";
+      row.innerHTML=`<div><div class="client">${r.client}</div><div class="sub">${r.model}</div></div>
+        <div><b>${shortVin(r.vin)}</b><div class="sub">${r.place||"—"}</div></div>
+        <div class="equip-col equipment">${equipmentBadges(r)}</div>
+        <label class="ready-label">
+          <input class="ready-toggle" type="checkbox" ${r.releaseReady?"checked":""} ${r.status==="WYDANE"?"disabled":""}>
+          <span>Gotowy do wydania</span>
+        </label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="issue-inline ${r.status==="GOTOWY"?"":"hidden"}" type="button">WYDANY</button><button class="release-edit-btn" data-edit-release="${r.id}" type="button">Edytuj</button>
+          ${statusPill(r.status)}
+        </div>`;
+
+      row.onclick=()=>openVehicle(r.id);
+
+      const q=row.querySelector(".ready-toggle");
+      q.onclick=e=>e.stopPropagation();
+      q.onchange=e=>{
+        e.stopPropagation();
+        if(r.status==="WYDANE") return;
+        r.releaseReady=q.checked;
+        recalcReleaseStatus(r);
+        saveRelease();
+        renderDay();
+        renderReleaseHome();
+      };
+
+      const issueBtn=row.querySelector(".issue-inline");
+      issueBtn.onclick=e=>{
+        e.stopPropagation();
+        if(r.status!=="GOTOWY")return;
+        r.status="WYDANE";
+        saveRelease();
+        const c=ensureCar(r.vin);
+        c.status="WYJECHAŁ";
+        saveCars();
+        renderDay();
+        renderReleaseHome();
+      };
+
+      block.appendChild(row);
+    });$("#timeline").appendChild(block);
+  });
+}
+function openVehicle(id){
+  selectedVehicle=id;const r=releaseData.find(x=>x.id===id);if(!r)return;
+  $("#vehicleTitle").textContent=`${r.model} • ${r.client}`;$("#vehicleSubtitle").textContent=`${fmtDate(r.date)} • ${r.time} • VIN ${r.vin}`;
+  $("#vehicleDetails").innerHTML=`<div class="detail"><small>Klient</small><b>${r.client}</b></div><div class="detail"><small>Model</small><b>${r.model}</b></div><div class="detail"><small>VIN</small><b>${r.vin}</b></div><div class="detail"><small>Miejsce</small><b>${r.place||"—"}</b></div>`;
+  normalizeReleaseRequirements(r);
+  $("#vehicleInfo").textContent=r.info||"Brak dodatkowych informacji.";
+  const required=[];
+  if(r.alarmRequired) required.push("Alarm");
+  if(r.idCanRequired) required.push("ID CAN");
+  if(r.metaRequired) required.push("META");
+  if(r.extraRequired) required.push("Dodatkowe wyposażenie");
+  $("#extraText").textContent=r.extraRequired?"Do zrobienia przez doposażeniowca.":"Brak zadania.";
+  $("#checkAlarm").checked=!(r.alarmRequired||r.idCanRequired||r.metaRequired) || !!r.alarmReady;
+  $("#checkMats").checked=!!r.matsReady;
+  $("#checkExtra").checked=!r.extraRequired || !!r.extraReady;
+  $("#checkReleaseReady").checked=!!r.releaseReady;
+  $("#labAlarm").style.display=(r.alarmRequired||r.idCanRequired||r.metaRequired)?"flex":"none";
+  $("#labExtra").style.display=r.extraRequired?"flex":"none";
+  updateCheckLook();
+  $("#markIssued").disabled=r.status==="WYDANE";$("#undoIssued").disabled=r.status!=="WYDANE";show("releaseVehicle");
+}
+function updateCheckLook(){
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  normalizeReleaseRequirements(r);
+
+  $("#labAlarm").classList.toggle("checked",!(r.alarmRequired||r.idCanRequired||r.metaRequired)||!!r.alarmReady);
+  $("#labMats").classList.toggle("checked",!!r.matsReady);
+  $("#labExtra").classList.toggle("checked",!r.extraRequired||!!r.extraReady);
+  $("#labReleaseReady").classList.toggle("checked",!!r.releaseReady);
+
+  const tasks=[];
+  if(r.alarmRequired||r.idCanRequired||r.metaRequired) tasks.push({name:"Alarm",done:!!r.alarmReady});
+  tasks.push({name:"Dywaniki",done:!!r.matsReady});
+  if(r.extraRequired) tasks.push({name:"Doposażenie",done:!!r.extraReady});
+  const done=tasks.filter(x=>x.done).length;
+
+  recalcReleaseStatus(r);
+
+  const pending=!releaseIsComplete(r);
+  $("#checkSummary").innerHTML=`<b>${done}/${tasks.length} prac gotowych</b>${pending?'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Są jeszcze niepotwierdzone prace / przygotowanie.</div>':'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Wszystkie prace są potwierdzone.</div>'}${r.status==="GOTOWY"?'<div style="margin-top:7px;color:#168a45;font-weight:1000">✓ SAMOCHÓD OZNACZONY JAKO GOTOWY DO WYDANIA</div>':''}<div class="muted" style="margin-top:4px">Gotowość do wydania zaznacza asystent koordynujący niezależnie od statusu prac. Niewykonane prace nadal pozostają widoczne jako ostrzeżenie i u doposażeniowca.</div>`;
+}
+/* ---------- CAR DATABASE + SYNC ---------- */
+const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
+let fleetCars=JSON.parse(localStorage.getItem("toyotaFleetCarsDB3")||"null")||[];
+function normalizeVin(v){return (v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").trim()}
+function saveCars(){localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars))}
+function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY"};fleetCars.unshift(c)}return c}
+function syncIssuedToCars(){
+  releaseData.forEach(r=>{
+    const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(r.vin));
+    if(!c)return;
+    if(r.status==="WYDANE")c.status="WYJECHAŁ";
+    else if(c.status==="WYJECHAŁ")c.status="AKTYWNY";
+  });
+  saveCars();
+  if(typeof syncBatteryCars==="function")syncBatteryCars();
+}
+function renderCars(){
+  syncIssuedToCars();
+  const q=($("#carSearch").value||"").toLowerCase();const rows=fleetCars.filter(r=>`${r.vin} ${r.status}`.toLowerCase().includes(q));
+  $("#carsCount").textContent=`${fleetCars.length} samochodów`;
+  $("#carRows").innerHTML=rows.length?rows.map(r=>`<tr><td class="vin-cell">${r.vin}</td><td><span class="car-status ${r.status==="WYJECHAŁ"?"car-departed":"car-ready"}">${r.status}</span></td></tr>`).join(""):`<tr><td colspan="2" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
+}
+function addCar(){
+  const vin=normalizeVin($("#newVin").value);const msg=$("#addCarMessage");
+  if(vin.length<6){msg.textContent="VIN jest za krótki.";msg.className="message error";return}
+  if(fleetCars.some(r=>normalizeVin(r.vin)===vin)){msg.textContent="Ten VIN już istnieje w bazie.";msg.className="message error";return}
+  fleetCars.unshift({vin,status:"AKTYWNY"});saveCars();syncBatteryCars();$("#newVin").value="";msg.textContent=`Dodano VIN ${vin}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
+}
+function renderVinSuggestions(){
+  const q=normalizeVin($("#vinLookup").value);$("#vinLookup").value=q;const box=$("#vinSuggestions"),msg=$("#vinLookupMessage");
+  if(q.length<2){box.classList.remove("open");box.innerHTML="";msg.textContent="";return}
+  const ending=fleetCars.filter(r=>normalizeVin(r.vin).endsWith(q));const containing=fleetCars.filter(r=>!normalizeVin(r.vin).endsWith(q)&&normalizeVin(r.vin).includes(q));const m=[...ending,...containing].slice(0,8);
+  if(!m.length){box.classList.remove("open");msg.textContent="Brak pasującego VIN-u.";msg.className="message error";return}
+  box.innerHTML=m.map(r=>`<div class="vin-option" data-vin="${r.vin}"><div class="vin-full">${r.vin}</div><div class="vin-meta">${r.status}</div></div>`).join("");box.classList.add("open");msg.textContent=`Znaleziono ${m.length}.`;msg.className="message ok";
+  box.querySelectorAll(".vin-option").forEach(o=>o.onclick=()=>{$("#vinLookup").value=o.dataset.vin;box.classList.remove("open");msg.textContent=`Pełny VIN: ${o.dataset.vin}`});
+}
+
+
+
+/* ---------- EXTRA WORK FOR BONUS SETTLEMENT ---------- */
+let extraBonusWorks=JSON.parse(localStorage.getItem("toyotaExtraBonusWorksV1")||"null")||[];
+let editingExtraWorkId=null;
+
+function saveExtraBonusWorks(){
+  localStorage.setItem("toyotaExtraBonusWorksV1",JSON.stringify(extraBonusWorks));
+}
+function extraWorkToday(){
+  return typeof isoToday==="function" ? isoToday() : new Date().toISOString().slice(0,10);
+}
+function formatExtraWorkDate(iso){
+  if(!iso)return "—";
+  const p=iso.split("-");
+  return p.length===3 ? `${p[2]}.${p[1]}.${p[0]}` : iso;
+}
+function resetExtraWorkForm(){
+  editingExtraWorkId=null;
+  $("#extraWorkText").value="";
+  $("#saveExtraWorkBtn").textContent="Zapisz pracę dodatkową";
+  $("#extraWorkMessage").textContent="";
+}
+function openExtraWorkForm(id=null){
+  resetExtraWorkForm();
+  editingExtraWorkId=id;
+  if(id!==null){
+    const w=extraBonusWorks.find(x=>x.id===id);
+    if(w){
+      $("#extraWorkText").value=w.text||w.note||w.type||"";
+      $("#saveExtraWorkBtn").textContent="Zapisz zmiany";
+    }
+  }
+  $("#extraWorkForm").classList.add("open");
+  $("#extraWorkText").focus();
+}
+function closeExtraWorkForm(){
+  resetExtraWorkForm();
+  $("#extraWorkForm").classList.remove("open");
+}
+function saveExtraWorkEntry(){
+  if(!selectedOwner)return;
+  const text=($("#extraWorkText").value||"").trim();
+  const msg=$("#extraWorkMessage");
+
+  if(!text){
+    msg.textContent="Wpisz wykonaną pracę dodatkową.";
+    msg.className="mount-form-msg error";
+    return;
+  }
+
+  if(editingExtraWorkId!==null){
+    const w=extraBonusWorks.find(x=>x.id===editingExtraWorkId);
+    if(w) w.text=text;
+  }else{
+    extraBonusWorks.push({
+      id:Date.now()+Math.floor(Math.random()*1000),
+      owner:selectedOwner,
+      date:extraWorkToday(),
+      text
+    });
+  }
+
+  saveExtraBonusWorks();
+  closeExtraWorkForm();
+  renderExtraWorks();
+}
+function deleteExtraWork(id){
+  const w=extraBonusWorks.find(x=>x.id===id);
+  if(!w)return;
+  const label=w.text||w.note||w.type||"praca dodatkowa";
+  if(!confirm(`Usunąć wpis „${label}”?`))return;
+  extraBonusWorks=extraBonusWorks.filter(x=>x.id!==id);
+  saveExtraBonusWorks();
+  renderExtraWorks();
+}
+function renderExtraWorks(){
+  const tbody=$("#extraWorkRows");
+  if(!tbody)return;
+
+  const rows=extraBonusWorks
+    .filter(x=>x.owner===selectedOwner)
+    .sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+
+  tbody.innerHTML=rows.length ? rows.map(w=>{
+    const text=w.text||[w.type,w.vin,w.note].filter(Boolean).join(" — ")||"Praca dodatkowa";
+    return `<tr class="completed">
+      <td>${formatExtraWorkDate(w.date)}</td>
+      <td><b>${text}</b></td>
+      <td><span class="extra-work-status">DO INDYWIDUALNEJ WYCENY</span></td>
+      <td>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="mount-edit-btn" type="button" data-extra-edit="${w.id}">Edytuj</button>
+          <button class="mount-edit-btn" type="button" data-extra-delete="${w.id}">Usuń</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join("") :
+    `<tr><td colspan="4" class="extra-work-empty">Brak prac dodatkowych.</td></tr>`;
+
+  document.querySelectorAll("[data-extra-edit]").forEach(btn=>{
+    btn.onclick=()=>openExtraWorkForm(Number(btn.dataset.extraEdit));
+  });
+  document.querySelectorAll("[data-extra-delete]").forEach(btn=>{
+    btn.onclick=()=>deleteExtraWork(Number(btn.dataset.extraDelete));
+  });
+}
+
+/* ---------- BATTERY TESTS ---------- */
+let batteryTests=JSON.parse(localStorage.getItem("toyotaBatteryTestsV1")||"null")||[];
+
+function saveBatteryTests(){
+  localStorage.setItem("toyotaBatteryTestsV1",JSON.stringify(batteryTests));
+}
+function isoToday(){
+  // Tryb symulacji — cała logika terminów zachowuje się tak, jakby dziś był 12.09.2026.
+  return "2026-09-12";
+}
+function addDaysIso(iso,days){
+  if(!iso)return "";
+  const [y,m,d]=iso.split("-").map(Number);
+  const dt=new Date(y,m-1,d);
+  dt.setDate(dt.getDate()+days);
+  return `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}-${String(dt.getDate()).padStart(2,"0")}`;
+}
+function formatIso(iso){
+  if(!iso)return "—";
+  const [y,m,d]=iso.split("-");
+  return `${d}.${m}.${y}`;
+}
+function getCarStatus(vin){
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(vin));
+  return c?.status||"AKTYWNY";
+}
+function syncBatteryCars(){
+  // Every car currently known by Lista samochodów gets its own battery-test record.
+  fleetCars.forEach(c=>{
+    const vin=normalizeVin(c.vin);
+    if(!batteryTests.some(t=>normalizeVin(t.vin)===vin)){
+      batteryTests.push({vin,lastTest:"",nextTest:""});
+    }
+  });
+  saveBatteryTests();
+}
+function daysBetweenIso(fromIso,toIso){
+  const [fy,fm,fd]=fromIso.split("-").map(Number);
+  const [ty,tm,td]=toIso.split("-").map(Number);
+  const a=Date.UTC(fy,fm-1,fd);
+  const b=Date.UTC(ty,tm-1,td);
+  return Math.round((b-a)/86400000);
+}
+function batteryRowState(t){
+  const carStatus=getCarStatus(t.vin);
+  if(carStatus==="WYJECHAŁ") return {key:"issued",label:"WYDANY — testy zakończone",cls:"battery-issued",rowCls:""};
+  if(!t.lastTest) return {key:"new",label:"TEST WYMAGANY",cls:"battery-new",rowCls:""};
+
+  const today=isoToday();
+  const days=daysBetweenIso(today,t.nextTest);
+
+  if(days<0) return {
+    key:"overdue",
+    label:`PRZETERMINOWANY • ${Math.abs(days)} ${Math.abs(days)===1?"DZIEŃ":"DNI"}`,
+    cls:"battery-overdue",
+    rowCls:"battery-row-overdue"
+  };
+  if(days===0) return {
+    key:"today",
+    label:"TEST DZISIAJ",
+    cls:"battery-today",
+    rowCls:"battery-row-today"
+  };
+  if(days===1) return {
+    key:"soon",
+    label:"ZBLIŻA SIĘ TEST • JUTRO",
+    cls:"battery-soon",
+    rowCls:"battery-row-soon"
+  };
+  return {
+    key:"ok",
+    label:`AKTUALNY • ${days} DNI`,
+    cls:"battery-ok",
+    rowCls:""
+  };
+}
+function renderBattery(){
+  syncIssuedToCars();
+  syncBatteryCars();
+
+  const q=normalizeVin($("#batterySearch").value||"");
+  const rows=batteryTests
+    .filter(t=>!q || normalizeVin(t.vin).includes(q))
+    .sort((a,b)=>{
+      // Najważniejsze zawsze na górze:
+      // 1. przeterminowane, 2. test dzisiaj, 3. zbliża się jutro,
+      // 4. pierwszy test, 5. aktualne, 6. wydane.
+      const order={overdue:0,today:1,soon:2,new:3,ok:4,issued:5};
+      const sa=batteryRowState(a), sb=batteryRowState(b);
+      const rank=(order[sa.key]??99)-(order[sb.key]??99);
+      if(rank!==0)return rank;
+
+      // W obrębie pilnych pozycji najstarszy / najbliższy termin wyżej.
+      if(a.nextTest && b.nextTest && a.nextTest!==b.nextTest) return a.nextTest.localeCompare(b.nextTest);
+      return a.vin.localeCompare(b.vin);
+    });
+
+  const active=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ");
+  $("#batteryCount").textContent=`${active.length} aut na placu`;
+  $("#batteryNewCount").textContent=active.filter(t=>batteryRowState(t).key==="new").length;
+  $("#batteryOkCount").textContent=active.filter(t=>batteryRowState(t).key==="ok").length;
+  $("#batterySoonCount").textContent=active.filter(t=>["soon","today"].includes(batteryRowState(t).key)).length;
+  $("#batteryDueCount").textContent=active.filter(t=>batteryRowState(t).key==="overdue").length;
+
+  $("#batteryRows").innerHTML=rows.length ? rows.map(t=>{
+    const st=batteryRowState(t), issued=st.key==="issued";
+    return `<tr class="${st.rowCls||""}">
+      <td class="vin-cell">${t.vin}</td>
+      <td>${t.lastTest?'<span style="font-weight:1000;color:#168a45">TAK ✓</span>':'<span style="font-weight:1000;color:#b42318">NIE</span>'}</td>
+      <td>${formatIso(t.lastTest)}</td>
+      <td>${issued?"—":formatIso(t.nextTest)}</td>
+      <td><span class="battery-status ${st.cls}">${st.label}</span></td>
+      <td>
+        ${issued?'<span class="muted">Brak kolejnych testów</span>':`
+        <div class="battery-actions">
+          <input class="battery-date" type="date" data-battery-date="${t.vin}" value="${isoToday()}">
+          <button class="battery-save" data-battery-save="${t.vin}" type="button">${t.lastTest?"Zapisz kolejny test":"Wykonano test"}</button>
+        </div>`}
+      </td>
+    </tr>`;
+  }).join("") : `<tr><td colspan="6" style="padding:24px;text-align:center;color:#6b7280">Brak samochodów. Dodaj nowy VIN w module „Lista samochodów”.</td></tr>`;
+
+  document.querySelectorAll("[data-battery-save]").forEach(btn=>{
+    btn.onclick=()=>{
+      const vin=btn.dataset.batterySave;
+      const input=document.querySelector(`[data-battery-date="${vin}"]`);
+      const date=input?.value||isoToday();
+      const t=batteryTests.find(x=>normalizeVin(x.vin)===normalizeVin(vin));
+      if(!t)return;
+      t.lastTest=date;
+      t.nextTest=addDaysIso(date,14);
+      saveBatteryTests();
+      renderBattery();
+    };
+  });
+}
+
+/* ---------- MOUNTS ---------- */
+const mountJobsSeed=[
+  {owner:"Jakub Grzywacz",date:"05.08.2026",vin:"JTNAGACK303089642",alarm:true,alarmCode:"54274",extra:false,extraDesc:"",hours:"3.5",notes:""},
+  {owner:"Jakub Grzywacz",date:"06.08.2026",vin:"JTM5CAA7V0D320356",alarm:true,alarmCode:"24381",extra:false,extraDesc:"",hours:"3",notes:"16"},
+  {owner:"Jakub Grzywacz",date:"06.08.2026",vin:"AHTBE3CD907471651",alarm:false,alarmCode:"",extra:true,extraDesc:"roleta + wanna",hours:"4.5",notes:"NIE MA W KANRI"},
+  {owner:"Mateusz Bodnar",date:"10.08.2026",vin:"NMTBD3BE50R130004",alarm:true,alarmCode:"81256",extra:false,extraDesc:"",hours:"3",notes:"nie ma materiałów"},
+  {owner:"Mateusz Bodnar",date:"11.08.2026",vin:"JTM5EAAVX0J012268",alarm:true,alarmCode:"96437",extra:false,extraDesc:"",hours:"3",notes:"16"},
+  {owner:"Mateusz Bodnar",date:"12.08.2026",vin:"JTM5EAAV00J012750",alarm:true,alarmCode:"21176",extra:false,extraDesc:"",hours:"3",notes:"16"}
+];
+
+let mountJobs=JSON.parse(localStorage.getItem("toyotaMountJobsV3")||"null")||[];
+let selectedOwner="";
+let editingMountIndex=null;
+function saveMountJobs(){localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}
+function syncMountCompletionToRelease(vin, alarmDone, extraDone){
+  const n=normalizeVin(vin);
+  const r=releaseData.find(x=>normalizeVin(x.vin)===n);
+  if(!r) return;
+
+  normalizeReleaseRequirements(r);
+
+  // Doposażeniowiec potwierdza wykonanie tylko zadań zleconych przez koordynatora.
+  if(typeof alarmDone==="boolean" && (r.alarmRequired||r.idCanRequired||r.metaRequired)) r.alarmReady=alarmDone;
+  if(typeof extraDone==="boolean" && r.extraRequired) r.extraReady=extraDone;
+
+  recalcReleaseStatus(r);
+  saveRelease();
+  if(typeof renderUrgentMountAlerts==="function") renderUrgentMountAlerts();
+}
+
+
+
+function getUrgentReleaseCars(){
+  return releaseData
+    .map(normalizeReleaseRequirements)
+    .filter(r=>r.status!=="WYDANE" && (
+      ((r.alarmRequired||r.idCanRequired||r.metaRequired) && !r.alarmReady) ||
+      (r.extraRequired && !r.extraReady)
+    ))
+    .map(r=>({
+      vin:r.vin,
+      client:r.client||"",
+      model:r.model||"",
+      date:r.date||"",
+      time:r.time||"",
+      alarmMissing:!!r.alarmRequired && !r.alarmReady,
+      idCanMissing:!!r.idCanRequired && !r.alarmReady,
+      metaMissing:!!r.metaRequired && !r.alarmReady,
+      extraMissing:!!r.extraRequired && !r.extraReady
+    }));
+}
+
+function urgentMissingText(u){
+  const missing=[];
+  if(u.alarmMissing) missing.push("ALARM");
+  if(u.idCanMissing) missing.push("ID CAN");
+  if(u.metaMissing) missing.push("META");
+  if(u.extraMissing) missing.push("DODATKOWE WYPOSAŻENIE");
+  return missing.join(" + ");
+}
+
+function renderUrgentMountAlerts(){
+  const urgent=getUrgentReleaseCars();
+
+  const ownersBox=$("#mountOwnersUrgentBox");
+  const ownersList=$("#mountOwnersUrgentList");
+  if(ownersBox && ownersList){
+    ownersBox.classList.toggle("show",urgent.length>0);
+    ownersList.innerHTML=urgent.map(u=>`
+      <div class="urgent-item">
+        <div>
+          <strong>${u.vin}</strong>
+          <div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • ${u.date} ${u.time||""}`:""}</div>
+        </div>
+        <div class="urgent-mini">${urgentMissingText(u)}</div>
+      </div>`).join("");
+  }
+
+  const workerBox=$("#mountWorkerUrgentBox");
+  const workerList=$("#mountWorkerUrgentList");
+  if(workerBox && workerList){
+    workerBox.classList.toggle("show",urgent.length>0);
+    workerList.innerHTML=urgent.map(u=>{
+      const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(u.vin) && x.status!=="WYDANE");
+      const tasks=[];
+      if(r?.alarmRequired) tasks.push("ALARM");
+      if(r?.idCanRequired) tasks.push("ID CAN");
+      if(r?.metaRequired) tasks.push("META");
+      if(r?.extraRequired) tasks.push("DODATKOWE WYPOSAŻENIE");
+      return `
+      <div class="urgent-item" data-urgent-vin="${u.vin}">
+        <div>
+          <strong>${u.vin}</strong>
+          <div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}</div>
+          <div class="urgent-work">${tasks.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("")}</div>
+        </div>
+        <button class="urgent-open-btn" type="button">Otwórz montaż →</button>
+      </div>`;
+    }).join("");
+
+    workerList.querySelectorAll("[data-urgent-vin]").forEach(card=>{
+      card.onclick=()=>openUrgentInMountForm(card.dataset.urgentVin);
+    });
+  }
+}
+
+function renderOwners(){
+  renderUrgentMountAlerts();
+  const urgentCount=getUrgentReleaseCars().length;
+  $("#peopleCards").innerHTML="";
+  ["Jakub Grzywacz","Mateusz Bodnar"].forEach(name=>{
+    const jobs=mountJobs.filter(j=>j.owner===name);
+    const b=document.createElement("button");
+    b.className="person";
+    b.innerHTML=`<div class="person-name">${name}</div>
+      <div class="person-role">Doposażeniowiec</div>
+      <div class="person-count">${jobs.length}</div>
+      <div class="muted">zleceń</div>
+      ${urgentCount?`<div class="person-urgent">SAMOCHÓD PILNY!!! ${urgentCount}</div>`:""}
+      <div class="person-open"><span>Otwórz tabelę</span><span>→</span></div>`;
+    b.onclick=()=>openOwner(name);
+    $("#peopleCards").appendChild(b);
+  });
+}
+
+function openOwner(name){
+  selectedOwner=name;
+  $("#ownerTitle").textContent=name;
+  renderUrgentMountAlerts();
+  renderMountTable();
+  renderExtraWorks();
+  resetMountForm();
+  closeExtraWorkForm();
+  $("#mountFormCard").classList.remove("open");
+  show("mountList");
+}
+
+function renderMountTable(){
+  const jobs=mountJobs.filter(j=>j.owner===selectedOwner);
+  $("#ownerCount").textContent=`${jobs.length} zleceń`;
+
+  const totalHours=jobs.reduce((sum,j)=>{
+    const value=parseFloat(String(j.hours||"0").replace(",","."));
+    return sum+(Number.isFinite(value)?value:0);
+  },0);
+  $("#ownerHours").textContent=`${String(totalHours).replace(".",",")} h`;
+
+  $("#mountRows").innerHTML=jobs.length ? jobs.map(r=>`
+    <tr class="completed">
+      <td>${r.date||""}</td>
+      <td class="vin-cell">${r.vin||""}</td>
+      <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${r.vin}" type="checkbox" ${r.alarmCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td class="mount-code">${r.alarm ? (r.alarmCode||"—") : "—"}</td>
+      <td>${r.idCan?`<label class="ready-label"><input class="mount-done-toggle" data-kind="idCan" data-vin="${r.vin}" type="checkbox" ${r.idCanCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.meta?`<label class="ready-label"><input class="mount-done-toggle" data-kind="meta" data-vin="${r.vin}" type="checkbox" ${r.metaCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${r.vin}" type="checkbox" ${r.extraCompleted!==false?"checked":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${r.extraDesc}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
+      <td><b>${String(r.hours||"").replace(".",",")}</b></td>
+      <td>${r.notes||"—"}</td>
+      <td><button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button></td>
+    </tr>`).join("") :
+    `<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak montaży.</td></tr>`;
+
+
+  document.querySelectorAll(".mount-edit-btn").forEach(btn=>{
+    btn.onclick=()=>{
+      const idx=mountJobs.findIndex(j=>
+        j.owner===selectedOwner &&
+        normalizeVin(j.vin)===normalizeVin(btn.dataset.editVin) &&
+        String(j.date||"")===String(btn.dataset.editDate||"")
+      );
+      if(idx<0) return;
+      startEditMount(idx);
+    };
+  });
+
+  document.querySelectorAll(".mount-done-toggle").forEach(cb=>{
+    cb.onchange=()=>{
+      const job=mountJobs.find(j=>j.owner===selectedOwner && normalizeVin(j.vin)===normalizeVin(cb.dataset.vin));
+      if(!job) return;
+
+      const kind=cb.dataset.kind;
+      job[kind+"Completed"]=cb.checked;
+      saveMountJobs();
+
+      // Alarm readiness is true when every selected alarm-type installation
+      // (Alarm / ID CAN / META) for this job is completed.
+      const alarmTypes=[];
+      if(job.alarm) alarmTypes.push(job.alarmCompleted!==false);
+      if(job.idCan) alarmTypes.push(job.idCanCompleted!==false);
+      if(job.meta) alarmTypes.push(job.metaCompleted!==false);
+      const alarmReady=alarmTypes.length ? alarmTypes.every(Boolean) : undefined;
+
+      const extraReady=job.extra ? (job.extraCompleted!==false) : undefined;
+      syncMountCompletionToRelease(job.vin, alarmReady, extraReady);
+
+      // Refresh all dependent views/state.
+      renderMountTable();
+      renderUrgentMountAlerts();
+      if(selectedDay) renderDay();
+      renderReleaseHome();
+      renderCars();
+    };
+  });
+}
+
+function resetMountForm(){
+  if(!$("#mountVinInput")) return;
+  editingMountIndex=null;
+  $("#mountFormTitle").textContent="Nowy montaż";
+  $("#mountEditingNote").classList.remove("show");
+  $("#mountAssignment").classList.remove("show");
+  $("#mountAssignmentItems").innerHTML="";
+  $("#mountAssignmentMeta").textContent="";
+  $("#saveMountJob").textContent="Dodaj do tabeli";
+  $("#mountVinInput").value="";
+  $("#mountHours").value="";
+  $("#mountNotes").value="";
+  $("#mountAlarmDone").checked=false;
+  $("#mountAlarmCode").value="";
+  $("#mountAlarmCode").disabled=true;
+  $("#alarmCodeRequired").style.display="none";
+  $("#mountIdCanDone").checked=false;
+  $("#mountMetaDone").checked=false;
+  $("#mountExtraDone").checked=false;
+  $("#mountExtraDesc").value="";
+  $("#mountExtraDesc").disabled=true;
+  $("#mountVinSuggestions").classList.remove("open");
+  $("#mountVinSuggestions").innerHTML="";
+  $("#mountVinMessage").textContent="";
+  $("#mountSaveMessage").textContent="";
+  updateMountChoices();
+}
+
+function updateMountChoices(){
+  const alarm=$("#mountAlarmDone").checked;
+  const idCan=$("#mountIdCanDone").checked;
+  const meta=$("#mountMetaDone").checked;
+  const extra=$("#mountExtraDone").checked;
+
+  $("#mountAlarmLabel").classList.toggle("active",alarm);
+  $("#mountIdCanLabel").classList.toggle("active",idCan);
+  $("#mountMetaLabel").classList.toggle("active",meta);
+  $("#mountExtraLabel").classList.toggle("active",extra);
+
+  $("#mountAlarmCode").disabled=!alarm;
+  $("#alarmCodeRequired").style.display=alarm?"inline":"none";
+  if(!alarm) $("#mountAlarmCode").value="";
+
+  $("#mountExtraDesc").disabled=!extra;
+  if(!extra) $("#mountExtraDesc").value="";
+}
+
+function mountVinMatches(query){
+  const q=normalizeVin(query);
+  if(q.length<2) return [];
+  const endMatches=fleetCars.filter(c=>normalizeVin(c.vin).endsWith(q));
+  const contains=fleetCars.filter(c=>!normalizeVin(c.vin).endsWith(q) && normalizeVin(c.vin).includes(q));
+  return [...endMatches,...contains].slice(0,8);
+}
+
+
+
+function openUrgentInMountForm(vin){
+  const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(vin) && x.status!=="WYDANE");
+  if(!r)return;
+  normalizeReleaseRequirements(r);
+
+  resetMountForm();
+  $("#mountFormCard").classList.add("open");
+  $("#mountFormTitle").textContent="Pilny montaż";
+  $("#mountVinInput").value=r.vin;
+
+  const items=[];
+  if(r.alarmRequired) items.push("ALARM");
+  if(r.idCanRequired) items.push("ID CAN");
+  if(r.metaRequired) items.push("META");
+  if(r.extraRequired) items.push("DODATKOWE WYPOSAŻENIE");
+
+  $("#mountAssignment").classList.add("show");
+  $("#mountAssignmentItems").innerHTML=items.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("");
+  $("#mountAssignmentMeta").textContent=[
+    r.client||"",
+    r.model||"",
+    r.date?`wydanie ${r.date} ${r.time||""}`:"",
+    r.info?`info: ${r.info}`:""
+  ].filter(Boolean).join(" • ");
+
+  // Preselect exactly what coordinator ordered.
+  $("#mountAlarmDone").checked=!!r.alarmRequired;
+  $("#mountIdCanDone").checked=!!r.idCanRequired;
+  $("#mountMetaDone").checked=!!r.metaRequired;
+  $("#mountExtraDone").checked=!!r.extraRequired;
+  if(r.extraRequired) $("#mountExtraDesc").value=r.info||"Dodatkowe wyposażenie";
+  updateMountChoices();
+
+  // Restore description after updateMountChoices enables the field.
+  if(r.extraRequired) $("#mountExtraDesc").value=r.info||"Dodatkowe wyposażenie";
+
+  $("#mountSaveMessage").textContent="";
+  $("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function applyReleaseTasksToMount(vin){
+  const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(vin) && x.status!=="WYDANE");
+  if(!r) return;
+  normalizeReleaseRequirements(r);
+
+  $("#mountAlarmDone").checked=!!r.alarmRequired;
+  $("#mountIdCanDone").checked=!!r.idCanRequired;
+  $("#mountMetaDone").checked=!!r.metaRequired;
+  $("#mountExtraDone").checked=!!r.extraRequired;
+
+  if(r.extraRequired && !$("#mountExtraDesc").value.trim()){
+    $("#mountExtraDesc").value=r.info||"Dodatkowe wyposażenie";
+  }
+  updateMountChoices();
+}
+
+function renderMountVinSuggestions(){
+  const input=$("#mountVinInput"), box=$("#mountVinSuggestions"), msg=$("#mountVinMessage");
+  const q=normalizeVin(input.value);
+  input.value=q;
+
+  if(q.length<2){
+    box.classList.remove("open");
+    box.innerHTML="";
+    msg.textContent="";
+    return;
+  }
+
+  const hits=mountVinMatches(q);
+  if(!hits.length){
+    box.classList.remove("open");
+    msg.textContent="Nie znaleziono VIN-u na Liście samochodów.";
+    msg.className="mount-form-msg error";
+    return;
+  }
+
+  box.innerHTML=hits.map(c=>`
+    <div class="mount-vin-hit" data-vin="${c.vin}">
+      <div class="vin-full">${c.vin}</div>
+      <div class="vin-meta">${c.status||"AKTYWNY"}</div>
+    </div>`).join("");
+  box.classList.add("open");
+  msg.textContent=hits.length===1?"Znaleziono pojazd.":`Znaleziono ${hits.length} pasujących VIN-ów.`;
+  msg.className="mount-form-msg ok";
+
+  box.querySelectorAll(".mount-vin-hit").forEach(hit=>{
+    hit.onclick=()=>{
+      input.value=hit.dataset.vin;
+      box.classList.remove("open");
+      applyReleaseTasksToMount(hit.dataset.vin);
+      msg.textContent=`Wybrano VIN: ${hit.dataset.vin}`;
+      msg.className="mount-form-msg ok";
+    };
+  });
+}
+
+function todayShort(){
+  const d=new Date();
+  return `${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")}.${d.getFullYear()}`;
+}
+
+
+function startEditMount(index){
+  const job=mountJobs[index];
+  if(!job) return;
+
+  editingMountIndex=index;
+  $("#mountFormCard").classList.add("open");
+  $("#mountFormTitle").textContent="Edytuj montaż";
+  $("#mountEditingNote").classList.add("show");
+  $("#saveMountJob").textContent="Zapisz zmiany";
+
+  $("#mountVinInput").value=job.vin||"";
+  $("#mountHours").value=job.hours||"";
+  $("#mountNotes").value=job.notes||"";
+
+  $("#mountAlarmDone").checked=!!job.alarm;
+  $("#mountAlarmCode").value=job.alarmCode||"";
+  $("#mountIdCanDone").checked=!!job.idCan;
+  $("#mountMetaDone").checked=!!job.meta;
+  $("#mountExtraDone").checked=!!job.extra;
+  $("#mountExtraDesc").value=job.extraDesc||"";
+
+  updateMountChoices();
+  // updateMountChoices clears disabled fields only when their checkbox is off,
+  // so restore values after it for selected options.
+  if(job.alarm) $("#mountAlarmCode").value=job.alarmCode||"";
+  if(job.extra) $("#mountExtraDesc").value=job.extraDesc||"";
+
+  $("#mountVinSuggestions").classList.remove("open");
+  $("#mountVinMessage").textContent="";
+  $("#mountSaveMessage").textContent="";
+  $("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function saveNewMount(){
+  const msg=$("#mountSaveMessage");
+  let typed=normalizeVin($("#mountVinInput").value);
+  let vin=typed;
+
+  if(!typed){
+    msg.textContent="Wpisz VIN lub jego końcówkę.";
+    msg.className="mount-form-msg error";
+    return;
+  }
+
+  if(typed.length<17){
+    const hits=mountVinMatches(typed);
+    if(hits.length===1){
+      vin=normalizeVin(hits[0].vin);
+    }else if(hits.length>1){
+      msg.textContent="Jest kilka pasujących VIN-ów. Wybierz właściwy z podpowiedzi.";
+      msg.className="mount-form-msg error";
+      return;
+    }else{
+      msg.textContent="Nie znaleziono takiego VIN-u na Liście samochodów.";
+      msg.className="mount-form-msg error";
+      return;
+    }
+  }
+
+  if(!fleetCars.some(c=>normalizeVin(c.vin)===vin)){
+    msg.textContent="Ten VIN nie znajduje się na Liście samochodów.";
+    msg.className="mount-form-msg error";
+    return;
+  }
+
+  const alarm=$("#mountAlarmDone").checked;
+  const alarmCode=$("#mountAlarmCode").value.trim();
+  const idCan=$("#mountIdCanDone").checked;
+  const meta=$("#mountMetaDone").checked;
+  const extra=$("#mountExtraDone").checked;
+  const extraDesc=$("#mountExtraDesc").value.trim();
+  const hours=$("#mountHours").value.trim();
+  const notes=$("#mountNotes").value.trim();
+
+  if(!alarm && !idCan && !meta && !extra){
+    msg.textContent="Zaznacz przynajmniej jedną pozycję: Alarm, ID CAN, META lub Dodatkowe wyposażenie.";
+    msg.className="mount-form-msg error";
+    return;
+  }
+
+  if(alarm && !alarmCode){
+    msg.textContent="Alarm jest zaznaczony — wpisz kod do alarmu. Bez kodu nie można dodać auta do tabeli.";
+    msg.className="mount-form-msg error";
+    $("#mountAlarmCode").focus();
+    return;
+  }
+
+  if(!hours || Number(hours)<=0){
+    msg.textContent="Wpisz liczbę godzin montażu.";
+    msg.className="mount-form-msg error";
+    $("#mountHours").focus();
+    return;
+  }
+
+  const existing = editingMountIndex!==null ? mountJobs[editingMountIndex] : null;
+  const record={
+    owner:selectedOwner,
+    date:existing?.date || todayShort(),
+    vin,
+    alarm,
+    alarmCode:alarm?alarmCode:"",
+    alarmCompleted:alarm ? (existing?.alarmCompleted ?? true) : false,
+    idCan,
+    idCanCompleted:idCan ? (existing?.idCanCompleted ?? true) : false,
+    meta,
+    metaCompleted:meta ? (existing?.metaCompleted ?? true) : false,
+    extra,
+    extraCompleted:extra ? (existing?.extraCompleted ?? true) : false,
+    extraDesc:extra?extraDesc:"",
+    hours,
+    notes
+  };
+
+  if(editingMountIndex!==null){
+    mountJobs[editingMountIndex]=record;
+  }else{
+    mountJobs.unshift(record);
+  }
+
+  const alarmStates=[];
+  if(record.alarm) alarmStates.push(record.alarmCompleted!==false);
+  if(record.idCan) alarmStates.push(record.idCanCompleted!==false);
+  if(record.meta) alarmStates.push(record.metaCompleted!==false);
+  const alarmReady=alarmStates.length ? alarmStates.every(Boolean) : false;
+  const extraReady=record.extra ? (record.extraCompleted!==false) : false;
+  syncMountCompletionToRelease(vin, alarmReady, extraReady);
+
+  saveMountJobs();
+  renderMountTable();
+  renderUrgentMountAlerts();
+  resetMountForm();
+  $("#mountFormCard").classList.remove("open");
+}
+
+
+document.addEventListener("click",(e)=>{
+  const b=e.target.closest?.(".release-edit-btn");
+  if(!b) return;
+  e.preventDefault();
+  e.stopPropagation();
+  startEditRelease(b.dataset.editRelease);
+});
+
+/* ---------- EVENTS ---------- */
+$("#openReleases").onclick=()=>{renderReleaseHome();show("releaseHome")};
+$("#toggleReleaseForm").onclick=()=>{
+  $("#releaseAddCard").classList.toggle("open");
+  if($("#releaseAddCard").classList.contains("open"))$("#releaseVin").focus();
+};
+$("#cancelReleaseEntry").onclick=()=>{resetReleaseForm();$("#releaseAddCard").classList.remove("open")};
+$("#releaseVin").oninput=renderReleaseVinSuggestions;
+$("#saveReleaseEntry").onclick=addReleaseEntry;
+
+$("#backMainFromRelease").onclick=()=>show("mainHome");
+$("#backReleaseHome").onclick=()=>{renderReleaseHome();show("releaseHome")};
+$("#backReleaseDay").onclick=()=>{renderDay();show("releaseDay")};
+
+$("#checkMats").onchange=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  r.matsReady=$("#checkMats").checked;
+  recalcReleaseStatus(r);
+  saveRelease();
+  updateCheckLook();
+  if(typeof renderUrgentMountAlerts==="function")renderUrgentMountAlerts();
+};
+
+$("#checkReleaseReady").onchange=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  r.releaseReady=$("#checkReleaseReady").checked;
+  recalcReleaseStatus(r);
+  saveRelease();
+  updateCheckLook();
+  renderReleaseHome();
+};
+$("#markIssued").onclick=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  r.status="WYDANE";saveRelease();const c=ensureCar(r.vin);c.status="WYJECHAŁ";saveCars();syncBatteryCars();openVehicle(r.id);renderReleaseHome();
+};
+$("#undoIssued").onclick=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  recalcReleaseStatus(r);saveRelease();const c=ensureCar(r.vin);c.status="AKTYWNY";saveCars();openVehicle(r.id);renderReleaseHome();
+};
+
+$("#openMounts").onclick=()=>{renderOwners();show("mountOwners")};$("#backMainFromMounts").onclick=()=>show("mainHome");$("#backMountOwners").onclick=()=>{renderOwners();show("mountOwners")};
+$("#toggleMountForm").onclick=()=>{
+  $("#mountFormCard").classList.toggle("open");
+  if($("#mountFormCard").classList.contains("open")) $("#mountVinInput").focus();
+};
+$("#cancelMountJob").onclick=()=>{resetMountForm();$("#mountFormCard").classList.remove("open")};
+$("#addExtraWorkBtn").onclick=()=>openExtraWorkForm();
+$("#cancelExtraWorkBtn").onclick=closeExtraWorkForm;
+$("#saveExtraWorkBtn").onclick=saveExtraWorkEntry;
+$("#mountVinInput").oninput=renderMountVinSuggestions;
+$("#mountAlarmDone").onchange=updateMountChoices;
+$("#mountIdCanDone").onchange=updateMountChoices;
+$("#mountMetaDone").onchange=updateMountChoices;
+$("#mountExtraDone").onchange=updateMountChoices;
+$("#saveMountJob").onclick=saveNewMount;
+
+$("#openCars").onclick=()=>{renderCars();show("carsView")};$("#backMainFromCars").onclick=()=>show("mainHome");
+$("#addCarBtn").onclick=addCar;$("#newVin").onkeydown=e=>{if(e.key==="Enter")addCar()};$("#carSearch").oninput=renderCars;$("#vinLookup").oninput=renderVinSuggestions;
+
+$("#openBattery").onclick=()=>{renderBattery();show("batteryView")};
+$("#backMainFromBattery").onclick=()=>show("mainHome");
+$("#batterySearch").oninput=renderBattery;
+
+syncIssuedToCars();
+syncBatteryCars();
+</script>
+</body>
+</html>
