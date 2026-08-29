@@ -79,7 +79,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .vin-full{font-weight:900}.vin-meta{font-size:12px;color:var(--muted);margin-top:3px}.message{font-size:12px;font-weight:800;margin-top:8px;min-height:16px}.message.error{color:#b42318}.message.ok{color:#168a45}
 .searchbar{display:flex;gap:10px;margin-bottom:14px}
 .car-table{width:100%;min-width:900px;border-collapse:collapse}.car-table th,.car-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.car-table th{background:#f2f3f5;font-weight:900}
-.car-status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900}.car-ready{background:#e8f7ed;color:#14733c}.car-departed{background:#e5e7eb;color:#374151}
+.car-status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900}.car-ready{background:#e8f7ed;color:#14733c}.car-departed{background:#f59e0b;color:#4a2500}.car-table tr.car-issued-row td{background:#fff1d6;color:#6b3a00}.car-table tr.car-issued-row .vin-cell{font-weight:1000;color:#7c3f00}.car-table tr.car-k1-row td{background:#f0e7ff;color:#4c1d95}.car-table tr.car-k1-row .vin-cell{font-weight:1000;color:#5b21b6}.car-k1{background:#6d28d9;color:#fff}
 .vin-cell{font-family:monospace;font-weight:900}
 
 @media(max-width:950px){.modules{grid-template-columns:1fr}.vin-tools{grid-template-columns:1fr}}
@@ -147,6 +147,11 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .mount-new-table td{padding:11px 10px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:top}
 .mount-new-table tr:last-child td{border-bottom:0}
 .mount-new-table tr.completed td{background:#e9f7ee}
+.mount-new-table tr.mount-closed-row td{background:#174d2d;color:#f3fff7;border-color:#2d6843}
+.mount-new-table tr.mount-closed-row .muted{color:#c9e8d3}
+.mount-new-table tr.mount-closed-row .mount-badge.yes{background:#dff4e6;color:#123d24}
+.mount-new-table tr.mount-closed-row .vin-cell{color:#fff}
+.mount-new-table tr.mount-closed-row input{accent-color:#dff4e6}
 .mount-badge{display:inline-block;padding:5px 7px;border-radius:999px;font-size:11px;font-weight:900;margin:2px 4px 2px 0}
 .mount-badge.yes{background:#e9f7ee;color:#168a45}.mount-badge.no{background:#eef1f3;color:#69707a}
 .mount-code{font-family:monospace;font-weight:900}
@@ -223,6 +228,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .battery-due{background:#fff1f0;color:#b42318}
 .battery-new{background:#fff5d8;color:#8a6200}
 .battery-issued{background:#eef1f4;color:#667085}
+.battery-away{background:#e9eef5;color:#344054}.battery-row-away td{background:#f5f7fa}.battery-away-btn{border:1px solid #98a2b3;background:#fff;color:#344054;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:900;cursor:pointer}
 .battery-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .battery-date{max-width:150px}
 .battery-save{border:0;background:#111827;color:#fff;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:900;cursor:pointer}
@@ -280,30 +286,210 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 @media(max-width:700px){.wash-grid.wash-menu{grid-template-columns:1fr 1fr;gap:8px}.wash-grid.wash-menu .wash-card{padding:12px;min-height:92px;border-radius:14px}.wash-grid.wash-menu .wash-card strong{font-size:26px}.wash-grid.wash-menu .wash-card:last-child{grid-column:1/-1;min-height:76px}.wash-week-board{gap:7px;margin:10px 0}.wash-day-card{padding:10px;min-height:100px}.wash-day-card strong{font-size:22px;margin:5px 0}.wash-add,.admin-card{padding:12px;border-radius:14px}.wash-list{margin-top:10px}.wash-row{padding:11px;gap:8px}}
 
 
-/* Alert gotowości na następny dzień roboczy */
-.tomorrow-alert{margin:14px 0 18px;border:2px solid #dc2626;background:#fff7f7;border-radius:16px;padding:16px;display:none}.tomorrow-alert.ok{border-color:#16a34a;background:#f4fff7}.tomorrow-alert .ta-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.tomorrow-alert .ta-count{font-size:30px;font-weight:1000;color:#b91c1c}.tomorrow-alert.ok .ta-count{color:#15803d}.tomorrow-alert .ta-list{display:grid;gap:8px;margin-top:12px}.tomorrow-alert .ta-row{background:#fff;border:1px solid #fecaca;border-radius:12px;padding:10px 12px;font-size:12px}.tomorrow-alert .ta-row b{display:block;font-size:13px;margin-bottom:3px}.tomorrow-alert .ta-missing{color:#b91c1c;font-weight:800;margin-top:4px}@media(max-width:700px){.tomorrow-alert{padding:12px}.tomorrow-alert .ta-count{font-size:25px}}
+/* Alert gotowości na następny dzień roboczy — kompaktowy */
+.tomorrow-alert{margin:12px 0 16px;border:1px solid #dc2626;background:#fff7f7;border-radius:13px;padding:10px 12px;display:none;cursor:pointer}.tomorrow-alert.ok{border-color:#16a34a;background:#f4fff7}.tomorrow-alert .ta-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.tomorrow-alert .ta-head b{font-size:13px}.tomorrow-alert .ta-count{font-size:20px;font-weight:1000;color:#b91c1c;min-width:28px;text-align:center}.tomorrow-alert.ok .ta-count{color:#15803d}.tomorrow-alert #tomorrowAlertDate{font-size:10px!important}.tomorrow-alert #tomorrowAlertSummary{font-size:12px;margin-top:5px!important}.tomorrow-alert .ta-list{display:none;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #fecaca}.tomorrow-alert.expanded .ta-list{display:grid}.tomorrow-alert .ta-row{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:9px 10px;font-size:11px}.tomorrow-alert .ta-row b{display:block;font-size:12px;margin-bottom:3px}.tomorrow-alert .ta-missing{color:#b91c1c;font-weight:800;margin-top:4px}.ta-open-hint{font-size:10px;color:#667085;margin-top:5px;font-weight:700}.tomorrow-alert.ok .ta-open-hint{display:none}@media(max-width:700px){.tomorrow-alert{padding:9px 10px;margin:9px 0 12px}.tomorrow-alert .ta-count{font-size:18px}}
+/* Globalna wyszukiwarka + centrum uwagi + archiwum */
+.home-tools{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0}.global-search-card,.archive-shortcut{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}.global-search-row{display:flex;gap:8px}.global-search-row input{min-width:0;flex:1;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}.global-result{display:none;margin-top:10px;border-top:1px solid var(--line);padding-top:10px}.global-result.open{display:block}.global-result .gr-vin{font-weight:1000;word-break:break-all}.global-result .gr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px;font-size:12px}.attention-title{display:flex;align-items:center;gap:8px}.attention-dot{width:9px;height:9px;border-radius:50%;background:#dc2626}.attention-ok .attention-dot{background:#16a34a}.attention-cats{display:none;gap:7px;margin-top:10px}.tomorrow-alert.expanded .attention-cats{display:grid}.attention-cat{background:#fff;border:1px solid #fecaca;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:800}.archive-shortcut{cursor:pointer;text-align:left}.archive-shortcut strong{font-size:22px;display:block;margin-top:4px}.archive-list{display:grid;gap:10px;margin-top:14px}.archive-row{background:#0f5132;color:#fff;border-radius:14px;padding:14px}.archive-row .muted{color:#d1fae5}.archive-row .archive-vin{font-weight:1000;word-break:break-all}.archive-empty{padding:24px;text-align:center;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:14px}@media(max-width:700px){.home-tools{grid-template-columns:1fr}.global-result .gr-grid{grid-template-columns:1fr}.archive-shortcut strong{font-size:19px}}
+
+
+/* PROFESJONALNY PANEL GŁÓWNY */
+#mainHome{padding-bottom:24px}
+.dashboard-hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;background:#17191c;color:#fff;border-radius:20px;padding:26px 28px;margin-bottom:14px;box-shadow:0 10px 26px rgba(17,24,39,.12)}
+.dashboard-hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent)}
+.dashboard-hero:after{content:"";position:absolute;right:-70px;top:-90px;width:240px;height:240px;border:45px solid rgba(255,255,255,.035);border-radius:50%;pointer-events:none}
+.dashboard-hero-main,.dashboard-hero-user{position:relative;z-index:1}.home-eyebrow,.home-section-kicker{font-size:10px;letter-spacing:.11em;font-weight:1000;color:#8a929d}.home-eyebrow{color:#ff6b70;margin-bottom:8px}.dashboard-hero h1{font-size:30px;line-height:1.08;margin:0}.home-date{margin-top:7px;color:#b9c0c9;font-size:13px;font-weight:700;text-transform:capitalize}
+.dashboard-hero-user{min-width:220px;border-left:1px solid rgba(255,255,255,.15);padding-left:20px;display:grid;gap:3px}.hero-user-label{font-size:9px;letter-spacing:.12em;color:#8f98a3;font-weight:1000}.dashboard-hero-user strong{font-size:15px}.dashboard-hero-user>span:last-child{font-size:11px;color:#b9c0c9;font-weight:700}
+.dashboard-search{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(320px,1.2fr);gap:24px;align-items:center;padding:15px 17px;margin:0 0 12px;border-radius:16px;box-shadow:none}.dashboard-search-copy{display:grid;gap:3px}.dashboard-search-copy>b{font-size:14px}.dashboard-search-copy>span{font-size:11px;color:var(--muted)}.dashboard-search-action{min-width:0}.dashboard-search .global-search-row input{height:44px;background:#fafbfc}.dashboard-search .btn{height:44px;padding-inline:18px}.dashboard-search .global-result{background:#f8f9fa;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:8px}
+.home-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}.home-kpi{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 15px;min-width:0;position:relative;overflow:hidden}.home-kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#d9dde2}.home-kpi-label{display:block;font-size:9px;letter-spacing:.08em;color:#747c86;font-weight:1000}.home-kpi strong{display:block;font-size:27px;line-height:1;margin:7px 0 4px}.home-kpi small{font-size:10px;color:var(--muted);font-weight:700}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(280px,.78fr);gap:12px;align-items:start}.dashboard-panel,.home-side-card{background:#fff;border:1px solid var(--line);border-radius:17px}.dashboard-panel{padding:18px}.dashboard-panel-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:13px}.dashboard-panel-head h2{font-size:20px;margin-top:3px}.dashboard-panel-note{font-size:11px;color:var(--muted);text-align:right;max-width:240px}
+.dashboard-modules .modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0}.dashboard-modules .module{display:grid;grid-template-columns:44px minmax(0,1fr) 24px;gap:11px;align-items:center;min-height:92px;padding:13px 14px;border-radius:13px;box-shadow:none;text-align:left;background:#fff}.dashboard-modules .module:hover{border-color:#b8bec6;background:#fafbfc}.module-icon{width:44px;height:44px;border-radius:11px;background:#f2f3f5;display:grid;place-items:center;color:#30353b}.module-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.module-copy{min-width:0}.dashboard-modules .module small{font-size:8px;letter-spacing:.09em;color:#9299a2}.dashboard-modules .module h2{font-size:15px;line-height:1.15;margin:4px 0 0}.dashboard-modules .module p{font-size:10px;line-height:1.3;margin:4px 0 0}.dashboard-modules .module .go{display:none}.module-arrow{font-size:18px;color:#a4abb3;font-weight:900;text-align:right}.dashboard-modules .module:hover .module-icon{background:#fff0f0;color:var(--accent)}.dashboard-modules .module:hover .module-arrow{color:var(--accent)}
+.dashboard-side{display:grid;gap:10px}.dashboard-side .tomorrow-alert{margin:0;border-radius:17px;padding:14px;box-shadow:none}.dashboard-side .tomorrow-alert:not(.ok){border-color:#efb2b2;background:#fffafa}.dashboard-side .tomorrow-alert.ok{border-color:#b9dbc6;background:#fbfffc}.dashboard-side .tomorrow-alert .ta-head b{font-size:11px;letter-spacing:.03em}.dashboard-side .tomorrow-alert .ta-count{font-size:24px}.dashboard-side .attention-cat{font-size:10px;padding:7px 8px}.dashboard-side .ta-open-hint{font-size:9px}
+.home-side-card{padding:14px}.home-side-card .home-section-kicker{margin-bottom:8px}.next-release-empty{font-size:12px;color:var(--muted);font-weight:700}.next-release-main{font-size:16px;font-weight:1000}.next-release-meta{margin-top:5px;font-size:11px;color:var(--muted);line-height:1.45}.next-release-vin{margin-top:7px;font-family:monospace;font-weight:900;font-size:11px;color:#4b5563;word-break:break-all}.home-side-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}.home-side-row strong{display:block;font-size:14px;margin-top:4px}.home-side-row>span{font-size:18px;font-weight:1000}.home-progress{height:7px;background:#edf0f2;border-radius:999px;overflow:hidden;margin-top:10px}.home-progress span{display:block;height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .2s ease}
+.user-bar{margin-bottom:10px}.user-pill{background:#fff;font-size:11px}.user-bar .btn{padding:8px 11px;font-size:11px}
+@media(max-width:980px){.home-kpis{grid-template-columns:repeat(2,1fr)}.dashboard-grid{grid-template-columns:1fr}.dashboard-side{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-side .tomorrow-alert{grid-column:1/-1}}
+@media(max-width:720px){.dashboard-hero{align-items:flex-start;padding:20px 18px;flex-direction:column;gap:15px}.dashboard-hero h1{font-size:25px}.dashboard-hero-user{border-left:0;border-top:1px solid rgba(255,255,255,.14);padding:12px 0 0;width:100%;min-width:0}.dashboard-search{grid-template-columns:1fr;gap:10px;padding:13px}.dashboard-search .global-search-row{display:grid;grid-template-columns:minmax(0,1fr) auto}.dashboard-modules .modules{grid-template-columns:1fr}.dashboard-panel{padding:13px}.dashboard-panel-head{align-items:flex-start;flex-direction:column;gap:5px}.dashboard-panel-note{text-align:left}.dashboard-side{grid-template-columns:1fr}.dashboard-side .tomorrow-alert{grid-column:auto}}
+@media(max-width:440px){.home-kpis{grid-template-columns:1fr 1fr;gap:7px}.home-kpi{padding:12px}.home-kpi strong{font-size:23px}.dashboard-modules .module{grid-template-columns:40px minmax(0,1fr) 18px;padding:11px;min-height:82px}.module-icon{width:40px;height:40px}.dashboard-search .global-search-row{grid-template-columns:1fr}.dashboard-search .btn{width:100%}}
+
+
+
+/* MOBILNY TRYB PRACY — osobny układ telefonu, bez zmian w desktopie */
+.mobile-home,.mobile-bottom-nav,.mobile-more-backdrop{display:none}
+@media(max-width:720px){
+  body{padding-bottom:84px;background:#f4f5f6}
+  .top{display:none}
+  .shell{padding:12px 12px 22px}
+  .user-bar{display:none}
+  #mainHome{padding-bottom:8px}
+  #mainHome>.dashboard-hero,#mainHome>.dashboard-search,#mainHome>.home-kpis,#mainHome>.dashboard-grid{display:none!important}
+  .mobile-home{display:block}
+  .mobile-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:4px 2px 14px}
+  .mobile-brand{font-size:10px;font-weight:1000;letter-spacing:.12em;color:#b42318;margin-bottom:5px}
+  .mobile-header h1{font-size:27px;line-height:1.05;margin:0}
+  .mobile-date{font-size:12px;color:var(--muted);font-weight:700;margin-top:5px;text-transform:capitalize}
+  .mobile-user-avatar{width:44px;height:44px;border-radius:14px;background:#17191c;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:1000;flex:0 0 auto;border:0}
+  .mobile-summary{background:#17191c;color:#fff;border-radius:20px;padding:17px;margin-bottom:10px;position:relative;overflow:hidden}
+  .mobile-summary:after{content:"";position:absolute;right:-35px;top:-45px;width:130px;height:130px;border:26px solid rgba(255,255,255,.04);border-radius:50%}
+  .mobile-summary-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .mobile-summary-kicker{font-size:9px;font-weight:1000;letter-spacing:.12em;color:#aeb5bd}
+  .mobile-summary strong{display:block;font-size:20px;margin-top:5px}
+  .mobile-summary-count{font-size:30px;font-weight:1000;line-height:1}
+  .mobile-summary-sub{position:relative;z-index:1;font-size:11px;color:#c7ccd2;margin-top:12px;line-height:1.4}
+  .mobile-attention{display:none;border:1px solid #efb2b2;background:#fff7f7;border-radius:15px;padding:12px 13px;margin-bottom:10px}
+  .mobile-attention.ok{border-color:#b9dbc6;background:#f7fff9}
+  .mobile-attention-head{display:flex;justify-content:space-between;align-items:center;gap:12px;background:none;border:0;padding:0;width:100%;text-align:left;color:inherit}
+  .mobile-attention-title{font-size:11px;font-weight:1000;letter-spacing:.04em}.mobile-attention-desc{font-size:10px;color:var(--muted);margin-top:3px}
+  .mobile-attention-count{min-width:35px;height:35px;border-radius:12px;background:#b42318;color:#fff;display:grid;place-items:center;font-weight:1000;font-size:17px}
+  .mobile-attention.ok .mobile-attention-count{background:#15803d}
+  .mobile-attention-details{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #f1caca;gap:7px}.mobile-attention.open .mobile-attention-details{display:grid}
+  .mobile-attention-cat,.mobile-attention-car{background:#fff;border:1px solid #f0d0d0;border-radius:10px;padding:9px 10px;font-size:11px}.mobile-attention-cat{font-weight:900}.mobile-attention-car b{display:block;font-size:12px;margin-bottom:3px}.mobile-attention-missing{color:#b42318;font-weight:900;margin-top:4px}
+  .mobile-section{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;margin-bottom:10px}
+  .mobile-section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}.mobile-section-kicker{font-size:9px;font-weight:1000;letter-spacing:.11em;color:#8a929d}.mobile-section h2{font-size:17px;margin:3px 0 0}.mobile-section-note{font-size:10px;color:var(--muted);font-weight:700}
+  .mobile-search-row{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:7px}.mobile-search-row input{min-width:0;height:48px;border:1px solid var(--line);border-radius:13px;padding:0 13px;font:inherit;font-size:16px;background:#fafbfc}.mobile-search-btn{height:48px;border:0;border-radius:13px;background:var(--accent);color:#fff;font-size:20px;font-weight:1000}
+  .mobile-search-result{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.mobile-search-result.open{display:block}.mobile-search-result .gr-grid{grid-template-columns:1fr!important}.mobile-search-result .gr-vin{font-size:14px}
+  .mobile-recent{display:flex;gap:6px;overflow-x:auto;padding:9px 0 1px;scrollbar-width:none}.mobile-recent:empty{display:none}.mobile-recent::-webkit-scrollbar{display:none}.mobile-recent button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;color:#4b5563}
+  .mobile-tasks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mobile-task{min-width:0;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:left;min-height:112px;display:flex;flex-direction:column;justify-content:space-between;color:inherit}.mobile-task:active{transform:scale(.985)}.mobile-task-icon{font-size:19px}.mobile-task-count{font-size:28px;font-weight:1000;line-height:1;margin-top:9px}.mobile-task-label{font-size:11px;font-weight:1000;margin-top:4px}.mobile-task-sub{font-size:9px;color:var(--muted);font-weight:700;margin-top:3px}.mobile-task[data-tone="red"]{border-color:#f0b9b9;background:#fffafa}.mobile-task[data-tone="purple"]{border-color:#d8c7f0;background:#fbf9ff}.mobile-task[data-tone="green"]{border-color:#c2dfcb;background:#fbfffc}
+  .mobile-ready-card{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:11px;padding-top:11px}.mobile-ready-copy b{font-size:12px}.mobile-ready-copy div{font-size:10px;color:var(--muted);margin-top:3px}.mobile-ready-pct{font-size:21px;font-weight:1000}.mobile-ready-bar{height:6px;background:#edf0f2;border-radius:999px;overflow:hidden;margin-top:8px}.mobile-ready-bar span{display:block;height:100%;background:var(--green);border-radius:inherit;width:0}
+  .mobile-bottom-nav{display:flex;position:fixed;z-index:700;left:8px;right:8px;bottom:8px;padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border:1px solid #dfe2e6;border-radius:19px;box-shadow:0 10px 30px rgba(17,24,39,.16);backdrop-filter:blur(12px)}
+  .mobile-bottom-nav button{flex:1 1 0;border:0;background:transparent;min-width:0;min-height:52px;border-radius:13px;display:grid;place-items:center;align-content:center;gap:3px;color:#707780;font-size:9px;font-weight:900;padding:5px 2px}.mobile-bottom-nav .nav-ico{font-size:19px;line-height:1}.mobile-bottom-nav button.active{background:#17191c;color:#fff}.mobile-bottom-nav button[hidden]{display:none}
+  .mobile-more-backdrop{position:fixed;z-index:850;inset:0;background:rgba(17,24,39,.42);padding:0 10px calc(84px + env(safe-area-inset-bottom));align-items:flex-end}.mobile-more-backdrop.open{display:flex}.mobile-more-sheet{width:100%;background:#fff;border-radius:20px;padding:15px;box-shadow:0 -10px 35px rgba(17,24,39,.18)}.mobile-more-handle{width:42px;height:4px;border-radius:999px;background:#d6d9dd;margin:0 auto 13px}.mobile-more-user{padding:4px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:9px}.mobile-more-user b{display:block;font-size:14px}.mobile-more-user span{font-size:10px;color:var(--muted)}.mobile-more-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.mobile-more-actions button{min-height:45px;border:1px solid var(--line);background:#fff;border-radius:12px;font-weight:900;font-size:11px}.mobile-more-actions .danger{grid-column:1/-1;color:#b42318;background:#fff8f8;border-color:#f0caca}
+  .view{scroll-margin-top:10px}
+}
+@media(max-width:380px){.mobile-tasks{gap:6px}.mobile-task{padding:10px;min-height:105px}.mobile-task-count{font-size:25px}.mobile-bottom-nav{left:5px;right:5px;bottom:5px}.mobile-bottom-nav button{font-size:8px}}
+
 </style>
 </head>
 <body>
 <div class="top"><div class="brand"><b>TOYOTA</b> • DZIAŁ FLOTOWY</div><div>PANEL OPERACYJNY</div></div>
 
 <main class="shell">
-<div class="user-bar"><span class="user-pill" id="currentUserPill">Nie wybrano użytkownika</span><button class="btn" id="changeUserBtn" type="button">Zmień użytkownika</button></div>
+<div class="user-bar"><span class="user-pill" id="currentUserPill">Nie zalogowano</span><button class="btn" id="changeUserBtn" type="button">Wyloguj</button></div>
 <section id="mainHome" class="view active">
-  <h1>Panel działu flotowego</h1>
-  <div class="muted" style="margin-top:6px">Wybierz moduł.</div>
-  <div class="tomorrow-alert" id="tomorrowReadyAlert">
-    <div class="ta-head"><div><b id="tomorrowAlertTitle">Kontrola gotowości na następny dzień roboczy</b><div class="muted" id="tomorrowAlertDate" style="margin-top:4px"></div></div><div class="ta-count" id="tomorrowAlertCount">0</div></div>
-    <div id="tomorrowAlertSummary" style="margin-top:8px;font-weight:800"></div>
-    <div class="ta-list" id="tomorrowAlertList"></div>
+
+  <div class="mobile-home" id="mobileHome">
+    <div class="mobile-header">
+      <div><div class="mobile-brand">TOYOTA • DZIAŁ FLOTOWY</div><h1 id="mobileGreeting">Dzisiaj</h1><div class="mobile-date" id="mobileDateLabel">—</div></div>
+      <button class="mobile-user-avatar" id="mobileUserButton" type="button" aria-label="Menu użytkownika">IG</button>
+    </div>
+
+    <div class="mobile-summary" data-home-access="cars,releases">
+      <div class="mobile-summary-top"><div><div class="mobile-summary-kicker">SAMOCHODY W OBIEGU</div><strong id="mobileActiveLabel">Bieżąca praca</strong></div><div class="mobile-summary-count" id="mobileActiveCars">0</div></div>
+      <div class="mobile-summary-sub" id="mobileSummarySub">Najważniejsze zadania masz poniżej.</div>
+    </div>
+
+    <div class="mobile-attention" id="mobileAttention">
+      <button class="mobile-attention-head" id="mobileAttentionToggle" type="button">
+        <div><div class="mobile-attention-title">CENTRUM UWAGI — IGOR</div><div class="mobile-attention-desc" id="mobileAttentionDesc">Najważniejsze sprawy wymagające reakcji</div></div>
+        <div class="mobile-attention-count" id="mobileAttentionCount">0</div>
+      </button>
+      <div class="mobile-attention-details" id="mobileAttentionDetails"></div>
+    </div>
+
+    <section class="mobile-section" id="mobileSearchSection">
+      <div class="mobile-section-head"><div><div class="mobile-section-kicker">SZYBKO</div><h2>Znajdź samochód</h2></div><div class="mobile-section-note">VIN 4–6 znaków</div></div>
+      <div class="mobile-search-row"><input id="mobileVinSearch" placeholder="Końcówka VIN…" autocomplete="off" inputmode="text"><button class="mobile-search-btn" id="mobileVinSearchBtn" type="button" aria-label="Szukaj">⌕</button></div>
+      <div class="mobile-recent" id="mobileRecentVins"></div>
+      <div class="global-result mobile-search-result" id="mobileVinResult"></div>
+    </section>
+
+    <section class="mobile-section" id="mobileTasksSection">
+      <div class="mobile-section-head"><div><div class="mobile-section-kicker">DZISIAJ</div><h2>Twoje zadania</h2></div><div class="mobile-section-note" id="mobileTasksNote">Dotknij kafelka</div></div>
+      <div class="mobile-tasks">
+        <button class="mobile-task" id="mobileTaskReleases" data-mobile-access="releases" data-mobile-route="releaseHome" type="button"><div><div class="mobile-task-icon">🚗</div><div class="mobile-task-count" id="mobileReleaseCount">0</div></div><div><div class="mobile-task-label">Wydania</div><div class="mobile-task-sub" id="mobileReleaseSub">dzisiaj</div></div></button>
+        <button class="mobile-task" id="mobileTaskMounts" data-mobile-access="mounts" data-mobile-route="mountOwners" type="button"><div><div class="mobile-task-icon">🔧</div><div class="mobile-task-count" id="mobileMountCount">0</div></div><div><div class="mobile-task-label">Montaże</div><div class="mobile-task-sub">otwarte zlecenia</div></div></button>
+        <button class="mobile-task" id="mobileTaskBattery" data-mobile-access="battery" data-mobile-route="batteryView" type="button"><div><div class="mobile-task-icon">🔋</div><div class="mobile-task-count" id="mobileBatteryCount">0</div></div><div><div class="mobile-task-label">Akumulatory</div><div class="mobile-task-sub">wymagają reakcji</div></div></button>
+        <button class="mobile-task" id="mobileTaskWash" data-mobile-access="wash" data-mobile-route="washView" type="button"><div><div class="mobile-task-icon">🧽</div><div class="mobile-task-count" id="mobileWashCount">0</div></div><div><div class="mobile-task-label">Myjnia</div><div class="mobile-task-sub">do mycia dziś</div></div></button>
+      </div>
+      <div class="mobile-ready-card" id="mobileReadyCard" data-home-access="releases">
+        <div class="mobile-ready-copy"><b id="mobileReadyLabel">Gotowość wydań</b><div id="mobileReadySub">—</div><div class="mobile-ready-bar"><span id="mobileReadyBar"></span></div></div><div class="mobile-ready-pct" id="mobileReadyPercent">—</div>
+      </div>
+    </section>
   </div>
-  <div class="modules">
-    <button class="module" id="openReleases"><small>Moduł 1</small><h2>Wydania samochodów</h2><p>Plan tygodnia, gotowość wyposażenia i oznaczanie pojazdu jako wydany.</p><div class="go">Otwórz wydania →</div></button>
-    <button class="module" id="openMounts"><small>Moduł 2</small><h2>Montaże / doposażenia</h2><p>Zlecenia rozdzielone na Jakuba Grzywacza i Mateusza Bodnara.</p><div class="go">Otwórz montaże →</div></button>
-    <button class="module" id="openCars"><small>Moduł 3</small><h2>Lista samochodów</h2><p>Codzienna baza VIN-ów oraz podpowiedzi po końcówce numeru.</p><div class="go">Otwórz listę →</div></button>
-    <button class="module" id="openBattery"><small>Moduł 4</small><h2>Testy akumulatorów</h2><p>Kontrola testu przy przyjęciu auta i ponowienie co 14 dni do momentu wydania.</p><div class="go">Otwórz testy →</div></button>
-    <button class="module" id="openWash"><small>Moduł 5</small><h2>Myjnia</h2><p>Samochody do mycia, umyte auta i dodatkowe czynności do rozliczenia premii.</p><div class="go">Otwórz myjnię →</div></button>
-    <button class="module" id="openAdmin"><small>Administracja</small><h2>Panel administratora</h2><p>Użytkownicy, role oraz historia działań w systemie.</p><div class="go">Otwórz panel →</div></button>
+  <div class="dashboard-hero">
+    <div class="dashboard-hero-main">
+      <div class="home-eyebrow">TOYOTA • DZIAŁ FLOTOWY</div>
+      <h1 id="homeGreeting">Panel operacyjny</h1>
+      <div class="home-date" id="homeDateLabel">—</div>
+    </div>
+    <div class="dashboard-hero-user">
+      <span class="hero-user-label">ZALOGOWANY</span>
+      <strong id="homeUserName">—</strong>
+      <span id="homeUserRole">—</span>
+    </div>
+  </div>
+
+  <div class="dashboard-search global-search-card">
+    <div class="dashboard-search-copy">
+      <div class="home-section-kicker">SZYBKIE WYSZUKIWANIE</div>
+      <b>Znajdź samochód w całym systemie</b>
+      <span>Wpisz pełny VIN albo ostatnie 4–6 znaków.</span>
+    </div>
+    <div class="dashboard-search-action">
+      <div class="global-search-row"><input id="globalVinSearch" placeholder="VIN / końcówka VIN" autocomplete="off"><button class="btn primary" id="globalVinSearchBtn" type="button">Szukaj</button></div>
+      <div class="global-result" id="globalVinResult"></div>
+    </div>
+  </div>
+
+  <div class="home-kpis" id="homeKpis">
+    <div class="home-kpi" data-home-access="cars,releases"><span class="home-kpi-label">SAMOCHODY W OBIEGU</span><strong id="homeActiveCars">0</strong><small>aktywne na liście</small></div>
+    <div class="home-kpi" data-home-access="releases"><span class="home-kpi-label">WYDANIA DZISIAJ</span><strong id="homeTodayReleases">0</strong><small id="homeTodayReady">0 gotowych</small></div>
+    <div class="home-kpi" data-home-access="mounts,releases"><span class="home-kpi-label">OTWARTE MONTAŻE</span><strong id="homeOpenMounts">0</strong><small>oczekują na wykonanie</small></div>
+    <div class="home-kpi" data-home-access="battery"><span class="home-kpi-label">AKUMULATORY</span><strong id="homeBatteryDue">0</strong><small>wymagają reakcji</small></div>
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="dashboard-panel dashboard-modules">
+      <div class="dashboard-panel-head">
+        <div><div class="home-section-kicker">MODUŁY</div><h2>Obszary pracy</h2></div>
+        <div class="dashboard-panel-note">Wybierz obszar, w którym chcesz pracować.</div>
+      </div>
+      <div class="modules">
+        <button class="module" id="openReleases">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2-5h14l2 5v6h-2v-2H5v2H3v-6zm3.5-3-1.2 3h13.4l-1.2-3h-11zM7 15.5h.01M17 15.5h.01"/></svg></span>
+          <span class="module-copy"><small>OPERACJE</small><h2>Wydania samochodów</h2><p>Plan tygodnia i gotowość aut.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openMounts">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 01-5 5L4 17l3 3 5.7-5.7a4 4 0 005-5l-2.4 2.4-3-3 2.4-2.4z"/></svg></span>
+          <span class="module-copy"><small>WARSZTAT</small><h2>Montaże / doposażenia</h2><p>Zlecenia i wykonane prace.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openCars">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span>
+          <span class="module-copy"><small>BAZA</small><h2>Lista samochodów</h2><p>VIN-y, statusy i doposażenie.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openBattery">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11v10H7zM18 10h2v4h-2M4 10v4M10 10v4M8 12h4"/></svg></span>
+          <span class="module-copy"><small>KONTROLA</small><h2>Testy akumulatorów</h2><p>Terminy, K1 i testy cykliczne.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openWash">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5 6 5 10a5 5 0 01-10 0c0-4 5-10 5-10zM9.5 14.5a3 3 0 003 1.5"/></svg></span>
+          <span class="module-copy"><small>MYJNIA</small><h2>Myjnia</h2><p>Plan mycia i historia wykonania.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openAdmin">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zM4 12l2-1 .5-2.5-1-2 2-2 2 1L12 4l2.5 1.5 2-1 2 2-1 2L18 11l2 1v3l-2 1-.5 2.5 1 2-2 2-2-1L12 23l-2.5-1.5-2 1-2-2 1-2L6 16l-2-1z"/></svg></span>
+          <span class="module-copy"><small>ADMINISTRACJA</small><h2>Panel administratora</h2><p>Użytkownicy, uprawnienia i raporty.</p></span><span class="module-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <aside class="dashboard-side">
+      <div class="tomorrow-alert" id="tomorrowReadyAlert">
+        <div class="ta-head"><div><div class="attention-title"><span class="attention-dot"></span><b id="tomorrowAlertTitle">CENTRUM UWAGI — IGOR</b></div><div class="muted" id="tomorrowAlertDate" style="margin-top:4px">Najważniejsze sprawy wymagające reakcji</div></div><div class="ta-count" id="tomorrowAlertCount">0</div></div>
+        <div id="tomorrowAlertSummary" style="margin-top:6px;font-weight:800"></div>
+        <div class="ta-open-hint" id="tomorrowAlertHint">Dotknij, aby rozwinąć →</div>
+        <div class="attention-cats" id="attentionCats"></div>
+        <div class="ta-list" id="tomorrowAlertList"></div>
+      </div>
+
+      <div class="home-side-card" data-home-access="releases">
+        <div class="home-section-kicker">NAJBLIŻSZE WYDANIE</div>
+        <div class="next-release-empty" id="homeNextRelease">Brak zaplanowanych wydań.</div>
+      </div>
+
+      <div class="home-side-card" data-home-access="releases">
+        <div class="home-side-row"><div><div class="home-section-kicker">GOTOWOŚĆ NA DZIŚ</div><strong id="homeProgressLabel">Brak wydań</strong></div><span id="homeProgressPercent">—</span></div>
+        <div class="home-progress"><span id="homeProgressBar"></span></div>
+        <div class="muted" id="homeProgressSub" style="font-size:11px;margin-top:8px">—</div>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -465,6 +651,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
           <label>UWAGI</label>
           <input type="text" id="mountNotes" placeholder="np. brak materiału, auto czeka, do poprawy...">
         </div>
+
       </div>
 
       <div>
@@ -613,7 +800,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
   </div>
 
   <div class="battery-note">
-    Samochody pojawiają się tutaj automatycznie po dodaniu VIN-u do „Listy samochodów”. Test zapisuje datę wykonania i automatycznie wylicza kolejny termin za 14 dni. Dzień przed terminem pojawia się ostrzeżenie „ZBLIŻA SIĘ TEST”, w dniu terminu „TEST DZISIAJ”, a od następnego dnia „PRZETERMINOWANY”. Taki komunikat pozostaje do czasu zapisania nowego testu.
+    Samochody pojawiają się tutaj automatycznie po dodaniu VIN-u do „Listy samochodów”. Jeśli auto wyjedzie na drugi plac, użyj przycisku „Wyjechał na inny plac” — wtedy nie będzie liczone do testów ani ostrzeżeń. Po powrocie można je przywrócić. Test zapisuje datę wykonania i automatycznie wylicza kolejny termin za 14 dni. Dzień przed terminem pojawia się ostrzeżenie „ZBLIŻA SIĘ TEST”, w dniu terminu „TEST DZISIAJ”, a od następnego dnia „PRZETERMINOWANY”. Taki komunikat pozostaje do czasu zapisania nowego testu.
   </div>
 
   <div class="searchbar"><input id="batterySearch" placeholder="Szukaj po VIN"></div>
@@ -639,7 +826,6 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
   <div class="period-nav"><button id="washPrevWeek">← Tydzień</button><button class="today-btn" id="washThisWeek">Bieżący</button><div class="period-label" id="washWeekLabel"></div><button id="washNextWeek">Tydzień →</button></div>
   <div class="wash-week-board" id="washWeekBoard"></div>
   <div class="wash-grid wash-menu">
-    <button class="wash-card" id="showWashPending"><small>DO MYCIA</small><strong id="washPendingCount">0</strong><div class="muted">Lista samochodów</div></button>
     <button class="wash-card" id="showWashDone"><small>UMYTE</small><strong id="washDoneCount">0</strong><div class="muted">Historia myć</div></button>
     <button class="wash-card" id="showWashBonus"><small>DODATKOWA PREMIA</small><strong>+</strong><div class="muted">Wpisz dodatkową pracę</div></button>
   </div>
@@ -663,6 +849,12 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
   <div class="admin-card"><h2>Moje dodatkowe prace</h2><div class="wash-bonus-list" id="washBonusList"></div></div>
 </section>
 
+<section id="archiveView" class="view">
+  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromArchive">←</button><div><h1>Archiwum samochodów</h1><div class="muted" style="margin-top:5px">Samochód trafia tutaj automatycznie po oznaczeniu jako WYDANY. Historia nie jest kasowana.</div></div></div><span class="owner-badge" id="archiveCount"></span></div>
+  <div class="searchbar"><input id="archiveSearch" placeholder="Szukaj po VIN"></div>
+  <div class="archive-list" id="archiveRows"></div>
+</section>
+
 <section id="adminView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backMainFromAdmin">←</button><div><h1>Panel administratora</h1><div class="muted" style="margin-top:5px">Użytkownicy, uprawnienia i historia operacji.</div></div></div></div>
   <div class="period-nav"><button id="adminPrevMonth">← Miesiąc</button><button class="today-btn" id="adminThisMonth">Bieżący</button><div class="period-label" id="adminMonthLabel"></div><button id="adminNextMonth">Miesiąc →</button></div>
@@ -673,35 +865,128 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
     <div class="report-actions" style="margin-top:14px"><button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button><button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button><button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button></div>
     <div class="report-note">Zamknięcie zapisuje migawkę raportu w archiwum. Samochody na placu, przyszłe wydania i otwarte prace nie są kasowane.</div>
   </div>
-  <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Dostęp</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
+  <div class="admin-card"><h2>Użytkownicy, loginy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników oraz ustawiać ich dane, hasła i uprawnienia.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><input id="newUserLogin" autocapitalize="none" spellcheck="false" placeholder="np. jan.kowalski"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select><input id="newUserPassword" type="password" autocomplete="new-password" placeholder="Hasło (min. 4 znaki)"></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Login / hasło / dostęp</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
   <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
 </section>
 </main>
-<div class="login-gate" id="loginGate"><div class="login-card"><h1>Wybierz użytkownika</h1><div class="muted">Wybór określa dostęp do modułów i podpisuje wykonywane operacje.</div><div class="user-grid" id="userGrid"></div></div></div>
+
+<div class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Nawigacja mobilna">
+  <button id="mobileNavHome" type="button"><span class="nav-ico">⌂</span><span>Start</span></button>
+  <button id="mobileNavReleases" data-mobile-access="releases" type="button"><span class="nav-ico">🚗</span><span>Wydania</span></button>
+  <button id="mobileNavCars" data-mobile-access="cars" type="button"><span class="nav-ico">▤</span><span>Samochody</span></button>
+  <button id="mobileNavTasks" type="button"><span class="nav-ico">✓</span><span>Zadania</span></button>
+  <button id="mobileNavMore" type="button"><span class="nav-ico">•••</span><span>Więcej</span></button>
+</div>
+<div class="mobile-more-backdrop" id="mobileMoreBackdrop" aria-hidden="true">
+  <div class="mobile-more-sheet" role="dialog" aria-label="Więcej opcji">
+    <div class="mobile-more-handle"></div>
+    <div class="mobile-more-user"><b id="mobileMoreUserName">—</b><span id="mobileMoreUserRole">—</span></div>
+    <div class="mobile-more-actions" id="mobileMoreActions">
+      <button data-mobile-more-route="releaseHome" data-mobile-access="releases" type="button">Wydania</button>
+      <button data-mobile-more-route="mountOwners" data-mobile-access="mounts" type="button">Montaże</button>
+      <button data-mobile-more-route="carsView" data-mobile-access="cars" type="button">Lista samochodów</button>
+      <button data-mobile-more-route="batteryView" data-mobile-access="battery" type="button">Akumulatory</button>
+      <button data-mobile-more-route="washView" data-mobile-access="wash" type="button">Myjnia</button>
+      <button data-mobile-more-route="adminView" data-mobile-access="admin" type="button">Administrator</button>
+      <button class="danger" id="mobileLogoutBtn" type="button">Wyloguj</button>
+    </div>
+  </div>
+</div>
+<div class="login-gate" id="loginGate"><div class="login-card"><h1>Logowanie</h1><div class="muted">Zaloguj się swoim loginem i hasłem.</div><form id="loginForm" style="margin-top:16px"><div class="field"><label>LOGIN</label><input id="loginUsername" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="np. igor.gieruszka"></div><div class="field" style="margin-top:10px"><label>HASŁO</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Hasło"></div><div class="actions" style="margin-top:14px"><button class="btn primary" type="submit">Zaloguj</button></div><div class="message" id="loginMessage"></div></form></div></div>
 
 <script>
 const $=s=>document.querySelector(s);
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","adminView"];
-const APP_USERS=[
- {name:"Igor Gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
- {name:"Denys Chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
- {name:"Helena Cholewa",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Patryk Jarosz",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Mateusz Bodnar",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Jakub Grzywacz",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Konrad Dąbrowski",role:"Myjnia",access:["releases","wash"]}
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView"];
+const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
+const DEFAULT_APP_USERS=[
+ {name:"Igor Gieruszka",login:"igor.gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
+ {name:"Denys Chernov",login:"denys.chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
+ {name:"Helena Cholewa",login:"helena.cholewa",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Patryk Jarosz",login:"patryk.jarosz",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Mateusz Bodnar",login:"mateusz.bodnar",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Jakub Grzywacz",login:"jakub.grzywacz",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Konrad Dąbrowski",login:"konrad.dabrowski",role:"Myjnia",access:["releases","wash"]}
 ];
+const USER_PROFILES_KEY="toyotaUserProfilesV1";
+let userProfileOverrides=JSON.parse(localStorage.getItem(USER_PROFILES_KEY)||"{}");
+const USER_PASSWORDS_KEY="toyotaUserPasswordsV1";
+let userPasswordHashes=JSON.parse(localStorage.getItem(USER_PASSWORDS_KEY)||"{}");
+const DEFAULT_ADMIN_PASSWORD_HASH="479a6da15ff423206427b6081c5e018ea04afc1c6a3392937e451ab4d9ca0dd9";
+if(!userPasswordHashes["Igor Gieruszka"]){userPasswordHashes["Igor Gieruszka"]=DEFAULT_ADMIN_PASSWORD_HASH;localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));}
+async function hashPassword(value){const data=new TextEncoder().encode(String(value));const buf=await crypto.subtle.digest("SHA-256",data);return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("")}
+async function setUserPassword(name,password){
+  if(String(password).length<4){alert("Hasło musi mieć co najmniej 4 znaki.");return false}
+  userPasswordHashes[name]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Zmiana hasła użytkownika",name);return true;
+}
+function userHasPassword(name){return !!userPasswordHashes[name]}
+let userPermissionOverrides=JSON.parse(localStorage.getItem(USER_PERMISSIONS_KEY)||"{}");
+const CUSTOM_USERS_KEY="toyotaCustomUsersV1";
+let customUsers=JSON.parse(localStorage.getItem(CUSTOM_USERS_KEY)||"[]");
+const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOverrides[u.name]||{};return {...u,baseName:u.name,userId:`user-${idx+1}`,name:String(profile.name||u.name),login:String(profile.login||u.login),access:Array.isArray(userPermissionOverrides[u.name])?userPermissionOverrides[u.name]:[...u.access]}}),...customUsers.map(u=>({...u,baseName:u.baseName||u.userId,userId:u.userId||`custom-${Date.now()}-${Math.random()}`,access:Array.isArray(userPermissionOverrides[u.baseName||u.userId])?userPermissionOverrides[u.baseName||u.userId]:(Array.isArray(u.access)?u.access:[])}))];
+function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,login:u.login,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
+async function addNewUser(){
+ const name=$("#newUserName").value.trim(),login=$("#newUserLogin").value.trim().toLowerCase(),role=$("#newUserRole").value,password=$("#newUserPassword").value,msg=$("#addUserMessage");
+ if(name.length<3){msg.textContent="Wpisz imię i nazwisko pracownika.";msg.className="message error";return}
+ if(!/^[a-z0-9._-]{3,}$/.test(login)){msg.textContent="Login może zawierać małe litery, cyfry, kropkę, myślnik i podkreślenie.";msg.className="message error";return}
+ if(APP_USERS.some(u=>u.login.toLowerCase()===login)){msg.textContent="Taki login już istnieje.";msg.className="message error";return}
+ if(password.length<4){msg.textContent="Hasło musi mieć co najmniej 4 znaki.";msg.className="message error";return}
+ const defaults=role==="Doposażeniowiec"?["mounts"]:role==="Myjnia"?["releases","wash"]:role.includes("Koordynator")?["releases","cars","battery"]:[];
+ const id=`custom-${Date.now()}`,u={userId:id,baseName:id,name,login,role,access:defaults};APP_USERS.push(u);saveCustomUsers();userPasswordHashes[id]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Dodanie pracownika",`${name}; ${login}; ${role}`);renderAdmin();
+}
+function profileKey(u){return u.baseName||u.name}
+function passwordKey(u){return u.baseName||u.name}
+function userHasPasswordByUser(u){return !!userPasswordHashes[passwordKey(u)]}
+async function setUserPasswordForUser(u,password){
+  if(String(password).length<4){alert("Hasło musi mieć co najmniej 4 znaki.");return false}
+  userPasswordHashes[passwordKey(u)]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Zmiana hasła użytkownika",u.name);return true;
+}
+function saveUserProfile(u,newName,newLogin){
+  newName=String(newName||"").trim();newLogin=String(newLogin||"").trim().toLowerCase();
+  if(newName.length<3){alert("Imię i nazwisko musi mieć co najmniej 3 znaki.");return false}
+  if(!/^[a-z0-9._-]{3,}$/.test(newLogin)){alert("Login może zawierać małe litery bez polskich znaków, cyfry, kropkę, myślnik i podkreślenie.");return false}
+  if(APP_USERS.some(x=>x!==u&&x.login.toLowerCase()===newLogin)){alert("Taki login jest już używany przez innego pracownika.");return false}
+  const oldName=u.name; userProfileOverrides[profileKey(u)]={name:newName,login:newLogin};localStorage.setItem(USER_PROFILES_KEY,JSON.stringify(userProfileOverrides));
+  u.name=newName;u.login=newLogin;if(String(u.userId||"").startsWith("custom-"))saveCustomUsers();
+  mountJobs?.forEach?.(j=>{if(j.owner===oldName)j.owner=newName}); extraBonusWorks?.forEach?.(x=>{if(x.owner===oldName)x.owner=newName}); washBonusWorks?.forEach?.(x=>{if(x.user===oldName)x.user=newName});
+  try{saveMountJobs?.();saveExtraBonus?.();saveWashBonus?.()}catch(e){}
+  if(currentUser?.userId===u.userId||currentUser?.baseName===u.baseName){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}
+  logAction("Zmiana danych użytkownika",`${oldName} → ${newName}; login: ${newLogin}`);return true;
+}
+const ACCESS_LABELS={releases:"Wydania",mounts:"Montaże / doposażenia",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",admin:"Panel administratora"};
+function saveUserPermissions(name,access){
+  if(APP_USERS.find(x=>x.name===name)?.role==="Główny Koordynator" && !access.includes("admin")){alert("Główny Koordynator musi zachować dostęp do Panelu administratora, aby nie zablokować zarządzania systemem.");return false}
+  const target=APP_USERS.find(x=>x.name===name);const pkey=target?.baseName||name;userPermissionOverrides[pkey]=[...access];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));
+  const u=APP_USERS.find(x=>x.name===name);if(u){u.access=[...access];if(String(u.userId||"").startsWith("custom-"))saveCustomUsers()}
+  if(currentUser?.name===name){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}
+  logAction("Zmiana uprawnień użytkownika",`${name}: ${access.map(x=>ACCESS_LABELS[x]).join(", ")||"brak dostępu"}`);return true;
+}
+function resetUserPermissions(name){
+  const u0=APP_USERS.find(x=>x.name===name);const d=DEFAULT_APP_USERS.find(x=>x.name===(u0?.baseName||name));if(!d)return;delete userPermissionOverrides[u0?.baseName||name];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));const u=APP_USERS.find(x=>x.name===name);u.access=[...d.access];if(currentUser?.name===name){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}logAction("Przywrócenie domyślnych uprawnień",name);renderAdmin();
+}
+const DAILY_LOGIN_KEY="toyotaDailyLoginV1";
+function localDayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function saveDailyLogin(u){localStorage.setItem(DAILY_LOGIN_KEY,JSON.stringify({day:localDayKey(),userId:u.userId||"",baseName:u.baseName||"",login:u.login||""}))}
+function clearDailyLogin(){localStorage.removeItem(DAILY_LOGIN_KEY)}
+function dailyLoginIsValid(u){try{const x=JSON.parse(localStorage.getItem(DAILY_LOGIN_KEY)||"null");return !!(x&&x.day===localDayKey()&&(x.userId&&x.userId===u?.userId||x.baseName&&x.baseName===u?.baseName||x.login&&x.login===u?.login))}catch{return false}}
 let currentUser=JSON.parse(localStorage.getItem("toyotaCurrentUserV1")||"null");
 let auditLog=JSON.parse(localStorage.getItem("toyotaAuditLogV1")||"[]");
 function logAction(action,details=""){if(!currentUser)return;auditLog.unshift({at:new Date().toLocaleString("pl-PL"),user:currentUser.name,action,details});auditLog=auditLog.slice(0,200);localStorage.setItem("toyotaAuditLogV1",JSON.stringify(auditLog));}
 function hasAccess(module){return !!currentUser?.access?.includes(module)}
-function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));if(id==="mainHome")setTimeout(renderTomorrowReadyAlert,0)}
+function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));updateMobileNav(id);if(id==="mainHome")setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention()},0)}
 function renderUserGate(){
- $("#userGrid").innerHTML=APP_USERS.map((u,i)=>`<button class="user-choice" data-user-index="${i}"><b>${u.name}</b><span>${u.role}</span></button>`).join("");
- $("#userGrid").querySelectorAll(".user-choice").forEach(b=>b.onclick=()=>selectUser(APP_USERS[Number(b.dataset.userIndex)]));
+  $("#loginUsername").value="";$("#loginPassword").value="";$("#loginMessage").textContent="";
 }
-function selectUser(u){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));$("#loginGate").classList.add("hidden");applyUserAccess();logAction("Logowanie / wybór użytkownika",u.role);show("mainHome");}
-function applyUserAccess(){if(!currentUser)return;$("#currentUserPill").textContent=`${currentUser.name} • ${currentUser.role}`;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");}
+async function attemptLogin(){
+  const login=$("#loginUsername").value.trim().toLowerCase(),password=$("#loginPassword").value;
+  const u=APP_USERS.find(x=>x.login.toLowerCase()===login);
+  if(!u){$("#loginMessage").textContent="Nieprawidłowy login lub hasło.";return}
+  const saved=userPasswordHashes[passwordKey(u)];
+  if(saved){const entered=await hashPassword(password);if(entered!==saved){$("#loginMessage").textContent="Nieprawidłowy login lub hasło.";return}}
+  else if(password){$("#loginMessage").textContent="Hasło dla tego konta nie zostało jeszcze ustawione przez administratora. Zostaw pole hasła puste.";return}
+  selectUser(u);
+}
+function selectUser(u){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));saveDailyLogin(u);$("#loginGate").classList.add("hidden");applyUserAccess();logAction("Logowanie",u.login);show("mainHome");}
+function applyUserAccess(){if(!currentUser)return;$("#currentUserPill").textContent=`${currentUser.name} • ${currentUser.role}`;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
 function auditMonthKey(at){const m=String(at||"").match(/(\d{1,2})[.\/]\s?(\d{1,2})[.\/]\s?(\d{4})/);return m?`${m[3]}-${String(m[2]).padStart(2,"0")}`:""}
 const MONTHLY_REPORTS_KEY="toyotaMonthlyReportsV1";
 let monthlyReports=JSON.parse(localStorage.getItem(MONTHLY_REPORTS_KEY)||"{}");
@@ -739,12 +1024,17 @@ function csvCell(v){return `"${String(v??"").replaceAll('"','""')}"`}
 function exportSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const rows=[["RAPORT MIESIĘCZNY",mk],["Wydania",r.releases],["Wydane",r.issued],["Doposażenia",r.mounts],["Godziny montażu",r.hours.toFixed(1)],["Mycia",r.washes],["Ponowne mycia",r.repeatWash],["Testy akumulatorów",r.batteryCount],[],["DOPOSAŻENIOWCY"],["Pracownik","Samochody","Alarm","ID CAN","META","Inne","Godziny"],...Object.entries(r.mountBy).map(([n,x])=>[n,x.cars,x.alarm,x.idCan,x.meta,x.other,x.hours.toFixed(1)]),[],["DODATKOWA PREMIA MYJNIA",r.washBonus],["PRACE DODATKOWE DOPOSAŻENIOWCÓW",r.mountBonus]];const csv='\ufeff'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`raport-${mk}.csv`;a.click();URL.revokeObjectURL(a.href)}
 function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const w=window.open('', '_blank');if(!w)return alert('Przeglądarka zablokowała nowe okno. Zezwól na wyskakujące okna.');w.document.write(`<html><head><meta charset="utf-8"><title>Raport ${mk}</title><style>body{font-family:Arial;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0 18px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}h1{margin-bottom:4px}.muted{color:#555}.report-section{margin-top:20px}</style></head><body><h1>Raport miesięczny — ${mk}</h1><p>${monthlyReports[mk]?"MIESIĄC ZAMKNIĘTY":"RAPORT BIEŻĄCY"}</p>${reportHtml(r)}<script>setTimeout(()=>window.print(),250)<\/script></body></html>`);w.document.close()}
 function renderAdmin(){
- $("#adminUsersRows").innerHTML=APP_USERS.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.role}</td><td>${u.access.map(x=>({releases:"Wydania",mounts:"Montaże",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",admin:"Administrator"}[x])).join(", ")}</td></tr>`).join("");
+ const addBtn=$("#addUserBtn");if(addBtn)addBtn.onclick=addNewUser;
+ $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b><div class="muted" style="margin-top:4px">${userHasPasswordByUser(u)?"🔒 Hasło ustawione":"⚠ Hasło nieustawione"}</div></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('\"','&quot;')}" placeholder="Imię i nazwisko"><input class="admin-login-input" data-user="${idx}" value="${u.login}" autocapitalize="none" spellcheck="false" placeholder="login.nazwisko"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz imię i login</button><input type="password" class="admin-password-input" data-user="${idx}" autocomplete="new-password" placeholder="Nowe hasło (min. 4 znaki)" style="max-width:260px"><button class="btn set-user-password" data-user="${idx}" type="button">${userHasPasswordByUser(u)?"Zmień hasło":"Ustaw hasło"}</button></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.name==="Igor Gieruszka"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
+ document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value,login=document.querySelector(`.admin-login-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name,login)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
+ document.querySelectorAll(".set-user-password").forEach(b=>b.onclick=async()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],input=document.querySelector(`.admin-password-input[data-user="${idx}"]`);if(await setUserPasswordForUser(u,input.value)){alert(`Hasło dla ${u.name} zostało zapisane.`);renderAdmin()}});
+ document.querySelectorAll(".save-user-access").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];const access=[...document.querySelectorAll(`.admin-access-check[data-user="${idx}"]:checked`)].map(x=>x.value);if(saveUserPermissions(u.name,access)){renderAdmin()}});
+ document.querySelectorAll(".reset-user-access").forEach(b=>b.onclick=()=>resetUserPermissions(APP_USERS[Number(b.dataset.user)].name));
  const md=shiftedMonth(adminMonthOffset), mk=monthKey(md); $("#adminMonthLabel").textContent=monthLabel(md); const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
  renderMonthlyReport(mk);
  $("#auditRows").innerHTML=logs.length?logs.map(a=>`<tr><td>${a.at}</td><td>${a.user}</td><td>${a.action}</td><td>${a.details||"—"}</td></tr>`).join(""):`<tr><td colspan="4">Brak zapisanych operacji w tym miesiącu.</td></tr>`;
 }
-renderUserGate();if(currentUser && APP_USERS.some(u=>u.name===currentUser.name)){currentUser=APP_USERS.find(u=>u.name===currentUser.name);$("#loginGate").classList.add("hidden");applyUserAccess();}
+renderUserGate();if(currentUser && APP_USERS.some(u=>u.userId===currentUser.userId||u.baseName===currentUser.baseName||u.name===currentUser.name)){currentUser=APP_USERS.find(u=>u.userId===currentUser.userId||u.baseName===currentUser.baseName||u.name===currentUser.name);if(dailyLoginIsValid(currentUser)){$("#loginGate").classList.add("hidden");applyUserAccess();}else{currentUser=null;localStorage.removeItem("toyotaCurrentUserV1");clearDailyLogin();}}
 
 /* ---------- RELEASE DATA ---------- */
 const releaseSeed=[
@@ -1249,6 +1539,56 @@ if(!localStorage.getItem(DEMO_PLAN_20_KEY)){
   localStorage.setItem("toyotaWashRecordsV1",JSON.stringify(demoWash));
   localStorage.setItem(DEMO_PLAN_20_KEY,"1");
 }
+
+// ŚWIEŻY ZESTAW TESTOWY 29.08.2026: usuwa poprzednie samochody i wprowadza nowe.
+// Wszystkie prace doposażenia startują jako niewykonane. Reset uruchamia się tylko raz na urządzeniu.
+const FRESH_CARS_PENDING_KEY="toyotaFreshCarsPending_20260829_V1";
+if(!localStorage.getItem(FRESH_CARS_PENDING_KEY)){
+  const freshSpecs=[
+    ["JTDAA11A001260001","ARCHE FLEET","Corolla","A01","Alarm, ID CAN, dywaniki gumowe"],
+    ["JTDAA11A001260002","MEDLINE","Yaris Cross","A02","Alarm, apteczka"],
+    ["JTDAA11A001260003","NOVA RENT","RAV4","A03","Hak, ID CAN"],
+    ["JTDAA11A001260004","CITY DRIVE","Camry","A04","Alarm, META, dywaniki gumowe"],
+    ["JTDAA11A001260005","ALFA MOBILITY","Corolla TS","B01","ID CAN, czujniki parkowania"],
+    ["JTDAA11A001260006","VITA FLEET","Yaris","B02","Alarm, dywaniki gumowe, apteczka"],
+    ["JTDAA11A001260007","NORD AUTO","RAV4","B03","Hak, META"],
+    ["JTDAA11A001260008","PRO LEASE","Corolla","B04","Alarm, ID CAN"],
+    ["JTDAA11A001260009","MOBILIS","Yaris Cross","C01","Czujniki parkowania, dywaniki gumowe"],
+    ["JTDAA11A001260010","ORBIT FLEET","Camry","C02","Alarm, META, apteczka"],
+    ["JTDAA11A001260011","VECTOR RENT","Corolla TS","C03","ID CAN, hak, dywaniki gumowe"],
+    ["JTDAA11A001260012","MEDICAR","RAV4","C04","Alarm, czujniki parkowania"],
+    ["JTDAA11A001260013","PRIME LEASE","Corolla","D01","Alarm, ID CAN, META"],
+    ["JTDAA11A001260014","FLEET POINT","Yaris","D02","Dywaniki gumowe, apteczka"],
+    ["JTDAA11A001260015","CENTRAL RENT","Yaris Cross","D03","Alarm, hak"],
+    ["JTDAA11A001260016","GREEN MOBILITY","RAV4","D04","ID CAN, META, czujniki parkowania"],
+    ["JTDAA11A001260017","AUTO BIZNES","Camry","E01","Alarm, dywaniki gumowe"],
+    ["JTDAA11A001260018","LOGIS FLEET","Corolla TS","E02","Hak, ID CAN, apteczka"],
+    ["JTDAA11A001260019","EURO MOBILITY","Corolla","E03","Alarm, META, czujniki parkowania"],
+    ["JTDAA11A001260020","PARTNER CARS","RAV4","E04","ID CAN, hak, dywaniki gumowe"]
+  ];
+  const freshDates=["2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04"];
+  const freshTimes=["08:00","09:30","12:00","15:00"];
+  releaseData=[]; fleetCars=[];
+  freshSpecs.forEach((d,i)=>{
+    const [vin,client,model,place,info]=d;
+    const workItems=parseReleaseWorkItems(info).map(name=>({name,done:false}));
+    const r={id:97000+i,date:freshDates[Math.floor(i/4)],time:freshTimes[i%4],client,model,vin,place,info,workItems,status:"W TRAKCIE",releaseReady:false,mountOrdered:false};
+    normalizeReleaseRequirements(r);
+    // Po normalizacji ponownie wymuszamy czysty stan każdej pozycji.
+    r.workItems.forEach(x=>x.done=false);
+    r.releaseReady=false; r.mountOrdered=false; r.status="W TRAKCIE";
+    syncLegacyReleaseFlags(r);
+    releaseData.push(r);
+    fleetCars.push({vin,status:"AKTYWNY",equipment:info});
+  });
+  localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData));
+  localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+  localStorage.setItem("toyotaMountJobsV3","[]");
+  localStorage.setItem("toyotaBatteryTestsV1","[]");
+  localStorage.setItem("toyotaWashRecordsV1","[]");
+  localStorage.setItem(FRESH_CARS_PENDING_KEY,"1");
+}
+
 function normalizeVin(v){return (v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").trim()}
 function saveCars(){localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars))}
 function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY"};fleetCars.unshift(c)}return c}
@@ -1283,18 +1623,28 @@ function renderCars(){
     const eq=getCarReleaseEquipment(c.vin);
     const equipment=eq?eq.items.map(x=>x.name).join(" "):"";
     return `${c.vin} ${c.status} ${equipment}`.toLowerCase().includes(q);
+  }).sort((a,b)=>{
+    const isK1=c=>batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away);
+    const rank=c=>c.status==="WYJECHAŁ"?2:(isK1(c)?1:0);
+    const diff=rank(a)-rank(b);
+    if(diff!==0)return diff;
+    return String(a.vin).localeCompare(String(b.vin));
   });
-  $("#carsCount").textContent=`${fleetCars.length} samochodów`;
+  const activeCount=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const issuedCount=fleetCars.filter(c=>c.status==="WYJECHAŁ").length;
+  $("#carsCount").textContent=`${activeCount} aktywnych • ${issuedCount} wydanych`;
   $("#carRows").innerHTML=rows.length?rows.map(c=>{
+    const issued=c.status==="WYJECHAŁ";
+    const k1=!issued && batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away);
     const eq=getCarReleaseEquipment(c.vin);
     if(!eq || !eq.items.length){
-      return `<tr><td class="vin-cell">${c.vin}</td><td><span class="car-status ${c.status==="WYJECHAŁ"?"car-departed":"car-ready"}">${c.status}</span></td><td style="color:#6b7280">Brak wpisanego doposażenia</td><td style="color:#6b7280">—</td></tr>`;
+      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${c.vin}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':c.status)}</span></td><td style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}">Brak wpisanego doposażenia</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td></tr>`;
     }
     const done=eq.items.filter(x=>x.done).length, total=eq.items.length;
     const allDone=done===total;
     const itemHtml=eq.items.map(x=>`<span style="display:inline-block;margin:2px 5px 2px 0;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:${x.done?'#e9f8ef':'#fff0ee'};color:${x.done?'#137a3d':'#b42318'}">${x.done?'✓':'○'} ${x.name}</span>`).join("");
-    const state=c.status==="WYJECHAŁ"?"WYDANY":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`);
-    return `<tr><td class="vin-cell">${c.vin}</td><td><span class="car-status ${c.status==="WYJECHAŁ"?"car-departed":"car-ready"}">${c.status}</span></td><td>${itemHtml}</td><td><b style="color:${allDone?'#168a45':'#b42318'}">${state}</b></td></tr>`;
+    const state=issued?"WYDANY":(k1?"K1":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`));
+    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${c.vin}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':c.status)}</span></td><td>${itemHtml}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td></tr>`;
   }).join(""):`<tr><td colspan="4" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
 }
 function addCar(){
@@ -1314,6 +1664,140 @@ function renderVinSuggestions(){
 }
 
 
+
+/* ---------- GLOBAL SEARCH + AUTOMATIC ARCHIVE ---------- */
+function archivedCars(){return fleetCars.filter(c=>c.status==="WYJECHAŁ" || releaseData.some(r=>normalizeVin(r.vin)===normalizeVin(c.vin)&&r.status==="WYDANE"))}
+function renderArchiveHomeCount(){const el=$("#archiveHomeCount");if(el){const n=archivedCars().length;el.textContent=`${n} ${n===1?"samochód":"samochodów"}`}}
+function renderArchive(){
+  const q=normalizeVin($("#archiveSearch")?.value||"");const rows=archivedCars().filter(c=>!q||normalizeVin(c.vin).includes(q));
+  $("#archiveCount").textContent=`${rows.length} w archiwum`;
+  $("#archiveRows").innerHTML=rows.length?rows.map(c=>{const rel=releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(c.vin)&&r.status==="WYDANE").sort((a,b)=>(b.date||"").localeCompare(a.date||""))[0];const eq=getCarReleaseEquipment(c.vin);const done=eq?.items?.filter(x=>x.done).map(x=>x.name).join(", ")||"brak danych";return `<div class="archive-row"><div class="archive-vin">${c.vin}</div><div style="margin-top:5px"><b>✓ WYDANY</b>${rel?` • ${formatIso(rel.date)} • ${rel.client||"—"}`:""}</div><div class="muted" style="margin-top:5px;font-size:12px">Doposażenie: ${done}</div></div>`}).join(""):`<div class="archive-empty">Archiwum jest puste. Pierwszy samochód pojawi się tutaj automatycznie po oznaczeniu go jako WYDANY.</div>`;
+}
+function renderMainDashboard(){
+  if(!currentUser)return;
+  const first=(currentUser.name||"").trim().split(/\s+/)[0]||"";
+  const greeting=$("#homeGreeting");if(greeting)greeting.textContent=first?`Dzień dobry, ${first}`:"Panel operacyjny";
+  const dateLabel=$("#homeDateLabel");if(dateLabel)dateLabel.textContent=new Intl.DateTimeFormat("pl-PL",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
+  if($("#homeUserName"))$("#homeUserName").textContent=currentUser.name||"—";
+  if($("#homeUserRole"))$("#homeUserRole").textContent=currentUser.role||"—";
+
+  document.querySelectorAll("[data-home-access]").forEach(el=>{
+    const access=String(el.dataset.homeAccess||"").split(",").filter(Boolean);
+    el.style.display=access.some(hasAccess)?"":"none";
+  });
+
+  const today=isoToday();
+  const activeCars=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const todayReleases=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE");
+  const todayReady=todayReleases.filter(r=>r.releaseReady).length;
+  const openMounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const batteryDue=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
+  if($("#homeActiveCars"))$("#homeActiveCars").textContent=activeCars;
+  if($("#homeTodayReleases"))$("#homeTodayReleases").textContent=todayReleases.length;
+  if($("#homeTodayReady"))$("#homeTodayReady").textContent=`${todayReady} gotowych`;
+  if($("#homeOpenMounts"))$("#homeOpenMounts").textContent=openMounts;
+  if($("#homeBatteryDue"))$("#homeBatteryDue").textContent=batteryDue;
+
+  const upcoming=releaseData.filter(r=>r.status!=="WYDANE"&&r.date>=today).sort((a,b)=>`${a.date||""} ${a.time||""}`.localeCompare(`${b.date||""} ${b.time||""}`))[0];
+  const next=$("#homeNextRelease");
+  if(next){
+    if(upcoming){next.innerHTML=`<div class="next-release-main">${formatIso(upcoming.date)} • ${upcoming.time||"—"}</div><div class="next-release-meta"><b>${upcoming.client||"—"}</b>${upcoming.model?` • ${upcoming.model}`:""}${upcoming.place?`<br>Miejsce: ${upcoming.place}`:""}</div><div class="next-release-vin">${upcoming.vin||"—"}</div>`;}
+    else next.innerHTML='<div class="next-release-empty">Brak zaplanowanych wydań.</div>';
+  }
+
+  const pct=todayReleases.length?Math.round(todayReady/todayReleases.length*100):0;
+  if($("#homeProgressLabel"))$("#homeProgressLabel").textContent=todayReleases.length?`${todayReady} z ${todayReleases.length} gotowych`:"Brak wydań na dziś";
+  if($("#homeProgressPercent"))$("#homeProgressPercent").textContent=todayReleases.length?`${pct}%`:"—";
+  if($("#homeProgressBar"))$("#homeProgressBar").style.width=`${pct}%`;
+  if($("#homeProgressSub"))$("#homeProgressSub").textContent=todayReleases.length?(pct===100?"Wszystkie dzisiejsze auta mają potwierdzoną gotowość.":`${todayReleases.length-todayReady} ${todayReleases.length-todayReady===1?"samochód wymaga":"samochody wymagają"} jeszcze potwierdzenia.`):"Dzisiejszy plan nie zawiera wydań.";
+  renderMobileDashboard();
+}
+
+
+const MOBILE_RECENT_VINS_KEY="toyotaMobileRecentVinsV1";
+function mobileWashPendingToday(){
+  const today=isoToday();
+  const releasePending=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE").filter(r=>!washRecords.some(w=>String(w.releaseId)===String(r.id)&&w.releaseDate===today&&w.washedAt)).length;
+  const manual=washRecords.filter(w=>w.source==="manual"&&!w.washedAt).length;
+  return releasePending+manual;
+}
+function renderMobileDashboard(){
+  if(!currentUser)return;
+  const today=isoToday(),first=(currentUser.name||"").trim().split(/\s+/)[0]||"";
+  const todayReleases=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE");
+  const ready=todayReleases.filter(r=>r.releaseReady).length;
+  const mounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const battery=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
+  const active=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const wash=mobileWashPendingToday();
+  const pct=todayReleases.length?Math.round(ready/todayReleases.length*100):0;
+  if($("#mobileGreeting"))$("#mobileGreeting").textContent=first?`Dzisiaj, ${first}`:"Dzisiaj";
+  if($("#mobileDateLabel"))$("#mobileDateLabel").textContent=new Intl.DateTimeFormat("pl-PL",{weekday:"long",day:"numeric",month:"long"}).format(new Date());
+  if($("#mobileUserButton")){const parts=(currentUser.name||"").trim().split(/\s+/);$("#mobileUserButton").textContent=(parts[0]?.[0]||"")+(parts[1]?.[0]||"");}
+  if($("#mobileActiveCars"))$("#mobileActiveCars").textContent=active;
+  if($("#mobileSummarySub"))$("#mobileSummarySub").textContent=todayReleases.length?`${todayReleases.length} wydań dzisiaj • ${ready} gotowych`:`Brak wydań na dzisiaj • ${active} aut pozostaje w obiegu`;
+  if($("#mobileReleaseCount"))$("#mobileReleaseCount").textContent=todayReleases.length;
+  if($("#mobileReleaseSub"))$("#mobileReleaseSub").textContent=`${ready} gotowych • dzisiaj`;
+  if($("#mobileMountCount"))$("#mobileMountCount").textContent=mounts;
+  if($("#mobileBatteryCount"))$("#mobileBatteryCount").textContent=battery;
+  if($("#mobileWashCount"))$("#mobileWashCount").textContent=wash;
+  const tone=(id,count)=>{const el=$(id);if(el)el.dataset.tone=count>0?"red":"green"};tone("#mobileTaskMounts",mounts);tone("#mobileTaskBattery",battery);tone("#mobileTaskWash",wash);
+  if($("#mobileTaskReleases"))$("#mobileTaskReleases").dataset.tone=todayReleases.length&&ready<todayReleases.length?"red":"green";
+  if($("#mobileReadyLabel"))$("#mobileReadyLabel").textContent=todayReleases.length?`${ready} z ${todayReleases.length} gotowych`:"Brak wydań na dziś";
+  if($("#mobileReadySub"))$("#mobileReadySub").textContent=todayReleases.length?(pct===100?"Wszystkie dzisiejsze auta są gotowe.":`${todayReleases.length-ready} czeka na potwierdzenie gotowości.`):"Dzisiejszy plan jest pusty.";
+  if($("#mobileReadyPercent"))$("#mobileReadyPercent").textContent=todayReleases.length?`${pct}%`:"—";
+  if($("#mobileReadyBar"))$("#mobileReadyBar").style.width=`${pct}%`;
+  if($("#mobileMoreUserName"))$("#mobileMoreUserName").textContent=currentUser.name||"—";
+  if($("#mobileMoreUserRole"))$("#mobileMoreUserRole").textContent=currentUser.role||"—";
+  renderMobileRecentVins();
+}
+function syncMobileAttention(){
+  const box=$("#mobileAttention");if(!box||!currentUser)return;
+  const allowed=currentUser.role==="Główny Koordynator";box.style.display=allowed?"block":"none";if(!allowed)return;
+  const day=nextWorkingDayIso();
+  const notReady=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE"&&!r.releaseReady);
+  const mounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const overdue=batteryTests.filter(t=>!t.away&&getCarStatus(t.vin)!=="WYJECHAŁ"&&batteryRowState(t).key==="overdue").length;
+  const total=notReady.length+mounts+overdue;box.classList.toggle("ok",total===0);box.classList.remove("open");
+  if($("#mobileAttentionCount"))$("#mobileAttentionCount").textContent=total;
+  if($("#mobileAttentionDesc"))$("#mobileAttentionDesc").textContent=total?`${total} ${total===1?"sprawa wymaga":"spraw wymaga"} reakcji • ${formatIso(day)}`:"Brak pilnych spraw";
+  const details=$("#mobileAttentionDetails");if(details)details.innerHTML=`<div class="mobile-attention-cat">${notReady.length} • auta na następny dzień niegotowe</div><div class="mobile-attention-cat">${mounts} • otwarte montaże</div><div class="mobile-attention-cat">${overdue} • testy akumulatora po terminie</div>${notReady.map(r=>`<div class="mobile-attention-car"><b>${r.time||"—"} • ${r.client||"—"}</b><div>${r.model||"—"} • VIN ${r.vin||"—"}</div><div class="mobile-attention-missing">${missingReadyItems(r).join(" • ")}</div></div>`).join("")}`;
+}
+function addMobileRecentVin(vin){
+  const v=normalizeVin(vin);if(!v)return;let arr=JSON.parse(localStorage.getItem(MOBILE_RECENT_VINS_KEY)||"[]");arr=[v,...arr.filter(x=>x!==v)].slice(0,5);localStorage.setItem(MOBILE_RECENT_VINS_KEY,JSON.stringify(arr));renderMobileRecentVins();
+}
+function renderMobileRecentVins(){
+  const box=$("#mobileRecentVins");if(!box)return;let arr=[];try{arr=JSON.parse(localStorage.getItem(MOBILE_RECENT_VINS_KEY)||"[]")}catch(e){};box.innerHTML=arr.map(v=>`<button type="button" data-recent-vin="${v}">${v.slice(-6)}</button>`).join("");box.querySelectorAll("[data-recent-vin]").forEach(b=>b.onclick=()=>{$("#mobileVinSearch").value=b.dataset.recentVin;runMobileVinSearch()});
+}
+function runMobileVinSearch(){
+  const inp=$("#mobileVinSearch"),out=$("#mobileVinResult");if(!inp||!out)return;const q=normalizeVin(inp.value);$("#globalVinSearch").value=q;renderGlobalVinSearch();out.innerHTML=$("#globalVinResult").innerHTML;out.classList.add("open");const hit=fleetCars.find(c=>normalizeVin(c.vin).endsWith(q)||normalizeVin(c.vin).includes(q));if(q.length>=4&&hit)addMobileRecentVin(hit.vin);
+}
+function openMobileRoute(route){
+  closeMobileMore();
+  if(route==="releaseHome"){if(!hasAccess("releases"))return;renderReleaseHome();show("releaseHome");return}
+  if(route==="mountOwners"){if(!hasAccess("mounts"))return;renderOwners();show("mountOwners");return}
+  if(route==="carsView"){if(!hasAccess("cars"))return;renderCars();show("carsView");return}
+  if(route==="batteryView"){if(!hasAccess("battery"))return;renderBattery();show("batteryView");return}
+  if(route==="washView"){if(!hasAccess("wash"))return;renderWash();show("washView");return}
+  if(route==="adminView"){if(!hasAccess("admin"))return;renderAdmin();show("adminView");return}
+}
+function updateMobileNav(viewId){
+  const home=$("#mobileNavHome"),rel=$("#mobileNavReleases"),cars=$("#mobileNavCars");[home,rel,cars,$("#mobileNavTasks"),$("#mobileNavMore")].forEach(x=>x?.classList.remove("active"));
+  if(viewId==="mainHome")home?.classList.add("active");else if(["releaseHome","releaseDay","releaseVehicle"].includes(viewId))rel?.classList.add("active");else if(viewId==="carsView")cars?.classList.add("active");
+}
+function openMobileMore(){const b=$("#mobileMoreBackdrop");if(b){b.classList.add("open");b.setAttribute("aria-hidden","false");$("#mobileNavMore")?.classList.add("active")}}
+function closeMobileMore(){const b=$("#mobileMoreBackdrop");if(b){b.classList.remove("open");b.setAttribute("aria-hidden","true");$("#mobileNavMore")?.classList.remove("active")}}
+
+function renderGlobalVinSearch(){
+  const input=$("#globalVinSearch"),out=$("#globalVinResult");if(!input||!out)return;const q=normalizeVin(input.value);
+  if(q.length<4){out.classList.add("open");out.innerHTML='<div style="color:#b42318;font-weight:800">Wpisz co najmniej 4 znaki VIN.</div>';return}
+  const hits=fleetCars.filter(c=>normalizeVin(c.vin).endsWith(q)||normalizeVin(c.vin).includes(q));
+  if(!hits.length){out.classList.add("open");out.innerHTML='<div class="muted">Nie znaleziono samochodu.</div>';return}
+  const c=hits[0], rel=releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(c.vin)).sort((a,b)=>`${b.date||""} ${b.time||""}`.localeCompare(`${a.date||""} ${a.time||""}`))[0],eq=getCarReleaseEquipment(c.vin);
+  const done=eq?.items?.filter(x=>x.done).length||0,total=eq?.items?.length||0,arch=c.status==="WYJECHAŁ"||rel?.status==="WYDANE";
+  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"ARCHIWUM / WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
+  addMobileRecentVin(c.vin);
+}
 
 /* ---------- EXTRA WORK FOR BONUS SETTLEMENT ---------- */
 let extraBonusWorks=JSON.parse(localStorage.getItem("toyotaExtraBonusWorksV1")||"null")||[];
@@ -1399,7 +1883,7 @@ function renderExtraWorks(){
 
   tbody.innerHTML=rows.length ? rows.map(w=>{
     const text=w.text||[w.type,w.vin,w.note].filter(Boolean).join(" — ")||"Praca dodatkowa";
-    return `<tr class="completed">
+    return `<tr class="completed ${r.closed?"mount-closed-row":""}">
       <td>${formatExtraWorkDate(w.date)}</td>
       <td><b>${text}</b></td>
       <td><span class="extra-work-status">DO INDYWIDUALNEJ WYCENY</span></td>
@@ -1458,16 +1942,36 @@ function missingReadyItems(r){
 }
 function renderTomorrowReadyAlert(){
   const box=$("#tomorrowReadyAlert");if(!box||typeof releaseData==="undefined")return;
-  const allowed=currentUser?.role==="Główny Koordynator"||currentUser?.role==="Koordynator"||currentUser?.role==="Młodszy Koordynator";
+  const allowed=currentUser?.role==="Główny Koordynator";
   if(!allowed){box.style.display="none";return}
   const day=nextWorkingDayIso();
-  const cars=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE");
-  const bad=cars.filter(r=>!r.releaseReady);
-  box.style.display="block";box.classList.toggle("ok",bad.length===0);
-  $("#tomorrowAlertDate").textContent=`Następny dzień roboczy: ${formatIso(day)} • zaplanowane auta: ${cars.length}`;
-  $("#tomorrowAlertCount").textContent=bad.length;
-  $("#tomorrowAlertSummary").textContent=bad.length?`⚠ ${bad.length} ${bad.length===1?"samochód nie jest gotowy":"samochody nie są gotowe"} na następny dzień roboczy.`:"✓ Wszystkie samochody na następny dzień roboczy są oznaczone jako gotowe.";
-  $("#tomorrowAlertList").innerHTML=bad.map(r=>{const miss=missingReadyItems(r);return `<div class="ta-row"><b>${r.time||"—"} • ${r.client||"—"} • ${r.model||"—"}</b><div>VIN: ${r.vin||"—"} • Miejsce: ${r.place||"—"}</div><div class="ta-missing">${miss.join(" • ")}</div></div>`}).join("");
+  const tomorrowCars=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE");
+  const notReady=tomorrowCars.filter(r=>!r.releaseReady);
+  const mountWaiting=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done));
+  const overdueBattery=(typeof batteryTests!=="undefined"?batteryTests:[]).filter(t=>!t.away&&(()=>{const st=batteryRowState(t);return st.key==="overdue"})());
+  const cats=[
+    {label:"Auta na następny dzień niegotowe",count:notReady.length},
+    {label:"Otwarte montaże",count:mountWaiting.length},
+    {label:"Testy akumulatora po terminie",count:overdueBattery.length}
+  ];
+  const total=cats.reduce((a,x)=>a+x.count,0);
+  box.style.display="block";box.classList.toggle("ok",total===0);box.classList.toggle("attention-ok",total===0);box.classList.remove("expanded");
+  $("#tomorrowAlertCount").textContent=total;
+  $("#tomorrowAlertSummary").textContent=total?`⚠ ${total} ${total===1?"sprawa wymaga":"spraw wymaga"} uwagi.`:"✓ Brak pilnych spraw.";
+  $("#tomorrowAlertDate").textContent=`Następny dzień roboczy: ${formatIso(day)}`;
+  $("#attentionCats").innerHTML=cats.map(x=>`<div class="attention-cat">${x.count} • ${x.label}</div>`).join("");
+  $("#tomorrowAlertList").innerHTML=notReady.map(r=>{const miss=missingReadyItems(r);return `<div class="ta-row"><b>${r.time||"—"} • ${r.client||"—"} • ${r.model||"—"}</b><div>VIN: ${r.vin||"—"} • Miejsce: ${r.place||"—"}</div><div class="ta-missing">${miss.join(" • ")}</div></div>`}).join("");
+  const hint=$("#tomorrowAlertHint");if(hint)hint.textContent=total?"Dotknij, aby rozwinąć →":"";
+}
+// Szczegóły kontroli gotowości są rozwijane dopiero po wejściu w alert.
+const tomorrowReadyAlertEl=$("#tomorrowReadyAlert");
+if(tomorrowReadyAlertEl){
+  tomorrowReadyAlertEl.addEventListener("click",()=>{
+    if(tomorrowReadyAlertEl.classList.contains("ok"))return;
+    tomorrowReadyAlertEl.classList.toggle("expanded");
+    const hint=$("#tomorrowAlertHint");
+    if(hint)hint.textContent=tomorrowReadyAlertEl.classList.contains("expanded")?"Dotknij ponownie, aby ukryć szczegóły ↑":"Dotknij, aby zobaczyć które samochody wymagają uwagi →";
+  });
 }
 function getCarStatus(vin){
   const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(vin));
@@ -1475,7 +1979,7 @@ function getCarStatus(vin){
 }
 function syncBatteryCars(){
   // Every car currently known by Lista samochodów gets its own battery-test record.
-  fleetCars.forEach(c=>{
+  fleetCars.filter(c=>c.status!=="WYJECHAŁ").forEach(c=>{
     const vin=normalizeVin(c.vin);
     if(!batteryTests.some(t=>normalizeVin(t.vin)===vin)){
       batteryTests.push({vin,lastTest:"",nextTest:""});
@@ -1493,6 +1997,7 @@ function daysBetweenIso(fromIso,toIso){
 function batteryRowState(t){
   const carStatus=getCarStatus(t.vin);
   if(carStatus==="WYJECHAŁ") return {key:"issued",label:"WYDANY — testy zakończone",cls:"battery-issued",rowCls:""};
+  if(t.away) return {key:"away",label:"K1 — BEZ TESTÓW",cls:"battery-away",rowCls:"battery-row-away"};
   if(!t.lastTest) return {key:"new",label:"TEST WYMAGANY",cls:"battery-new",rowCls:""};
 
   const today=isoToday();
@@ -1529,12 +2034,13 @@ function renderBattery(){
 
   const q=normalizeVin($("#batterySearch").value||"");
   const rows=batteryTests
+    .filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ")
     .filter(t=>!q || normalizeVin(t.vin).includes(q))
     .sort((a,b)=>{
       // Najważniejsze zawsze na górze:
       // 1. przeterminowane, 2. test dzisiaj, 3. zbliża się jutro,
       // 4. pierwszy test, 5. aktualne, 6. wydane.
-      const order={overdue:0,today:1,soon:2,new:3,ok:4,issued:5};
+      const order={overdue:0,today:1,soon:2,new:3,ok:4,away:5,issued:6};
       const sa=batteryRowState(a), sb=batteryRowState(b);
       const rank=(order[sa.key]??99)-(order[sb.key]??99);
       if(rank!==0)return rank;
@@ -1544,7 +2050,7 @@ function renderBattery(){
       return a.vin.localeCompare(b.vin);
     });
 
-  const active=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ");
+  const active=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away);
   $("#batteryCount").textContent=`${active.length} aut na placu`;
   $("#batteryNewCount").textContent=active.filter(t=>batteryRowState(t).key==="new").length;
   $("#batteryOkCount").textContent=active.filter(t=>batteryRowState(t).key==="ok").length;
@@ -1552,22 +2058,26 @@ function renderBattery(){
   $("#batteryDueCount").textContent=active.filter(t=>batteryRowState(t).key==="overdue").length;
 
   $("#batteryRows").innerHTML=rows.length ? rows.map(t=>{
-    const st=batteryRowState(t), issued=st.key==="issued";
+    const st=batteryRowState(t), issued=st.key==="issued", away=!!t.away;
     return `<tr class="${st.rowCls||""}">
       <td class="vin-cell">${t.vin}</td>
       <td>${t.lastTest?'<span style="font-weight:1000;color:#168a45">TAK ✓</span>':'<span style="font-weight:1000;color:#b42318">NIE</span>'}</td>
       <td>${formatIso(t.lastTest)}</td>
-      <td>${issued?"—":formatIso(t.nextTest)}</td>
+      <td>${issued||away?"—":formatIso(t.nextTest)}</td>
       <td><span class="battery-status ${st.cls}">${st.label}</span></td>
       <td>
-        ${issued?'<span class="muted">Brak kolejnych testów</span>':`
+        ${issued?'<span class="muted">Brak kolejnych testów</span>':away?`<button class="battery-away-btn" data-battery-return="${t.vin}" type="button">↩ WRÓCIŁ Z K1</button>`:`
         <div class="battery-actions">
           <input class="battery-date" type="date" data-battery-date="${t.vin}" value="${isoToday()}">
           <button class="battery-save" data-battery-save="${t.vin}" type="button">${t.lastTest?"Zapisz kolejny test":"Wykonano test"}</button>
+          <button class="battery-away-btn" data-battery-away="${t.vin}" type="button">K1</button>
         </div>`}
       </td>
     </tr>`;
   }).join("") : `<tr><td colspan="6" style="padding:24px;text-align:center;color:#6b7280">Brak samochodów. Dodaj nowy VIN w module „Lista samochodów”.</td></tr>`;
+
+  document.querySelectorAll("[data-battery-away]").forEach(btn=>{btn.onclick=()=>{const t=batteryTests.find(x=>normalizeVin(x.vin)===normalizeVin(btn.dataset.batteryAway));if(!t)return;t.away=true;t.awayDate=isoToday();saveBatteryTests();logAction("Samochód oznaczony K1",t.vin);renderBattery();renderCars();renderTomorrowReadyAlert();};});
+  document.querySelectorAll("[data-battery-return]").forEach(btn=>{btn.onclick=()=>{const t=batteryTests.find(x=>normalizeVin(x.vin)===normalizeVin(btn.dataset.batteryReturn));if(!t)return;t.away=false;t.awayDate="";saveBatteryTests();logAction("Samochód wrócił z K1",t.vin);renderBattery();renderCars();renderTomorrowReadyAlert();};});
 
   document.querySelectorAll("[data-battery-save]").forEach(btn=>{
     btn.onclick=()=>{
@@ -1596,9 +2106,104 @@ const mountJobsSeed=[
 ];
 
 let mountJobs=JSON.parse(localStorage.getItem("toyotaMountJobsV3")||"null")||[];
+
+// PRZYKŁAD W APLIKACJI: ten sam samochód wykonany przez obu doposażeniowców.
+// Dodawany tylko raz, żeby można było od razu zobaczyć oznaczenie WSPÓLNY SAMOCHÓD
+// oraz przycisk zamknięcia zlecenia po wejściu jako koordynator.
+const SHARED_MOUNT_DEMO_KEY="toyotaSharedMountDemo20260829V1";
+if(!localStorage.getItem(SHARED_MOUNT_DEMO_KEY)){
+  const demoVin="JTDBR32E720100101";
+  mountJobs=mountJobs.filter(j=>!(normalizeVin(j.vin)===normalizeVin(demoVin) && ["Mateusz Bodnar","Jakub Grzywacz"].includes(j.owner)));
+  mountJobs.unshift(
+    {owner:"Mateusz Bodnar",date:"29.08.2026",vin:demoVin,alarm:true,alarmCode:"58241",alarmCompleted:true,idCan:false,meta:false,extra:false,extraDesc:"",hours:"1.5",notes:"Wspólna praca przy samochodzie",closed:false},
+    {owner:"Jakub Grzywacz",date:"29.08.2026",vin:demoVin,alarm:true,alarmCode:"58241",alarmCompleted:true,idCan:false,meta:false,extra:false,extraDesc:"",hours:"1.5",notes:"Wspólna praca przy samochodzie",closed:false}
+  );
+  localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs));
+  localStorage.setItem(SHARED_MOUNT_DEMO_KEY,"1");
+}
+
+// WIZUALIZACJA: wszystkie samochody z głównej listy w tabelach doposażeniowców.
+// Połowa ma wykonane doposażenie i zamknięte zlecenie; zamknięte rekordy są sortowane na dół.
+const ALL_MAIN_CARS_MOUNT_DEMO_KEY="toyotaAllMainCarsMountDemo20260829V1";
+if(!localStorage.getItem(ALL_MAIN_CARS_MOUNT_DEMO_KEY)){
+  const demoDate=isoToday();
+  const mainCars=[...new Map(releaseData.filter(r=>r&&r.vin).map(r=>[normalizeVin(r.vin),r])).values()];
+  mainCars.forEach((r,i)=>{
+    const vin=normalizeVin(r.vin);
+    if(!vin) return;
+    // Nie dublujemy istniejącego wpisu tego VIN-u u wybranego pracownika.
+    const owner=i%2===0?"Mateusz Bodnar":"Jakub Grzywacz";
+    if(mountJobs.some(j=>normalizeVin(j.vin)===vin && j.owner===owner)) return;
+    const items=ensureReleaseWorkItems(r);
+    const names=items.map(x=>normalizeWorkLabel(x.name));
+    const has=(q)=>names.some(n=>n.includes(q));
+    const extras=items.filter(x=>!isCoordinatorOnlyWorkItem(x.name) && !/alarm|id can|idcan|meta/i.test(x.name)).map(x=>x.name);
+    const closed=i < Math.floor(mainCars.length/2);
+    mountJobs.push({
+      owner,date:demoDate,vin:r.vin,
+      alarm:has("alarm"),alarmCode:has("alarm")?String(51000+i).slice(-5):"",alarmCompleted:closed,
+      idCan:has("id can")||has("idcan"),idCanCompleted:closed,
+      meta:has("meta"),metaCompleted:closed,
+      extra:extras.length>0,extraDesc:extras.join(", "),extraCompleted:closed,
+      hours:closed?String(2+(i%4)*0.5):"",
+      notes:closed?"Doposażenie wykonane — przykład":"Samochód na liście prac",
+      closed,closedAt:closed?new Date().toISOString():"",closedBy:closed?"Igor Gieruszka":""
+    });
+  });
+  saveMountJobs();
+  localStorage.setItem(ALL_MAIN_CARS_MOUNT_DEMO_KEY,"1");
+}
+// CZYSTY START: 15 nowych samochodów wyłącznie na Liście samochodów.
+// Usuwa stare auta z wydań, montaży, myjni i testów. Doposażenie jest wpisane,
+// ale żadna pozycja nie jest oznaczona jako wykonana.
+const CLEAN_15_CARS_KEY="toyotaClean15Cars_20260829_V1";
+if(!localStorage.getItem(CLEAN_15_CARS_KEY)){
+  const cars15=[
+    ["JTDBA3HK001570101","Alarm, ID CAN, dywaniki gumowe"],
+    ["JTDBA3HK001570102","Alarm, META"],
+    ["JTDBA3HK001570103","Hak, ID CAN"],
+    ["JTDBA3HK001570104","Alarm, czujniki parkowania, apteczka"],
+    ["JTDBA3HK001570105","ID CAN, dywaniki gumowe"],
+    ["JTDBA3HK001570106","Alarm, hak"],
+    ["JTDBA3HK001570107","META, czujniki parkowania"],
+    ["JTDBA3HK001570108","Alarm, ID CAN, META"],
+    ["JTDBA3HK001570109","Hak, dywaniki gumowe, apteczka"],
+    ["JTDBA3HK001570110","Alarm, ID CAN, czujniki parkowania"],
+    ["JTDBA3HK001570111","ID CAN, META, hak"],
+    ["JTDBA3HK001570112","Alarm, dywaniki gumowe"],
+    ["JTDBA3HK001570113","Czujniki parkowania, apteczka"],
+    ["JTDBA3HK001570114","Alarm, META, hak, dywaniki gumowe"],
+    ["JTDBA3HK001570115","ID CAN, czujniki parkowania, dywaniki gumowe"]
+  ];
+  releaseData=[];
+  fleetCars=cars15.map(([vin,equipment])=>({vin,status:"AKTYWNY",equipment}));
+  mountJobs=[];
+  localStorage.setItem("toyotaFleetDemoV2","[]");
+  localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+  localStorage.setItem("toyotaMountJobsV3","[]");
+  localStorage.setItem("toyotaBatteryTestsV1","[]");
+  localStorage.setItem("toyotaWashRecordsV1","[]");
+  localStorage.setItem(CLEAN_15_CARS_KEY,"1");
+}
+
 let selectedOwner="";
 let editingMountIndex=null;
 function saveMountJobs(){localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}
+const MOUNT_INSTALLERS=APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name);
+function mountOtherInstaller(owner){return MOUNT_INSTALLERS.find(n=>n!==owner)||""}
+function mountJobParticipants(job){return [job.owner,...(Array.isArray(job.collaborators)?job.collaborators:[])].filter(Boolean)}
+function mountJobHasParticipant(job,name){return mountJobParticipants(job).includes(name)}
+function mountWorkersForVin(vin){
+  const n=normalizeVin(vin);
+  return [...new Set(mountJobs.filter(j=>normalizeVin(j.vin)===n).map(j=>j.owner).filter(Boolean))];
+}
+function mountSharedNote(job){
+  const workers=mountWorkersForVin(job.vin);
+  if(workers.length<2)return "";
+  const other=workers.filter(n=>n!==job.owner);
+  return `<div style="margin-top:6px"><span class="mount-badge yes">WSPÓLNY SAMOCHÓD</span></div><div class="muted" style="margin-top:5px">Ten sam samochód: ${workers.join(" + ")}</div>`;
+}
+function updateMountCollaboratorControl(){}
 function syncMountCompletionToRelease(vin, alarmDone, extraDone){
   const n=normalizeVin(vin);
   const r=releaseData.find(x=>normalizeVin(x.vin)===n);
@@ -1728,6 +2333,7 @@ function renderOwners(){
 function openOwner(name){
   selectedOwner=name;
   $("#ownerTitle").textContent=name;
+  updateMountCollaboratorControl();
   renderUrgentMountAlerts();
   renderMountTable();
   renderExtraWorks();
@@ -1739,7 +2345,9 @@ function openOwner(name){
 
 function renderMountTable(){
   const md=shiftedMonth(mountMonthOffset); $("#mountMonthLabel").textContent=monthLabel(md); const mk=monthKey(md);
-  const jobs=mountJobs.filter(j=>j.owner===selectedOwner && mountJobMonthKey(j.date)===mk);
+  const jobs=mountJobs
+    .filter(j=>j.owner===selectedOwner && mountJobMonthKey(j.date)===mk)
+    .sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed)) || String(b.date||"").localeCompare(String(a.date||"")) || String(a.vin||"").localeCompare(String(b.vin||"")));
   $("#ownerCount").textContent=`${jobs.length} zleceń`;
 
   const totalHours=jobs.reduce((sum,j)=>{
@@ -1751,15 +2359,15 @@ function renderMountTable(){
   $("#mountRows").innerHTML=jobs.length ? jobs.map(r=>`
     <tr class="completed">
       <td>${r.date||""}</td>
-      <td class="vin-cell">${r.vin||""}</td>
-      <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${r.vin}" type="checkbox" ${r.alarmCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td class="vin-cell">${r.vin||""}${mountSharedNote(r)}</td>
+      <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${r.vin}" type="checkbox" ${r.alarmCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
       <td class="mount-code">${r.alarm ? (r.alarmCode||"—") : "—"}</td>
-      <td>${r.idCan?`<label class="ready-label"><input class="mount-done-toggle" data-kind="idCan" data-vin="${r.vin}" type="checkbox" ${r.idCanCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
-      <td>${r.meta?`<label class="ready-label"><input class="mount-done-toggle" data-kind="meta" data-vin="${r.vin}" type="checkbox" ${r.metaCompleted!==false?"checked":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
-      <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${r.vin}" type="checkbox" ${r.extraCompleted!==false?"checked":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${r.extraDesc}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.idCan?`<label class="ready-label"><input class="mount-done-toggle" data-kind="idCan" data-vin="${r.vin}" type="checkbox" ${r.idCanCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.meta?`<label class="ready-label"><input class="mount-done-toggle" data-kind="meta" data-vin="${r.vin}" type="checkbox" ${r.metaCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${r.vin}" type="checkbox" ${r.extraCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${r.extraDesc}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
       <td><b>${String(r.hours||"").replace(".",",")}</b></td>
       <td>${r.notes||"—"}</td>
-      <td><button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button></td>
+      <td>${(()=>{const done=(!r.alarm||r.alarmCompleted!==false)&&(!r.idCan||r.idCanCompleted!==false)&&(!r.meta||r.metaCompleted!==false)&&(!r.extra||r.extraCompleted!==false);const coord=/Koordynator/i.test(currentUser?.role||"");if(r.closed)return `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${r.closedBy||""}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`;return `<button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${r.vin}" data-close-date="${r.date||""}">ZLECENIE ZAMKNIĘTE</button>`:""}`})()}</td>
     </tr>`).join("") :
     `<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak montaży.</td></tr>`;
 
@@ -1773,6 +2381,23 @@ function renderMountTable(){
       );
       if(idx<0) return;
       startEditMount(idx);
+    };
+  });
+
+  document.querySelectorAll(".mount-close-btn").forEach(btn=>{
+    btn.onclick=()=>{
+      if(!/Koordynator/i.test(currentUser?.role||"")) return;
+      const job=mountJobs.find(j=>j.owner===selectedOwner && normalizeVin(j.vin)===normalizeVin(btn.dataset.closeVin) && String(j.date||"")===String(btn.dataset.closeDate||""));
+      if(!job) return;
+      const sameVinJobs=mountJobs.filter(j=>normalizeVin(j.vin)===normalizeVin(job.vin));
+      const done=sameVinJobs.every(j=>(!j.alarm||j.alarmCompleted!==false)&&(!j.idCan||j.idCanCompleted!==false)&&(!j.meta||j.metaCompleted!==false)&&(!j.extra||j.extraCompleted!==false));
+      if(!done){alert("Nie można zamknąć zlecenia — nie wszystkie prace przy tym samochodzie są jeszcze potwierdzone.");return;}
+      const workers=[...new Set(sameVinJobs.map(j=>j.owner).filter(Boolean))];
+      if(!confirm(`Zamknąć zlecenie dla VIN ${job.vin}${workers.length>1?`?\n\nWspólny samochód: ${workers.join(" + ")}`:"?"}`)) return;
+      const closedAt=new Date().toISOString();
+      const closedBy=currentUser?.name||"";
+      sameVinJobs.forEach(j=>{j.closed=true;j.closedAt=closedAt;j.closedBy=closedBy;});
+      saveMountJobs();logAction("Zamknięcie zlecenia doposażenia",`${job.vin} • ${workers.join(" + ")}`);renderMountTable();
     };
   });
 
@@ -1870,8 +2495,8 @@ function mountVinMatches(query){
 function renderMountDynamicTasks(r){
   const box=$("#mountDynamicTasks"); if(!box) return;
   if(!r){box.innerHTML="";return;}
-  const items=getInstallerWorkItems(r).filter(x=>!x.done);
-  box.innerHTML=items.length?`<div style="font-size:12px;font-weight:1000;margin-bottom:8px">POTWIERDŹ WYKONANE PRACE</div>${items.map(x=>`<label class="mount-choice"><input type="checkbox" class="mount-dynamic-task" data-task-name="${x.name.replace(/"/g,'&quot;')}"><span><strong>${x.name}</strong><small>Zaznacz po wykonaniu tej konkretnej pracy.</small></span></label>`).join("")}`:"";
+  const items=getInstallerWorkItems(r);
+  box.innerHTML=items.length?`<div style="font-size:12px;font-weight:1000;margin-bottom:8px">POTWIERDŹ WYKONANE PRACE</div>${items.map(x=>`<label class="mount-choice"><input type="checkbox" class="mount-dynamic-task" data-task-name="${x.name.replace(/"/g,'&quot;')}"><span><strong>${x.name}</strong><small>${x.done?"Praca jest już potwierdzona przy samochodzie — zaznacz, jeśli Ty również ją wykonywałeś.":"Zaznacz po wykonaniu tej konkretnej pracy."}</small></span></label>`).join("")}`:"";
   box.querySelectorAll(".mount-dynamic-task").forEach(cb=>cb.onchange=updateMountChoices);
   updateMountChoices();
 }
@@ -2059,7 +2684,7 @@ function saveNewMount(){
 
   const existing = editingMountIndex!==null ? mountJobs[editingMountIndex] : null;
   const record={
-    owner:selectedOwner,
+    owner:existing?.owner || selectedOwner,
     date:existing?.date || todayShort(),
     vin,
     alarm,
@@ -2165,7 +2790,7 @@ function renderWash(){
  const selectedMonth=workDay.slice(0,7);
  const done=washRecords.filter(w=>w.washedAt && String(w.washedDate||w.washedAt.slice(0,10)).slice(0,7)===selectedMonth).sort((a,b)=>String(b.washedAt).localeCompare(String(a.washedAt)));
  const doneThisWeek=done.filter(w=>days.includes(w.washedDate||w.washedAt.slice(0,10)));
- $("#washPendingCount").textContent=relevant.length; $("#washDoneCount").textContent=done.length; if($("#washDoneDateLabel")) $("#washDoneDateLabel").textContent=`${selectedMonth.split('-').reverse().join('.')} • ${done.length} umytych w miesiącu • ${doneThisWeek.length} w wybranym tygodniu`;
+ if($("#washPendingCount")) $("#washPendingCount").textContent=relevant.length; $("#washDoneCount").textContent=done.length; if($("#washDoneDateLabel")) $("#washDoneDateLabel").textContent=`${selectedMonth.split('-').reverse().join('.')} • ${done.length} umytych w miesiącu • ${doneThisWeek.length} w wybranym tygodniu`;
  $("#washPendingList").innerHTML=relevant.length?relevant.map(w=>{const last=washHistoryFor(w.vehicle).slice(-1)[0];return `<div class="wash-row" data-wash-vehicle="${washKey(w.vehicle)}"><div><div class="vin">${w.vehicle}</div>${w.moved?`<span class="wash-moved">⚠ WYDANIE PRZEŁOŻONE</span><div class="muted">${fmtDate(w.previousReleaseDate)} → ${fmtDate(w.releaseDate)}${last?` • ostatnie mycie: ${new Date(last.washedAt).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}`:''}</div>`:""}<div class="muted">${w.source==="manual"?"Dodany ręcznie":(w.client||"")}</div></div><div><b>${w.client||"—"}</b><div class="muted">${w.model||""}${w.place?` • miejsce: ${w.place}`:""}</div></div><button class="btn primary wash-done-btn" data-wash-id="${w.id}">✓ UMYTY</button></div>`}).join(""):'<div class="muted">Brak samochodów do mycia w wybranym dniu.</div>';
  $("#washDoneList").innerHTML=done.length?done.map(w=>`<div class="wash-row"><div><div class="vin">${w.vehicle}</div>${washCountLabel(w)}<div class="muted">${w.client||""} ${w.model||""}</div></div><div><b>Umyty: ${new Date(w.washedAt).toLocaleString("pl-PL",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}</b><div class="muted">${w.washedBy||"—"}</div></div><div></div></div>`).join(""):'<div class="muted">Brak umytych samochodów w wybranym miesiącu.</div>';
  document.querySelectorAll(".wash-done-btn").forEach(b=>b.onclick=()=>{const w=washRecords.find(x=>String(x.id)===String(b.dataset.washId));if(!w)return;w.washedAt=new Date().toISOString();w.washedDate=isoToday();w.washedBy=currentUser?.name||"";saveWash();logAction(washHistoryFor(w.vehicle).length>1?"Ponowne mycie samochodu":"Samochód umyty",w.vehicle);renderWash();});
@@ -2267,6 +2892,24 @@ $("#mountVinInput").oninput=renderMountVinSuggestions;
 
 $("#saveMountJob").onclick=saveNewMount;
 
+
+if($("#mobileVinSearchBtn"))$("#mobileVinSearchBtn").onclick=runMobileVinSearch;
+if($("#mobileVinSearch"))$("#mobileVinSearch").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();runMobileVinSearch()}};
+document.querySelectorAll("[data-mobile-route]").forEach(b=>b.onclick=()=>openMobileRoute(b.dataset.mobileRoute));
+if($("#mobileAttentionToggle"))$("#mobileAttentionToggle").onclick=()=>{const b=$("#mobileAttention");if(b&&!b.classList.contains("ok"))b.classList.toggle("open")};
+if($("#mobileNavHome"))$("#mobileNavHome").onclick=()=>show("mainHome");
+if($("#mobileNavReleases"))$("#mobileNavReleases").onclick=()=>openMobileRoute("releaseHome");
+if($("#mobileNavCars"))$("#mobileNavCars").onclick=()=>openMobileRoute("carsView");
+if($("#mobileNavTasks"))$("#mobileNavTasks").onclick=()=>{show("mainHome");setTimeout(()=>$("#mobileTasksSection")?.scrollIntoView({behavior:"smooth",block:"start"}),50)};
+if($("#mobileNavMore"))$("#mobileNavMore").onclick=openMobileMore;
+if($("#mobileUserButton"))$("#mobileUserButton").onclick=openMobileMore;
+if($("#mobileMoreBackdrop"))$("#mobileMoreBackdrop").onclick=e=>{if(e.target===$("#mobileMoreBackdrop"))closeMobileMore()};
+document.querySelectorAll("[data-mobile-more-route]").forEach(b=>b.onclick=()=>openMobileRoute(b.dataset.mobileMoreRoute));
+if($("#mobileLogoutBtn"))$("#mobileLogoutBtn").onclick=()=>{$("#changeUserBtn").click();closeMobileMore()};
+
+$("#globalVinSearchBtn").onclick=renderGlobalVinSearch;$("#globalVinSearch").onkeydown=e=>{if(e.key==="Enter")renderGlobalVinSearch()};
+if($("#openArchive"))$("#openArchive").onclick=()=>{renderArchive();show("archiveView")};if($("#backMainFromArchive"))$("#backMainFromArchive").onclick=()=>show("mainHome");if($("#archiveSearch"))$("#archiveSearch").oninput=renderArchive;
+
 $("#openCars").onclick=()=>{if(!hasAccess("cars"))return;logAction("Otwarcie modułu","Lista samochodów");renderCars();show("carsView")};$("#backMainFromCars").onclick=()=>show("mainHome");
 $("#addCarBtn").onclick=addCar;$("#newVin").onkeydown=e=>{if(e.key==="Enter")addCar()};$("#carSearch").oninput=renderCars;$("#vinLookup").oninput=renderVinSuggestions;
 
@@ -2274,13 +2917,13 @@ $("#openBattery").onclick=()=>{if(!hasAccess("battery"))return;logAction("Otwarc
 $("#backMainFromBattery").onclick=()=>show("mainHome");
 $("#batterySearch").oninput=renderBattery;
 
-$("#changeUserBtn").onclick=()=>{$("#loginGate").classList.remove("hidden");renderUserGate();};
+$("#changeUserBtn").onclick=()=>{logAction("Wylogowanie",currentUser?.login||"");currentUser=null;localStorage.removeItem("toyotaCurrentUserV1");clearDailyLogin();$("#loginGate").classList.remove("hidden");renderUserGate();setTimeout(()=>$("#loginUsername").focus(),0);};
+$("#loginForm").onsubmit=e=>{e.preventDefault();attemptLogin()};
 
 $("#openWash").onclick=()=>{if(!hasAccess("wash"))return;logAction("Otwarcie modułu","Myjnia");renderWash();show("washView")};
 $("#backMainFromWash").onclick=()=>show("mainHome");
 $("#washVehicleInput").oninput=renderWashSuggestions;
 $("#addWashVehicle").onclick=addManualWash; if($("#addWashBonus")) $("#addWashBonus").onclick=addWashBonusWork;
-$("#showWashPending").onclick=()=>{renderWash();$("#washPendingDateLabel").textContent=fmtDate(washTargetDay());show("washPendingView")};
 $("#showWashDone").onclick=()=>{renderWash();show("washDoneView")};
 $("#showWashBonus").onclick=()=>{renderWashBonus();show("washBonusView")};
 $("#backWashFromPending").onclick=()=>{renderWash();show("washView")};
@@ -2295,7 +2938,7 @@ $("#closeMonthBtn").onclick=closeSelectedMonth;$("#exportMonthlyReport").onclick
 syncIssuedToCars();
 syncBatteryCars();
 
-setTimeout(renderTomorrowReadyAlert,0);
+setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention();updateMobileNav("mainHome")},0);
 </script>
 </body>
 </html>
