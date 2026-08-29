@@ -202,6 +202,11 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .urgent-save{border:0;background:#b42318;color:#fff;border-radius:9px;padding:8px 11px;font-size:11px;font-weight:1000;cursor:pointer}
 .urgent-save:disabled{opacity:.45;cursor:not-allowed}
 .urgent-error{font-size:10px;font-weight:900;color:#b42318;margin-top:5px}
+.mount-plan-box{display:none;background:#f0f7ff;border:2px solid #84b8f4;border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.mount-plan-box.show{display:block}
+.mount-plan-title{font-size:15px;font-weight:1000;color:#175cd3;text-transform:uppercase;letter-spacing:.3px}
+.mount-plan-item{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fff;border:1px solid #b8d7fb;border-radius:10px;padding:10px 12px}
+.mount-plan-badge{display:inline-flex;align-items:center;background:#eaf3ff;color:#175cd3;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:1000}
 
 .mount-assignment{display:none;background:#fff1f0;border:2px solid #d92d20;border-radius:12px;padding:12px 14px;margin:12px 0 16px}
 .mount-assignment.show{display:block}
@@ -259,6 +264,8 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .period-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 14px;box-shadow:var(--shadow)}
 .period-nav .period-label{font-weight:1000;text-align:center;flex:1}.period-nav button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-weight:900;cursor:pointer}.period-nav button:hover{border-color:#e50000}.period-nav .today-btn{background:#111827;color:#fff;border-color:#111827}@media(max-width:600px){.period-nav{gap:5px;padding:8px}.period-nav button{padding:8px;font-size:11px}.period-nav .period-label{font-size:12px}}
 
+/* Raport miesięczny */
+.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.report-kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fafafa}.report-kpi strong{display:block;font-size:26px;margin-top:4px}.report-section{margin-top:14px}.report-status{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:1000;background:#eef2f6}.report-status.closed{background:#e9f8ef;color:#167044}.report-actions{display:flex;gap:8px;flex-wrap:wrap}.report-note{font-size:11px;color:#667085;margin-top:8px}@media(max-width:700px){.report-grid{grid-template-columns:1fr 1fr}.report-kpi{padding:11px}.report-kpi strong{font-size:22px}.report-actions .btn{flex:1}}
 /* Użytkownicy i panel administratora */
 .user-bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:0 0 14px;flex-wrap:wrap}.user-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.login-gate{position:fixed;inset:0;background:rgba(17,24,39,.72);z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}.login-gate.hidden{display:none}.login-card{background:#fff;border-radius:20px;padding:22px;width:min(620px,100%);max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.28)}.user-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.user-choice{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;cursor:pointer}.user-choice:hover{border-color:#e50000}.user-choice b{display:block;font-size:14px}.user-choice span{font-size:11px;color:#667085}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px}.admin-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}.role-myjnia .release-toolbar,.role-myjnia #releaseAddCard,.role-myjnia .release-edit-btn,.role-myjnia #markIssued,.role-myjnia #undoIssued,.role-myjnia #checkReleaseReady,.role-myjnia label[for="checkReleaseReady"]{display:none!important}@media(max-width:600px){.user-grid{grid-template-columns:1fr}}
 
@@ -269,9 +276,12 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 /* Myjnia — kompaktowy układ mobilny i osobne ekrany */
 .wash-grid.wash-menu{grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.wash-grid.wash-menu .wash-card{padding:14px;min-height:105px}.wash-grid.wash-menu .wash-card strong{font-size:30px;margin-top:5px}.wash-grid.wash-menu .wash-card small{font-size:10px}.wash-grid.wash-menu .wash-card .muted{font-size:10px;margin-top:4px}
 
-.wash-scan-box{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#f8f9fa}.wash-scan-btn{width:100%;font-size:16px;padding:14px}.wash-scan-status{margin-top:8px;font-size:12px}.wash-row.scan-found{outline:3px solid #168a45;box-shadow:0 0 0 5px rgba(22,138,69,.12)}
+
 @media(max-width:700px){.wash-grid.wash-menu{grid-template-columns:1fr 1fr;gap:8px}.wash-grid.wash-menu .wash-card{padding:12px;min-height:92px;border-radius:14px}.wash-grid.wash-menu .wash-card strong{font-size:26px}.wash-grid.wash-menu .wash-card:last-child{grid-column:1/-1;min-height:76px}.wash-week-board{gap:7px;margin:10px 0}.wash-day-card{padding:10px;min-height:100px}.wash-day-card strong{font-size:22px;margin:5px 0}.wash-add,.admin-card{padding:12px;border-radius:14px}.wash-list{margin-top:10px}.wash-row{padding:11px;gap:8px}}
 
+
+/* Alert gotowości na następny dzień roboczy */
+.tomorrow-alert{margin:14px 0 18px;border:2px solid #dc2626;background:#fff7f7;border-radius:16px;padding:16px;display:none}.tomorrow-alert.ok{border-color:#16a34a;background:#f4fff7}.tomorrow-alert .ta-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.tomorrow-alert .ta-count{font-size:30px;font-weight:1000;color:#b91c1c}.tomorrow-alert.ok .ta-count{color:#15803d}.tomorrow-alert .ta-list{display:grid;gap:8px;margin-top:12px}.tomorrow-alert .ta-row{background:#fff;border:1px solid #fecaca;border-radius:12px;padding:10px 12px;font-size:12px}.tomorrow-alert .ta-row b{display:block;font-size:13px;margin-bottom:3px}.tomorrow-alert .ta-missing{color:#b91c1c;font-weight:800;margin-top:4px}@media(max-width:700px){.tomorrow-alert{padding:12px}.tomorrow-alert .ta-count{font-size:25px}}
 </style>
 </head>
 <body>
@@ -282,6 +292,11 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 <section id="mainHome" class="view active">
   <h1>Panel działu flotowego</h1>
   <div class="muted" style="margin-top:6px">Wybierz moduł.</div>
+  <div class="tomorrow-alert" id="tomorrowReadyAlert">
+    <div class="ta-head"><div><b id="tomorrowAlertTitle">Kontrola gotowości na następny dzień roboczy</b><div class="muted" id="tomorrowAlertDate" style="margin-top:4px"></div></div><div class="ta-count" id="tomorrowAlertCount">0</div></div>
+    <div id="tomorrowAlertSummary" style="margin-top:8px;font-weight:800"></div>
+    <div class="ta-list" id="tomorrowAlertList"></div>
+  </div>
   <div class="modules">
     <button class="module" id="openReleases"><small>Moduł 1</small><h2>Wydania samochodów</h2><p>Plan tygodnia, gotowość wyposażenia i oznaczanie pojazdu jako wydany.</p><div class="go">Otwórz wydania →</div></button>
     <button class="module" id="openMounts"><small>Moduł 2</small><h2>Montaże / doposażenia</h2><p>Zlecenia rozdzielone na Jakuba Grzywacza i Mateusza Bodnara.</p><div class="go">Otwórz montaże →</div></button>
@@ -407,6 +422,12 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
     <div class="urgent-list" id="mountWorkerUrgentList"></div>
   </div>
 
+  <div class="mount-plan-box" id="mountWorkerPlanBox">
+    <div class="mount-plan-title">Samochody do zrobienia</div>
+    <div class="muted" style="margin-top:3px">Te auta mają jeszcze więcej niż 1 dzień do wydania. Są do wykonania, ale nie są jeszcze oznaczone jako pilne.</div>
+    <div class="urgent-list" id="mountWorkerPlanList"></div>
+  </div>
+
   <div class="mount-new-toolbar">
     <button class="btn primary" id="toggleMountForm">+ Dodaj montaż</button>
   </div>
@@ -418,7 +439,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
       Wpisz końcówkę VIN, zaznacz wykonane prace z listy przypisanej do samochodu, podaj liczbę godzin i ewentualne uwagi. Jeśli zaznaczysz wykonanie alarmu, kod alarmu jest obowiązkowy.
     </div>
     <div class="mount-assignment" id="mountAssignment">
-      <div class="mount-assignment-title">SAMOCHÓD PILNY — DO ZAMONTOWANIA</div>
+      <div class="mount-assignment-title">SAMOCHÓD DO ZAMONTOWANIA</div>
       <div class="mount-assignment-items" id="mountAssignmentItems"></div>
       <div class="muted" id="mountAssignmentMeta" style="margin-top:8px"></div>
     </div>
@@ -629,7 +650,6 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
     <h2>+ Dodaj samochód</h2><div class="muted">Końcówka VIN (4–6 znaków), pełny VIN lub nr rejestracyjny.</div>
     <div class="release-add-grid" style="margin-top:10px"><div class="field wash-search-wrap"><label>VIN / NR REJESTRACYJNY</label><input id="washVehicleInput" autocomplete="off" placeholder="np. 3804 lub WE 1234K"><div class="wash-suggest" id="washSuggestions"></div></div><div class="field"><label>MODEL / INFORMACJA</label><input id="washManualNote" placeholder="opcjonalnie"></div></div>
     <div class="actions" style="margin-top:10px"><button class="btn primary" id="addWashVehicle">Dodaj do mycia</button></div><div class="message" id="washMessage"></div>
-    <div class="wash-scan-box"><input id="washVinCamera" type="file" accept="image/*" capture="environment" hidden><button class="btn primary wash-scan-btn" id="scanWashVin" type="button">📷 SKANUJ TABLICZKĘ VIN</button><div class="wash-scan-status muted" id="washScanStatus">Zrób wyraźne zdjęcie tabliczki znamionowej. Panel odczyta VIN i znajdzie samochód na liście „Do mycia”.</div></div>
   </div>
   <div class="admin-card"><div class="wash-list" id="washPendingList"></div></div>
 </section>
@@ -646,6 +666,13 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 <section id="adminView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backMainFromAdmin">←</button><div><h1>Panel administratora</h1><div class="muted" style="margin-top:5px">Użytkownicy, uprawnienia i historia operacji.</div></div></div></div>
   <div class="period-nav"><button id="adminPrevMonth">← Miesiąc</button><button class="today-btn" id="adminThisMonth">Bieżący</button><div class="period-label" id="adminMonthLabel"></div><button id="adminNextMonth">Miesiąc →</button></div>
+  <div class="admin-card" id="monthlyReportCard">
+    <div class="header-row"><div><h2>Raport miesięczny</h2><div class="muted" id="reportPeriodLabel"></div></div><span class="report-status" id="reportStatus">OTWARTY</span></div>
+    <div class="report-grid" id="reportKpis"></div>
+    <div id="reportDetails"></div>
+    <div class="report-actions" style="margin-top:14px"><button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button><button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button><button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button></div>
+    <div class="report-note">Zamknięcie zapisuje migawkę raportu w archiwum. Samochody na placu, przyszłe wydania i otwarte prace nie są kasowane.</div>
+  </div>
   <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Dostęp</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
   <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
 </section>
@@ -668,7 +695,7 @@ let currentUser=JSON.parse(localStorage.getItem("toyotaCurrentUserV1")||"null");
 let auditLog=JSON.parse(localStorage.getItem("toyotaAuditLogV1")||"[]");
 function logAction(action,details=""){if(!currentUser)return;auditLog.unshift({at:new Date().toLocaleString("pl-PL"),user:currentUser.name,action,details});auditLog=auditLog.slice(0,200);localStorage.setItem("toyotaAuditLogV1",JSON.stringify(auditLog));}
 function hasAccess(module){return !!currentUser?.access?.includes(module)}
-function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id))}
+function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));if(id==="mainHome")setTimeout(renderTomorrowReadyAlert,0)}
 function renderUserGate(){
  $("#userGrid").innerHTML=APP_USERS.map((u,i)=>`<button class="user-choice" data-user-index="${i}"><b>${u.name}</b><span>${u.role}</span></button>`).join("");
  $("#userGrid").querySelectorAll(".user-choice").forEach(b=>b.onclick=()=>selectUser(APP_USERS[Number(b.dataset.userIndex)]));
@@ -676,9 +703,45 @@ function renderUserGate(){
 function selectUser(u){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));$("#loginGate").classList.add("hidden");applyUserAccess();logAction("Logowanie / wybór użytkownika",u.role);show("mainHome");}
 function applyUserAccess(){if(!currentUser)return;$("#currentUserPill").textContent=`${currentUser.name} • ${currentUser.role}`;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");}
 function auditMonthKey(at){const m=String(at||"").match(/(\d{1,2})[.\/]\s?(\d{1,2})[.\/]\s?(\d{4})/);return m?`${m[3]}-${String(m[2]).padStart(2,"0")}`:""}
+const MONTHLY_REPORTS_KEY="toyotaMonthlyReportsV1";
+let monthlyReports=JSON.parse(localStorage.getItem(MONTHLY_REPORTS_KEY)||"{}");
+function saveMonthlyReports(){localStorage.setItem(MONTHLY_REPORTS_KEY,JSON.stringify(monthlyReports))}
+function dateMonthKey(v){const s=String(v||"");let m=s.match(/^(\d{4})-(\d{2})-/);if(m)return `${m[1]}-${m[2]}`;m=s.match(/^(\d{2})[.\/-](\d{2})[.\/-](\d{4})$/);return m?`${m[3]}-${m[2]}`:""}
+function reportForMonth(mk){
+ const rel=releaseData.filter(r=>dateMonthKey(r.date)===mk);
+ const mounts=mountJobs.filter(j=>mountJobMonthKey(j.date)===mk);
+ const washes=washRecords.filter(w=>dateMonthKey(w.washedDate||String(w.washedAt||"").slice(0,10))===mk && w.washedAt);
+ const bonusWash=washBonusWorks.filter(w=>dateMonthKey(w.date)===mk);
+ const bonusMount=extraBonusWorks.filter(w=>dateMonthKey(w.date)===mk);
+ const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
+ const issued=rel.filter(r=>r.status==="WYDANE").length;
+ const moved=washRecords.filter(w=>w.moved&&dateMonthKey(w.releaseDate)===mk).length;
+ const mountBy={}; for(const j of mounts){if(!mountBy[j.owner])mountBy[j.owner]={cars:0,alarm:0,idCan:0,meta:0,other:0,hours:0};const x=mountBy[j.owner];x.cars++;x.alarm+=j.alarm?1:0;x.idCan+=j.idCan?1:0;x.meta+=j.meta?1:0;x.other+=j.extra?1:0;x.hours+=Number(j.hours)||0}
+ let alarm=0,idCan=0,meta=0,other=0,hours=0;Object.values(mountBy).forEach(x=>{alarm+=x.alarm;idCan+=x.idCan;meta+=x.meta;other+=x.other;hours+=x.hours});
+ let repeatWash=0; for(const w of washes){const hist=washHistoryFor(w.vehicle);if(hist.findIndex(x=>String(x.id)===String(w.id))>0)repeatWash++}
+ const batteryCount=batteryTests.filter(t=>dateMonthKey(t.lastTest)===mk).length;
+ const overdue=batteryTests.filter(t=>t.nextTest&&dateMonthKey(t.nextTest)===mk&&getCarStatus(t.vin)!=="WYJECHAŁ"&&t.nextTest<isoToday()).length;
+ const coord={}; for(const name of ["Igor Gieruszka","Denys Chernov","Helena Cholewa","Patryk Jarosz"]){const ll=logs.filter(a=>a.user===name);coord[name]={actions:ll.length,releases:ll.filter(a=>/wydani/i.test(a.action)).length,moves:ll.filter(a=>/zmian.*dat|przeło|wydanie.*edyt/i.test(a.action+" "+a.details)).length,ready:ll.filter(a=>/gotow/i.test(a.action)).length}}
+ return {mk,releases:rel.length,issued,pending:rel.filter(r=>r.status!=="WYDANE").length,moved,mounts:mounts.length,hours,alarm,idCan,meta,other,mountBy,washes:washes.length,repeatWash,firstWash:washes.length-repeatWash,washBonus:bonusWash.length,mountBonus:bonusMount.length,batteryCount,overdue,coord,generatedAt:new Date().toISOString()};
+}
+function reportHtml(r){
+ const workers=Object.entries(r.mountBy).map(([n,x])=>`<tr><td><b>${n}</b></td><td>${x.cars}</td><td>${x.alarm}</td><td>${x.idCan}</td><td>${x.meta}</td><td>${x.other}</td><td>${x.hours.toFixed(1)}</td></tr>`).join("")||'<tr><td colspan="7">Brak montaży.</td></tr>';
+ const coords=Object.entries(r.coord).map(([n,x])=>`<tr><td><b>${n}</b></td><td>${x.actions}</td><td>${x.releases}</td><td>${x.moves}</td><td>${x.ready}</td></tr>`).join("");
+ return `<div class="report-section"><h3>Wydania</h3><div class="muted">Zaplanowane: <b>${r.releases}</b> • Wydane: <b>${r.issued}</b> • Pozostałe/otwarte: <b>${r.pending}</b> • Zmiany dnia wydania wykryte przez Myjnię: <b>${r.moved}</b></div></div>
+ <div class="report-section"><h3>Doposażeniowcy</h3><div class="table-wrap"><table class="admin-table"><thead><tr><th>Pracownik</th><th>Samochody</th><th>Alarm</th><th>ID CAN</th><th>META</th><th>Inne</th><th>Godziny</th></tr></thead><tbody>${workers}</tbody></table></div><div class="muted">Prace dodatkowe do premii: <b>${r.mountBonus}</b></div></div>
+ <div class="report-section"><h3>Myjnia</h3><div class="muted">Mycia: <b>${r.washes}</b> • Pierwsze mycia: <b>${r.firstWash}</b> • Ponowne mycia: <b>${r.repeatWash}</b> • Dodatkowa premia Konrada: <b>${r.washBonus}</b></div></div>
+ <div class="report-section"><h3>Testy akumulatorów</h3><div class="muted">Samochody z ostatnim testem w tym miesiącu: <b>${r.batteryCount}</b> • Aktualnie przeterminowane terminy przypadające w tym miesiącu: <b>${r.overdue}</b></div></div>
+ <div class="report-section"><h3>Aktywność koordynatorów</h3><div class="table-wrap"><table class="admin-table"><thead><tr><th>Pracownik</th><th>Operacje</th><th>Dot. wydań</th><th>Zmiany terminów</th><th>Gotowość</th></tr></thead><tbody>${coords}</tbody></table></div></div>`;
+}
+function renderMonthlyReport(mk){const live=reportForMonth(mk),arch=monthlyReports[mk],r=arch?.report||live;const closed=!!arch;$("#reportPeriodLabel").textContent=`Okres ${mk} • ${closed?"raport zamknięty":"raport bieżący"}`;$("#reportStatus").textContent=closed?"🔒 MIESIĄC ZAMKNIĘTY":"OTWARTY";$("#reportStatus").classList.toggle("closed",closed);$("#reportKpis").innerHTML=`<div class="report-kpi">WYDANIA<strong>${r.releases}</strong><span class="muted">${r.issued} wydanych</span></div><div class="report-kpi">DOPOSAŻENIA<strong>${r.mounts}</strong><span class="muted">${r.hours.toFixed(1)} h</span></div><div class="report-kpi">MYJNIA<strong>${r.washes}</strong><span class="muted">${r.repeatWash} ponownych</span></div><div class="report-kpi">AKUMULATORY<strong>${r.batteryCount}</strong><span class="muted">ostatni test w miesiącu</span></div>`;$("#reportDetails").innerHTML=reportHtml(r);$("#closeMonthBtn").disabled=closed;$("#closeMonthBtn").textContent=closed?"Miesiąc zamknięty":"Zamknij miesiąc";return r}
+function closeSelectedMonth(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md);if(monthlyReports[mk])return;if(!confirm(`Zamknąć miesiąc ${monthLabel(md)}? Raport zostanie zapisany w archiwum.`))return;monthlyReports[mk]={closedAt:new Date().toISOString(),closedBy:currentUser?.name||"",report:reportForMonth(mk)};saveMonthlyReports();logAction("Zamknięcie miesiąca",mk);renderAdmin()}
+function csvCell(v){return `"${String(v??"").replaceAll('"','""')}"`}
+function exportSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const rows=[["RAPORT MIESIĘCZNY",mk],["Wydania",r.releases],["Wydane",r.issued],["Doposażenia",r.mounts],["Godziny montażu",r.hours.toFixed(1)],["Mycia",r.washes],["Ponowne mycia",r.repeatWash],["Testy akumulatorów",r.batteryCount],[],["DOPOSAŻENIOWCY"],["Pracownik","Samochody","Alarm","ID CAN","META","Inne","Godziny"],...Object.entries(r.mountBy).map(([n,x])=>[n,x.cars,x.alarm,x.idCan,x.meta,x.other,x.hours.toFixed(1)]),[],["DODATKOWA PREMIA MYJNIA",r.washBonus],["PRACE DODATKOWE DOPOSAŻENIOWCÓW",r.mountBonus]];const csv='\ufeff'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`raport-${mk}.csv`;a.click();URL.revokeObjectURL(a.href)}
+function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const w=window.open('', '_blank');if(!w)return alert('Przeglądarka zablokowała nowe okno. Zezwól na wyskakujące okna.');w.document.write(`<html><head><meta charset="utf-8"><title>Raport ${mk}</title><style>body{font-family:Arial;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0 18px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}h1{margin-bottom:4px}.muted{color:#555}.report-section{margin-top:20px}</style></head><body><h1>Raport miesięczny — ${mk}</h1><p>${monthlyReports[mk]?"MIESIĄC ZAMKNIĘTY":"RAPORT BIEŻĄCY"}</p>${reportHtml(r)}<script>setTimeout(()=>window.print(),250)<\/script></body></html>`);w.document.close()}
 function renderAdmin(){
  $("#adminUsersRows").innerHTML=APP_USERS.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.role}</td><td>${u.access.map(x=>({releases:"Wydania",mounts:"Montaże",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",admin:"Administrator"}[x])).join(", ")}</td></tr>`).join("");
  const md=shiftedMonth(adminMonthOffset), mk=monthKey(md); $("#adminMonthLabel").textContent=monthLabel(md); const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
+ renderMonthlyReport(mk);
  $("#auditRows").innerHTML=logs.length?logs.map(a=>`<tr><td>${a.at}</td><td>${a.user}</td><td>${a.action}</td><td>${a.details||"—"}</td></tr>`).join(""):`<tr><td colspan="4">Brak zapisanych operacji w tym miesiącu.</td></tr>`;
 }
 renderUserGate();if(currentUser && APP_USERS.some(u=>u.name===currentUser.name)){currentUser=APP_USERS.find(u=>u.name===currentUser.name);$("#loginGate").classList.add("hidden");applyUserAccess();}
@@ -697,6 +760,18 @@ const releaseSeed=[
 
 // Jednorazowe wyzerowanie danych operacyjnych przed rozpoczeciem pracy na nowej bazie samochodow.
 // Klucz powoduje wykonanie resetu tylko raz na kazdym urzadzeniu/przegladarce.
+// Jednorazowy reset samochodow i powiazanych danych operacyjnych — nowy start 29.08.2026 (V2).
+// Nie kasujemy historii dodatkowej premii ani profili/uzytkownikow.
+const FRESH_FLEET_RESET_KEY_V2="toyotaFleetFreshStart20260829V2";
+if(!localStorage.getItem(FRESH_FLEET_RESET_KEY_V2)){
+  localStorage.removeItem("toyotaFleetDemoV2");
+  localStorage.removeItem("toyotaFleetCarsDB3");
+  localStorage.removeItem("toyotaMountJobsV3");
+  localStorage.removeItem("toyotaBatteryTestsV1");
+  localStorage.removeItem("toyotaWashRecordsV1");
+  localStorage.setItem(FRESH_FLEET_RESET_KEY_V2,"1");
+}
+
 const FRESH_FLEET_RESET_KEY="toyotaFleetFreshStart20260829V1";
 if(!localStorage.getItem(FRESH_FLEET_RESET_KEY)){
   localStorage.removeItem("toyotaFleetDemoV2");
@@ -796,7 +871,7 @@ function recalcReleaseStatus(r){
 }
 
 let selectedDay="", selectedVehicle=null;
-function saveRelease(){localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData))}
+function saveRelease(){localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData));setTimeout(renderTomorrowReadyAlert,0)}
 saveRelease();
 function fmtDate(v){const [y,m,d]=v.split("-");return `${d}.${m}.${y}`}
 function shortVin(v){return v?`…${v.slice(-4)}`:"—"}
@@ -947,8 +1022,19 @@ function addReleaseEntry(){
   }
 
   const carRecord=fleetCars.find(c=>normalizeVin(c.vin)===vin);
-  if(!$("#releaseInfo").value.trim() && carRecord?.equipment) $("#releaseInfo").value=carRecord.equipment;
+  if(!$("#releaseInfo").value.trim() && carRecord?.equipment){
+    $("#releaseInfo").value=carRecord.equipment;
+    renderReleaseMountOrderState();
+  }
   const parsedWorkItems=parseReleaseWorkItems($("#releaseInfo").value.trim());
+  const installerDraftItems=parsedWorkItems.filter(name=>!isCoordinatorOnlyWorkItem(name));
+  if(installerDraftItems.length && !releaseMountOrderedDraft && editingReleaseId===null){
+    msg.textContent="Samochód ma niewykonane doposażenie: "+installerDraftItems.join(", ")+". Kliknij ZLEĆ MONTAŻ przed zapisaniem wydania.";
+    msg.className="message error";
+    renderReleaseMountOrderState();
+    $("#releaseMountOrderPanel").scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
   const alarmRequired=parsedWorkItems.some(x=>/alarm/i.test(x));
   const idCanRequired=parsedWorkItems.some(x=>/id\s*can/i.test(x));
   const metaRequired=parsedWorkItems.some(x=>/\bmeta\b/i.test(x));
@@ -1113,6 +1199,56 @@ function updateCheckLook(){
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
 let fleetCars=JSON.parse(localStorage.getItem("toyotaFleetCarsDB3")||"null")||[];
+
+// PLAN DEMONSTRACYJNY: 20 samochodów na najbliższy tydzień roboczy (31.08–04.09.2026).
+// Uruchamia się tylko raz na danym urządzeniu, aby późniejsze zmiany użytkownika nie były nadpisywane.
+const DEMO_PLAN_20_KEY="toyotaFleetDemoPlan20_20260829V2_ALL_PENDING";
+if(!localStorage.getItem(DEMO_PLAN_20_KEY)){
+  const demoSpecs=[
+    ["JTDBR32E720100101","ALPHA LEASING","Corolla","P01","Alarm, dywaniki gumowe"],
+    ["JTNAB3HK003100202","LUXMED","Camry","P02","Alarm, ID CAN, apteczka"],
+    ["JTMAB3FV00D100303","NORD RENT","RAV4","P03","Hak, dywaniki gumowe"],
+    ["JTDKB20U203100404","CITY FLEET","Yaris","P04","Czujniki parkowania, apteczka"],
+    ["JTDKB20U203100505","EUROCAR","Yaris Cross","P05","Alarm, META, dywaniki zamienniki"],
+    ["SB1K93BE10E100606","MEDICOVER","Corolla TS","P06","ID CAN, hak"],
+    ["JTMDFREV80D100707","GREEN LOG","RAV4","P07","Dywany guma, apteczka"],
+    ["JTNB11HK303100808","SANOFI","Camry","P08","Alarm, czujniki, hak"],
+    ["JTDKABC1234100909","COMPASS","Yaris Cross","P09","Alarm"],
+    ["SB1Z93BE10E101010","ORLEN FLEET","Corolla","P10","ID CAN, dywaniki gumowe, apteczka"],
+    ["JTMABRFV00D101111","PHARMA TEAM","RAV4","P11","META, hak, czujniki"],
+    ["JTDBR32E720101212","AUTO PARTNER","Corolla","P12","Dywaniki gumowe"],
+    ["JTNAB3HK003101313","BANK FLEET","Camry","P13","Alarm, ID CAN, META"],
+    ["JTDKB20U203101414","CITY SERVICE","Yaris","P14","Apteczka, dywaniki zamienniki"],
+    ["SB1K93BE10E101515","LUXMED","Corolla TS","P15","Alarm, hak"],
+    ["JTMDFREV80D101616","NORD RENT","RAV4","P16","Czujniki parkowania, dywany guma"],
+    ["JTDKABC1234101717","EUROCASH","Yaris Cross","P17","Alarm, ID CAN, apteczka"],
+    ["JTNB11HK303101818","MOBILITY","Camry","P18","Hak, META"],
+    ["SB1Z93BE10E101919","FLEET ONE","Corolla","P19","Alarm, dywaniki gumowe, czujniki"],
+    ["JTMABRFV00D102020","MED FLEET","RAV4","P20","ID CAN, apteczka, hak"]
+  ];
+  const dates=["2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04"];
+  const times=["08:00","09:30","12:00","15:00"];
+  releaseData=[];
+  fleetCars=[];
+  const demoWash=[];
+  demoSpecs.forEach((d,i)=>{
+    const [vin,client,model,place,info]=d;
+    const names=parseReleaseWorkItems(info);
+    // Nowa symulacja: żadne doposażenie nie jest jeszcze wykonane ani potwierdzone.
+    const workItems=names.map(name=>({name,done:false}));
+    const r={id:94000+i,date:dates[Math.floor(i/4)],time:times[i%4],client,model,vin,place,info,workItems,status:"W TRAKCIE",releaseReady:false,mountOrdered:false};
+    normalizeReleaseRequirements(r);
+    releaseData.push(r);
+    fleetCars.push({vin,status:"AKTYWNY",equipment:info});
+    // W nowej symulacji żaden samochód nie jest jeszcze umyty.
+  });
+  localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData));
+  localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+  localStorage.setItem("toyotaMountJobsV3","[]");
+  localStorage.setItem("toyotaBatteryTestsV1","[]");
+  localStorage.setItem("toyotaWashRecordsV1",JSON.stringify(demoWash));
+  localStorage.setItem(DEMO_PLAN_20_KEY,"1");
+}
 function normalizeVin(v){return (v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").trim()}
 function saveCars(){localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars))}
 function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY"};fleetCars.unshift(c)}return c}
@@ -1310,6 +1446,29 @@ function formatIso(iso){
   const [y,m,d]=iso.split("-");
   return `${d}.${m}.${y}`;
 }
+function nextWorkingDayIso(fromIso=isoToday()){
+  let d=addDaysIso(fromIso,1);
+  while(true){const [y,m,dd]=d.split("-").map(Number),wd=new Date(y,m-1,dd).getDay();if(wd!==0&&wd!==6)return d;d=addDaysIso(d,1)}
+}
+function missingReadyItems(r){
+  const items=[];
+  (r.workItems||[]).filter(x=>!x.done).forEach(x=>items.push(x.label||x.name||"Doposażenie"));
+  if(!items.length && !r.releaseReady)items.push("brak potwierdzenia „Gotowy do wydania”");
+  return [...new Set(items)];
+}
+function renderTomorrowReadyAlert(){
+  const box=$("#tomorrowReadyAlert");if(!box||typeof releaseData==="undefined")return;
+  const allowed=currentUser?.role==="Główny Koordynator"||currentUser?.role==="Koordynator"||currentUser?.role==="Młodszy Koordynator";
+  if(!allowed){box.style.display="none";return}
+  const day=nextWorkingDayIso();
+  const cars=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE");
+  const bad=cars.filter(r=>!r.releaseReady);
+  box.style.display="block";box.classList.toggle("ok",bad.length===0);
+  $("#tomorrowAlertDate").textContent=`Następny dzień roboczy: ${formatIso(day)} • zaplanowane auta: ${cars.length}`;
+  $("#tomorrowAlertCount").textContent=bad.length;
+  $("#tomorrowAlertSummary").textContent=bad.length?`⚠ ${bad.length} ${bad.length===1?"samochód nie jest gotowy":"samochody nie są gotowe"} na następny dzień roboczy.`:"✓ Wszystkie samochody na następny dzień roboczy są oznaczone jako gotowe.";
+  $("#tomorrowAlertList").innerHTML=bad.map(r=>{const miss=missingReadyItems(r);return `<div class="ta-row"><b>${r.time||"—"} • ${r.client||"—"} • ${r.model||"—"}</b><div>VIN: ${r.vin||"—"} • Miejsce: ${r.place||"—"}</div><div class="ta-missing">${miss.join(" • ")}</div></div>`}).join("");
+}
 function getCarStatus(vin){
   const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(vin));
   return c?.status||"AKTYWNY";
@@ -1458,22 +1617,27 @@ function syncMountCompletionToRelease(vin, alarmDone, extraDone){
 
 
 
-function getUrgentReleaseCars(){
+function getPendingReleaseCars(){
+  const today=isoToday();
   return releaseData
     .map(normalizeReleaseRequirements)
     .filter(r=>r.status!=="WYDANE" && !!r.mountOrdered && getInstallerWorkItems(r).some(x=>!x.done))
     .map(r=>({
-      vin:r.vin,
-      client:r.client||"",
-      model:r.model||"",
-      date:r.date||"",
-      time:r.time||"",
+      vin:r.vin, client:r.client||"", model:r.model||"", date:r.date||"", time:r.time||"",
+      daysToRelease:r.date?daysBetweenIso(today,r.date):999,
       alarmMissing:!!r.alarmRequired && !r.alarmReady,
       idCanMissing:!!r.idCanRequired && !r.alarmReady,
       metaMissing:!!r.metaRequired && !r.alarmReady,
       extraMissing:!!r.extraRequired && !r.extraReady,
       missingItems:getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name)
-    }));
+    }))
+    .sort((a,b)=>(a.daysToRelease-b.daysToRelease)||String(a.time).localeCompare(String(b.time)));
+}
+function getUrgentReleaseCars(){
+  return getPendingReleaseCars().filter(x=>x.daysToRelease<=1);
+}
+function getPlannedReleaseCars(){
+  return getPendingReleaseCars().filter(x=>x.daysToRelease>1);
 }
 
 function urgentMissingText(u){ return (u.missingItems||[]).join(" + "); }
@@ -1516,6 +1680,23 @@ function renderUrgentMountAlerts(){
     workerList.querySelectorAll("[data-urgent-vin]").forEach(card=>{
       card.onclick=()=>openUrgentInMountForm(card.dataset.urgentVin);
     });
+  }
+
+  const planned=getPlannedReleaseCars();
+  const planBox=$("#mountWorkerPlanBox");
+  const planList=$("#mountWorkerPlanList");
+  if(planBox && planList){
+    planBox.classList.toggle("show",planned.length>0);
+    planList.innerHTML=planned.map(u=>{
+      const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(u.vin) && x.status!=="WYDANE");
+      const tasks=r?getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name):[];
+      return `<div class="mount-plan-item" data-plan-vin="${u.vin}">
+        <div><strong>${u.vin}</strong><div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}</div>
+        <div class="urgent-work">${tasks.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("")}</div></div>
+        <div><span class="mount-plan-badge">DO ZROBIENIA • ${u.daysToRelease} DNI</span><button class="urgent-open-btn" style="margin-left:8px" type="button">Otwórz →</button></div>
+      </div>`;
+    }).join("");
+    planList.querySelectorAll("[data-plan-vin]").forEach(card=>{card.onclick=()=>openUrgentInMountForm(card.dataset.planVin)});
   }
 }
 
@@ -1654,8 +1835,14 @@ function resetMountForm(){
   updateMountChoices();
 }
 
+function normalizeWorkLabel(name){
+  return String(name||"").toLocaleLowerCase("pl-PL")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g," ").trim();
+}
 function mountTaskIsAlarm(name){
-  return /(^|\b)alarm(\b|$)/i.test(String(name||""));
+  const n=normalizeWorkLabel(name);
+  return /(^|\s)alarm(?:u|owy|owa|owe|em)?(\s|$)/.test(n) || n.includes("alarm");
 }
 
 function updateMountChoices(){
@@ -1926,7 +2113,7 @@ document.addEventListener("click",(e)=>{
 let washRecords=JSON.parse(localStorage.getItem("toyotaWashRecordsV1")||"[]");
 let washBonusWorks=JSON.parse(localStorage.getItem("toyotaWashBonusWorksV1")||"[]");
 function saveWashBonus(){localStorage.setItem("toyotaWashBonusWorksV1",JSON.stringify(washBonusWorks))}
-function renderWashBonus(){const box=$("#washBonusList");if(!box)return;const rows=[...washBonusWorks].sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||"")));box.innerHTML=rows.length?rows.map(x=>`<div class="wash-bonus-row"><b>${fmtDate(x.date)}</b><div>${x.text}<div class="muted">${x.user||"Konrad Dąbrowski"}</div></div><button class="btn wash-bonus-del" data-id="${x.id}" type="button">Usuń</button></div>`).join(""):'<div class="muted">Brak dodatkowych prac do premii.</div>';document.querySelectorAll(".wash-bonus-del").forEach(b=>b.onclick=()=>{washBonusWorks=washBonusWorks.filter(x=>String(x.id)!==String(b.dataset.id));saveWashBonus();logAction("Usunięcie dodatkowej pracy myjni","");renderWashBonus()})}
+function renderWashBonus(){const box=$("#washBonusList");if(!box)return;const month=(washSelectedDay||washTargetDay()).slice(0,7);const rows=washBonusWorks.filter(x=>String(x.date||x.createdAt||"").slice(0,7)===month).sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||"")));box.innerHTML=rows.length?rows.map(x=>`<div class="wash-bonus-row"><b>${fmtDate(x.date)}</b><div>${x.text}<div class="muted">${x.user||"Konrad Dąbrowski"}</div></div><button class="btn wash-bonus-del" data-id="${x.id}" type="button">Usuń</button></div>`).join(""):'<div class="muted">Brak dodatkowych prac do premii.</div>';document.querySelectorAll(".wash-bonus-del").forEach(b=>b.onclick=()=>{washBonusWorks=washBonusWorks.filter(x=>String(x.id)!==String(b.dataset.id));saveWashBonus();logAction("Usunięcie dodatkowej pracy myjni","");renderWashBonus()})}
 function addWashBonusWork(){const inp=$("#washBonusInput"),msg=$("#washBonusMessage");const text=(inp?.value||"").trim();if(!text){msg.textContent="Wpisz dodatkową czynność.";msg.className="message error";return}washBonusWorks.push({id:Date.now(),date:isoToday(),createdAt:new Date().toISOString(),text,user:currentUser?.name||"Konrad Dąbrowski"});saveWashBonus();logAction("Dodatkowa praca do premii — Myjnia",text);inp.value="";msg.textContent="Dodano do dodatkowej premii.";msg.className="message ok";renderWashBonus()}
 
 let washSelectedDay="";
@@ -1973,13 +2160,14 @@ function renderWash(){
  $("#washDateLabel").textContent=`${fmtDate(workDay)} • plan myjni`;
  const names=["PONIEDZIAŁEK","WTOREK","ŚRODA","CZWARTEK","PIĄTEK"];
  $("#washWeekBoard").innerHTML=days.map((d,i)=>{const rel=releaseData.filter(r=>r.date===d&&r.status!=="WYDANE");const washed=rel.filter(r=>washRecords.some(w=>String(w.releaseId)===String(r.id)&&w.releaseDate===d&&w.washedAt)).length;return `<button class="wash-day-card ${d===workDay?'active':''}" data-wash-day="${d}"><b>${names[i]}</b><div class="muted">${fmtDate(d)}</div><strong>${rel.length}</strong><div class="stats">Samochodów z wydań: <b>${rel.length}</b><br>Umyte: <b>${washed}</b><br>Do mycia: <b>${Math.max(0,rel.length-washed)}</b></div></button>`}).join("");
- document.querySelectorAll("[data-wash-day]").forEach(b=>b.onclick=()=>{washSelectedDay=b.dataset.washDay;renderWash()});
+ document.querySelectorAll("[data-wash-day]").forEach(b=>b.onclick=()=>{washSelectedDay=b.dataset.washDay;renderWash();if($("#washPendingDateLabel"))$("#washPendingDateLabel").textContent=fmtDate(washSelectedDay);show("washPendingView")});
  const relevant=washRecords.filter(w=>!w.washedAt && (w.source==="manual" || (w.source==="wydanie" && w.releaseDate===workDay)));
- const done=washRecords.filter(w=>w.washedAt).sort((a,b)=>String(b.washedAt).localeCompare(String(a.washedAt)));
+ const selectedMonth=workDay.slice(0,7);
+ const done=washRecords.filter(w=>w.washedAt && String(w.washedDate||w.washedAt.slice(0,10)).slice(0,7)===selectedMonth).sort((a,b)=>String(b.washedAt).localeCompare(String(a.washedAt)));
  const doneThisWeek=done.filter(w=>days.includes(w.washedDate||w.washedAt.slice(0,10)));
- $("#washPendingCount").textContent=relevant.length; $("#washDoneCount").textContent=done.length; if($("#washDoneDateLabel")) $("#washDoneDateLabel").textContent=`Historia myjni • ${done.length} umytych łącznie • ${doneThisWeek.length} w wybranym tygodniu`;
+ $("#washPendingCount").textContent=relevant.length; $("#washDoneCount").textContent=done.length; if($("#washDoneDateLabel")) $("#washDoneDateLabel").textContent=`${selectedMonth.split('-').reverse().join('.')} • ${done.length} umytych w miesiącu • ${doneThisWeek.length} w wybranym tygodniu`;
  $("#washPendingList").innerHTML=relevant.length?relevant.map(w=>{const last=washHistoryFor(w.vehicle).slice(-1)[0];return `<div class="wash-row" data-wash-vehicle="${washKey(w.vehicle)}"><div><div class="vin">${w.vehicle}</div>${w.moved?`<span class="wash-moved">⚠ WYDANIE PRZEŁOŻONE</span><div class="muted">${fmtDate(w.previousReleaseDate)} → ${fmtDate(w.releaseDate)}${last?` • ostatnie mycie: ${new Date(last.washedAt).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}`:''}</div>`:""}<div class="muted">${w.source==="manual"?"Dodany ręcznie":(w.client||"")}</div></div><div><b>${w.client||"—"}</b><div class="muted">${w.model||""}${w.place?` • miejsce: ${w.place}`:""}</div></div><button class="btn primary wash-done-btn" data-wash-id="${w.id}">✓ UMYTY</button></div>`}).join(""):'<div class="muted">Brak samochodów do mycia w wybranym dniu.</div>';
- $("#washDoneList").innerHTML=done.length?done.map(w=>`<div class="wash-row"><div><div class="vin">${w.vehicle}</div>${washCountLabel(w)}<div class="muted">${w.client||""} ${w.model||""}</div></div><div><b>Umyty: ${new Date(w.washedAt).toLocaleString("pl-PL",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}</b><div class="muted">${w.washedBy||"—"}</div></div><div></div></div>`).join(""):'<div class="muted">Brak umytych samochodów w tym tygodniu.</div>';
+ $("#washDoneList").innerHTML=done.length?done.map(w=>`<div class="wash-row"><div><div class="vin">${w.vehicle}</div>${washCountLabel(w)}<div class="muted">${w.client||""} ${w.model||""}</div></div><div><b>Umyty: ${new Date(w.washedAt).toLocaleString("pl-PL",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}</b><div class="muted">${w.washedBy||"—"}</div></div><div></div></div>`).join(""):'<div class="muted">Brak umytych samochodów w wybranym miesiącu.</div>';
  document.querySelectorAll(".wash-done-btn").forEach(b=>b.onclick=()=>{const w=washRecords.find(x=>String(x.id)===String(b.dataset.washId));if(!w)return;w.washedAt=new Date().toISOString();w.washedDate=isoToday();w.washedBy=currentUser?.name||"";saveWash();logAction(washHistoryFor(w.vehicle).length>1?"Ponowne mycie samochodu":"Samochód umyty",w.vehicle);renderWash();});
  renderWashBonus();
 }
@@ -1996,36 +2184,6 @@ function addManualWash(){
 }
 
 
-function loadTesseract(){
- return new Promise((resolve,reject)=>{
-  if(window.Tesseract){resolve(window.Tesseract);return}
-  const old=document.querySelector('script[data-tesseract]');if(old){old.addEventListener('load',()=>resolve(window.Tesseract));old.addEventListener('error',reject);return}
-  const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.dataset.tesseract='1';sc.onload=()=>resolve(window.Tesseract);sc.onerror=()=>reject(new Error('Nie udało się załadować OCR'));document.head.appendChild(sc);
- });
-}
-function editDistance(a,b){const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
-function findWashVehicleFromOcr(text){
- const clean=String(text||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
- const rows=[...document.querySelectorAll('#washPendingList [data-wash-vehicle]')];
- const vehicles=rows.map(r=>r.dataset.washVehicle).filter(Boolean);
- for(const v of vehicles)if(clean.includes(v) || (v.length>=6 && clean.includes(v.slice(-6))))return v;
- let best=null,bestScore=99;
- for(const v of vehicles){if(v.length<6)continue;const len=v.length;for(let i=0;i<=Math.max(0,clean.length-len);i++){const part=clean.slice(i,i+len);if(part.length!==len)continue;const score=editDistance(v,part);if(score<bestScore){bestScore=score;best=v}}}
- return bestScore<=2?best:null;
-}
-async function scanWashVinFile(file){
- const status=$('#washScanStatus');if(!file)return;status.textContent='Odczytuję tabliczkę… może to potrwać kilka sekund.';status.className='wash-scan-status';
- try{
-  const T=await loadTesseract();
-  const result=await T.recognize(file,'eng',{logger:m=>{if(m.status==='recognizing text')status.textContent=`Odczytuję VIN… ${Math.round((m.progress||0)*100)}%`;}});
-  const found=findWashVehicleFromOcr(result?.data?.text||'');
-  document.querySelectorAll('.wash-row.scan-found').forEach(x=>x.classList.remove('scan-found'));
-  if(!found){status.textContent='Nie znalazłem tego VIN-u na aktualnej liście „Do mycia”. Spróbuj zrobić zdjęcie bliżej lub wpisz 4–6 końcowych znaków ręcznie.';status.className='wash-scan-status message error';return}
-  const row=document.querySelector(`#washPendingList [data-wash-vehicle="${found}"]`);if(!row)return;
-  row.classList.add('scan-found');row.scrollIntoView({behavior:'smooth',block:'center'});status.textContent=`Znaleziono samochód: ${row.querySelector('.vin')?.textContent||found}.`;status.className='wash-scan-status message ok';
- }catch(e){status.textContent='Nie udało się odczytać zdjęcia. Sprawdź połączenie z internetem i spróbuj ponownie albo wpisz końcówkę VIN ręcznie.';status.className='wash-scan-status message error';}
- finally{$('#washVinCamera').value=''}
-}
 
 /* ---------- NAWIGACJA OKRESÓW ---------- */
 function bindPeriodNav(){
@@ -2043,7 +2201,17 @@ $("#toggleReleaseForm").onclick=()=>{
   if($("#releaseAddCard").classList.contains("open"))$("#releaseVin").focus();
 };
 $("#cancelReleaseEntry").onclick=()=>{resetReleaseForm();$("#releaseAddCard").classList.remove("open")};
-$("#releaseVin").oninput=renderReleaseVinSuggestions;
+$("#releaseVin").oninput=()=>{
+  renderReleaseVinSuggestions();
+  const q=normalizeVin($("#releaseVin").value);
+  const exact=fleetCars.find(c=>normalizeVin(c.vin)===q);
+  if(exact) applyCarEquipmentToRelease(exact.vin);
+};
+$("#releaseVin").onblur=()=>{
+  const q=normalizeVin($("#releaseVin").value);
+  const hits=releaseVinMatches(q);
+  if(hits.length===1) applyCarEquipmentToRelease(hits[0].vin);
+};
 $("#releaseInfo").oninput=()=>{ releaseMountOrderedDraft=false; renderReleaseMountOrderState(); };
 $("#releaseMountOrderBtn").onclick=()=>{ releaseMountOrderedDraft=true; renderReleaseMountOrderState(); };
 $("#saveReleaseEntry").onclick=addReleaseEntry;
@@ -2112,8 +2280,6 @@ $("#openWash").onclick=()=>{if(!hasAccess("wash"))return;logAction("Otwarcie mod
 $("#backMainFromWash").onclick=()=>show("mainHome");
 $("#washVehicleInput").oninput=renderWashSuggestions;
 $("#addWashVehicle").onclick=addManualWash; if($("#addWashBonus")) $("#addWashBonus").onclick=addWashBonusWork;
-if($("#scanWashVin")) $("#scanWashVin").onclick=()=>$("#washVinCamera").click();
-if($("#washVinCamera")) $("#washVinCamera").onchange=e=>scanWashVinFile(e.target.files?.[0]);
 $("#showWashPending").onclick=()=>{renderWash();$("#washPendingDateLabel").textContent=fmtDate(washTargetDay());show("washPendingView")};
 $("#showWashDone").onclick=()=>{renderWash();show("washDoneView")};
 $("#showWashBonus").onclick=()=>{renderWashBonus();show("washBonusView")};
@@ -2124,9 +2290,12 @@ $("#backWashFromBonus").onclick=()=>{renderWash();show("washView")};
 $("#openAdmin").onclick=()=>{if(!hasAccess("admin"))return;renderAdmin();show("adminView")};
 $("#backMainFromAdmin").onclick=()=>show("mainHome");
 $("#clearAuditBtn").onclick=()=>{if(!hasAccess("admin"))return;if(confirm("Wyczyścić historię działań na tym urządzeniu?")){auditLog=[];localStorage.setItem("toyotaAuditLogV1","[]");renderAdmin();}};
+$("#closeMonthBtn").onclick=closeSelectedMonth;$("#exportMonthlyReport").onclick=exportSelectedReport;$("#printMonthlyReport").onclick=printSelectedReport;
 
 syncIssuedToCars();
 syncBatteryCars();
+
+setTimeout(renderTomorrowReadyAlert,0);
 </script>
 </body>
 </html>
