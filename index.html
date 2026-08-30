@@ -569,6 +569,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
       <h2>Gotowość wyposażenia</h2>
       <div class="checks">
         <div id="releaseWorkChecklist"></div>
+        <label class="check" id="labFuelReady"><input id="checkFuelReady" type="checkbox"><span><strong>Paliwo zatankowane</strong><small>Potwierdź poziom paliwa przed oznaczeniem samochodu jako gotowy. Rodzaj paliwa nie ma znaczenia.</small></span></label>
         <label class="check" id="labReleaseReady"><input id="checkReleaseReady" type="checkbox"><span><strong>Gotowy do wydania</strong><small>Potwierdza osoba sprawdzająca po kontroli samochodu.</small></span></label>
       </div>
       <div class="note" id="checkSummary"></div>
@@ -1145,6 +1146,7 @@ function normalizeReleaseRequirements(r){
   if(!anyAlarm) r.alarmReady=true;
   if(!r.extraRequired) r.extraReady=true;
   if(typeof r.matsReady!=="boolean") r.matsReady=false;
+  if(typeof r.fuelReady!=="boolean") r.fuelReady=(r.status==="WYDANE");
   if(typeof r.releaseReady!=="boolean") r.releaseReady=(r.status==="GOTOWY"||r.status==="WYDANE");
   if(typeof r.mountOrdered!=="boolean") r.mountOrdered=true; // starsze zlecenia zachowują dotychczasowe działanie
   ensureReleaseWorkItems(r); syncLegacyReleaseFlags(r);
@@ -1425,6 +1427,7 @@ function renderDay(){
       q.onchange=e=>{
         e.stopPropagation();
         if(r.status==="WYDANE") return;
+        if(q.checked && !r.fuelReady){q.checked=false;alert("Najpierw otwórz samochód i potwierdź, że paliwo jest zatankowane.");return;}
         r.releaseReady=q.checked;
         recalcReleaseStatus(r);
         saveRelease();
@@ -1464,6 +1467,7 @@ function openVehicle(id){
   $("#vehicleDetails").innerHTML=`<div class="detail"><small>Klient</small><b>${r.client}</b></div><div class="detail"><small>Model</small><b>${r.model}</b></div><div class="detail"><small>VIN</small><b>${r.vin}</b></div><div class="detail"><small>Miejsce</small><b>${r.place||"—"}</b></div>`;
   normalizeReleaseRequirements(r);
   $("#vehicleInfo").textContent=r.info||"Brak dodatkowych informacji.";
+  $("#checkFuelReady").checked=!!r.fuelReady;
   $("#checkReleaseReady").checked=!!r.releaseReady;
   renderReleaseWorkChecklist(r);
   updateCheckLook();
@@ -1480,11 +1484,12 @@ function renderReleaseWorkChecklist(r){
 function updateCheckLook(){
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
   normalizeReleaseRequirements(r);
+  $("#labFuelReady").classList.toggle("checked",!!r.fuelReady);
   $("#labReleaseReady").classList.toggle("checked",!!r.releaseReady);
   const items=ensureReleaseWorkItems(r), done=items.filter(x=>x.done).length;
   recalcReleaseStatus(r);
   const pending=!allReleaseWorkDone(r);
-  $("#checkSummary").innerHTML=`<b>${done}/${items.length} prac potwierdzonych</b>${pending?'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Są jeszcze niepotwierdzone pozycje.</div>':'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Wszystkie wpisane prace są potwierdzone.</div>'}${r.status==="GOTOWY"?'<div style="margin-top:7px;color:#168a45;font-weight:1000">✓ SAMOCHÓD OZNACZONY JAKO GOTOWY DO WYDANIA</div>':''}`;
+  $("#checkSummary").innerHTML=`<b>${done}/${items.length} prac potwierdzonych</b>${pending?'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Są jeszcze niepotwierdzone pozycje.</div>':'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Wszystkie wpisane prace są potwierdzone.</div>'}${r.fuelReady?'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Paliwo zatankowane.</div>':'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Potwierdź zatankowanie paliwa.</div>'}${r.status==="GOTOWY"?'<div style="margin-top:7px;color:#168a45;font-weight:1000">✓ SAMOCHÓD OZNACZONY JAKO GOTOWY DO WYDANIA</div>':''}`;
 }
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
@@ -1937,6 +1942,7 @@ function nextWorkingDayIso(fromIso=isoToday()){
 function missingReadyItems(r){
   const items=[];
   (r.workItems||[]).filter(x=>!x.done).forEach(x=>items.push(x.label||x.name||"Doposażenie"));
+  if(!r.fuelReady)items.push("paliwo niepotwierdzone");
   if(!items.length && !r.releaseReady)items.push("brak potwierdzenia „Gotowy do wydania”");
   return [...new Set(items)];
 }
@@ -2315,7 +2321,9 @@ function renderOwners(){
   renderUrgentMountAlerts();
   const urgentCount=getUrgentReleaseCars().length;
   $("#peopleCards").innerHTML="";
-  ["Jakub Grzywacz","Mateusz Bodnar"].forEach(name=>{
+  const installers=APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name);
+  if(currentUser?.role==="Doposażeniowiec"){installers.sort((a,b)=>a===currentUser.name?-1:b===currentUser.name?1:a.localeCompare(b,"pl"));}
+  installers.forEach(name=>{
     const jobs=mountJobs.filter(j=>j.owner===name);
     const b=document.createElement("button");
     b.className="person";
@@ -2858,8 +2866,16 @@ $("#backReleaseDay").onclick=()=>{renderDay();show("releaseDay")};
 
 
 
+$("#checkFuelReady").onchange=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  r.fuelReady=$("#checkFuelReady").checked;
+  if(!r.fuelReady && r.releaseReady){r.releaseReady=false;$("#checkReleaseReady").checked=false;}
+  logAction(r.fuelReady?"Potwierdzenie paliwa":"Cofnięcie potwierdzenia paliwa",r.vin);
+  recalcReleaseStatus(r);saveRelease();updateCheckLook();renderReleaseHome();
+};
 $("#checkReleaseReady").onchange=()=>{
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  if($("#checkReleaseReady").checked && !r.fuelReady){$("#checkReleaseReady").checked=false;alert("Najpierw potwierdź, że samochód jest zatankowany.");return;}
   r.releaseReady=$("#checkReleaseReady").checked;
   logAction(r.releaseReady?"Auto gotowe do wydania":"Cofnięcie gotowości",r.vin);
   recalcReleaseStatus(r);
