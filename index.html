@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Panel flotowy Toyota</title>
 <style>
 :root{
@@ -273,7 +276,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 /* Raport miesięczny */
 .report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.report-kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fafafa}.report-kpi strong{display:block;font-size:26px;margin-top:4px}.report-section{margin-top:14px}.report-status{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:1000;background:#eef2f6}.report-status.closed{background:#e9f8ef;color:#167044}.report-actions{display:flex;gap:8px;flex-wrap:wrap}.report-note{font-size:11px;color:#667085;margin-top:8px}@media(max-width:700px){.report-grid{grid-template-columns:1fr 1fr}.report-kpi{padding:11px}.report-kpi strong{font-size:22px}.report-actions .btn{flex:1}}
 /* Użytkownicy i panel administratora */
-.user-bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:0 0 14px;flex-wrap:wrap}.user-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.login-gate{position:fixed;inset:0;background:rgba(17,24,39,.72);z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}.login-gate.hidden{display:none}.login-card{background:#fff;border-radius:20px;padding:22px;width:min(620px,100%);max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.28)}.user-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.user-choice{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;cursor:pointer}.user-choice:hover{border-color:#e50000}.user-choice b{display:block;font-size:14px}.user-choice span{font-size:11px;color:#667085}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px}.admin-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}.role-myjnia .release-toolbar,.role-myjnia #releaseAddCard,.role-myjnia .release-edit-btn,.role-myjnia #markIssued,.role-myjnia #undoIssued,.role-myjnia #checkReleaseReady,.role-myjnia label[for="checkReleaseReady"]{display:none!important}@media(max-width:600px){.user-grid{grid-template-columns:1fr}}
+.user-bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:0 0 14px;flex-wrap:wrap}.user-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.user-switch-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;color:#667085}.user-switcher{min-height:40px;max-width:250px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 34px 8px 11px;font:inherit;font-size:12px;font-weight:900;color:#111}.mobile-user-switch{min-width:0;max-width:170px;min-height:42px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:#fff;color:#111;padding:8px 28px 8px 10px;font-size:12px;font-weight:900}.mobile-user-switch-wrap{padding:3px 2px 12px}.mobile-user-switch-wrap label{display:block;font-size:10px;font-weight:1000;color:var(--muted);margin-bottom:6px}.mobile-user-switch-sheet{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:9px 34px 9px 11px;font-size:13px;font-weight:900}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px}.admin-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}.role-myjnia .release-toolbar,.role-myjnia #releaseAddCard,.role-myjnia .release-edit-btn,.role-myjnia #markIssued,.role-myjnia #undoIssued,.role-myjnia #checkReleaseReady,.role-myjnia #checkFuelReady,.role-myjnia #labFuelReady,.role-myjnia label[for="checkReleaseReady"]{display:none!important}
 
 /* Myjnia */
 .wash-week-board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}.wash-day-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:left;cursor:pointer;min-height:145px}.wash-day-card.active{border:2px solid #e50000}.wash-day-card strong{display:block;font-size:28px;margin:8px 0}.wash-day-card .stats{font-size:11px;line-height:1.55}.wash-moved{display:inline-block;background:#fff3cd;color:#7a4b00;border:1px solid #ffd86b;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:1000;margin-top:5px}@media(max-width:850px){.wash-week-board{grid-template-columns:1fr 1fr}.wash-day-card{min-height:120px}}@media(max-width:520px){.wash-week-board{grid-template-columns:1fr}}
@@ -356,19 +359,45 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 }
 @media(max-width:380px){.mobile-tasks{gap:6px}.mobile-task{padding:10px;min-height:105px}.mobile-task-count{font-size:25px}.mobile-bottom-nav{left:5px;right:5px;bottom:5px}.mobile-bottom-nav button{font-size:8px}}
 
+/* --- Stabilna blokada dostępu: wybór użytkownika + hasło --- */
+.auth-gate{position:fixed;z-index:5000;inset:0;background:rgba(17,19,22,.82);display:grid;place-items:center;padding:18px;backdrop-filter:blur(8px)}
+.auth-gate[hidden]{display:none!important}
+.auth-card{width:min(430px,100%);background:#fff;border-radius:22px;padding:22px;border:1px solid #e2e4e7;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.auth-brand{font-size:11px;font-weight:1000;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}.auth-card h1{font-size:25px;line-height:1.1;margin:0 0 7px}.auth-copy{font-size:12px;color:var(--muted);line-height:1.45;margin-bottom:17px}
+.auth-field{display:grid;gap:6px;margin-top:11px}.auth-field label{font-size:10px;font-weight:1000;letter-spacing:.08em;color:#5f6670}.auth-field select,.auth-field input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 12px;font:inherit;font-size:16px;color:#111}.auth-field input:focus,.auth-field select:focus{outline:3px solid rgba(215,25,32,.12);border-color:var(--accent)}
+.auth-password-state{min-height:18px;margin-top:7px;font-size:11px;font-weight:800;color:var(--muted)}.auth-password-state.open{color:#8a5f00}.auth-message{min-height:20px;margin-top:9px;font-size:12px;font-weight:800;color:var(--red)}
+.auth-actions{display:flex;gap:8px;margin-top:12px}.auth-actions .btn{flex:1;min-height:46px}.auth-session-note{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);line-height:1.4}
+body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,body.auth-locked .mobile-bottom-nav,body.auth-locked .mobile-more-backdrop{pointer-events:none;user-select:none}
+.admin-password-box{border:1px solid #e1e4e8;border-radius:11px;background:#fafafa;padding:10px;margin:0 0 10px}.admin-password-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}.admin-password-head b{font-size:11px}.password-status{font-size:10px;font-weight:900;padding:4px 7px;border-radius:999px;background:#fff3cd;color:#7a5700}.password-status.set{background:#e9f7ee;color:#146c3b}.admin-password-controls{display:flex;gap:7px;flex-wrap:wrap}.admin-password-controls input{min-width:180px;flex:1;min-height:42px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit}.admin-password-controls .btn{min-height:42px}
+@media(max-width:720px){.auth-card{padding:19px;border-radius:19px}.auth-card h1{font-size:22px}.auth-actions{flex-direction:column}.admin-password-controls{display:grid;grid-template-columns:1fr}.admin-password-controls input{min-width:0;width:100%}}
+
 </style>
 </head>
-<body>
+<body class="auth-locked">
 <div class="top"><div class="brand"><b>TOYOTA</b> • DZIAŁ FLOTOWY</div><div>PANEL OPERACYJNY</div></div>
 
+<div class="auth-gate" id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="auth-card">
+    <div class="auth-brand">TOYOTA • PANEL FLOTOWY</div>
+    <h1 id="authTitle">Wejście do aplikacji</h1>
+    <div class="auth-copy">Wybierz użytkownika i wpisz jego hasło. Po poprawnym wejściu sesja na tym urządzeniu jest ważna do końca dnia.</div>
+    <div class="auth-field"><label for="authUserSelect">UŻYTKOWNIK</label><select id="authUserSelect" aria-label="Użytkownik"></select></div>
+    <div class="auth-field"><label for="authPassword">HASŁO</label><input id="authPassword" type="password" inputmode="text" autocomplete="current-password" placeholder="Wpisz hasło"></div>
+    <div class="auth-password-state" id="authPasswordState"></div>
+    <div class="auth-message" id="authMessage" aria-live="polite"></div>
+    <div class="auth-actions"><button class="btn primary" id="authEnterBtn" type="button">Wejdź do panelu</button><button class="btn" id="authCancelBtn" type="button" hidden>Anuluj</button></div>
+    <div class="auth-session-note">Hasła są przechowywane lokalnie na urządzeniu. Wersja na GitHub Pages jest rozwiązaniem przejściowym — docelowe bezpieczne logowanie będzie wymagało serwera.</div>
+  </div>
+</div>
+
 <main class="shell">
-<div class="user-bar"><span class="user-pill" id="currentUserPill">Nie zalogowano</span><button class="btn" id="changeUserBtn" type="button">Wyloguj</button></div>
+<div class="user-bar"><label class="user-switch-label" for="userSwitcher">Użytkownik <select id="userSwitcher" class="user-switcher" aria-label="Wybierz użytkownika"></select></label><span class="user-pill" id="currentUserPill">—</span></div>
 <section id="mainHome" class="view active">
 
   <div class="mobile-home" id="mobileHome">
     <div class="mobile-header">
       <div><div class="mobile-brand">TOYOTA • DZIAŁ FLOTOWY</div><h1 id="mobileGreeting">Dzisiaj</h1><div class="mobile-date" id="mobileDateLabel">—</div></div>
-      <button class="mobile-user-avatar" id="mobileUserButton" type="button" aria-label="Menu użytkownika">IG</button>
+      <select class="mobile-user-switch" id="mobileUserSwitcher" aria-label="Wybierz użytkownika"></select>
     </div>
 
     <div class="mobile-summary" data-home-access="cars,releases">
@@ -411,7 +440,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
       <div class="home-date" id="homeDateLabel">—</div>
     </div>
     <div class="dashboard-hero-user">
-      <span class="hero-user-label">ZALOGOWANY</span>
+      <span class="hero-user-label">UŻYTKOWNIK</span>
       <strong id="homeUserName">—</strong>
       <span id="homeUserRole">—</span>
     </div>
@@ -801,7 +830,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
   </div>
 
   <div class="battery-note">
-    Samochody pojawiają się tutaj automatycznie po dodaniu VIN-u do „Listy samochodów”. Jeśli auto wyjedzie na drugi plac, użyj przycisku „Wyjechał na inny plac” — wtedy nie będzie liczone do testów ani ostrzeżeń. Po powrocie można je przywrócić. Test zapisuje datę wykonania i automatycznie wylicza kolejny termin za 14 dni. Dzień przed terminem pojawia się ostrzeżenie „ZBLIŻA SIĘ TEST”, w dniu terminu „TEST DZISIAJ”, a od następnego dnia „PRZETERMINOWANY”. Taki komunikat pozostaje do czasu zapisania nowego testu.
+    Samochody pojawiają się tutaj automatycznie po dodaniu VIN-u do „Listy samochodów”. Jeśli auto wyjedzie na drugi plac, użyj przycisku „K1” — wtedy nie będzie liczone do testów ani ostrzeżeń i spadnie na dół Listy samochodów jako fioletowe K1. Po powrocie użyj „WRÓCIŁ Z K1”. Test zapisuje datę wykonania i automatycznie wylicza kolejny termin za 14 dni. Dzień przed terminem pojawia się ostrzeżenie „ZBLIŻA SIĘ TEST”, w dniu terminu „TEST DZISIAJ”, a od następnego dnia „PRZETERMINOWANY”. Taki komunikat pozostaje do czasu zapisania nowego testu.
   </div>
 
   <div class="searchbar"><input id="batterySearch" placeholder="Szukaj po VIN"></div>
@@ -866,7 +895,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
     <div class="report-actions" style="margin-top:14px"><button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button><button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button><button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button></div>
     <div class="report-note">Zamknięcie zapisuje migawkę raportu w archiwum. Samochody na placu, przyszłe wydania i otwarte prace nie są kasowane.</div>
   </div>
-  <div class="admin-card"><h2>Użytkownicy, loginy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników oraz ustawiać ich dane, hasła i uprawnienia.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><input id="newUserLogin" autocapitalize="none" spellcheck="false" placeholder="np. jan.kowalski"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select><input id="newUserPassword" type="password" autocomplete="new-password" placeholder="Hasło (min. 4 znaki)"></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Login / hasło / dostęp</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
+  <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników, zmieniać ich imiona, ustawiać hasła oraz dostęp do modułów. Hasła startowe są ustawione dla całego zespołu i możesz je tutaj później zmienić.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Konto i uprawnienia</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
   <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
 </section>
 </main>
@@ -889,108 +918,208 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
       <button data-mobile-more-route="batteryView" data-mobile-access="battery" type="button">Akumulatory</button>
       <button data-mobile-more-route="washView" data-mobile-access="wash" type="button">Myjnia</button>
       <button data-mobile-more-route="adminView" data-mobile-access="admin" type="button">Administrator</button>
-      <button class="danger" id="mobileLogoutBtn" type="button">Wyloguj</button>
     </div>
   </div>
 </div>
-<div class="login-gate" id="loginGate"><div class="login-card"><h1>Logowanie</h1><div class="muted">Zaloguj się swoim loginem i hasłem.</div><form id="loginForm" style="margin-top:16px"><div class="field"><label>LOGIN</label><input id="loginUsername" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="np. igor.gieruszka"></div><div class="field" style="margin-top:10px"><label>HASŁO</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Hasło"></div><div class="actions" style="margin-top:14px"><button class="btn primary" type="submit">Zaloguj</button></div><div class="message" id="loginMessage"></div></form></div></div>
-
 <script>
 const $=s=>document.querySelector(s);
+function storageJSON(key,fallback,kind="any") {
+  let raw=null;
+  try{raw=localStorage.getItem(key)}catch(e){return fallback}
+  if(raw===null||raw==="")return fallback;
+  try{
+    const value=JSON.parse(raw);
+    const ok=kind==="array"?Array.isArray(value):kind==="object"?!!value&&typeof value==="object"&&!Array.isArray(value):kind==="nullableObject"?(value===null||typeof value==="object"&&!Array.isArray(value)):true;
+    if(!ok)throw new Error("Nieprawidłowy format danych");
+    return value;
+  }catch(e){
+    // Nie kasujemy uszkodzonego wpisu bez śladu: zachowujemy kopię diagnostyczną i uruchamiamy aplikację z bezpieczną wartością.
+    try{localStorage.setItem(`toyotaRecoveryBackup_${key}_${Date.now()}`,raw)}catch(_){}
+    try{localStorage.removeItem(key)}catch(_){}
+    return fallback;
+  }
+}
 const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 const DEFAULT_APP_USERS=[
- {name:"Igor Gieruszka",login:"igor.gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
- {name:"Denys Chernov",login:"denys.chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
- {name:"Helena Cholewa",login:"helena.cholewa",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Patryk Jarosz",login:"patryk.jarosz",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Mateusz Bodnar",login:"mateusz.bodnar",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Jakub Grzywacz",login:"jakub.grzywacz",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Konrad Dąbrowski",login:"konrad.dabrowski",role:"Myjnia",access:["releases","wash"]}
+ {name:"Igor Gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
+ {name:"Denys Chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
+ {name:"Helena Cholewa",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Patryk Jarosz",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Mateusz Bodnar",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Jakub Grzywacz",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Konrad Dąbrowski",role:"Myjnia",access:["releases","wash"]}
 ];
 const USER_PROFILES_KEY="toyotaUserProfilesV1";
-let userProfileOverrides=JSON.parse(localStorage.getItem(USER_PROFILES_KEY)||"{}");
-const USER_PASSWORDS_KEY="toyotaUserPasswordsV1";
-let userPasswordHashes=JSON.parse(localStorage.getItem(USER_PASSWORDS_KEY)||"{}");
-const DEFAULT_ADMIN_PASSWORD_HASH="479a6da15ff423206427b6081c5e018ea04afc1c6a3392937e451ab4d9ca0dd9";
-if(!userPasswordHashes["Igor Gieruszka"]){userPasswordHashes["Igor Gieruszka"]=DEFAULT_ADMIN_PASSWORD_HASH;localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));}
-async function hashPassword(value){const data=new TextEncoder().encode(String(value));const buf=await crypto.subtle.digest("SHA-256",data);return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("")}
-async function setUserPassword(name,password){
-  if(String(password).length<4){alert("Hasło musi mieć co najmniej 4 znaki.");return false}
-  userPasswordHashes[name]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Zmiana hasła użytkownika",name);return true;
-}
-function userHasPassword(name){return !!userPasswordHashes[name]}
-let userPermissionOverrides=JSON.parse(localStorage.getItem(USER_PERMISSIONS_KEY)||"{}");
+let userProfileOverrides=storageJSON(USER_PROFILES_KEY,{},"object");
+let userPermissionOverrides=storageJSON(USER_PERMISSIONS_KEY,{},"object");
 const CUSTOM_USERS_KEY="toyotaCustomUsersV1";
-let customUsers=JSON.parse(localStorage.getItem(CUSTOM_USERS_KEY)||"[]");
-const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOverrides[u.name]||{};return {...u,baseName:u.name,userId:`user-${idx+1}`,name:String(profile.name||u.name),login:String(profile.login||u.login),access:Array.isArray(userPermissionOverrides[u.name])?userPermissionOverrides[u.name]:[...u.access]}}),...customUsers.map(u=>({...u,baseName:u.baseName||u.userId,userId:u.userId||`custom-${Date.now()}-${Math.random()}`,access:Array.isArray(userPermissionOverrides[u.baseName||u.userId])?userPermissionOverrides[u.baseName||u.userId]:(Array.isArray(u.access)?u.access:[])}))];
-function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,login:u.login,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
-async function addNewUser(){
- const name=$("#newUserName").value.trim(),login=$("#newUserLogin").value.trim().toLowerCase(),role=$("#newUserRole").value,password=$("#newUserPassword").value,msg=$("#addUserMessage");
+let customUsers=storageJSON(CUSTOM_USERS_KEY,[],"array").filter(u=>u&&typeof u==="object");
+const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOverrides[u.name]||{};return {...u,baseName:u.name,userId:`user-${idx+1}`,name:String(profile.name||u.name),access:Array.isArray(userPermissionOverrides[u.name])?userPermissionOverrides[u.name]:[...u.access]}}),...customUsers.map((u,idx)=>({userId:u.userId||`custom-legacy-${idx+1}`,baseName:u.baseName||u.userId||`custom-legacy-${idx+1}`,name:String(u.name||"Pracownik"),role:String(u.role||"Pracownik"),access:Array.isArray(userPermissionOverrides[u.baseName||u.userId])?userPermissionOverrides[u.baseName||u.userId]:(Array.isArray(u.access)?u.access:[])}))];
+
+/* ---------- LOKALNA BLOKADA DOSTĘPU ----------
+   Celowo bez WebCrypto: mechanizm jest synchroniczny i stabilny na Safari/iPhone.
+   To blokada organizacyjna dla statycznej wersji GitHub Pages, nie zastępuje logowania serwerowego. */
+const USER_PASSWORDS_KEY="toyotaUserPasswordsV3";
+const PASSWORD_BOOTSTRAP_KEY="toyotaPasswordBootstrapV4AllUsers";
+const AUTH_SESSION_KEY="toyotaAuthSessionV3";
+let userPasswords=storageJSON(USER_PASSWORDS_KEY,{},"object");
+function passwordKey(u){return String(u?.baseName||u?.userId||u?.name||"")}
+function passwordDigest(value){
+  const s=`toyota-flota-v3|${String(value??"")}`;
+  let h1=0xdeadbeef^s.length,h2=0x41c6ce57^s.length;
+  for(let i=0;i<s.length;i++){const ch=s.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  const a=(h2>>>0).toString(16).padStart(8,"0"),b=(h1>>>0).toString(16).padStart(8,"0");
+  return `${a}${b}`;
+}
+function saveUserPasswords(){try{localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswords))}catch(e){}}
+function passwordIsSet(u){return !!userPasswords[passwordKey(u)]}
+function setUserPassword(u,password){
+  const raw=String(password??"");
+  if(raw.length<4){alert("Hasło musi mieć co najmniej 4 znaki.");return false}
+  userPasswords[passwordKey(u)]=passwordDigest(raw);saveUserPasswords();logAction?.("Zmiana hasła użytkownika",u.name);return true;
+}
+function clearUserPassword(u){
+  if(u?.role==="Główny Koordynator"){alert("Konto Głównego Koordynatora musi mieć ustawione hasło.");return false}
+  delete userPasswords[passwordKey(u)];saveUserPasswords();logAction?.("Usunięcie hasła użytkownika",u.name);return true;
+}
+function authDayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function readAuthSession(){return storageJSON(AUTH_SESSION_KEY,null,"nullableObject")}
+function validAuthSession(){const s=readAuthSession();if(!s||s.day!==authDayKey())return null;return APP_USERS.find(u=>String(u.userId)===String(s.userId))||null}
+function writeAuthSession(u){try{localStorage.setItem(AUTH_SESSION_KEY,JSON.stringify({userId:u.userId,day:authDayKey()}))}catch(e){}}
+function clearAuthSession(){try{localStorage.removeItem(AUTH_SESSION_KEY)}catch(e){}}
+(function bootstrapDefaultPasswords(){
+  let done=false;try{done=localStorage.getItem(PASSWORD_BOOTSTRAP_KEY)==="1"}catch(e){}
+  if(done)return;
+  // Jednorazowy start haseł dla obecnego zespołu. Po uruchomieniu administrator może je dowolnie zmieniać.
+  APP_USERS.forEach(u=>{
+    const isAdmin=u.baseName==="Igor Gieruszka"||u.role==="Główny Koordynator";
+    userPasswords[passwordKey(u)]=passwordDigest(isAdmin?"331727":"1234");
+  });
+  saveUserPasswords();
+  try{localStorage.setItem(PASSWORD_BOOTSTRAP_KEY,"1")}catch(e){}
+})();
+let pendingAuthUserId="";
+let authIsSwitch=false;
+function populateAuthUsers(preselectId){
+  const sel=document.getElementById("authUserSelect");if(!sel)return;
+  sel.innerHTML="";APP_USERS.forEach(u=>{const o=document.createElement("option");o.value=u.userId;o.textContent=`${u.name} — ${u.role}`;sel.appendChild(o)});
+  if(APP_USERS.some(u=>String(u.userId)===String(preselectId)))sel.value=String(preselectId);
+  updateAuthPasswordState();
+}
+function updateAuthPasswordState(){
+  const sel=document.getElementById("authUserSelect"),state=document.getElementById("authPasswordState"),input=document.getElementById("authPassword");if(!sel||!state)return;
+  const u=APP_USERS.find(x=>String(x.userId)===String(sel.value));const set=!!u&&passwordIsSet(u);
+  state.textContent=set?"Hasło wymagane.":"Hasło nie jest jeszcze ustawione — możesz wejść bez hasła, a administrator ustawi je później.";
+  state.classList.toggle("open",!set);if(input)input.placeholder=set?"Wpisz hasło":"Brak hasła — pole może zostać puste";
+}
+function openAuthGate(userId="",switching=false){
+  const gate=document.getElementById("authGate");if(!gate)return;
+  authIsSwitch=!!switching;pendingAuthUserId=String(userId||currentUser?.userId||APP_USERS[0]?.userId||"");populateAuthUsers(pendingAuthUserId);
+  const cancel=document.getElementById("authCancelBtn");if(cancel)cancel.hidden=!authIsSwitch;
+  const msg=document.getElementById("authMessage"),input=document.getElementById("authPassword");if(msg)msg.textContent="";if(input)input.value="";
+  gate.hidden=false;document.body.classList.add("auth-locked");setTimeout(()=>{if(passwordIsSet(APP_USERS.find(u=>String(u.userId)===String(document.getElementById("authUserSelect")?.value))))input?.focus();else document.getElementById("authEnterBtn")?.focus()},0);
+}
+function closeAuthGate(){const gate=document.getElementById("authGate");if(gate)gate.hidden=true;document.body.classList.remove("auth-locked");const msg=document.getElementById("authMessage");if(msg)msg.textContent="";}
+function authenticateSelectedUser(){
+  const sel=document.getElementById("authUserSelect"),input=document.getElementById("authPassword"),msg=document.getElementById("authMessage");if(!sel)return false;
+  const u=APP_USERS.find(x=>String(x.userId)===String(sel.value));if(!u){if(msg)msg.textContent="Nie znaleziono użytkownika.";return false}
+  const required=passwordIsSet(u),typed=String(input?.value||"");
+  if(required&&passwordDigest(typed)!==userPasswords[passwordKey(u)]){if(msg)msg.textContent="Nieprawidłowe hasło.";input?.select();return false}
+  currentUser=u;persistActiveUser();writeAuthSession(u);closeAuthGate();renderUserSwitchers();
+  try{applyUserAccess();show("mainHome");renderMainDashboard();renderMobileDashboard();renderTomorrowReadyAlert();syncMobileAttention()}catch(e){console.error("Uruchomienie po uwierzytelnieniu",e)}
+  logAction("Wejście do aplikacji",u.name);return true;
+}
+function requestUserSwitch(userId){
+  const next=APP_USERS.find(u=>String(u.userId)===String(userId));if(!next)return false;
+  if(currentUser&&String(next.userId)===String(currentUser.userId)){renderUserSwitchers();return true}
+  openAuthGate(next.userId,true);return true;
+}
+function initAuthGate(){
+  const sel=document.getElementById("authUserSelect"),enter=document.getElementById("authEnterBtn"),cancel=document.getElementById("authCancelBtn"),input=document.getElementById("authPassword");
+  if(sel)sel.onchange=()=>{pendingAuthUserId=sel.value;updateAuthPasswordState();if(input)input.value=""};
+  if(enter)enter.onclick=authenticateSelectedUser;if(input)input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();authenticateSelectedUser()}};
+  if(cancel)cancel.onclick=()=>{closeAuthGate();renderUserSwitchers()};
+  const sessionUser=validAuthSession();
+  if(sessionUser){currentUser=sessionUser;persistActiveUser();closeAuthGate()}else{clearAuthSession();openAuthGate(currentUser?.userId||APP_USERS[0]?.userId||"",false)}
+}
+function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
+function addNewUser(){
+ const name=$("#newUserName").value.trim(),role=$("#newUserRole").value,msg=$("#addUserMessage");
  if(name.length<3){msg.textContent="Wpisz imię i nazwisko pracownika.";msg.className="message error";return}
- if(!/^[a-z0-9._-]{3,}$/.test(login)){msg.textContent="Login może zawierać małe litery, cyfry, kropkę, myślnik i podkreślenie.";msg.className="message error";return}
- if(APP_USERS.some(u=>u.login.toLowerCase()===login)){msg.textContent="Taki login już istnieje.";msg.className="message error";return}
- if(password.length<4){msg.textContent="Hasło musi mieć co najmniej 4 znaki.";msg.className="message error";return}
  const defaults=role==="Doposażeniowiec"?["mounts"]:role==="Myjnia"?["releases","wash"]:role.includes("Koordynator")?["releases","cars","battery"]:[];
- const id=`custom-${Date.now()}`,u={userId:id,baseName:id,name,login,role,access:defaults};APP_USERS.push(u);saveCustomUsers();userPasswordHashes[id]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Dodanie pracownika",`${name}; ${login}; ${role}`);renderAdmin();
+ const id=`custom-${Date.now()}`;const u={userId:id,baseName:id,name,role,access:defaults};APP_USERS.push(u);userPasswords[passwordKey(u)]=passwordDigest("1234");saveUserPasswords();saveCustomUsers();logAction("Dodanie pracownika",`${name}; ${role}; hasło startowe ustawione`);$("#newUserName").value="";renderUserSwitchers();renderAdmin();
 }
 function profileKey(u){return u.baseName||u.name}
-function passwordKey(u){return u.baseName||u.name}
-function userHasPasswordByUser(u){return !!userPasswordHashes[passwordKey(u)]}
-async function setUserPasswordForUser(u,password){
-  if(String(password).length<4){alert("Hasło musi mieć co najmniej 4 znaki.");return false}
-  userPasswordHashes[passwordKey(u)]=await hashPassword(password);localStorage.setItem(USER_PASSWORDS_KEY,JSON.stringify(userPasswordHashes));logAction("Zmiana hasła użytkownika",u.name);return true;
-}
-function saveUserProfile(u,newName,newLogin){
-  newName=String(newName||"").trim();newLogin=String(newLogin||"").trim().toLowerCase();
+function saveUserProfile(u,newName){
+  newName=String(newName||"").trim();
   if(newName.length<3){alert("Imię i nazwisko musi mieć co najmniej 3 znaki.");return false}
-  if(!/^[a-z0-9._-]{3,}$/.test(newLogin)){alert("Login może zawierać małe litery bez polskich znaków, cyfry, kropkę, myślnik i podkreślenie.");return false}
-  if(APP_USERS.some(x=>x!==u&&x.login.toLowerCase()===newLogin)){alert("Taki login jest już używany przez innego pracownika.");return false}
-  const oldName=u.name; userProfileOverrides[profileKey(u)]={name:newName,login:newLogin};localStorage.setItem(USER_PROFILES_KEY,JSON.stringify(userProfileOverrides));
-  u.name=newName;u.login=newLogin;if(String(u.userId||"").startsWith("custom-"))saveCustomUsers();
-  mountJobs?.forEach?.(j=>{if(j.owner===oldName)j.owner=newName}); extraBonusWorks?.forEach?.(x=>{if(x.owner===oldName)x.owner=newName}); washBonusWorks?.forEach?.(x=>{if(x.user===oldName)x.user=newName});
+  const oldName=u.name;userProfileOverrides[profileKey(u)]={name:newName};localStorage.setItem(USER_PROFILES_KEY,JSON.stringify(userProfileOverrides));
+  u.name=newName;if(String(u.userId||"").startsWith("custom-"))saveCustomUsers();
+  mountJobs?.forEach?.(j=>{if(j.owner===oldName)j.owner=newName});extraBonusWorks?.forEach?.(x=>{if(x.owner===oldName)x.owner=newName});washBonusWorks?.forEach?.(x=>{if(x.user===oldName)x.user=newName});
   try{saveMountJobs?.();saveExtraBonus?.();saveWashBonus?.()}catch(e){}
-  if(currentUser?.userId===u.userId||currentUser?.baseName===u.baseName){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}
-  logAction("Zmiana danych użytkownika",`${oldName} → ${newName}; login: ${newLogin}`);return true;
+  if(currentUser?.userId===u.userId||currentUser?.baseName===u.baseName){currentUser=u;persistActiveUser();applyUserAccess()}
+  renderUserSwitchers();logAction("Zmiana danych użytkownika",`${oldName} → ${newName}`);return true;
 }
 const ACCESS_LABELS={releases:"Wydania",mounts:"Montaże / doposażenia",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",admin:"Panel administratora"};
 function saveUserPermissions(name,access){
   if(APP_USERS.find(x=>x.name===name)?.role==="Główny Koordynator" && !access.includes("admin")){alert("Główny Koordynator musi zachować dostęp do Panelu administratora, aby nie zablokować zarządzania systemem.");return false}
   const target=APP_USERS.find(x=>x.name===name);const pkey=target?.baseName||name;userPermissionOverrides[pkey]=[...access];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));
   const u=APP_USERS.find(x=>x.name===name);if(u){u.access=[...access];if(String(u.userId||"").startsWith("custom-"))saveCustomUsers()}
-  if(currentUser?.name===name){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}
+  if(currentUser?.name===name){currentUser=u;persistActiveUser();applyUserAccess();renderUserSwitchers()}
   logAction("Zmiana uprawnień użytkownika",`${name}: ${access.map(x=>ACCESS_LABELS[x]).join(", ")||"brak dostępu"}`);return true;
 }
 function resetUserPermissions(name){
-  const u0=APP_USERS.find(x=>x.name===name);const d=DEFAULT_APP_USERS.find(x=>x.name===(u0?.baseName||name));if(!d)return;delete userPermissionOverrides[u0?.baseName||name];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));const u=APP_USERS.find(x=>x.name===name);u.access=[...d.access];if(currentUser?.name===name){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));applyUserAccess()}logAction("Przywrócenie domyślnych uprawnień",name);renderAdmin();
+  const u0=APP_USERS.find(x=>x.name===name);const d=DEFAULT_APP_USERS.find(x=>x.name===(u0?.baseName||name));if(!d)return;delete userPermissionOverrides[u0?.baseName||name];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));const u=APP_USERS.find(x=>x.name===name);u.access=[...d.access];if(currentUser?.name===name){currentUser=u;persistActiveUser();applyUserAccess();renderUserSwitchers()}logAction("Przywrócenie domyślnych uprawnień",name);renderAdmin();
 }
-const DAILY_LOGIN_KEY="toyotaDailyLoginV1";
-function localDayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
-function saveDailyLogin(u){localStorage.setItem(DAILY_LOGIN_KEY,JSON.stringify({day:localDayKey(),userId:u.userId||"",baseName:u.baseName||"",login:u.login||""}))}
-function clearDailyLogin(){localStorage.removeItem(DAILY_LOGIN_KEY)}
-function dailyLoginIsValid(u){try{const x=JSON.parse(localStorage.getItem(DAILY_LOGIN_KEY)||"null");return !!(x&&x.day===localDayKey()&&(x.userId&&x.userId===u?.userId||x.baseName&&x.baseName===u?.baseName||x.login&&x.login===u?.login))}catch{return false}}
-let currentUser=JSON.parse(localStorage.getItem("toyotaCurrentUserV1")||"null");
-let auditLog=JSON.parse(localStorage.getItem("toyotaAuditLogV1")||"[]");
-function logAction(action,details=""){if(!currentUser)return;auditLog.unshift({at:new Date().toLocaleString("pl-PL"),user:currentUser.name,action,details});auditLog=auditLog.slice(0,200);localStorage.setItem("toyotaAuditLogV1",JSON.stringify(auditLog));}
+const ACTIVE_USER_KEY="toyotaActiveUserIdV2";
+function readLegacyUser(){return storageJSON("toyotaCurrentUserV1",null,"nullableObject")}
+function resolveInitialUser(){
+  const sessionUser=validAuthSession();if(sessionUser)return sessionUser;
+  let id="";try{id=String(localStorage.getItem(ACTIVE_USER_KEY)||"")}catch(e){}
+  let u=APP_USERS.find(x=>String(x.userId)===id);
+  if(u)return u;
+  const old=readLegacyUser();
+  if(old)u=APP_USERS.find(x=>x.userId===old.userId||x.baseName===old.baseName||x.name===old.name);
+  return u||APP_USERS[0]||null;
+}
+let currentUser=resolveInitialUser();
+let auditLog=storageJSON("toyotaAuditLogV1",[],"array").filter(x=>x&&typeof x==="object");
+function logAction(action,details=""){if(!currentUser)return;auditLog.unshift({at:new Date().toLocaleString("pl-PL"),user:currentUser.name,action,details});auditLog=auditLog.slice(0,200);try{localStorage.setItem("toyotaAuditLogV1",JSON.stringify(auditLog))}catch(e){}}
 function hasAccess(module){return !!currentUser?.access?.includes(module)}
+function persistActiveUser(){
+  if(!currentUser)return;
+  try{localStorage.setItem(ACTIVE_USER_KEY,String(currentUser.userId||""));localStorage.setItem("toyotaCurrentUserV1",JSON.stringify({userId:currentUser.userId,baseName:currentUser.baseName,name:currentUser.name,role:currentUser.role,access:currentUser.access}))}catch(e){}
+}
+function renderUserSwitchers(){
+  const selects=[document.getElementById("userSwitcher"),document.getElementById("mobileUserSwitcher")].filter(Boolean);
+  selects.forEach(sel=>{
+    const keep=currentUser?.userId||"";
+    sel.innerHTML="";
+    APP_USERS.forEach(u=>{const o=document.createElement("option");o.value=u.userId;o.textContent=`${u.name} — ${u.role}`;sel.appendChild(o)});
+    if(APP_USERS.some(u=>u.userId===keep))sel.value=keep;
+    sel.onchange=()=>requestUserSwitch(sel.value);
+  });
+}
+function switchUserById(userId){
+  const next=APP_USERS.find(u=>String(u.userId)===String(userId));if(!next)return false;
+  const previous=currentUser?.name||"";currentUser=next;persistActiveUser();renderUserSwitchers();
+  try{applyUserAccess()}catch(e){console.error("Zmiana użytkownika — dostęp",e)}
+  try{show("mainHome")}catch(e){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="mainHome"))}
+  try{renderMainDashboard()}catch(e){}
+  try{renderMobileDashboard()}catch(e){}
+  try{renderTomorrowReadyAlert()}catch(e){}
+  try{syncMobileAttention()}catch(e){}
+  logAction("Zmiana użytkownika",previous?`${previous} → ${next.name}`:next.name);return true;
+}
+window.fleetSwitchUser=requestUserSwitch;
 function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));updateMobileNav(id);if(id==="mainHome")setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention()},0)}
-function renderUserGate(){
-  $("#loginUsername").value="";$("#loginPassword").value="";$("#loginMessage").textContent="";
-}
-async function attemptLogin(){
-  const login=$("#loginUsername").value.trim().toLowerCase(),password=$("#loginPassword").value;
-  const u=APP_USERS.find(x=>x.login.toLowerCase()===login);
-  if(!u){$("#loginMessage").textContent="Nieprawidłowy login lub hasło.";return}
-  const saved=userPasswordHashes[passwordKey(u)];
-  if(saved){const entered=await hashPassword(password);if(entered!==saved){$("#loginMessage").textContent="Nieprawidłowy login lub hasło.";return}}
-  else if(password){$("#loginMessage").textContent="Hasło dla tego konta nie zostało jeszcze ustawione przez administratora. Zostaw pole hasła puste.";return}
-  selectUser(u);
-}
-function selectUser(u){currentUser=u;localStorage.setItem("toyotaCurrentUserV1",JSON.stringify(u));saveDailyLogin(u);$("#loginGate").classList.add("hidden");applyUserAccess();logAction("Logowanie",u.login);show("mainHome");}
-function applyUserAccess(){if(!currentUser)return;$("#currentUserPill").textContent=`${currentUser.name} • ${currentUser.role}`;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
+function applyUserAccess(){if(!currentUser)return;if($("#currentUserPill"))$("#currentUserPill").textContent=currentUser.role;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");renderUserSwitchers();updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
 function auditMonthKey(at){const m=String(at||"").match(/(\d{1,2})[.\/]\s?(\d{1,2})[.\/]\s?(\d{4})/);return m?`${m[3]}-${String(m[2]).padStart(2,"0")}`:""}
 const MONTHLY_REPORTS_KEY="toyotaMonthlyReportsV1";
-let monthlyReports=JSON.parse(localStorage.getItem(MONTHLY_REPORTS_KEY)||"{}");
+let monthlyReports=storageJSON(MONTHLY_REPORTS_KEY,{},"object");
 function saveMonthlyReports(){localStorage.setItem(MONTHLY_REPORTS_KEY,JSON.stringify(monthlyReports))}
 function dateMonthKey(v){const s=String(v||"");let m=s.match(/^(\d{4})-(\d{2})-/);if(m)return `${m[1]}-${m[2]}`;m=s.match(/^(\d{2})[.\/-](\d{2})[.\/-](\d{4})$/);return m?`${m[3]}-${m[2]}`:""}
 function reportForMonth(mk){
@@ -1023,19 +1152,24 @@ function renderMonthlyReport(mk){const live=reportForMonth(mk),arch=monthlyRepor
 function closeSelectedMonth(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md);if(monthlyReports[mk])return;if(!confirm(`Zamknąć miesiąc ${monthLabel(md)}? Raport zostanie zapisany w archiwum.`))return;monthlyReports[mk]={closedAt:new Date().toISOString(),closedBy:currentUser?.name||"",report:reportForMonth(mk)};saveMonthlyReports();logAction("Zamknięcie miesiąca",mk);renderAdmin()}
 function csvCell(v){return `"${String(v??"").replaceAll('"','""')}"`}
 function exportSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const rows=[["RAPORT MIESIĘCZNY",mk],["Wydania",r.releases],["Wydane",r.issued],["Doposażenia",r.mounts],["Godziny montażu",r.hours.toFixed(1)],["Mycia",r.washes],["Ponowne mycia",r.repeatWash],["Testy akumulatorów",r.batteryCount],[],["DOPOSAŻENIOWCY"],["Pracownik","Samochody","Alarm","ID CAN","META","Inne","Godziny"],...Object.entries(r.mountBy).map(([n,x])=>[n,x.cars,x.alarm,x.idCan,x.meta,x.other,x.hours.toFixed(1)]),[],["DODATKOWA PREMIA MYJNIA",r.washBonus],["PRACE DODATKOWE DOPOSAŻENIOWCÓW",r.mountBonus]];const csv='\ufeff'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`raport-${mk}.csv`;a.click();URL.revokeObjectURL(a.href)}
-function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const w=window.open('', '_blank');if(!w)return alert('Przeglądarka zablokowała nowe okno. Zezwól na wyskakujące okna.');w.document.write(`<html><head><meta charset="utf-8"><title>Raport ${mk}</title><style>body{font-family:Arial;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0 18px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}h1{margin-bottom:4px}.muted{color:#555}.report-section{margin-top:20px}</style></head><body><h1>Raport miesięczny — ${mk}</h1><p>${monthlyReports[mk]?"MIESIĄC ZAMKNIĘTY":"RAPORT BIEŻĄCY"}</p>${reportHtml(r)}<script>setTimeout(()=>window.print(),250)<\/script></body></html>`);w.document.close()}
+function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const w=window.open('', '_blank');if(!w)return alert('Przeglądarka zablokowała nowe okno. Zezwól na wyskakujące okna.');w.document.write(`<html><head><meta charset="utf-8"><title>Raport ${mk}</title><style>body{font-family:Arial;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0 18px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}h1{margin-bottom:4px}.muted{color:#555}.report-section{margin-top:20px}</style></head><body><h1>Raport miesięczny — ${mk}</h1><p>${monthlyReports[mk]?"MIESIĄC ZAMKNIĘTY":"RAPORT BIEŻĄCY"}</p>${reportHtml(r)}<script>setTimeout(()=>window.print(),250)<\/script>
+</body></html>`);w.document.close()}
 function renderAdmin(){
  const addBtn=$("#addUserBtn");if(addBtn)addBtn.onclick=addNewUser;
- $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b><div class="muted" style="margin-top:4px">${userHasPasswordByUser(u)?"🔒 Hasło ustawione":"⚠ Hasło nieustawione"}</div></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('\"','&quot;')}" placeholder="Imię i nazwisko"><input class="admin-login-input" data-user="${idx}" value="${u.login}" autocapitalize="none" spellcheck="false" placeholder="login.nazwisko"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz imię i login</button><input type="password" class="admin-password-input" data-user="${idx}" autocomplete="new-password" placeholder="Nowe hasło (min. 4 znaki)" style="max-width:260px"><button class="btn set-user-password" data-user="${idx}" type="button">${userHasPasswordByUser(u)?"Zmień hasło":"Ustaw hasło"}</button></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.name==="Igor Gieruszka"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
- document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value,login=document.querySelector(`.admin-login-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name,login)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
- document.querySelectorAll(".set-user-password").forEach(b=>b.onclick=async()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],input=document.querySelector(`.admin-password-input[data-user="${idx}"]`);if(await setUserPasswordForUser(u,input.value)){alert(`Hasło dla ${u.name} zostało zapisane.`);renderAdmin()}});
+ $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:minmax(190px,1fr);gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('\"','&quot;')}" placeholder="Imię i nazwisko"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz imię</button></div><div class="admin-password-box"><div class="admin-password-head"><b>HASŁO</b><span class="password-status ${passwordIsSet(u)?"set":""}">${passwordIsSet(u)?"USTAWIONE":"BRAK HASŁA"}</span></div><div class="admin-password-controls"><input type="password" class="admin-password-input" data-user="${idx}" placeholder="Nowe hasło (min. 4 znaki)" autocomplete="new-password"><button class="btn set-user-password" data-user="${idx}" type="button">Ustaw / zmień</button>${u.role!=="Główny Koordynator"&&passwordIsSet(u)?`<button class="btn clear-user-password" data-user="${idx}" type="button">Usuń hasło</button>`:""}</div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.role==="Główny Koordynator"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
+ document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
+ document.querySelectorAll(".set-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],inp=document.querySelector(`.admin-password-input[data-user="${idx}"]`);if(setUserPassword(u,inp?.value||"")){if(inp)inp.value="";alert(`Hasło dla ${u.name} zostało zapisane.`);renderAdmin()}});
+ document.querySelectorAll(".clear-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];if(confirm(`Usunąć hasło użytkownika ${u.name}?`)&&clearUserPassword(u))renderAdmin()});
  document.querySelectorAll(".save-user-access").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];const access=[...document.querySelectorAll(`.admin-access-check[data-user="${idx}"]:checked`)].map(x=>x.value);if(saveUserPermissions(u.name,access)){renderAdmin()}});
  document.querySelectorAll(".reset-user-access").forEach(b=>b.onclick=()=>resetUserPermissions(APP_USERS[Number(b.dataset.user)].name));
  const md=shiftedMonth(adminMonthOffset), mk=monthKey(md); $("#adminMonthLabel").textContent=monthLabel(md); const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
  renderMonthlyReport(mk);
  $("#auditRows").innerHTML=logs.length?logs.map(a=>`<tr><td>${a.at}</td><td>${a.user}</td><td>${a.action}</td><td>${a.details||"—"}</td></tr>`).join(""):`<tr><td colspan="4">Brak zapisanych operacji w tym miesiącu.</td></tr>`;
 }
-renderUserGate();if(currentUser && APP_USERS.some(u=>u.userId===currentUser.userId||u.baseName===currentUser.baseName||u.name===currentUser.name)){currentUser=APP_USERS.find(u=>u.userId===currentUser.userId||u.baseName===currentUser.baseName||u.name===currentUser.name);if(dailyLoginIsValid(currentUser)){$("#loginGate").classList.add("hidden");applyUserAccess();}else{currentUser=null;localStorage.removeItem("toyotaCurrentUserV1");clearDailyLogin();}}
+if(!currentUser&&APP_USERS.length)currentUser=APP_USERS[0];
+persistActiveUser();renderUserSwitchers();
+try{applyUserAccess()}catch(e){console.error("Błąd inicjalizacji użytkownika",e)}
+initAuthGate();
 
 /* ---------- RELEASE DATA ---------- */
 const releaseSeed=[
@@ -1080,7 +1214,7 @@ if(!localStorage.getItem(CLEAN_START_KEY)){
   localStorage.removeItem("toyotaBatteryTestsV1");
   localStorage.setItem(CLEAN_START_KEY,"1");
 }
-let releaseData=JSON.parse(localStorage.getItem("toyotaFleetDemoV2")||"null")||[];
+let releaseData=storageJSON("toyotaFleetDemoV2",[],"array").filter(x=>x&&typeof x==="object");
 
 function parseReleaseWorkItems(text){
   const seen=new Set();
@@ -1427,12 +1561,14 @@ function renderDay(){
       q.onchange=e=>{
         e.stopPropagation();
         if(r.status==="WYDANE") return;
-        if(q.checked && !r.fuelReady){q.checked=false;alert("Najpierw otwórz samochód i potwierdź, że paliwo jest zatankowane.");return;}
+        if(q.checked && !r.fuelReady){q.checked=false;alert("Najpierw otwórz samochód i potwierdź, że paliwo jest zatankowane.");openVehicle(r.id);return;}
         r.releaseReady=q.checked;
+        logAction(r.releaseReady?"Auto gotowe do wydania":"Cofnięcie gotowości",r.vin);
         recalcReleaseStatus(r);
         saveRelease();
         renderDay();
         renderReleaseHome();
+        renderTomorrowReadyAlert();
       };
 
       const mountOrderBtn=row.querySelector(".mount-order-inline");
@@ -1471,7 +1607,7 @@ function openVehicle(id){
   $("#checkReleaseReady").checked=!!r.releaseReady;
   renderReleaseWorkChecklist(r);
   updateCheckLook();
-  $("#markIssued").disabled=r.status==="WYDANE";$("#undoIssued").disabled=r.status!=="WYDANE";show("releaseVehicle");
+  $("#markIssued").disabled=r.status==="WYDANE"||!r.releaseReady;$("#undoIssued").disabled=r.status!=="WYDANE";show("releaseVehicle");
 }
 function renderReleaseWorkChecklist(r){
   const box=$("#releaseWorkChecklist"); if(!box) return;
@@ -1486,6 +1622,8 @@ function updateCheckLook(){
   normalizeReleaseRequirements(r);
   $("#labFuelReady").classList.toggle("checked",!!r.fuelReady);
   $("#labReleaseReady").classList.toggle("checked",!!r.releaseReady);
+  if($("#markIssued"))$("#markIssued").disabled=r.status==="WYDANE"||!r.releaseReady;
+  if($("#undoIssued"))$("#undoIssued").disabled=r.status!=="WYDANE";
   const items=ensureReleaseWorkItems(r), done=items.filter(x=>x.done).length;
   recalcReleaseStatus(r);
   const pending=!allReleaseWorkDone(r);
@@ -1493,7 +1631,7 @@ function updateCheckLook(){
 }
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
-let fleetCars=JSON.parse(localStorage.getItem("toyotaFleetCarsDB3")||"null")||[];
+let fleetCars=storageJSON("toyotaFleetCarsDB3",[],"array").filter(x=>x&&typeof x==="object");
 
 // PLAN DEMONSTRACYJNY: 20 samochodów na najbliższy tydzień roboczy (31.08–04.09.2026).
 // Uruchamia się tylko raz na danym urządzeniu, aby późniejsze zmiany użytkownika nie były nadpisywane.
@@ -1738,7 +1876,6 @@ function renderMobileDashboard(){
   const pct=todayReleases.length?Math.round(ready/todayReleases.length*100):0;
   if($("#mobileGreeting"))$("#mobileGreeting").textContent=first?`Dzisiaj, ${first}`:"Dzisiaj";
   if($("#mobileDateLabel"))$("#mobileDateLabel").textContent=new Intl.DateTimeFormat("pl-PL",{weekday:"long",day:"numeric",month:"long"}).format(new Date());
-  if($("#mobileUserButton")){const parts=(currentUser.name||"").trim().split(/\s+/);$("#mobileUserButton").textContent=(parts[0]?.[0]||"")+(parts[1]?.[0]||"");}
   if($("#mobileActiveCars"))$("#mobileActiveCars").textContent=active;
   if($("#mobileSummarySub"))$("#mobileSummarySub").textContent=todayReleases.length?`${todayReleases.length} wydań dzisiaj • ${ready} gotowych`:`Brak wydań na dzisiaj • ${active} aut pozostaje w obiegu`;
   if($("#mobileReleaseCount"))$("#mobileReleaseCount").textContent=todayReleases.length;
@@ -1769,10 +1906,10 @@ function syncMobileAttention(){
   const details=$("#mobileAttentionDetails");if(details)details.innerHTML=`<div class="mobile-attention-cat">${notReady.length} • auta na następny dzień niegotowe</div><div class="mobile-attention-cat">${mounts} • otwarte montaże</div><div class="mobile-attention-cat">${overdue} • testy akumulatora po terminie</div>${notReady.map(r=>`<div class="mobile-attention-car"><b>${r.time||"—"} • ${r.client||"—"}</b><div>${r.model||"—"} • VIN ${r.vin||"—"}</div><div class="mobile-attention-missing">${missingReadyItems(r).join(" • ")}</div></div>`).join("")}`;
 }
 function addMobileRecentVin(vin){
-  const v=normalizeVin(vin);if(!v)return;let arr=JSON.parse(localStorage.getItem(MOBILE_RECENT_VINS_KEY)||"[]");arr=[v,...arr.filter(x=>x!==v)].slice(0,5);localStorage.setItem(MOBILE_RECENT_VINS_KEY,JSON.stringify(arr));renderMobileRecentVins();
+  const v=normalizeVin(vin);if(!v)return;let arr=storageJSON(MOBILE_RECENT_VINS_KEY,[],"array").filter(x=>typeof x==="string");arr=[v,...arr.filter(x=>x!==v)].slice(0,5);try{localStorage.setItem(MOBILE_RECENT_VINS_KEY,JSON.stringify(arr))}catch(e){}renderMobileRecentVins();
 }
 function renderMobileRecentVins(){
-  const box=$("#mobileRecentVins");if(!box)return;let arr=[];try{arr=JSON.parse(localStorage.getItem(MOBILE_RECENT_VINS_KEY)||"[]")}catch(e){};box.innerHTML=arr.map(v=>`<button type="button" data-recent-vin="${v}">${v.slice(-6)}</button>`).join("");box.querySelectorAll("[data-recent-vin]").forEach(b=>b.onclick=()=>{$("#mobileVinSearch").value=b.dataset.recentVin;runMobileVinSearch()});
+  const box=$("#mobileRecentVins");if(!box)return;const arr=storageJSON(MOBILE_RECENT_VINS_KEY,[],"array").filter(x=>typeof x==="string");box.innerHTML=arr.map(v=>`<button type="button" data-recent-vin="${v}">${v.slice(-6)}</button>`).join("");box.querySelectorAll("[data-recent-vin]").forEach(b=>b.onclick=()=>{$("#mobileVinSearch").value=b.dataset.recentVin;runMobileVinSearch()});
 }
 function runMobileVinSearch(){
   const inp=$("#mobileVinSearch"),out=$("#mobileVinResult");if(!inp||!out)return;const q=normalizeVin(inp.value);$("#globalVinSearch").value=q;renderGlobalVinSearch();out.innerHTML=$("#globalVinResult").innerHTML;out.classList.add("open");const hit=fleetCars.find(c=>normalizeVin(c.vin).endsWith(q)||normalizeVin(c.vin).includes(q));if(q.length>=4&&hit)addMobileRecentVin(hit.vin);
@@ -1800,12 +1937,12 @@ function renderGlobalVinSearch(){
   if(!hits.length){out.classList.add("open");out.innerHTML='<div class="muted">Nie znaleziono samochodu.</div>';return}
   const c=hits[0], rel=releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(c.vin)).sort((a,b)=>`${b.date||""} ${b.time||""}`.localeCompare(`${a.date||""} ${a.time||""}`))[0],eq=getCarReleaseEquipment(c.vin);
   const done=eq?.items?.filter(x=>x.done).length||0,total=eq?.items?.length||0,arch=c.status==="WYJECHAŁ"||rel?.status==="WYDANE";
-  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"ARCHIWUM / WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
+  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
   addMobileRecentVin(c.vin);
 }
 
 /* ---------- EXTRA WORK FOR BONUS SETTLEMENT ---------- */
-let extraBonusWorks=JSON.parse(localStorage.getItem("toyotaExtraBonusWorksV1")||"null")||[];
+let extraBonusWorks=storageJSON("toyotaExtraBonusWorksV1",[],"array").filter(x=>x&&typeof x==="object");
 let editingExtraWorkId=null;
 
 function saveExtraBonusWorks(){
@@ -1911,7 +2048,7 @@ function renderExtraWorks(){
 }
 
 /* ---------- BATTERY TESTS ---------- */
-let batteryTests=JSON.parse(localStorage.getItem("toyotaBatteryTestsV1")||"null")||[];
+let batteryTests=storageJSON("toyotaBatteryTestsV1",[],"array").filter(x=>x&&typeof x==="object");
 
 function saveBatteryTests(){
   localStorage.setItem("toyotaBatteryTestsV1",JSON.stringify(batteryTests));
@@ -2111,7 +2248,7 @@ const mountJobsSeed=[
   {owner:"Mateusz Bodnar",date:"12.08.2026",vin:"JTM5EAAV00J012750",alarm:true,alarmCode:"21176",extra:false,extraDesc:"",hours:"3",notes:"16"}
 ];
 
-let mountJobs=JSON.parse(localStorage.getItem("toyotaMountJobsV3")||"null")||[];
+let mountJobs=storageJSON("toyotaMountJobsV3",[],"array").filter(x=>x&&typeof x==="object");
 
 // PRZYKŁAD W APLIKACJI: ten sam samochód wykonany przez obu doposażeniowców.
 // Dodawany tylko raz, żeby można było od razu zobaczyć oznaczenie WSPÓLNY SAMOCHÓD
@@ -2365,7 +2502,7 @@ function renderMountTable(){
   $("#ownerHours").textContent=`${String(totalHours).replace(".",",")} h`;
 
   $("#mountRows").innerHTML=jobs.length ? jobs.map(r=>`
-    <tr class="completed">
+    <tr class="completed ${r.closed?"mount-closed-row":""}">
       <td>${r.date||""}</td>
       <td class="vin-cell">${r.vin||""}${mountSharedNote(r)}</td>
       <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${r.vin}" type="checkbox" ${r.alarmCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
@@ -2743,8 +2880,8 @@ document.addEventListener("click",(e)=>{
 
 
 /* ---------- MYJNIA ---------- */
-let washRecords=JSON.parse(localStorage.getItem("toyotaWashRecordsV1")||"[]");
-let washBonusWorks=JSON.parse(localStorage.getItem("toyotaWashBonusWorksV1")||"[]");
+let washRecords=storageJSON("toyotaWashRecordsV1",[],"array").filter(x=>x&&typeof x==="object");
+let washBonusWorks=storageJSON("toyotaWashBonusWorksV1",[],"array").filter(x=>x&&typeof x==="object");
 function saveWashBonus(){localStorage.setItem("toyotaWashBonusWorksV1",JSON.stringify(washBonusWorks))}
 function renderWashBonus(){const box=$("#washBonusList");if(!box)return;const month=(washSelectedDay||washTargetDay()).slice(0,7);const rows=washBonusWorks.filter(x=>String(x.date||x.createdAt||"").slice(0,7)===month).sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||"")));box.innerHTML=rows.length?rows.map(x=>`<div class="wash-bonus-row"><b>${fmtDate(x.date)}</b><div>${x.text}<div class="muted">${x.user||"Konrad Dąbrowski"}</div></div><button class="btn wash-bonus-del" data-id="${x.id}" type="button">Usuń</button></div>`).join(""):'<div class="muted">Brak dodatkowych prac do premii.</div>';document.querySelectorAll(".wash-bonus-del").forEach(b=>b.onclick=()=>{washBonusWorks=washBonusWorks.filter(x=>String(x.id)!==String(b.dataset.id));saveWashBonus();logAction("Usunięcie dodatkowej pracy myjni","");renderWashBonus()})}
 function addWashBonusWork(){const inp=$("#washBonusInput"),msg=$("#washBonusMessage");const text=(inp?.value||"").trim();if(!text){msg.textContent="Wpisz dodatkową czynność.";msg.className="message error";return}washBonusWorks.push({id:Date.now(),date:isoToday(),createdAt:new Date().toISOString(),text,user:currentUser?.name||"Konrad Dąbrowski"});saveWashBonus();logAction("Dodatkowa praca do premii — Myjnia",text);inp.value="";msg.textContent="Dodano do dodatkowej premii.";msg.className="message ok";renderWashBonus()}
@@ -2871,7 +3008,7 @@ $("#checkFuelReady").onchange=()=>{
   r.fuelReady=$("#checkFuelReady").checked;
   if(!r.fuelReady && r.releaseReady){r.releaseReady=false;$("#checkReleaseReady").checked=false;}
   logAction(r.fuelReady?"Potwierdzenie paliwa":"Cofnięcie potwierdzenia paliwa",r.vin);
-  recalcReleaseStatus(r);saveRelease();updateCheckLook();renderReleaseHome();
+  recalcReleaseStatus(r);saveRelease();updateCheckLook();renderReleaseHome();renderTomorrowReadyAlert();
 };
 $("#checkReleaseReady").onchange=()=>{
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
@@ -2882,10 +3019,14 @@ $("#checkReleaseReady").onchange=()=>{
   saveRelease();
   updateCheckLook();
   renderReleaseHome();
+  renderTomorrowReadyAlert();
 };
 $("#markIssued").onclick=()=>{
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
-  r.status="WYDANE";logAction("Oznaczenie auta jako WYDANE",r.vin);saveRelease();const c=ensureCar(r.vin);c.status="WYJECHAŁ";saveCars();syncBatteryCars();openVehicle(r.id);renderReleaseHome();
+  normalizeReleaseRequirements(r);
+  if(!r.fuelReady){alert("Najpierw potwierdź, że samochód jest zatankowany.");return;}
+  if(!r.releaseReady){alert("Najpierw oznacz samochód jako gotowy do wydania.");return;}
+  r.status="WYDANE";logAction("Oznaczenie auta jako WYDANE",r.vin);saveRelease();const c=ensureCar(r.vin);c.status="WYJECHAŁ";saveCars();syncBatteryCars();openVehicle(r.id);renderReleaseHome();renderBattery();renderCars();renderTomorrowReadyAlert();
 };
 $("#undoIssued").onclick=()=>{
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
@@ -2918,10 +3059,8 @@ if($("#mobileNavReleases"))$("#mobileNavReleases").onclick=()=>openMobileRoute("
 if($("#mobileNavCars"))$("#mobileNavCars").onclick=()=>openMobileRoute("carsView");
 if($("#mobileNavTasks"))$("#mobileNavTasks").onclick=()=>{show("mainHome");setTimeout(()=>$("#mobileTasksSection")?.scrollIntoView({behavior:"smooth",block:"start"}),50)};
 if($("#mobileNavMore"))$("#mobileNavMore").onclick=openMobileMore;
-if($("#mobileUserButton"))$("#mobileUserButton").onclick=openMobileMore;
 if($("#mobileMoreBackdrop"))$("#mobileMoreBackdrop").onclick=e=>{if(e.target===$("#mobileMoreBackdrop"))closeMobileMore()};
 document.querySelectorAll("[data-mobile-more-route]").forEach(b=>b.onclick=()=>openMobileRoute(b.dataset.mobileMoreRoute));
-if($("#mobileLogoutBtn"))$("#mobileLogoutBtn").onclick=()=>{$("#changeUserBtn").click();closeMobileMore()};
 
 $("#globalVinSearchBtn").onclick=renderGlobalVinSearch;$("#globalVinSearch").onkeydown=e=>{if(e.key==="Enter")renderGlobalVinSearch()};
 if($("#openArchive"))$("#openArchive").onclick=()=>{renderArchive();show("archiveView")};if($("#backMainFromArchive"))$("#backMainFromArchive").onclick=()=>show("mainHome");if($("#archiveSearch"))$("#archiveSearch").oninput=renderArchive;
@@ -2933,8 +3072,6 @@ $("#openBattery").onclick=()=>{if(!hasAccess("battery"))return;logAction("Otwarc
 $("#backMainFromBattery").onclick=()=>show("mainHome");
 $("#batterySearch").oninput=renderBattery;
 
-$("#changeUserBtn").onclick=()=>{logAction("Wylogowanie",currentUser?.login||"");currentUser=null;localStorage.removeItem("toyotaCurrentUserV1");clearDailyLogin();$("#loginGate").classList.remove("hidden");renderUserGate();setTimeout(()=>$("#loginUsername").focus(),0);};
-$("#loginForm").onsubmit=e=>{e.preventDefault();attemptLogin()};
 
 $("#openWash").onclick=()=>{if(!hasAccess("wash"))return;logAction("Otwarcie modułu","Myjnia");renderWash();show("washView")};
 $("#backMainFromWash").onclick=()=>show("mainHome");
@@ -2955,6 +3092,8 @@ syncIssuedToCars();
 syncBatteryCars();
 
 setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention();updateMobileNav("mainHome")},0);
+window.__FLEET_BOOT_OK=true;
 </script>
+
 </body>
 </html>
