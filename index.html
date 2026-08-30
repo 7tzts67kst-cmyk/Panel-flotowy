@@ -371,7 +371,38 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 .admin-password-box{border:1px solid #e1e4e8;border-radius:11px;background:#fafafa;padding:10px;margin:0 0 10px}.admin-password-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}.admin-password-head b{font-size:11px}.password-status{font-size:10px;font-weight:900;padding:4px 7px;border-radius:999px;background:#fff3cd;color:#7a5700}.password-status.set{background:#e9f7ee;color:#146c3b}.admin-password-controls{display:flex;gap:7px;flex-wrap:wrap}.admin-password-controls input{min-width:180px;flex:1;min-height:42px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit}.admin-password-controls .btn{min-height:42px}
 @media(max-width:720px){.auth-card{padding:19px;border-radius:19px}.auth-card h1{font-size:22px}.auth-actions{flex-direction:column}.admin-password-controls{display:grid;grid-template-columns:1fr}.admin-password-controls input{min-width:0;width:100%}}
 
+
+/* Podział doposażeniowca: do zamontowania / zamontowane */
+.mount-worker-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.mount-stage-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;box-shadow:var(--shadow);cursor:pointer;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.mount-stage-card:hover{border-color:#98a2b3}.mount-stage-card strong{font-size:23px;line-height:1.1}.mount-stage-card .stage-count{font-size:42px;font-weight:1000;margin-top:18px}.mount-stage-card .stage-arrow{font-weight:1000;margin-top:20px;display:flex;justify-content:space-between;align-items:center}.mount-stage-card.done{border-color:#b7d7c4;background:#f4fbf6}.mount-stage-card.done .stage-count{color:#176b3a}.mount-stage-card.todo .stage-count{color:#b54708}.mount-close-count{margin-top:10px;font-size:12px;font-weight:1000;color:#b42318}.mount-stage-card.done .mount-close-count{color:#176b3a}
+.mount-done-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.mount-done-summary>div{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px}.mount-done-summary small{display:block;color:var(--muted);font-weight:800}.mount-done-summary b{display:block;font-size:24px;margin-top:5px}
+@media(max-width:700px){.mount-worker-choice{grid-template-columns:1fr}.mount-stage-card{min-height:145px}.mount-stage-card strong{font-size:20px}.mount-stage-card .stage-count{font-size:34px}.mount-done-summary{grid-template-columns:1fr}}
+
+
+/* ADMIN — SYSTEM PREMIOWY */
+.bonus-launch{border-left:5px solid #1457d9;background:linear-gradient(135deg,#fff,#f6f9ff)}
+.bonus-launch .bonus-launch-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.bonus-launch .bonus-launch-copy{min-width:0}.bonus-launch .bonus-launch-copy p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.bonus-wrap{max-width:1220px;margin:0 auto}.bonus-topbar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
+.bonus-field{display:flex;flex-direction:column;gap:6px}.bonus-field label{font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+.bonus-field input,.bonus-field select{min-height:42px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;font:inherit;font-size:14px}
+.bonus-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}.bonus-tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;cursor:pointer;font-weight:900}
+.bonus-tab.active{background:#1457d9;color:#fff;border-color:#1457d9}.bonus-pane.hidden{display:none}
+.bonus-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.bonus-kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.bonus-kpi .label{font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.03em}.bonus-kpi .value{font-size:25px;font-weight:1000;margin-top:6px}
+.bonus-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px;box-shadow:var(--shadow)}.bonus-panel h2{margin:0 0 14px;font-size:18px}.bonus-panel h3{margin:0 0 10px;font-size:15px}
+.bonus-tablewrap{overflow:auto}.bonus-table{width:100%;border-collapse:collapse;min-width:900px}.bonus-table.wide{min-width:1900px}.bonus-table th,.bonus-table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:12px}.bonus-table th{font-size:11px;color:var(--muted);text-transform:uppercase;white-space:nowrap}.bonus-money{text-align:right!important;font-variant-numeric:tabular-nums}
+.bonus-pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#f2f4f7;font-size:11px;font-weight:900}.bonus-pill.blue{background:#eaf1ff;color:#1849a9}.bonus-pill.ok{background:#ecfdf3;color:#087443}.bonus-pill.warn{background:#fffaeb;color:#b54708}.bonus-pill.purple{background:#f4f3ff;color:#6941c6}.bonus-pill.no{background:#fef3f2;color:#b42318}
+.bonus-employee-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.bonus-emp{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.bonus-emp h3{margin:0}.bonus-emp .role{color:var(--muted);margin-top:3px;font-size:13px}.bonus-emp .calc{margin-top:12px;padding:11px;border-radius:10px;background:#f8fafc;font-size:13px;line-height:1.5}
+.bonus-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.bonus-inputs label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;font-weight:800}.bonus-inputs input{width:100%;min-height:40px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit;font-size:14px}
+.bonus-total{margin-top:12px;font-size:17px;font-weight:1000}.bonus-total span{color:#1457d9}.bonus-note{font-size:12px;color:var(--muted);margin-top:8px}.bonus-discretionary{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}.bonus-discretionary-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.bonus-discretionary-head strong{font-size:13px}.bonus-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}.bonus-row{display:grid;grid-template-columns:minmax(110px,.7fr) minmax(180px,2fr) auto;gap:8px;align-items:end}.bonus-row input{width:100%;min-height:40px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit;font-size:14px}.bonus-row label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;font-weight:800}.bonus-meta{font-size:10px;color:var(--muted);margin-top:4px}.bonus-empty{font-size:12px;color:var(--muted);padding:8px 0}
+.bonus-callout{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#f8fafc;margin:10px 0}.bonus-callout.warn{border-color:#fedf89;background:#fffaeb}.bonus-callout.ok{border-color:#abefc6;background:#ecfdf3}.bonus-export-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.bonus-mapping{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}.bonus-mapping-card{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fff}.bonus-mapping-card strong{display:block;margin-bottom:5px}.bonus-small{font-size:12px}.bonus-status-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+@media(max-width:800px){.bonus-grid{grid-template-columns:repeat(2,1fr)}.bonus-employee-grid{grid-template-columns:1fr}.bonus-inputs{grid-template-columns:1fr}.bonus-row{grid-template-columns:1fr}.bonus-mapping{grid-template-columns:1fr}}
+@media(max-width:480px){.bonus-grid{grid-template-columns:1fr}.bonus-tabs{display:grid;grid-template-columns:1fr 1fr}.bonus-tab{width:100%}.bonus-topbar{display:grid;grid-template-columns:1fr}.bonus-topbar .btn{width:100%}}
+
 </style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body class="auth-locked">
 <div class="top"><div class="brand"><b>TOYOTA</b> • DZIAŁ FLOTOWY</div><div>PANEL OPERACYJNY</div></div>
@@ -611,6 +642,25 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   <div class="people" id="peopleCards"></div>
 </section>
 
+<section id="mountWorkerMenu" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backWorkerMenuToOwners">←</button>
+      <div><h1 id="mountWorkerMenuTitle">Doposażeniowiec</h1><div class="muted" style="margin-top:5px">Wybierz listę, którą chcesz otworzyć.</div></div>
+    </div>
+  </div>
+  <div class="mount-worker-choice">
+    <button class="mount-stage-card todo" id="openMountTodo" type="button">
+      <div><div class="muted" style="font-weight:900;font-size:11px">PRACA BIEŻĄCA</div><strong>Do zamontowania</strong><div class="stage-count" id="mountMenuTodoCount">0</div><div class="muted">Samochody oczekujące na wykonanie doposażenia.</div><div class="mount-close-count">Do zamknięcia: <span id="mountMenuTodoCloseCount">0</span> zleceń</div></div>
+      <div class="stage-arrow"><span>Otwórz listę</span><span>→</span></div>
+    </button>
+    <button class="mount-stage-card done" id="openMountDone" type="button">
+      <div><div class="muted" style="font-weight:900;font-size:11px">HISTORIA WYKONANIA</div><strong>Zamontowane</strong><div class="stage-count" id="mountMenuDoneCount">0</div><div class="muted">Wykonane samochody, zamknięcia zleceń i dodatkowa premia.</div><div class="mount-close-count">Do zamknięcia: <span id="mountMenuDoneCloseCount">0</span> zleceń</div></div>
+      <div class="stage-arrow"><span>Otwórz listę</span><span>→</span></div>
+    </button>
+  </div>
+</section>
+
 
 <section id="mountList" class="view">
   <div class="header-row">
@@ -624,10 +674,14 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <div class="owner-stats">
       <span class="owner-badge" id="ownerCount"></span>
       <div class="hours-kpi">
-        <small>Łącznie godzin</small>
-        <strong id="ownerHours">0 h</strong>
+        <small>Zlecenia do zamknięcia</small>
+        <strong id="ownerHours">0</strong>
       </div>
     </div>
+  </div>
+
+  <div class="mount-new-toolbar">
+    <button class="btn primary" id="toggleMountForm">+ Dodaj montaż</button>
   </div>
 
   <div class="period-nav"><button id="mountPrevMonth">← Miesiąc</button><button class="today-btn" id="mountThisMonth">Bieżący</button><div class="period-label" id="mountMonthLabel"></div><button id="mountNextMonth">Miesiąc →</button></div>
@@ -642,10 +696,6 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <div class="mount-plan-title">Samochody do zrobienia</div>
     <div class="muted" style="margin-top:3px">Tu automatycznie trafiają samochody znajdujące się na placu z niewykonanym doposażeniem oraz auta z wydań, które nie są jeszcze pilne. K1 i samochody wydane są pomijane.</div>
     <div class="urgent-list" id="mountWorkerPlanList"></div>
-  </div>
-
-  <div class="mount-new-toolbar">
-    <button class="btn primary" id="toggleMountForm">+ Dodaj montaż</button>
   </div>
 
   <div class="mount-entry" id="mountFormCard">
@@ -756,11 +806,29 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     </table>
   </div>
 
+
+</section>
+
+<section id="mountDoneList" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backMountDoneToMenu">←</button>
+      <div><h1 id="mountDoneOwnerTitle"></h1><div class="muted" style="margin-top:5px">Zamontowane samochody i dodatkowa premia</div></div>
+    </div>
+  </div>
+  <div class="period-nav"><button id="mountDonePrevMonth">← Miesiąc</button><button class="today-btn" id="mountDoneThisMonth">Bieżący</button><div class="period-label" id="mountDoneMonthLabel"></div><button id="mountDoneNextMonth">Miesiąc →</button></div>
+  <div class="mount-done-summary"><div><small>ZAMONTOWANE W MIESIĄCU</small><b id="mountDoneCount">0</b></div><div><small>ZLECENIA DO ZAMKNIĘCIA</small><b id="mountDoneHours">0</b></div></div>
+  <div class="mount-list-wrap">
+    <table class="mount-new-table">
+      <thead><tr><th>DATA</th><th>VIN</th><th>ALARM</th><th>KOD ALARMU</th><th>ID CAN</th><th>META</th><th>DODATKOWE WYPOSAŻENIE</th><th>GODZINY</th><th>UWAGI</th><th>AKCJE</th></tr></thead>
+      <tbody id="mountDoneRows"></tbody>
+    </table>
+  </div>
   <div class="extra-work-box">
     <div class="extra-work-head">
       <div>
-        <h2 style="margin:0">Prace dodatkowe do premii</h2>
-        <div class="muted" style="margin-top:4px">Doposażeniowiec wpisuje tylko krótki opis wykonanej pracy. Wycenę ustalisz później indywidualnie.</div>
+        <h2 style="margin:0">Dodatkowa premia</h2>
+        <div class="muted" style="margin-top:4px">Doposażeniowiec wpisuje dodatkowe prace wykonane poza standardowym montażem. Wycenę możesz ustalić później indywidualnie.</div>
       </div>
       <button class="btn primary" id="addExtraWorkBtn" type="button">+ Dodaj pracę dodatkową</button>
     </div>
@@ -887,6 +955,13 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 
 <section id="adminView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backMainFromAdmin">←</button><div><h1>Panel administratora</h1><div class="muted" style="margin-top:5px">Użytkownicy, uprawnienia i historia operacji.</div></div></div></div>
+
+  <div class="admin-card bonus-launch">
+    <div class="bonus-launch-row">
+      <div class="bonus-launch-copy"><h2>Premia</h2><p>Miesięczne rozliczenie wynagrodzeń, premii doposażeniowców oraz eksport do kadr.</p></div>
+      <button class="btn primary" id="openBonusAdmin" type="button">Otwórz system premiowy →</button>
+    </div>
+  </div>
   <div class="period-nav"><button id="adminPrevMonth">← Miesiąc</button><button class="today-btn" id="adminThisMonth">Bieżący</button><div class="period-label" id="adminMonthLabel"></div><button id="adminNextMonth">Miesiąc →</button></div>
   <div class="admin-card" id="monthlyReportCard">
     <div class="header-row"><div><h2>Raport miesięczny</h2><div class="muted" id="reportPeriodLabel"></div></div><span class="report-status" id="reportStatus">OTWARTY</span></div>
@@ -898,6 +973,58 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników, zmieniać ich imiona i loginy, ustawiać hasła oraz dostęp do modułów. Hasła startowe są ustawione dla całego zespołu i możesz je tutaj później zmienić.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><input id="newUserLogin" placeholder="Login, np. jan.kowalski" autocapitalize="none" spellcheck="false"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Konto i uprawnienia</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
   <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
 </section>
+
+
+<section id="bonusAdminView" class="view">
+  <div class="header-row"><div class="header-left"><button class="back" id="backBonusToAdmin">←</button><div><h1>Premia</h1><div class="muted" style="margin-top:5px">Wsparcie Operacyjne — miesięczne rozliczenie wynagrodzeń i eksport do kadr.</div></div></div><span class="owner-badge">TYLKO ADMINISTRATOR</span></div>
+  <div class="bonus-wrap">
+    <div class="bonus-topbar">
+      <div class="bonus-field"><label>Miesiąc rozliczenia</label><input id="bonusMonth" type="month"></div>
+      <div class="bonus-field"><label>Liczba wydanych samochodów • wpisz ręcznie</label><input id="bonusIssuedCars" type="number" min="0" step="1" value="0" inputmode="numeric"><div class="bonus-meta">To jest liczba do wyliczenia premii wynikowej, nie premia dodatkowa.</div></div>
+      <div class="bonus-field"><label>Umyte samochody • automatycznie</label><input id="bonusWashedCars" type="number" min="0" step="1" value="0" readonly></div>
+      <button class="btn" id="bonusResetBtn" type="button">Odśwież dane z systemu</button>
+    </div>
+    <div class="bonus-callout ok" style="margin-top:0"><strong>Rozliczenie łączy dane ręczne i automatyczne.</strong><div class="bonus-small" style="margin-top:5px">Liczbę wydanych samochodów dla koordynatorów wpisujesz ręcznie na podstawie drugiej aplikacji. System przelicza z niej premię wynikową według stawek. <b>Nie jest to premia dodatkowa.</b> Premię dodatkową wpisujesz ręcznie osobno na karcie konkretnego pracownika. Myjnia jest pobierana automatycznie z wykonanych myć, a godziny Mateusza i Jakuba z zapisanych montaży w wybranym miesiącu.</div></div>
+
+    <div class="bonus-tabs">
+      <button class="bonus-tab active" data-bonus-tab="bonusSummaryPane" type="button">Podsumowanie</button>
+      <button class="bonus-tab" data-bonus-tab="bonusEmployeesPane" type="button">Pracownicy</button>
+      <button class="bonus-tab" data-bonus-tab="bonusDoposPane" type="button">Doposażeniowcy</button>
+      <button class="bonus-tab" data-bonus-tab="bonusHrExportPane" type="button">Eksport do kadr</button>
+    </div>
+
+    <section id="bonusSummaryPane" class="bonus-pane">
+      <div class="bonus-grid">
+        <div class="bonus-kpi"><div class="label">Pracownicy</div><div class="value" id="bonusKpiEmployees">7</div></div>
+        <div class="bonus-kpi"><div class="label">Podstawy brutto</div><div class="value" id="bonusKpiBase">0 zł</div></div>
+        <div class="bonus-kpi"><div class="label">Premie razem</div><div class="value" id="bonusKpiBonus">0 zł</div></div>
+        <div class="bonus-kpi"><div class="label">Łączne brutto</div><div class="value" id="bonusKpiTotal">0 zł</div></div>
+      </div>
+      <div class="bonus-panel"><h2>Miesięczne zestawienie</h2><div class="bonus-tablewrap"><table class="bonus-table"><thead><tr><th>Pracownik</th><th>Stanowisko</th><th class="bonus-money">Podstawa</th><th class="bonus-money">Premia wynikowa</th><th class="bonus-money">Premia dodatkowa ręczna (urlop N)</th><th class="bonus-money">Premia razem</th><th class="bonus-money">Łącznie brutto</th></tr></thead><tbody id="bonusSummaryRows"></tbody></table></div></div>
+    </section>
+
+    <section id="bonusEmployeesPane" class="bonus-pane hidden"><div class="bonus-employee-grid" id="bonusEmployeeCards"></div></section>
+
+    <section id="bonusDoposPane" class="bonus-pane hidden">
+      <div class="bonus-panel"><h2>Doposażeniowcy — premia progresywna</h2><p class="muted">Premia jest liczona warstwowo: pierwsze 170 h po 30 zł, 171–200 h po 40 zł, 201–230 h po 50 zł, 231–260 h po 55 zł, a każda godzina powyżej 260 h po 60 zł.</p><div class="bonus-employee-grid" id="bonusDoposCards"></div></div>
+    </section>
+
+    <section id="bonusHrExportPane" class="bonus-pane hidden">
+      <div class="bonus-panel">
+        <h2>Eksport do kadr</h2><p class="muted">Arkusz główny zachowuje układ 20 kolumn ze wzoru. Dodatkowy arkusz „Opis premii” służy do kontroli i zawiera komentarze do ręcznych premii.</p>
+        <div class="bonus-mapping">
+          <div class="bonus-mapping-card"><strong>Premia wynikowa / wyliczana</strong><span class="bonus-pill ok">Kod 301</span> <span class="bonus-pill">Do urlopu: T</span><div class="bonus-small muted" style="margin-top:7px">Wydane auta, umyte auta, stała premia Heleny i progresywna premia godzinowa doposażeniowców → „Premia uznaniowa”.</div></div>
+          <div class="bonus-mapping-card"><strong>Premia dodatkowa wpisywana ręcznie</strong><span class="bonus-pill purple">Kod 308</span> <span class="bonus-pill no">Do urlopu: N</span><div class="bonus-small muted" style="margin-top:7px">Każda ręcznie dodana premia z komentarzem → „Premia polecenie”. Nie wchodzi do podstawy urlopowej.</div></div>
+        </div>
+        <div id="bonusExportValidation" class="bonus-callout"></div>
+        <div class="bonus-export-actions"><button class="btn primary" id="bonusExportXlsxBtn" type="button">Pobierz XLSX do kadr</button><button class="btn" id="bonusExportCsvBtn" type="button">Pobierz CSV — Arkusz1</button></div>
+      </div>
+      <div class="bonus-panel"><h2>Podgląd Arkusz1</h2><div class="bonus-tablewrap"><table class="bonus-table wide"><thead id="bonusHrHead"></thead><tbody id="bonusHrRows"></tbody></table></div></div>
+      <div class="bonus-panel"><h2>Opis premii / kontrola urlopowa</h2><div class="bonus-tablewrap"><table class="bonus-table"><thead><tr><th>Pracownik</th><th>Rodzaj</th><th>Kod</th><th>Do urlopu</th><th>Do zasiłku</th><th class="bonus-money">Kwota brutto</th><th>Komentarz</th></tr></thead><tbody id="bonusDetailRows"></tbody></table></div></div>
+    </section>
+  </div>
+</section>
+
 </main>
 
 <div class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Nawigacja mobilna">
@@ -939,7 +1066,7 @@ function storageJSON(key,fallback,kind="any") {
     return fallback;
   }
 }
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView"];
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView","bonusAdminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 function loginFromName(name){
   return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
@@ -1182,6 +1309,83 @@ if(!currentUser&&APP_USERS.length)currentUser=APP_USERS[0];
 persistActiveUser();renderUserSwitchers();
 try{applyUserAccess()}catch(e){console.error("Błąd inicjalizacji użytkownika",e)}
 initAuthGate();
+
+
+
+/* ---------- ADMIN: SYSTEM PREMIOWY ---------- */
+const BONUS_EMPLOYEES=[
+ {id:"igor",name:"Igor Gieruszka",role:"Koordynator Działu Wsparcia Operacyjnego",base:6200,type:"issued",rate:15,fixedBonus:2000,fileNo:"P0259"},
+ {id:"patryk",name:"Patryk Jarosz",role:"Młodszy Koordynator",base:6200,type:"issued",rate:10,fileNo:"P0283"},
+ {id:"denys",name:"Denys Chernov",role:"Młodszy Koordynator",base:5000,type:"issued",rate:10,fileNo:""},
+ {id:"helena",name:"Helena Cholewa",role:"Koordynator",base:5000,type:"issued",rate:10,fixedBonus:1500,fileNo:"P065"},
+ {id:"konrad",name:"Konrad Dąbrowski",role:"Pracownik myjni",base:4500,type:"washed",rate:18,fileNo:"P0335"},
+ {id:"mateusz",name:"Mateusz Bodnar",role:"Doposażeniowiec",base:4500,type:"hours",fileNo:"P0247"},
+ {id:"jakub",name:"Jakub Grzywacz",role:"Doposażeniowiec",base:4500,type:"hours",fileNo:"P117"}
+];
+const BONUS_HR_HEADERS=["Pracownik nr teczki","Nazwisko","Imię","rok","miesiac","Premia uznaniowa","Premia motywacyjna","Premia poz./kwartalna","Premia roczna","Premia sprzedaż ","Premia polecenie ","Premia finansowania","Premia weryfikacja","Premia                BDP","Prowizja flota","Premia opony","Nagroda Prezesa","p13","p14","WYNIK"];
+function bonusFreshState(){return {issued:0,washed:0,hours:{mateusz:0,jakub:0},discretionary:Object.fromEntries(BONUS_EMPLOYEES.map(e=>[e.id,[]])),emails:{},files:Object.fromEntries(BONUS_EMPLOYEES.map(e=>[e.id,e.fileNo||""]))}}
+let bonusState=bonusFreshState();
+function bonusMoney(v){return new Intl.NumberFormat("pl-PL",{style:"currency",currency:"PLN",maximumFractionDigits:2}).format(Number(v)||0)}
+function bonusEsc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function bonusPeriod(){const raw=$("#bonusMonth")?.value||`${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,"0")}`;const p=raw.split("-");return {year:Number(p[0])||new Date().getFullYear(),month:Number(p[1])||new Date().getMonth()+1,raw}}
+function bonusStorageKey(){return `toyotaPremieAdminV1-${bonusPeriod().raw}`}
+function bonusSave(){try{localStorage.setItem(bonusStorageKey(),JSON.stringify(bonusState))}catch(e){}}
+function bonusLoad(){bonusState=bonusFreshState();try{const raw=localStorage.getItem(bonusStorageKey());if(!raw)return;const saved=JSON.parse(raw);if(saved.discretionary?.denis&&!saved.discretionary?.denys)saved.discretionary.denys=saved.discretionary.denis;if(saved.emails?.denis&&!saved.emails?.denys)saved.emails.denys=saved.emails.denis;if(saved.files?.denis&&!saved.files?.denys)saved.files.denys=saved.files.denis;bonusState={...bonusState,...saved,hours:{...bonusState.hours,...(saved.hours||{})},discretionary:{...bonusState.discretionary,...(saved.discretionary||{})},emails:{...bonusState.emails,...(saved.emails||{})},files:{...bonusState.files,...(saved.files||{})}}}catch(e){}}
+function bonusOperationalMetrics(){
+ const mk=bonusPeriod().raw;
+ const washed=Array.isArray(washRecords)?washRecords.filter(w=>w&&w.washedAt&&dateMonthKey(w.washedDate||String(w.washedAt||"").slice(0,10))===mk).length:0;
+ const hours={mateusz:0,jakub:0};
+ if(Array.isArray(mountJobs)){
+   for(const j of mountJobs){
+     if(!j||mountJobMonthKey(j.date)!==mk)continue;
+     const h=parseFloat(String(j.hours||"0").replace(",","."));
+     if(!Number.isFinite(h)||h<=0)continue;
+     if(j.owner==="Mateusz Bodnar")hours.mateusz+=h;
+     if(j.owner==="Jakub Grzywacz")hours.jakub+=h;
+   }
+ }
+ return {washed,hours};
+}
+function bonusSyncOperationalMetrics(){
+ const m=bonusOperationalMetrics();
+ bonusState.washed=m.washed;
+ bonusState.hours={...bonusState.hours,mateusz:m.hours.mateusz,jakub:m.hours.jakub};
+}
+function bonusTierHours(h){h=Math.max(0,Number(h)||0);let x=h,total=0,a=Math.min(x,170);total+=a*30;x-=a;if(x>0){const b=Math.min(x,30);total+=b*40;x-=b}if(x>0){const c=Math.min(x,30);total+=c*50;x-=c}if(x>0){const d=Math.min(x,30);total+=d*55;x-=d}if(x>0)total+=x*60;return total}
+function bonusCalc(e){let main=0;if(e.type==="issued")main=bonusState.issued*e.rate+(e.fixedBonus||0);if(e.type==="washed")main=bonusState.washed*e.rate;if(e.type==="hours")main=bonusTierHours(bonusState.hours[e.id]);const extras=(bonusState.discretionary[e.id]||[]).reduce((sum,b)=>sum+Math.max(0,Number(b.amount)||0),0);return {main,extras,bonus:main+extras,total:e.base+main+extras}}
+function bonusDesc(e){if(e.type==="issued"){let x=`${bonusState.issued} wydanych aut × ${e.rate} zł = ${bonusMoney(bonusState.issued*e.rate)}`;if(e.fixedBonus)x+=` + stała premia ${bonusMoney(e.fixedBonus)}`;return x}if(e.type==="washed")return `${bonusState.washed} umytych aut × ${e.rate} zł = ${bonusMoney(bonusState.washed*e.rate)}`;const h=bonusState.hours[e.id]||0;return `${h} h → premia progresywna ${bonusMoney(bonusTierHours(h))}`}
+function bonusRenderSummary(){let base=0,bonus=0,total=0;const tb=$("#bonusSummaryRows");if(!tb)return;tb.innerHTML="";BONUS_EMPLOYEES.forEach(e=>{const c=bonusCalc(e);base+=e.base;bonus+=c.bonus;total+=c.total;const tr=document.createElement("tr");tr.innerHTML=`<td><strong>${bonusEsc(e.name)}</strong></td><td><span class="bonus-pill ${e.type==="hours"?"blue":""}">${bonusEsc(e.role)}</span></td><td class="bonus-money">${bonusMoney(e.base)}</td><td class="bonus-money">${bonusMoney(c.main)}</td><td class="bonus-money">${bonusMoney(c.extras)}</td><td class="bonus-money"><strong>${bonusMoney(c.bonus)}</strong></td><td class="bonus-money"><strong>${bonusMoney(c.total)}</strong></td>`;tb.appendChild(tr)});$("#bonusKpiEmployees").textContent=BONUS_EMPLOYEES.length;$("#bonusKpiBase").textContent=bonusMoney(base);$("#bonusKpiBonus").textContent=bonusMoney(bonus);$("#bonusKpiTotal").textContent=bonusMoney(total)}
+function bonusAddDiscretionary(id){if(!bonusState.discretionary[id])bonusState.discretionary[id]=[];bonusState.discretionary[id].push({amount:0,comment:""});bonusSave();bonusRefresh()}
+function bonusRemoveDiscretionary(id,index){bonusState.discretionary[id]?.splice(index,1);bonusSave();bonusRefresh()}
+function bonusDiscretionaryHtml(e){if(!bonusState.discretionary[e.id])bonusState.discretionary[e.id]=[];if(!bonusState.discretionary[e.id].length)bonusState.discretionary[e.id].push({amount:0,comment:""});const items=bonusState.discretionary[e.id];const rows=items.map((b,i)=>`<div class="bonus-row"><div><label>Premia dodatkowa brutto • wpisz ręcznie</label><input data-bonus-amount="${e.id}" data-bonus-index="${i}" type="number" min="0" step="10" value="${Number(b.amount)||0}" inputmode="decimal"><div class="bonus-meta">Ręczna premia niezależna od wydanych aut. Eksport: kod 308 · Do urlopu: NIE</div></div><div><label>Komentarz — za co jest premia?</label><input data-bonus-comment="${e.id}" data-bonus-index="${i}" type="text" placeholder="np. dodatkowe zadanie, transfer auta" value="${bonusEsc(b.comment||"")}"></div>${i===0?"<span></span>":`<button class="btn" type="button" data-bonus-remove="${e.id}" data-bonus-index="${i}">Usuń</button>`}</div>`).join("");return `<div class="bonus-discretionary"><div class="bonus-discretionary-head"><strong>Premia dodatkowa — ręcznie <span class="bonus-pill no">Do urlopu: N</span></strong><button class="btn" type="button" data-bonus-add="${e.id}">+ Dodaj kolejną premię</button></div><div class="bonus-list">${rows}</div></div>`}
+function bonusCard(e,showHours){const c=bonusCalc(e),wrap=document.createElement("div");wrap.className="bonus-emp";wrap.innerHTML=`<h3>${bonusEsc(e.name)}</h3><div class="role">${bonusEsc(e.role)}</div><div class="calc"><strong>Podstawa:</strong> ${bonusMoney(e.base)}<br><strong>Zasada premii wynikowej:</strong> ${bonusDesc(e)}<br><span class="bonus-pill ok">Premia wynikowa: kod 301 · urlop T</span></div><div class="bonus-inputs">${showHours?`<div><label>Wypracowane godziny • automatycznie z montaży</label><input data-bonus-hours="${e.id}" type="number" min="0" step="0.25" value="${bonusState.hours[e.id]||0}" readonly><div class="bonus-meta">Suma godzin zapisanych przez pracownika w wybranym miesiącu.</div></div>`:""}<div><label>Nr teczki</label><input data-bonus-file="${e.id}" type="text" placeholder="do uzupełnienia" value="${bonusEsc(bonusState.files[e.id]||"")}"></div><div><label>E-mail pracownika</label><input data-bonus-email="${e.id}" type="email" placeholder="pracownik@firma.pl" value="${bonusEsc(bonusState.emails[e.id]||"")}"></div></div>${bonusDiscretionaryHtml(e)}<div class="bonus-total">Premia wynikowa: <span>${bonusMoney(c.main)}</span></div><div class="bonus-note" style="margin-top:4px">Premia dodatkowa ręczna: <strong>${bonusMoney(c.extras)}</strong></div><div class="bonus-note" style="margin-top:4px">Premia razem: <strong data-bonus-total="${e.id}">${bonusMoney(c.bonus)}</strong></div><div class="bonus-note">Łączne wynagrodzenie brutto przy powyższych danych: <strong data-bonus-gross="${e.id}">${bonusMoney(c.total)}</strong></div>`;return wrap}
+function bonusRenderCards(){const ec=$("#bonusEmployeeCards"),dc=$("#bonusDoposCards");if(!ec||!dc)return;ec.innerHTML="";dc.innerHTML="";BONUS_EMPLOYEES.filter(e=>e.type!=="hours").forEach(e=>ec.appendChild(bonusCard(e,false)));BONUS_EMPLOYEES.filter(e=>e.type==="hours").forEach(e=>dc.appendChild(bonusCard(e,true)));bonusAttachInputs()}
+function bonusAttachInputs(){document.querySelectorAll("[data-bonus-add]").forEach(el=>el.onclick=()=>bonusAddDiscretionary(el.dataset.bonusAdd));document.querySelectorAll("[data-bonus-remove]").forEach(el=>el.onclick=()=>bonusRemoveDiscretionary(el.dataset.bonusRemove,Number(el.dataset.bonusIndex)));document.querySelectorAll("[data-bonus-amount]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusAmount,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].amount=Math.max(0,Number(el.value||0));bonusSave();bonusRenderSummary();bonusRenderExport();const card=el.closest(".bonus-emp"),e=BONUS_EMPLOYEES.find(x=>x.id===id);if(card&&e){const c=bonusCalc(e);const main=card.querySelector(".bonus-total span"),notes=card.querySelectorAll(".bonus-note strong"),total=card.querySelector(`[data-bonus-total="${id}"]`),gross=card.querySelector(`[data-bonus-gross="${id}"]`);if(main)main.textContent=bonusMoney(c.main);if(notes[0])notes[0].textContent=bonusMoney(c.extras);if(total)total.textContent=bonusMoney(c.bonus);if(gross)gross.textContent=bonusMoney(c.total)}});document.querySelectorAll("[data-bonus-comment]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusComment,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].comment=el.value;bonusSave();bonusRenderExport()});document.querySelectorAll("[data-bonus-email]").forEach(el=>el.oninput=()=>{bonusState.emails[el.dataset.bonusEmail]=el.value;bonusSave()});document.querySelectorAll("[data-bonus-file]").forEach(el=>el.oninput=()=>{bonusState.files[el.dataset.bonusFile]=el.value.trim();bonusSave();bonusRenderExport()})}
+function bonusNameParts(full){const p=String(full).trim().split(/\s+/);return {first:p.shift()||"",last:p.join(" ")||""}}
+function bonusHrData(){const period=bonusPeriod();return BONUS_EMPLOYEES.map(e=>{const c=bonusCalc(e),n=bonusNameParts(e.name);return [bonusState.files[e.id]||"",n.last.toUpperCase(),n.first.toUpperCase(),period.year,period.month,c.main||null,null,null,null,null,c.extras||null,null,null,null,null,null,null,null,null,""]})}
+function bonusDetailData(){const rows=[];BONUS_EMPLOYEES.forEach(e=>{const c=bonusCalc(e);if(c.main>0)rows.push([e.name,"Premia wynikająca z systemu",301,"T","T",c.main,bonusDesc(e)]);(bonusState.discretionary[e.id]||[]).forEach(b=>{const amount=Math.max(0,Number(b.amount)||0);if(amount>0)rows.push([e.name,"Dodatkowe zadanie / polecenie",308,"N","T",amount,b.comment||""])});});return rows}
+function bonusRenderExport(){const head=$("#bonusHrHead"),body=$("#bonusHrRows"),db=$("#bonusDetailRows"),val=$("#bonusExportValidation");if(!head||!body||!db||!val)return;head.innerHTML="<tr>"+BONUS_HR_HEADERS.map(h=>`<th>${bonusEsc(h)}</th>`).join("")+"</tr>";body.innerHTML="";bonusHrData().forEach(r=>{const tr=document.createElement("tr");tr.innerHTML=r.map((v,i)=>`<td class="${i>=5&&i<=18?"bonus-money":""}">${i>=5&&i<=18&&typeof v==="number"?bonusMoney(v):bonusEsc(v??"")}</td>`).join("");body.appendChild(tr)});db.innerHTML="";const details=bonusDetailData();if(!details.length)db.innerHTML='<tr><td colspan="7" class="muted">Brak premii do pokazania.</td></tr>';else details.forEach(r=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${bonusEsc(r[0])}</td><td>${bonusEsc(r[1])}</td><td>${r[2]}</td><td><span class="bonus-pill ${r[3]==="N"?"no":"ok"}">${r[3]}</span></td><td>${r[4]}</td><td class="bonus-money">${bonusMoney(r[5])}</td><td>${bonusEsc(r[6])}</td>`;db.appendChild(tr)});const missing=BONUS_EMPLOYEES.filter(e=>!(bonusState.files[e.id]||"").trim());if(missing.length){val.className="bonus-callout warn";val.innerHTML=`<strong>Uzupełnij nr teczki przed wysyłką do kadr.</strong><div class="bonus-status-line"><span class="bonus-pill warn">Brak: ${missing.map(e=>bonusEsc(e.name)).join(", ")}</span></div><div class="bonus-small muted" style="margin-top:6px">Plik można pobrać kontrolnie, ale wiersz bez numeru teczki może nie zostać przyjęty przez import kadrowy.</div>`}else{val.className="bonus-callout ok";val.innerHTML="<strong>Eksport gotowy.</strong> Wszystkie osoby mają przypisany nr teczki."}}
+function bonusWorkbookRows(){return [BONUS_HR_HEADERS,...bonusHrData().map(r=>r.map(v=>v===null?"":v))]}
+function bonusCsvCell(v){const x=String(v??"");return `"${x.replace(/"/g,'""')}"`}
+function bonusDownloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function bonusExportCsv(){const p=bonusPeriod(),csv="\ufeff"+bonusWorkbookRows().map(r=>r.map(bonusCsvCell).join(";")).join("\r\n");bonusDownloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8"}),`premie_wsparcie_operacyjne_${p.year}_${String(p.month).padStart(2,"0")}.csv`)}
+function bonusExportXlsx(){const p=bonusPeriod();if(typeof XLSX==="undefined"){alert("Nie udało się załadować modułu XLSX. Użyj eksportu CSV albo otwórz panel z dostępem do internetu.");return}const wb=XLSX.utils.book_new(),ws=XLSX.utils.aoa_to_sheet(bonusWorkbookRows());ws["!cols"]=[{wch:20},{wch:18},{wch:16},{wch:8},{wch:9},...Array.from({length:14},()=>({wch:18})),{wch:28}];XLSX.utils.book_append_sheet(wb,ws,"Arkusz1");const details=[["Pracownik","Rodzaj składnika","Kod","Do urlopu","Do zasiłku","Kwota brutto","Komentarz"],...bonusDetailData()],ws2=XLSX.utils.aoa_to_sheet(details);ws2["!cols"]=[{wch:24},{wch:30},{wch:10},{wch:12},{wch:12},{wch:15},{wch:48}];XLSX.utils.book_append_sheet(wb,ws2,"Opis premii");XLSX.writeFile(wb,`PREMIE_WSPARCIE_${p.year}_${String(p.month).padStart(2,"0")}.xlsx`)}
+function bonusSetTopInputs(){if($("#bonusIssuedCars"))$("#bonusIssuedCars").value=bonusState.issued||0;if($("#bonusWashedCars"))$("#bonusWashedCars").value=bonusState.washed||0}
+function bonusRefresh(){bonusSyncOperationalMetrics();bonusSetTopInputs();bonusRenderSummary();bonusRenderCards();bonusRenderExport()}
+function bonusSelectTab(id){document.querySelectorAll(".bonus-tab").forEach(b=>b.classList.toggle("active",b.dataset.bonusTab===id));document.querySelectorAll(".bonus-pane").forEach(p=>p.classList.toggle("hidden",p.id!==id))}
+function renderBonusAdmin(){if(!hasAccess("admin"))return;const m=$("#bonusMonth");if(m&&!m.value)m.value=`${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,"0")}`;bonusLoad();bonusSetTopInputs();bonusRefresh();bonusSelectTab("bonusSummaryPane")}
+function initBonusAdmin(){
+ const m=$("#bonusMonth");if(m&&!m.value)m.value=`${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,"0")}`;
+ document.querySelectorAll(".bonus-tab").forEach(b=>b.onclick=()=>bonusSelectTab(b.dataset.bonusTab));
+ if(m)m.onchange=()=>{bonusLoad();bonusSetTopInputs();bonusRefresh()};
+ if($("#bonusIssuedCars"))$("#bonusIssuedCars").oninput=e=>{bonusState.issued=Math.max(0,Math.floor(Number(e.target.value||0)));bonusSave();bonusRenderSummary();bonusRenderCards();bonusRenderExport()};
+ if($("#bonusResetBtn"))$("#bonusResetBtn").onclick=()=>{bonusSyncOperationalMetrics();bonusSave();bonusRefresh();logAction("Odświeżenie danych premiowych",bonusPeriod().raw)};
+ if($("#bonusExportXlsxBtn"))$("#bonusExportXlsxBtn").onclick=bonusExportXlsx;
+ if($("#bonusExportCsvBtn"))$("#bonusExportCsvBtn").onclick=bonusExportCsv;
+ if($("#openBonusAdmin"))$("#openBonusAdmin").onclick=()=>{if(!hasAccess("admin"))return;renderBonusAdmin();show("bonusAdminView");logAction("Otwarcie modułu","Premia")};
+ if($("#backBonusToAdmin"))$("#backBonusToAdmin").onclick=()=>{renderAdmin();show("adminView")};
+}
+initBonusAdmin();
 
 /* ---------- RELEASE DATA ---------- */
 const releaseSeed=[
@@ -2618,130 +2822,154 @@ function mountJobMonthKey(v){
   m=s.match(/^(\d{2})[.\/-](\d{2})[.\/-](\d{4})$/); if(m)return `${m[3]}-${m[2]}`;
   return "";
 }
+function mountJobIsCompleted(r){
+  if(!r)return false;
+  const legacyDone=(!r.alarm||r.alarmCompleted!==false)&&(!r.idCan||r.idCanCompleted!==false)&&(!r.meta||r.metaCompleted!==false)&&(!r.extra||r.extraCompleted!==false);
+  return legacyDone && mountTasksForVin(r.vin).every(x=>x.done);
+}
+function mountOrdersToClose(owner,monthKeyFilter=""){
+  return [...new Set(mountJobs.filter(j=>j.owner===owner&&mountJobIsCompleted(j)&&!j.closed&&(!monthKeyFilter||mountJobMonthKey(j.date)===monthKeyFilter)).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
+}
+function mountJobRowHtml(r){
+  const done=mountJobIsCompleted(r);
+  const coord=/Koordynator/i.test(currentUser?.role||"");
+  const dateAttr=String(r.date||"").replace(/"/g,'&quot;');
+  const vinAttr=String(r.vin||"").replace(/"/g,'&quot;');
+  const action=r.closed
+    ? `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${escapeHtml(r.closedBy||"")}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`
+    : `<button class="mount-edit-btn" type="button" data-edit-vin="${vinAttr}" data-edit-date="${dateAttr}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${vinAttr}" data-close-date="${dateAttr}">ZLECENIE ZAMKNIĘTE</button>`:""}`;
+  return `<tr class="completed ${r.closed?"mount-closed-row":""}">
+      <td>${escapeHtml(r.date||"")}</td>
+      <td class="vin-cell">${escapeHtml(r.vin||"")}${mountSharedNote(r)}</td>
+      <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${vinAttr}" data-date="${dateAttr}" type="checkbox" ${r.alarmCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td class="mount-code">${r.alarm ? escapeHtml(r.alarmCode||"—") : "—"}</td>
+      <td>${r.idCan?`<label class="ready-label"><input class="mount-done-toggle" data-kind="idCan" data-vin="${vinAttr}" data-date="${dateAttr}" type="checkbox" ${r.idCanCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.meta?`<label class="ready-label"><input class="mount-done-toggle" data-kind="meta" data-vin="${vinAttr}" data-date="${dateAttr}" type="checkbox" ${r.metaCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
+      <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${vinAttr}" data-date="${dateAttr}" type="checkbox" ${r.extraCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${escapeHtml(r.extraDesc)}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
+      <td><b>${escapeHtml(String(r.hours||"").replace(".",","))}</b></td>
+      <td>${escapeHtml(r.notes||"—")}</td>
+      <td>${action}</td>
+    </tr>`;
+}
+function refreshMountDependentViews(){
+  renderUrgentMountAlerts();
+  if(selectedDay)renderDay();
+  renderReleaseHome();
+  renderCars();
+  renderMountWorkerMenu();
+}
+function bindMountRows(scope,fromDone=false){
+  if(!scope)return;
+  scope.querySelectorAll(".mount-edit-btn[data-edit-vin]").forEach(btn=>{
+    btn.onclick=()=>{
+      const idx=mountJobs.findIndex(j=>j.owner===selectedOwner&&normalizeVin(j.vin)===normalizeVin(btn.dataset.editVin)&&String(j.date||"")===String(btn.dataset.editDate||""));
+      if(idx<0)return;
+      if(fromDone){show("mountList");renderUrgentMountAlerts();renderMountTable();}
+      startEditMount(idx);
+    };
+  });
+  scope.querySelectorAll(".mount-close-btn").forEach(btn=>{
+    btn.onclick=()=>{
+      if(!/Koordynator/i.test(currentUser?.role||""))return;
+      const job=mountJobs.find(j=>j.owner===selectedOwner&&normalizeVin(j.vin)===normalizeVin(btn.dataset.closeVin)&&String(j.date||"")===String(btn.dataset.closeDate||""));
+      if(!job)return;
+      const sameVinJobs=mountJobs.filter(j=>normalizeVin(j.vin)===normalizeVin(job.vin));
+      const done=sameVinJobs.every(mountJobIsCompleted);
+      if(!done){alert("Nie można zamknąć zlecenia — samochód ma jeszcze niewykonane doposażenie na liście montażu.");return;}
+      const workers=[...new Set(sameVinJobs.map(j=>j.owner).filter(Boolean))];
+      if(!confirm(`Zamknąć zlecenie dla VIN ${job.vin}${workers.length>1?`?\n\nWspólny samochód: ${workers.join(" + ")}`:"?"}`))return;
+      const closedAt=new Date().toISOString(),closedBy=currentUser?.name||"";
+      sameVinJobs.forEach(j=>{j.closed=true;j.closedAt=closedAt;j.closedBy=closedBy;});
+      saveMountJobs();
+      logAction("Zamknięcie zlecenia doposażenia",`${job.vin} • ${workers.join(" + ")}`);
+      renderMountTable();renderMountDoneTable();refreshMountDependentViews();
+    };
+  });
+  scope.querySelectorAll(".mount-done-toggle").forEach(cb=>{
+    cb.onchange=()=>{
+      const job=mountJobs.find(j=>j.owner===selectedOwner&&normalizeVin(j.vin)===normalizeVin(cb.dataset.vin)&&String(j.date||"")===String(cb.dataset.date||""));
+      if(!job)return;
+      const kind=cb.dataset.kind;
+      job[kind+"Completed"]=cb.checked;
+      setMountCategoryDone(job.vin,kind,cb.checked,job);
+      saveMountJobs();
+      const alarmTypes=[];
+      if(job.alarm)alarmTypes.push(job.alarmCompleted!==false);
+      if(job.idCan)alarmTypes.push(job.idCanCompleted!==false);
+      if(job.meta)alarmTypes.push(job.metaCompleted!==false);
+      const alarmReady=alarmTypes.length?alarmTypes.every(Boolean):undefined;
+      const extraReady=job.extra?(job.extraCompleted!==false):undefined;
+      syncMountCompletionToRelease(job.vin,alarmReady,extraReady);
+      renderMountTable();renderMountDoneTable();refreshMountDependentViews();
+    };
+  });
+}
 function renderOwners(){
   renderUrgentMountAlerts();
   const urgentCount=getUrgentReleaseCars().length;
   const autoQueueCount=getPendingReleaseCars().length;
   $("#peopleCards").innerHTML="";
   const installers=APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name);
-  if(currentUser?.role==="Doposażeniowiec"){installers.sort((a,b)=>a===currentUser.name?-1:b===currentUser.name?1:a.localeCompare(b,"pl"));}
+  if(currentUser?.role==="Doposażeniowiec")installers.sort((a,b)=>a===currentUser.name?-1:b===currentUser.name?1:a.localeCompare(b,"pl"));
   installers.forEach(name=>{
-    const jobs=mountJobs.filter(j=>j.owner===name);
+    const jobs=mountJobs.filter(j=>j.owner===name),done=[...new Set(jobs.filter(mountJobIsCompleted).map(j=>normalizeVin(j.vin)))].length;
     const b=document.createElement("button");
     b.className="person";
-    b.innerHTML=`<div class="person-name">${name}</div>
-      <div class="person-role">Doposażeniowiec</div>
-      <div class="person-count">${jobs.length}</div>
-      <div class="muted">zapisanych montaży</div>
-      ${autoQueueCount?`<div class="muted" style="margin-top:6px;font-weight:900">DO MONTAŻU: ${autoQueueCount}</div>`:""}
-      ${urgentCount?`<div class="person-urgent">SAMOCHÓD PILNY!!! ${urgentCount}</div>`:""}
-      <div class="person-open"><span>Otwórz tabelę</span><span>→</span></div>`;
+    b.innerHTML=`<div class="person-name">${escapeHtml(name)}</div><div class="person-role">Doposażeniowiec</div><div class="person-count">${jobs.length}</div><div class="muted">zapisanych montaży • zamontowane: ${done}</div>${autoQueueCount?`<div class="muted" style="margin-top:6px;font-weight:900">DO MONTAŻU: ${autoQueueCount}</div>`:""}${urgentCount?`<div class="person-urgent">SAMOCHÓD PILNY!!! ${urgentCount}</div>`:""}<div class="person-open"><span>Otwórz</span><span>→</span></div>`;
     b.onclick=()=>openOwner(name);
     $("#peopleCards").appendChild(b);
   });
 }
-
+function renderMountWorkerMenu(){
+  if(!selectedOwner)return;
+  const title=$("#mountWorkerMenuTitle");if(title)title.textContent=selectedOwner;
+  const pending=[...new Set(getPendingReleaseCars().map(x=>normalizeVin(x.vin)).filter(Boolean))].length;
+  const done=[...new Set(mountJobs.filter(j=>j.owner===selectedOwner&&mountJobIsCompleted(j)).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
+  const toClose=mountOrdersToClose(selectedOwner);
+  if($("#mountMenuTodoCount"))$("#mountMenuTodoCount").textContent=pending;
+  if($("#mountMenuDoneCount"))$("#mountMenuDoneCount").textContent=done;
+  if($("#mountMenuTodoCloseCount"))$("#mountMenuTodoCloseCount").textContent=toClose;
+  if($("#mountMenuDoneCloseCount"))$("#mountMenuDoneCloseCount").textContent=toClose;
+}
 function openOwner(name){
   selectedOwner=name;
-  const title=$("#ownerTitle"); if(title) title.textContent=name;
-  // Najpierw otwieramy widok pracownika. Dzięki temu błąd w sekcji pomocniczej
-  // (np. prace dodatkowe) nie może już zablokować wejścia do tabeli Jakuba/Mateusza.
-  show("mountList");
-  const safeRun=(label,fn)=>{try{fn()}catch(e){console.error(`Montaże — ${label}`,e)}};
-  safeRun("kontrolka współpracy",updateMountCollaboratorControl);
-  safeRun("alerty",renderUrgentMountAlerts);
-  safeRun("tabela",renderMountTable);
-  safeRun("prace dodatkowe",renderExtraWorks);
-  safeRun("formularz",()=>{resetMountForm();closeExtraWorkForm();$("#mountFormCard")?.classList.remove("open")});
+  const title=$("#ownerTitle");if(title)title.textContent=name;
+  const doneTitle=$("#mountDoneOwnerTitle");if(doneTitle)doneTitle.textContent=name;
+  resetMountForm();closeExtraWorkForm();$("#mountFormCard")?.classList.remove("open");
+  renderMountWorkerMenu();
+  show("mountWorkerMenu");
 }
-
+function openMountTodoForOwner(){
+  if(!selectedOwner)return;
+  const title=$("#ownerTitle");if(title)title.textContent=selectedOwner;
+  show("mountList");
+  renderUrgentMountAlerts();renderMountTable();resetMountForm();$("#mountFormCard")?.classList.remove("open");
+}
+function openMountDoneForOwner(){
+  if(!selectedOwner)return;
+  const title=$("#mountDoneOwnerTitle");if(title)title.textContent=selectedOwner;
+  show("mountDoneList");
+  closeExtraWorkForm();renderMountDoneTable();renderExtraWorks();
+}
 function renderMountTable(){
-  const md=shiftedMonth(mountMonthOffset); $("#mountMonthLabel").textContent=monthLabel(md); const mk=monthKey(md);
-  const jobs=mountJobs
-    .filter(j=>j.owner===selectedOwner && mountJobMonthKey(j.date)===mk)
-    .sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed)) || String(b.date||"").localeCompare(String(a.date||"")) || String(a.vin||"").localeCompare(String(b.vin||"")));
-  $("#ownerCount").textContent=`${jobs.length} zleceń`;
-
-  const totalHours=jobs.reduce((sum,j)=>{
-    const value=parseFloat(String(j.hours||"0").replace(",","."));
-    return sum+(Number.isFinite(value)?value:0);
-  },0);
-  $("#ownerHours").textContent=`${String(totalHours).replace(".",",")} h`;
-
-  $("#mountRows").innerHTML=jobs.length ? jobs.map(r=>`
-    <tr class="completed ${r.closed?"mount-closed-row":""}">
-      <td>${r.date||""}</td>
-      <td class="vin-cell">${r.vin||""}${mountSharedNote(r)}</td>
-      <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${r.vin}" type="checkbox" ${r.alarmCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
-      <td class="mount-code">${r.alarm ? (r.alarmCode||"—") : "—"}</td>
-      <td>${r.idCan?`<label class="ready-label"><input class="mount-done-toggle" data-kind="idCan" data-vin="${r.vin}" type="checkbox" ${r.idCanCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
-      <td>${r.meta?`<label class="ready-label"><input class="mount-done-toggle" data-kind="meta" data-vin="${r.vin}" type="checkbox" ${r.metaCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
-      <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${r.vin}" type="checkbox" ${r.extraCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${r.extraDesc}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
-      <td><b>${String(r.hours||"").replace(".",",")}</b></td>
-      <td>${r.notes||"—"}</td>
-      <td>${(()=>{const done=(!r.alarm||r.alarmCompleted!==false)&&(!r.idCan||r.idCanCompleted!==false)&&(!r.meta||r.metaCompleted!==false)&&(!r.extra||r.extraCompleted!==false)&&mountTasksForVin(r.vin).every(x=>x.done);const coord=/Koordynator/i.test(currentUser?.role||"");if(r.closed)return `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${r.closedBy||""}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`;return `<button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${r.vin}" data-close-date="${r.date||""}">ZLECENIE ZAMKNIĘTE</button>`:""}`})()}</td>
-    </tr>`).join("") :
-    `<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak montaży.</td></tr>`;
-
-
-  document.querySelectorAll(".mount-edit-btn").forEach(btn=>{
-    btn.onclick=()=>{
-      const idx=mountJobs.findIndex(j=>
-        j.owner===selectedOwner &&
-        normalizeVin(j.vin)===normalizeVin(btn.dataset.editVin) &&
-        String(j.date||"")===String(btn.dataset.editDate||"")
-      );
-      if(idx<0) return;
-      startEditMount(idx);
-    };
-  });
-
-  document.querySelectorAll(".mount-close-btn").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!/Koordynator/i.test(currentUser?.role||"")) return;
-      const job=mountJobs.find(j=>j.owner===selectedOwner && normalizeVin(j.vin)===normalizeVin(btn.dataset.closeVin) && String(j.date||"")===String(btn.dataset.closeDate||""));
-      if(!job) return;
-      const sameVinJobs=mountJobs.filter(j=>normalizeVin(j.vin)===normalizeVin(job.vin));
-      const done=sameVinJobs.every(j=>(!j.alarm||j.alarmCompleted!==false)&&(!j.idCan||j.idCanCompleted!==false)&&(!j.meta||j.metaCompleted!==false)&&(!j.extra||j.extraCompleted!==false))&&mountTasksForVin(job.vin).every(x=>x.done);
-      if(!done){alert("Nie można zamknąć zlecenia — samochód ma jeszcze niewykonane doposażenie na liście montażu.");return;}
-      const workers=[...new Set(sameVinJobs.map(j=>j.owner).filter(Boolean))];
-      if(!confirm(`Zamknąć zlecenie dla VIN ${job.vin}${workers.length>1?`?\n\nWspólny samochód: ${workers.join(" + ")}`:"?"}`)) return;
-      const closedAt=new Date().toISOString();
-      const closedBy=currentUser?.name||"";
-      sameVinJobs.forEach(j=>{j.closed=true;j.closedAt=closedAt;j.closedBy=closedBy;});
-      saveMountJobs();logAction("Zamknięcie zlecenia doposażenia",`${job.vin} • ${workers.join(" + ")}`);renderMountTable();
-    };
-  });
-
-  document.querySelectorAll(".mount-done-toggle").forEach(cb=>{
-    cb.onchange=()=>{
-      const job=mountJobs.find(j=>j.owner===selectedOwner && normalizeVin(j.vin)===normalizeVin(cb.dataset.vin));
-      if(!job) return;
-
-      const kind=cb.dataset.kind;
-      job[kind+"Completed"]=cb.checked;
-      setMountCategoryDone(job.vin,kind,cb.checked,job);
-      saveMountJobs();
-
-      // Alarm readiness is true when every selected alarm-type installation
-      // (Alarm / ID CAN / META) for this job is completed.
-      const alarmTypes=[];
-      if(job.alarm) alarmTypes.push(job.alarmCompleted!==false);
-      if(job.idCan) alarmTypes.push(job.idCanCompleted!==false);
-      if(job.meta) alarmTypes.push(job.metaCompleted!==false);
-      const alarmReady=alarmTypes.length ? alarmTypes.every(Boolean) : undefined;
-
-      const extraReady=job.extra ? (job.extraCompleted!==false) : undefined;
-      syncMountCompletionToRelease(job.vin, alarmReady, extraReady);
-
-      // Refresh all dependent views/state.
-      renderMountTable();
-      renderUrgentMountAlerts();
-      if(selectedDay) renderDay();
-      renderReleaseHome();
-      renderCars();
-    };
-  });
+  const md=shiftedMonth(mountMonthOffset),label=$("#mountMonthLabel");if(label)label.textContent=monthLabel(md);const mk=monthKey(md);
+  const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&!mountJobIsCompleted(j)).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
+  if($("#ownerCount"))$("#ownerCount").textContent=`${jobs.length} w toku`;
+  const toClose=mountOrdersToClose(selectedOwner,mk);
+  if($("#ownerHours"))$("#ownerHours").textContent=String(toClose);
+  const tbody=$("#mountRows");if(!tbody)return;
+  tbody.innerHTML=jobs.length?jobs.map(mountJobRowHtml).join(""):`<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak rozpoczętych montaży. Samochody oczekujące są pokazane wyżej w sekcji „Samochody do zrobienia”.</td></tr>`;
+  bindMountRows(tbody,false);
+}
+function renderMountDoneTable(){
+  const md=shiftedMonth(mountMonthOffset),label=$("#mountDoneMonthLabel");if(label)label.textContent=monthLabel(md);const mk=monthKey(md);
+  const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&mountJobIsCompleted(j)).sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed))||String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
+  const toClose=mountOrdersToClose(selectedOwner,mk);
+  if($("#mountDoneCount"))$("#mountDoneCount").textContent=[...new Set(jobs.map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
+  if($("#mountDoneHours"))$("#mountDoneHours").textContent=String(toClose);
+  const tbody=$("#mountDoneRows");if(!tbody)return;
+  tbody.innerHTML=jobs.length?jobs.map(mountJobRowHtml).join(""):`<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak zamontowanych samochodów w wybranym miesiącu.</td></tr>`;
+  bindMountRows(tbody,true);
 }
 
 function resetMountForm(){
@@ -3017,6 +3245,8 @@ function saveNewMount(){
   saveMountJobs();
   logAction(editingMountIndex!==null?"Edycja montażu":"Zapis montażu",`${vin} • ${selectedTasks.join(", ")} • ${hours} h${alarmCode?" • kod alarmu: "+alarmCode:""}`);
   renderMountTable();
+  renderMountDoneTable();
+  renderMountWorkerMenu();
   renderUrgentMountAlerts();
   resetMountForm();
   $("#mountFormCard").classList.remove("open");
@@ -3112,6 +3342,9 @@ function addManualWash(){
 function bindPeriodNav(){
   $("#releasePrevWeek").onclick=()=>{releaseWeekOffset--;renderReleaseHome()}; $("#releaseNextWeek").onclick=()=>{releaseWeekOffset++;renderReleaseHome()}; $("#releaseThisWeek").onclick=()=>{releaseWeekOffset=0;renderReleaseHome()};
   $("#mountPrevMonth").onclick=()=>{mountMonthOffset--;renderMountTable()}; $("#mountNextMonth").onclick=()=>{mountMonthOffset++;renderMountTable()}; $("#mountThisMonth").onclick=()=>{mountMonthOffset=0;renderMountTable()};
+  if($("#mountDonePrevMonth"))$("#mountDonePrevMonth").onclick=()=>{mountMonthOffset--;renderMountDoneTable();renderExtraWorks()};
+  if($("#mountDoneNextMonth"))$("#mountDoneNextMonth").onclick=()=>{mountMonthOffset++;renderMountDoneTable();renderExtraWorks()};
+  if($("#mountDoneThisMonth"))$("#mountDoneThisMonth").onclick=()=>{mountMonthOffset=0;renderMountDoneTable();renderExtraWorks()};
   $("#washPrevWeek").onclick=()=>{washWeekOffset--;washSelectedDay="";renderWash()}; $("#washNextWeek").onclick=()=>{washWeekOffset++;washSelectedDay="";renderWash()}; $("#washThisWeek").onclick=()=>{washWeekOffset=0;washSelectedDay="";renderWash()};
   $("#adminPrevMonth").onclick=()=>{adminMonthOffset--;renderAdmin()}; $("#adminNextMonth").onclick=()=>{adminMonthOffset++;renderAdmin()}; $("#adminThisMonth").onclick=()=>{adminMonthOffset=0;renderAdmin()};
 }
@@ -3186,7 +3419,13 @@ $("#undoIssued").onclick=()=>{
   recalcReleaseStatus(r);saveRelease();const c=ensureCar(r.vin);c.status="AKTYWNY";saveCars();openVehicle(r.id);renderReleaseHome();
 };
 
-$("#openMounts").onclick=()=>{if(!hasAccess("mounts"))return;logAction("Otwarcie modułu","Montaże / doposażenia");renderOwners();show("mountOwners")};$("#backMainFromMounts").onclick=()=>show("mainHome");$("#backMountOwners").onclick=()=>{renderOwners();show("mountOwners")};
+$("#openMounts").onclick=()=>{if(!hasAccess("mounts"))return;logAction("Otwarcie modułu","Montaże / doposażenia");renderOwners();show("mountOwners")};
+$("#backMainFromMounts").onclick=()=>show("mainHome");
+$("#backMountOwners").onclick=()=>{renderMountWorkerMenu();show("mountWorkerMenu")};
+if($("#backWorkerMenuToOwners"))$("#backWorkerMenuToOwners").onclick=()=>{renderOwners();show("mountOwners")};
+if($("#openMountTodo"))$("#openMountTodo").onclick=openMountTodoForOwner;
+if($("#openMountDone"))$("#openMountDone").onclick=openMountDoneForOwner;
+if($("#backMountDoneToMenu"))$("#backMountDoneToMenu").onclick=()=>{renderMountWorkerMenu();show("mountWorkerMenu")};
 $("#toggleMountForm").onclick=()=>{
   $("#mountFormCard").classList.toggle("open");
   if($("#mountFormCard").classList.contains("open")) $("#mountVinInput").focus();
