@@ -82,7 +82,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 .vin-full{font-weight:900}.vin-meta{font-size:12px;color:var(--muted);margin-top:3px}.message{font-size:12px;font-weight:800;margin-top:8px;min-height:16px}.message.error{color:#b42318}.message.ok{color:#168a45}
 .searchbar{display:flex;gap:10px;margin-bottom:14px}
 .car-table{width:100%;min-width:900px;border-collapse:collapse}.car-table th,.car-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.car-table th{background:#f2f3f5;font-weight:900}
-.car-status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900}.car-ready{background:#e8f7ed;color:#14733c}.car-departed{background:#f59e0b;color:#4a2500}.car-table tr.car-issued-row td{background:#fff1d6;color:#6b3a00}.car-table tr.car-issued-row .vin-cell{font-weight:1000;color:#7c3f00}.car-table tr.car-k1-row td{background:#f0e7ff;color:#4c1d95}.car-table tr.car-k1-row .vin-cell{font-weight:1000;color:#5b21b6}.car-k1{background:#6d28d9;color:#fff}
+.car-status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900}.car-ready{background:#e8f7ed;color:#14733c}.car-departed{background:#f59e0b;color:#4a2500}.car-table tr.car-issued-row td{background:#fff1d6;color:#6b3a00}.car-table tr.car-issued-row .vin-cell{font-weight:1000;color:#7c3f00}.car-table tr.car-k1-row td{background:#f0e7ff;color:#4c1d95}.car-table tr.car-k1-row .vin-cell{font-weight:1000;color:#5b21b6}.car-k1{background:#6d28d9;color:#fff}.excel-source-btn{margin-top:8px;border:1px solid #b8c1cc;background:#fff;color:#26313d;border-radius:9px;padding:7px 10px;font-size:11px;font-weight:900;cursor:pointer}.excel-source-btn:hover{background:#f6f8fa}.excel-source-detail td{background:#f8fafc!important;color:#26313d!important;padding:0!important}.excel-source-card{padding:14px 16px;border-top:2px solid #9aa6b2}.excel-source-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}.excel-source-title strong{font-size:13px}.excel-source-equipment{background:#fff7df;border:1px solid #f0d38a;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13px;line-height:1.45}.excel-source-equipment b{display:block;font-size:10px;letter-spacing:.06em;color:#7c5b00;margin-bottom:4px}.excel-source-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.excel-source-field{background:#fff;border:1px solid #dde3e9;border-radius:9px;padding:8px 10px;min-width:0}.excel-source-field small{display:block;font-size:9px;font-weight:900;letter-spacing:.05em;color:#6b7280;margin-bottom:3px}.excel-source-field span{display:block;font-size:12px;font-weight:700;overflow-wrap:anywhere}.excel-source-note{margin-top:9px;font-size:10px;color:#6b7280}@media(max-width:720px){.excel-source-grid{grid-template-columns:1fr 1fr}.excel-source-card{padding:12px}.excel-source-equipment{font-size:12px}}@media(max-width:430px){.excel-source-grid{grid-template-columns:1fr}}
 .vin-cell{font-family:monospace;font-weight:900}
 
 @media(max-width:950px){.modules{grid-template-columns:1fr}.vin-tools{grid-template-columns:1fr}}
@@ -380,8 +380,8 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   <div class="auth-card">
     <div class="auth-brand">TOYOTA • PANEL FLOTOWY</div>
     <h1 id="authTitle">Wejście do aplikacji</h1>
-    <div class="auth-copy">Wybierz użytkownika i wpisz jego hasło. Po poprawnym wejściu sesja na tym urządzeniu jest ważna do końca dnia.</div>
-    <div class="auth-field"><label for="authUserSelect">UŻYTKOWNIK</label><select id="authUserSelect" aria-label="Użytkownik"></select></div>
+    <div class="auth-copy">Wpisz swój login i hasło. Po poprawnym wejściu sesja na tym urządzeniu jest ważna do końca dnia.</div>
+    <div class="auth-field"><label for="authLogin">LOGIN</label><input id="authLogin" type="text" inputmode="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="np. igor.gieruszka"></div>
     <div class="auth-field"><label for="authPassword">HASŁO</label><input id="authPassword" type="password" inputmode="text" autocomplete="current-password" placeholder="Wpisz hasło"></div>
     <div class="auth-password-state" id="authPasswordState"></div>
     <div class="auth-message" id="authMessage" aria-live="polite"></div>
@@ -391,13 +391,13 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 </div>
 
 <main class="shell">
-<div class="user-bar"><label class="user-switch-label" for="userSwitcher">Użytkownik <select id="userSwitcher" class="user-switcher" aria-label="Wybierz użytkownika"></select></label><span class="user-pill" id="currentUserPill">—</span></div>
+<div class="user-bar"><button id="userSwitcher" class="user-switcher" type="button">Zmień użytkownika</button><span class="user-pill" id="currentUserPill">—</span></div>
 <section id="mainHome" class="view active">
 
   <div class="mobile-home" id="mobileHome">
     <div class="mobile-header">
       <div><div class="mobile-brand">TOYOTA • DZIAŁ FLOTOWY</div><h1 id="mobileGreeting">Dzisiaj</h1><div class="mobile-date" id="mobileDateLabel">—</div></div>
-      <select class="mobile-user-switch" id="mobileUserSwitcher" aria-label="Wybierz użytkownika"></select>
+      <button class="mobile-user-switch" id="mobileUserSwitcher" type="button">Konto</button>
     </div>
 
     <div class="mobile-summary" data-home-access="cars,releases">
@@ -640,7 +640,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 
   <div class="mount-plan-box" id="mountWorkerPlanBox">
     <div class="mount-plan-title">Samochody do zrobienia</div>
-    <div class="muted" style="margin-top:3px">Te auta mają jeszcze więcej niż 1 dzień do wydania. Są do wykonania, ale nie są jeszcze oznaczone jako pilne.</div>
+    <div class="muted" style="margin-top:3px">Tu automatycznie trafiają samochody znajdujące się na placu z niewykonanym doposażeniem oraz auta z wydań, które nie są jeszcze pilne. K1 i samochody wydane są pomijane.</div>
     <div class="urgent-list" id="mountWorkerPlanList"></div>
   </div>
 
@@ -895,7 +895,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <div class="report-actions" style="margin-top:14px"><button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button><button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button><button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button></div>
     <div class="report-note">Zamknięcie zapisuje migawkę raportu w archiwum. Samochody na placu, przyszłe wydania i otwarte prace nie są kasowane.</div>
   </div>
-  <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników, zmieniać ich imiona, ustawiać hasła oraz dostęp do modułów. Hasła startowe są ustawione dla całego zespołu i możesz je tutaj później zmienić.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Konto i uprawnienia</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
+  <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników, zmieniać ich imiona i loginy, ustawiać hasła oraz dostęp do modułów. Hasła startowe są ustawione dla całego zespołu i możesz je tutaj później zmienić.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><input id="newUserLogin" placeholder="Login, np. jan.kowalski" autocapitalize="none" spellcheck="false"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Pracownik">Pracownik</option></select></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Konto i uprawnienia</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
   <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
 </section>
 </main>
@@ -941,21 +941,25 @@ function storageJSON(key,fallback,kind="any") {
 }
 const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
+function loginFromName(name){
+  return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
+}
+function normalizeLogin(login){return String(login||"").trim().toLowerCase()}
 const DEFAULT_APP_USERS=[
- {name:"Igor Gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
- {name:"Denys Chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
- {name:"Helena Cholewa",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Patryk Jarosz",role:"Koordynator",access:["releases","cars","battery"]},
- {name:"Mateusz Bodnar",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Jakub Grzywacz",role:"Doposażeniowiec",access:["mounts"]},
- {name:"Konrad Dąbrowski",role:"Myjnia",access:["releases","wash"]}
+ {name:"Igor Gieruszka",login:"igor.gieruszka",role:"Główny Koordynator",access:["releases","mounts","cars","battery","wash","admin"]},
+ {name:"Denys Chernov",login:"denys.chernov",role:"Młodszy Koordynator",access:["releases","cars","battery"]},
+ {name:"Helena Cholewa",login:"helena.cholewa",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Patryk Jarosz",login:"patryk.jarosz",role:"Koordynator",access:["releases","cars","battery"]},
+ {name:"Mateusz Bodnar",login:"mateusz.bodnar",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Jakub Grzywacz",login:"jakub.grzywacz",role:"Doposażeniowiec",access:["mounts"]},
+ {name:"Konrad Dąbrowski",login:"konrad.dabrowski",role:"Myjnia",access:["releases","wash"]}
 ];
 const USER_PROFILES_KEY="toyotaUserProfilesV1";
 let userProfileOverrides=storageJSON(USER_PROFILES_KEY,{},"object");
 let userPermissionOverrides=storageJSON(USER_PERMISSIONS_KEY,{},"object");
 const CUSTOM_USERS_KEY="toyotaCustomUsersV1";
 let customUsers=storageJSON(CUSTOM_USERS_KEY,[],"array").filter(u=>u&&typeof u==="object");
-const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOverrides[u.name]||{};return {...u,baseName:u.name,userId:`user-${idx+1}`,name:String(profile.name||u.name),access:Array.isArray(userPermissionOverrides[u.name])?userPermissionOverrides[u.name]:[...u.access]}}),...customUsers.map((u,idx)=>({userId:u.userId||`custom-legacy-${idx+1}`,baseName:u.baseName||u.userId||`custom-legacy-${idx+1}`,name:String(u.name||"Pracownik"),role:String(u.role||"Pracownik"),access:Array.isArray(userPermissionOverrides[u.baseName||u.userId])?userPermissionOverrides[u.baseName||u.userId]:(Array.isArray(u.access)?u.access:[])}))];
+const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOverrides[u.name]||{};return {...u,baseName:u.name,userId:`user-${idx+1}`,name:String(profile.name||u.name),login:normalizeLogin(profile.login||u.login),access:Array.isArray(userPermissionOverrides[u.name])?userPermissionOverrides[u.name]:[...u.access]}}),...customUsers.map((u,idx)=>({userId:u.userId||`custom-legacy-${idx+1}`,baseName:u.baseName||u.userId||`custom-legacy-${idx+1}`,name:String(u.name||"Pracownik"),login:normalizeLogin(u.login||loginFromName(u.name||"pracownik")),role:String(u.role||"Pracownik"),access:Array.isArray(userPermissionOverrides[u.baseName||u.userId])?userPermissionOverrides[u.baseName||u.userId]:(Array.isArray(u.access)?u.access:[])}))];
 
 /* ---------- LOKALNA BLOKADA DOSTĘPU ----------
    Celowo bez WebCrypto: mechanizm jest synchroniczny i stabilny na Safari/iPhone.
@@ -1001,67 +1005,79 @@ function clearAuthSession(){try{localStorage.removeItem(AUTH_SESSION_KEY)}catch(
   saveUserPasswords();
   try{localStorage.setItem(PASSWORD_BOOTSTRAP_KEY,"1")}catch(e){}
 })();
-let pendingAuthUserId="";
 let authIsSwitch=false;
-function populateAuthUsers(preselectId){
-  const sel=document.getElementById("authUserSelect");if(!sel)return;
-  sel.innerHTML="";APP_USERS.forEach(u=>{const o=document.createElement("option");o.value=u.userId;o.textContent=`${u.name} — ${u.role}`;sel.appendChild(o)});
-  if(APP_USERS.some(u=>String(u.userId)===String(preselectId)))sel.value=String(preselectId);
-  updateAuthPasswordState();
+function findUserByLogin(login){
+  const key=normalizeLogin(login);
+  if(!key)return null;
+  return APP_USERS.find(u=>normalizeLogin(u.login)===key)||null;
 }
 function updateAuthPasswordState(){
-  const sel=document.getElementById("authUserSelect"),state=document.getElementById("authPasswordState"),input=document.getElementById("authPassword");if(!sel||!state)return;
-  const u=APP_USERS.find(x=>String(x.userId)===String(sel.value));const set=!!u&&passwordIsSet(u);
-  state.textContent=set?"Hasło wymagane.":"Hasło nie jest jeszcze ustawione — możesz wejść bez hasła, a administrator ustawi je później.";
-  state.classList.toggle("open",!set);if(input)input.placeholder=set?"Wpisz hasło":"Brak hasła — pole może zostać puste";
+  const loginInput=document.getElementById("authLogin"),state=document.getElementById("authPasswordState"),passwordInput=document.getElementById("authPassword");
+  if(!loginInput||!state)return;
+  const login=normalizeLogin(loginInput.value);
+  if(!login){state.textContent="Wpisz login przypisany do Twojego konta.";state.classList.remove("open");if(passwordInput)passwordInput.placeholder="Wpisz hasło";return}
+  const u=findUserByLogin(login);
+  if(!u){state.textContent="";state.classList.remove("open");if(passwordInput)passwordInput.placeholder="Wpisz hasło";return}
+  const set=passwordIsSet(u);
+  state.textContent=set?"Hasło wymagane.":"To konto nie ma ustawionego hasła.";
+  state.classList.toggle("open",!set);if(passwordInput)passwordInput.placeholder=set?"Wpisz hasło":"Brak hasła — pole może zostać puste";
 }
 function openAuthGate(userId="",switching=false){
   const gate=document.getElementById("authGate");if(!gate)return;
-  authIsSwitch=!!switching;pendingAuthUserId=String(userId||currentUser?.userId||APP_USERS[0]?.userId||"");populateAuthUsers(pendingAuthUserId);
+  authIsSwitch=!!switching;
   const cancel=document.getElementById("authCancelBtn");if(cancel)cancel.hidden=!authIsSwitch;
-  const msg=document.getElementById("authMessage"),input=document.getElementById("authPassword");if(msg)msg.textContent="";if(input)input.value="";
-  gate.hidden=false;document.body.classList.add("auth-locked");setTimeout(()=>{if(passwordIsSet(APP_USERS.find(u=>String(u.userId)===String(document.getElementById("authUserSelect")?.value))))input?.focus();else document.getElementById("authEnterBtn")?.focus()},0);
+  const msg=document.getElementById("authMessage"),loginInput=document.getElementById("authLogin"),passwordInput=document.getElementById("authPassword");
+  if(msg)msg.textContent="";if(loginInput)loginInput.value="";if(passwordInput)passwordInput.value="";updateAuthPasswordState();
+  gate.hidden=false;document.body.classList.add("auth-locked");setTimeout(()=>loginInput?.focus(),0);
 }
 function closeAuthGate(){const gate=document.getElementById("authGate");if(gate)gate.hidden=true;document.body.classList.remove("auth-locked");const msg=document.getElementById("authMessage");if(msg)msg.textContent="";}
 function authenticateSelectedUser(){
-  const sel=document.getElementById("authUserSelect"),input=document.getElementById("authPassword"),msg=document.getElementById("authMessage");if(!sel)return false;
-  const u=APP_USERS.find(x=>String(x.userId)===String(sel.value));if(!u){if(msg)msg.textContent="Nie znaleziono użytkownika.";return false}
-  const required=passwordIsSet(u),typed=String(input?.value||"");
-  if(required&&passwordDigest(typed)!==userPasswords[passwordKey(u)]){if(msg)msg.textContent="Nieprawidłowe hasło.";input?.select();return false}
+  const loginInput=document.getElementById("authLogin"),passwordInput=document.getElementById("authPassword"),msg=document.getElementById("authMessage");
+  if(!loginInput)return false;
+  const u=findUserByLogin(loginInput.value),typed=String(passwordInput?.value||"");
+  if(!u){if(msg)msg.textContent="Nieprawidłowy login lub hasło.";loginInput.focus();return false}
+  const required=passwordIsSet(u);
+  if(required&&passwordDigest(typed)!==userPasswords[passwordKey(u)]){if(msg)msg.textContent="Nieprawidłowy login lub hasło.";passwordInput?.select();return false}
   currentUser=u;persistActiveUser();writeAuthSession(u);closeAuthGate();renderUserSwitchers();
   try{applyUserAccess();show("mainHome");renderMainDashboard();renderMobileDashboard();renderTomorrowReadyAlert();syncMobileAttention()}catch(e){console.error("Uruchomienie po uwierzytelnieniu",e)}
   logAction("Wejście do aplikacji",u.name);return true;
 }
-function requestUserSwitch(userId){
-  const next=APP_USERS.find(u=>String(u.userId)===String(userId));if(!next)return false;
-  if(currentUser&&String(next.userId)===String(currentUser.userId)){renderUserSwitchers();return true}
-  openAuthGate(next.userId,true);return true;
-}
+function requestUserSwitch(){openAuthGate("",true);return true}
 function initAuthGate(){
-  const sel=document.getElementById("authUserSelect"),enter=document.getElementById("authEnterBtn"),cancel=document.getElementById("authCancelBtn"),input=document.getElementById("authPassword");
-  if(sel)sel.onchange=()=>{pendingAuthUserId=sel.value;updateAuthPasswordState();if(input)input.value=""};
-  if(enter)enter.onclick=authenticateSelectedUser;if(input)input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();authenticateSelectedUser()}};
+  const loginInput=document.getElementById("authLogin"),enter=document.getElementById("authEnterBtn"),cancel=document.getElementById("authCancelBtn"),passwordInput=document.getElementById("authPassword");
+  if(loginInput){loginInput.oninput=updateAuthPasswordState;loginInput.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();passwordInput?.focus()}}}
+  if(enter)enter.onclick=authenticateSelectedUser;if(passwordInput)passwordInput.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();authenticateSelectedUser()}};
   if(cancel)cancel.onclick=()=>{closeAuthGate();renderUserSwitchers()};
   const sessionUser=validAuthSession();
-  if(sessionUser){currentUser=sessionUser;persistActiveUser();closeAuthGate()}else{clearAuthSession();openAuthGate(currentUser?.userId||APP_USERS[0]?.userId||"",false)}
+  if(sessionUser){currentUser=sessionUser;persistActiveUser();closeAuthGate()}else{clearAuthSession();openAuthGate("",false)}
 }
-function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
+function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,login:u.login,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
+function loginAvailable(login,exceptUserId=""){const key=normalizeLogin(login);return !!key&&!APP_USERS.some(u=>String(u.userId)!==String(exceptUserId)&&normalizeLogin(u.login)===key)}
+function validLoginFormat(login){return /^[a-z0-9][a-z0-9._-]{2,49}$/.test(normalizeLogin(login))}
+function nextAvailableLogin(name){
+  const base=loginFromName(name)||"pracownik";if(loginAvailable(base))return base;let n=2;while(!loginAvailable(`${base}.${n}`))n++;return `${base}.${n}`;
+}
 function addNewUser(){
  const name=$("#newUserName").value.trim(),role=$("#newUserRole").value,msg=$("#addUserMessage");
  if(name.length<3){msg.textContent="Wpisz imię i nazwisko pracownika.";msg.className="message error";return}
+ let login=normalizeLogin($("#newUserLogin")?.value||"");if(!login)login=nextAvailableLogin(name);
+ if(!validLoginFormat(login)){msg.textContent="Login musi mieć min. 3 znaki i może zawierać małe litery, cyfry, kropkę, myślnik lub podkreślenie.";msg.className="message error";return}
+ if(!loginAvailable(login)){msg.textContent="Taki login jest już używany.";msg.className="message error";return}
  const defaults=role==="Doposażeniowiec"?["mounts"]:role==="Myjnia"?["releases","wash"]:role.includes("Koordynator")?["releases","cars","battery"]:[];
- const id=`custom-${Date.now()}`;const u={userId:id,baseName:id,name,role,access:defaults};APP_USERS.push(u);userPasswords[passwordKey(u)]=passwordDigest("1234");saveUserPasswords();saveCustomUsers();logAction("Dodanie pracownika",`${name}; ${role}; hasło startowe ustawione`);$("#newUserName").value="";renderUserSwitchers();renderAdmin();
+ const id=`custom-${Date.now()}`;const u={userId:id,baseName:id,name,login,role,access:defaults};APP_USERS.push(u);userPasswords[passwordKey(u)]=passwordDigest("1234");saveUserPasswords();saveCustomUsers();logAction("Dodanie pracownika",`${name}; login ${login}; ${role}; hasło startowe ustawione`);$("#newUserName").value="";if($("#newUserLogin"))$("#newUserLogin").value="";renderUserSwitchers();renderAdmin();
 }
 function profileKey(u){return u.baseName||u.name}
-function saveUserProfile(u,newName){
-  newName=String(newName||"").trim();
+function saveUserProfile(u,newName,newLogin){
+  newName=String(newName||"").trim();newLogin=normalizeLogin(newLogin||u.login);
   if(newName.length<3){alert("Imię i nazwisko musi mieć co najmniej 3 znaki.");return false}
-  const oldName=u.name;userProfileOverrides[profileKey(u)]={name:newName};localStorage.setItem(USER_PROFILES_KEY,JSON.stringify(userProfileOverrides));
-  u.name=newName;if(String(u.userId||"").startsWith("custom-"))saveCustomUsers();
+  if(!validLoginFormat(newLogin)){alert("Login musi mieć min. 3 znaki i może zawierać małe litery, cyfry, kropkę, myślnik lub podkreślenie.");return false}
+  if(!loginAvailable(newLogin,u.userId)){alert("Taki login jest już używany przez innego pracownika.");return false}
+  const oldName=u.name,oldLogin=u.login;userProfileOverrides[profileKey(u)]={name:newName,login:newLogin};localStorage.setItem(USER_PROFILES_KEY,JSON.stringify(userProfileOverrides));
+  u.name=newName;u.login=newLogin;if(String(u.userId||"").startsWith("custom-"))saveCustomUsers();
   mountJobs?.forEach?.(j=>{if(j.owner===oldName)j.owner=newName});extraBonusWorks?.forEach?.(x=>{if(x.owner===oldName)x.owner=newName});washBonusWorks?.forEach?.(x=>{if(x.user===oldName)x.user=newName});
   try{saveMountJobs?.();saveExtraBonus?.();saveWashBonus?.()}catch(e){}
   if(currentUser?.userId===u.userId||currentUser?.baseName===u.baseName){currentUser=u;persistActiveUser();applyUserAccess()}
-  renderUserSwitchers();logAction("Zmiana danych użytkownika",`${oldName} → ${newName}`);return true;
+  renderUserSwitchers();logAction("Zmiana danych użytkownika",`${oldName} (${oldLogin}) → ${newName} (${newLogin})`);return true;
 }
 const ACCESS_LABELS={releases:"Wydania",mounts:"Montaże / doposażenia",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",admin:"Panel administratora"};
 function saveUserPermissions(name,access){
@@ -1094,14 +1110,10 @@ function persistActiveUser(){
   try{localStorage.setItem(ACTIVE_USER_KEY,String(currentUser.userId||""));localStorage.setItem("toyotaCurrentUserV1",JSON.stringify({userId:currentUser.userId,baseName:currentUser.baseName,name:currentUser.name,role:currentUser.role,access:currentUser.access}))}catch(e){}
 }
 function renderUserSwitchers(){
-  const selects=[document.getElementById("userSwitcher"),document.getElementById("mobileUserSwitcher")].filter(Boolean);
-  selects.forEach(sel=>{
-    const keep=currentUser?.userId||"";
-    sel.innerHTML="";
-    APP_USERS.forEach(u=>{const o=document.createElement("option");o.value=u.userId;o.textContent=`${u.name} — ${u.role}`;sel.appendChild(o)});
-    if(APP_USERS.some(u=>u.userId===keep))sel.value=keep;
-    sel.onchange=()=>requestUserSwitch(sel.value);
-  });
+  const desktop=document.getElementById("userSwitcher"),mobile=document.getElementById("mobileUserSwitcher");
+  if(desktop){desktop.textContent="Zmień użytkownika";desktop.onclick=()=>requestUserSwitch()}
+  if(mobile){mobile.textContent="Konto";mobile.onclick=()=>requestUserSwitch()}
+  const pill=document.getElementById("currentUserPill");if(pill&&currentUser)pill.textContent=`${currentUser.name} • ${currentUser.role}`;
 }
 function switchUserById(userId){
   const next=APP_USERS.find(u=>String(u.userId)===String(userId));if(!next)return false;
@@ -1156,8 +1168,8 @@ function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthK
 </body></html>`);w.document.close()}
 function renderAdmin(){
  const addBtn=$("#addUserBtn");if(addBtn)addBtn.onclick=addNewUser;
- $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:minmax(190px,1fr);gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('\"','&quot;')}" placeholder="Imię i nazwisko"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz imię</button></div><div class="admin-password-box"><div class="admin-password-head"><b>HASŁO</b><span class="password-status ${passwordIsSet(u)?"set":""}">${passwordIsSet(u)?"USTAWIONE":"BRAK HASŁA"}</span></div><div class="admin-password-controls"><input type="password" class="admin-password-input" data-user="${idx}" placeholder="Nowe hasło (min. 4 znaki)" autocomplete="new-password"><button class="btn set-user-password" data-user="${idx}" type="button">Ustaw / zmień</button>${u.role!=="Główny Koordynator"&&passwordIsSet(u)?`<button class="btn clear-user-password" data-user="${idx}" type="button">Usuń hasło</button>`:""}</div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.role==="Główny Koordynator"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
- document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
+ $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b><div class="muted" style="margin-top:3px">${u.login}</div></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('"','&quot;')}" placeholder="Imię i nazwisko"><input class="admin-login-input" data-user="${idx}" value="${String(u.login||'').replaceAll('&','&amp;').replaceAll('"','&quot;')}" placeholder="Login" autocapitalize="none" spellcheck="false"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz dane</button></div><div class="admin-password-box"><div class="admin-password-head"><b>HASŁO</b><span class="password-status ${passwordIsSet(u)?"set":""}">${passwordIsSet(u)?"USTAWIONE":"BRAK HASŁA"}</span></div><div class="admin-password-controls"><input type="password" class="admin-password-input" data-user="${idx}" placeholder="Nowe hasło (min. 4 znaki)" autocomplete="new-password"><button class="btn set-user-password" data-user="${idx}" type="button">Ustaw / zmień</button>${u.role!=="Główny Koordynator"&&passwordIsSet(u)?`<button class="btn clear-user-password" data-user="${idx}" type="button">Usuń hasło</button>`:""}</div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.role==="Główny Koordynator"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
+ document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value,login=document.querySelector(`.admin-login-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name,login)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
  document.querySelectorAll(".set-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],inp=document.querySelector(`.admin-password-input[data-user="${idx}"]`);if(setUserPassword(u,inp?.value||"")){if(inp)inp.value="";alert(`Hasło dla ${u.name} zostało zapisane.`);renderAdmin()}});
  document.querySelectorAll(".clear-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];if(confirm(`Usunąć hasło użytkownika ${u.name}?`)&&clearUserPassword(u))renderAdmin()});
  document.querySelectorAll(".save-user-access").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];const access=[...document.querySelectorAll(`.admin-access-check[data-user="${idx}"]:checked`)].map(x=>x.value);if(saveUserPermissions(u.name,access)){renderAdmin()}});
@@ -1241,7 +1253,7 @@ function ensureReleaseWorkItems(r){
 function isCoordinatorOnlyWorkItem(name){
   // Dywaniki / dywany / maty podłogowe wkłada osoba sprawdzająca gotowość auta, nie doposażeniowiec.
   const n=String(name||"").toLocaleLowerCase("pl-PL").replace(/ą/g,"a").replace(/ć/g,"c").replace(/ę/g,"e").replace(/ł/g,"l").replace(/ń/g,"n").replace(/ó/g,"o").replace(/ś/g,"s").replace(/ź|ż/g,"z");
-  return /dywan|wykladz|mata?\s+(gum|podlog)|maty?\s+(gum|podlog)|aptecz/.test(n);
+  return /dywan|wykladz|mata?\s+(gum|podlog)|maty?\s+(gum|podlog)|aptecz|zestaw\s+pierwszej\s+pomocy/.test(n);
 }
 function getInstallerWorkItems(r){
   return ensureReleaseWorkItems(r).filter(x=>!isCoordinatorOnlyWorkItem(x.name));
@@ -1284,6 +1296,7 @@ function normalizeReleaseRequirements(r){
   if(typeof r.releaseReady!=="boolean") r.releaseReady=(r.status==="GOTOWY"||r.status==="WYDANE");
   if(typeof r.mountOrdered!=="boolean") r.mountOrdered=true; // starsze zlecenia zachowują dotychczasowe działanie
   ensureReleaseWorkItems(r); syncLegacyReleaseFlags(r);
+  if(getInstallerWorkItems(r).some(x=>!x.done)) r.mountOrdered=true;
   return r;
 }
 releaseData.forEach(normalizeReleaseRequirements);
@@ -1331,12 +1344,14 @@ function renderReleaseMountOrderState(){
   if(!panel||!title||!items||!btn) return;
   const names=releaseDraftInstallerItems();
   const previous=editingReleaseId!==null ? releaseData.find(x=>String(x.id)===String(editingReleaseId)) : null;
-  const completed=new Set((previous?.workItems||[]).filter(x=>x.done).map(x=>String(x.name||"").toLocaleLowerCase("pl-PL")));
+  const draftCar=!previous?fleetCars.find(c=>normalizeVin(c.vin)===normalizeVin($("#releaseVin")?.value||"")):null;
+  const completedSource=previous?.workItems || (draftCar?ensureFleetWorkItems(draftCar):[]);
+  const completed=new Set(completedSource.filter(x=>x.done).map(x=>String(x.name||"").toLocaleLowerCase("pl-PL")));
   const missing=names.filter(n=>!completed.has(n.toLocaleLowerCase("pl-PL")));
   panel.classList.remove("need","done");
   if(!names.length){ title.textContent="BRAK MONTAŻU DLA DOPOSAŻENIOWCA"; items.textContent="Pozycje takie jak dywaniki pozostają po stronie osoby sprawdzającej gotowość auta."; btn.style.display="none"; return; }
   if(!missing.length){ panel.classList.add("done"); title.textContent="✓ AUTO DOPOSAŻONE"; items.textContent=names.join(" • "); btn.style.display="none"; return; }
-  panel.classList.add("need"); title.textContent=releaseMountOrderedDraft?"✓ MONTAŻ ZLECONY":"AUTO WYMAGA DOPOSAŻENIA"; items.textContent="Do wykonania: "+missing.join(" • "); btn.style.display="inline-block"; btn.textContent=releaseMountOrderedDraft?"✓ MONTAŻ ZLECONY":"ZLEĆ MONTAŻ"; btn.classList.toggle("ordered",releaseMountOrderedDraft);
+  panel.classList.add("need"); title.textContent=releaseMountOrderedDraft?"✓ AUTOMATYCZNIE NA LIŚCIE MONTAŻU":"AUTO WYMAGA DOPOSAŻENIA"; items.textContent="Do wykonania: "+missing.join(" • "); btn.style.display=releaseMountOrderedDraft?"none":"inline-block"; btn.textContent="ZLEĆ MONTAŻ"; btn.classList.toggle("ordered",releaseMountOrderedDraft);
 }
 
 function resetReleaseForm(){
@@ -1371,9 +1386,11 @@ function applyCarEquipmentToRelease(vin){
   const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(vin));
   if(!c) return;
   const equipment=(c.equipment||"").trim();
+  const client=(c.client||"").trim();
+  if(client && !$("#releaseClient").value.trim()) $("#releaseClient").value=client;
   if(equipment && !$("#releaseInfo").value.trim()){
     $("#releaseInfo").value=equipment;
-    releaseMountOrderedDraft=false;
+    releaseMountOrderedDraft=parseReleaseWorkItems(equipment).some(name=>!isCoordinatorOnlyWorkItem(name));
     renderReleaseMountOrderState();
   }
 }
@@ -1454,13 +1471,8 @@ function addReleaseEntry(){
   }
   const parsedWorkItems=parseReleaseWorkItems($("#releaseInfo").value.trim());
   const installerDraftItems=parsedWorkItems.filter(name=>!isCoordinatorOnlyWorkItem(name));
-  if(installerDraftItems.length && !releaseMountOrderedDraft && editingReleaseId===null){
-    msg.textContent="Samochód ma niewykonane doposażenie: "+installerDraftItems.join(", ")+". Kliknij ZLEĆ MONTAŻ przed zapisaniem wydania.";
-    msg.className="message error";
-    renderReleaseMountOrderState();
-    $("#releaseMountOrderPanel").scrollIntoView({behavior:"smooth",block:"center"});
-    return;
-  }
+  // Samochód na placu z niewykonanym doposażeniem trafia do kolejki montażu automatycznie.
+  if(installerDraftItems.length && editingReleaseId===null) releaseMountOrderedDraft=true;
   const alarmRequired=parsedWorkItems.some(x=>/alarm/i.test(x));
   const idCanRequired=parsedWorkItems.some(x=>/id\s*can/i.test(x));
   const metaRequired=parsedWorkItems.some(x=>/\bmeta\b/i.test(x));
@@ -1480,7 +1492,11 @@ function addReleaseEntry(){
     date,time,client,model,vin,
     place:$("#releasePlace").value.trim(),
     info:$("#releaseInfo").value.trim(),
-    workItems:parsedWorkItems.map(name=>{ const prev=(previous?.workItems||[]).find(x=>(x.name||"").toLowerCase()===name.toLowerCase()); return {name,done:prev?!!prev.done:false}; }),
+    workItems:parsedWorkItems.map(name=>{
+      const prev=(previous?.workItems||[]).find(x=>(x.name||"").toLowerCase()===name.toLowerCase());
+      const fleetPrev=ensureFleetWorkItems(carRecord).find(x=>(x.name||"").toLowerCase()===name.toLowerCase());
+      return {name,done:prev?!!prev.done:(fleetPrev?!!fleetPrev.done:false)};
+    }),
     status:"W TRAKCIE",
     alarmRequired,idCanRequired,metaRequired,extraRequired,
     alarmReady,matsReady,extraReady,
@@ -1614,7 +1630,7 @@ function renderReleaseWorkChecklist(r){
   const items=ensureReleaseWorkItems(r);
   box.innerHTML=items.length?items.map((x,i)=>`<label class="check ${x.done?"checked":""}"><input type="checkbox" data-release-work="${i}" ${x.done?"checked":""}><span><strong>${x.name}</strong><small>Osoba sprawdzająca może potwierdzić lub cofnąć wykonanie tej pozycji.</small></span></label>`).join(""):`<div class="muted" style="padding:10px 0">Brak wpisanych prac do wykonania.</div>`;
   box.querySelectorAll("[data-release-work]").forEach(el=>el.onchange=()=>{
-    const i=Number(el.dataset.releaseWork); r.workItems[i].done=el.checked; syncLegacyReleaseFlags(r); recalcReleaseStatus(r); saveRelease(); renderReleaseWorkChecklist(r); updateCheckLook(); if(typeof renderUrgentMountAlerts==="function")renderUrgentMountAlerts();
+    const i=Number(el.dataset.releaseWork); r.workItems[i].done=el.checked; syncLegacyReleaseFlags(r); recalcReleaseStatus(r); saveRelease(); syncReleaseChecklistToFleet(r); renderReleaseWorkChecklist(r); updateCheckLook(); if(typeof renderUrgentMountAlerts==="function")renderUrgentMountAlerts();
   });
 }
 function updateCheckLook(){
@@ -1735,6 +1751,19 @@ if(!localStorage.getItem(FRESH_CARS_PENDING_KEY)){
 function normalizeVin(v){return (v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").trim()}
 function saveCars(){localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars))}
 function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY"};fleetCars.unshift(c)}return c}
+function ensureFleetWorkItems(c){
+  if(!c)return[];
+  const names=parseReleaseWorkItems(c.equipment||"");
+  const old=Array.isArray(c.workItems)?c.workItems:[];
+  c.workItems=names.map(name=>{
+    const prev=old.find(x=>String(x.name||"").toLocaleLowerCase("pl-PL")===name.toLocaleLowerCase("pl-PL"));
+    return {name,done:prev?!!prev.done:false};
+  });
+  return c.workItems;
+}
+function getFleetInstallerWorkItems(c){return ensureFleetWorkItems(c).filter(x=>!isCoordinatorOnlyWorkItem(x.name))}
+function carIsK1(c){return !!(c && typeof batteryTests!=="undefined" && batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away))}
+function carIsOnMainLot(c){return !!c && c.status!=="WYJECHAŁ" && !carIsK1(c)}
 function syncIssuedToCars(){
   releaseData.forEach(r=>{
     const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(r.vin));
@@ -1744,6 +1773,13 @@ function syncIssuedToCars(){
   });
   saveCars();
   if(typeof syncBatteryCars==="function")syncBatteryCars();
+}
+function syncReleaseChecklistToFleet(r){
+  if(!r)return;
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(r.vin));if(!c)return;
+  const relItems=ensureReleaseWorkItems(r);ensureFleetWorkItems(c);
+  c.workItems.forEach(ci=>{const ri=relItems.find(x=>String(x.name||"").toLocaleLowerCase("pl-PL")===String(ci.name||"").toLocaleLowerCase("pl-PL"));if(ri)ci.done=!!ri.done;});
+  saveCars();
 }
 function getCarReleaseEquipment(vin){
   const n=normalizeVin(vin);
@@ -1756,8 +1792,42 @@ function getCarReleaseEquipment(vin){
   }
   // Przed wpisaniem do wydania pokazujemy doposażenie zdefiniowane już przy przyjęciu auta na Listę samochodów.
   const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
-  const names=parseReleaseWorkItems(c?.equipment||"");
-  return names.length?{release:null,items:names.map(name=>({name,done:false}))}:null;
+  const items=ensureFleetWorkItems(c);
+  return items.length?{release:null,items}:null;
+}
+function escapeHtml(value){
+  return String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
+}
+function carExcelSource(c){
+  if(c?.sourceRow)return c.sourceRow;
+  if(typeof HERBOWA_SOURCE_ROWS!=="undefined")return HERBOWA_SOURCE_ROWS[normalizeVin(c?.vin)]||null;
+  return null;
+}
+function carExcelSourceButton(c){
+  const src=carExcelSource(c);
+  if(!src)return "";
+  return `<button type="button" class="excel-source-btn" data-car-source="${escapeHtml(normalizeVin(c.vin))}">📄 SPRAWDŹ WPIS Z EXCELA</button>`;
+}
+function carExcelSourceDetail(c){
+  const src=carExcelSource(c);
+  if(!src)return "";
+  const vin=normalizeVin(c.vin);
+  const field=(label,value)=>`<div class="excel-source-field"><small>${escapeHtml(label)}</small><span>${escapeHtml(value||"—")}</span></div>`;
+  return `<tr class="excel-source-detail" id="car-source-${escapeHtml(vin)}" hidden><td colspan="4"><div class="excel-source-card">
+    <div class="excel-source-title"><strong>Oryginalny wiersz z arkusza „Herbowa”</strong><span class="muted">Wiersz Excel: ${escapeHtml(src.excelRow||"—")}</span></div>
+    <div class="excel-source-equipment"><b>DOPOSAŻENIE — ORYGINALNY WPIS Z EXCELA</b>${escapeHtml(src.equipment||"Brak wpisu")}</div>
+    <div class="excel-source-grid">
+      ${field("Data",src.date)}
+      ${field("VIN",src.vin)}
+      ${field("Klient",src.client)}
+      ${field("Wysyłka do",src.shippingTo)}
+      ${field("Nr zlecenia",src.orderNo)}
+      ${field("Status",src.status)}
+      ${field("Data wysłania",src.sentDate)}
+      ${field("Uwagi",src.notes)}
+    </div>
+    <div class="excel-source-note">To jest zapis źródłowy z Excela. Checklista powyżej jest tworzona automatycznie z pola „Doposażenie”, dlatego w razie wątpliwości możesz porównać ją z tym oryginalnym wpisem.</div>
+  </div></td></tr>`;
 }
 function renderCars(){
   syncIssuedToCars();
@@ -1765,7 +1835,8 @@ function renderCars(){
   const rows=fleetCars.filter(c=>{
     const eq=getCarReleaseEquipment(c.vin);
     const equipment=eq?eq.items.map(x=>x.name).join(" "):"";
-    return `${c.vin} ${c.status} ${equipment}`.toLowerCase().includes(q);
+    const src=carExcelSource(c);
+    return `${c.vin} ${c.status} ${c.client||""} ${equipment} ${src?.equipment||""} ${src?.orderNo||""}`.toLowerCase().includes(q);
   }).sort((a,b)=>{
     const isK1=c=>batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away);
     const rank=c=>c.status==="WYJECHAŁ"?2:(isK1(c)?1:0);
@@ -1780,22 +1851,34 @@ function renderCars(){
     const issued=c.status==="WYJECHAŁ";
     const k1=!issued && batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away);
     const eq=getCarReleaseEquipment(c.vin);
+    const sourceButton=carExcelSourceButton(c);
+    const sourceDetail=carExcelSourceDetail(c);
     if(!eq || !eq.items.length){
-      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${c.vin}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':c.status)}</span></td><td style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}">Brak wpisanego doposażenia</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td></tr>`;
+      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}">Brak wpisanego doposażenia${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td></tr>${sourceDetail}`;
     }
     const done=eq.items.filter(x=>x.done).length, total=eq.items.length;
     const allDone=done===total;
-    const itemHtml=eq.items.map(x=>`<span style="display:inline-block;margin:2px 5px 2px 0;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:${x.done?'#e9f8ef':'#fff0ee'};color:${x.done?'#137a3d':'#b42318'}">${x.done?'✓':'○'} ${x.name}</span>`).join("");
+    const itemHtml=eq.items.map(x=>`<span style="display:inline-block;margin:2px 5px 2px 0;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:${x.done?'#e9f8ef':'#fff0ee'};color:${x.done?'#137a3d':'#b42318'}">${x.done?'✓':'○'} ${escapeHtml(x.name)}</span>`).join("");
     const state=issued?"WYDANY":(k1?"K1":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`));
-    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${c.vin}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':c.status)}</span></td><td>${itemHtml}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td></tr>`;
+    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td>${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td></tr>${sourceDetail}`;
   }).join(""):`<tr><td colspan="4" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
+
+  document.querySelectorAll("[data-car-source]").forEach(btn=>{
+    btn.onclick=()=>{
+      const row=document.getElementById(`car-source-${normalizeVin(btn.dataset.carSource)}`);
+      if(!row)return;
+      const willOpen=row.hidden;
+      row.hidden=!willOpen;
+      btn.textContent=willOpen?"▲ UKRYJ WPIS Z EXCELA":"📄 SPRAWDŹ WPIS Z EXCELA";
+    };
+  });
 }
 function addCar(){
   const vin=normalizeVin($("#newVin").value);const msg=$("#addCarMessage");
   if(vin.length<4){msg.textContent="VIN musi mieć co najmniej 4 znaki.";msg.className="message error";return}
   if(fleetCars.some(r=>normalizeVin(r.vin)===vin)){msg.textContent="Ten VIN już istnieje w bazie.";msg.className="message error";return}
   const equipment=$("#newCarEquipment") ? $("#newCarEquipment").value.trim() : "";
-  fleetCars.unshift({vin,status:"AKTYWNY",equipment});saveCars();logAction("Dodanie samochodu",vin+(equipment?` • Doposażenie: ${equipment}`:""));syncBatteryCars();$("#newVin").value="";if($("#newCarEquipment"))$("#newCarEquipment").value="";msg.textContent=`Dodano VIN ${vin}${equipment?" wraz z listą doposażenia":""}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
+  fleetCars.unshift({vin,status:"AKTYWNY",equipment,workItems:parseReleaseWorkItems(equipment).map(name=>({name,done:false}))});saveCars();logAction("Dodanie samochodu",vin+(equipment?` • Doposażenie: ${equipment}`:""));syncBatteryCars();$("#newVin").value="";if($("#newCarEquipment"))$("#newCarEquipment").value="";msg.textContent=`Dodano VIN ${vin}${equipment?" wraz z listą doposażenia":""}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
 }
 function renderVinSuggestions(){
   const q=normalizeVin($("#vinLookup").value);$("#vinLookup").value=q;const box=$("#vinSuggestions"),msg=$("#vinLookupMessage");
@@ -1833,7 +1916,7 @@ function renderMainDashboard(){
   const activeCars=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
   const todayReleases=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE");
   const todayReady=todayReleases.filter(r=>r.releaseReady).length;
-  const openMounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const openMounts=getPendingReleaseCars().length;
   const batteryDue=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
   if($("#homeActiveCars"))$("#homeActiveCars").textContent=activeCars;
   if($("#homeTodayReleases"))$("#homeTodayReleases").textContent=todayReleases.length;
@@ -1869,7 +1952,7 @@ function renderMobileDashboard(){
   const today=isoToday(),first=(currentUser.name||"").trim().split(/\s+/)[0]||"";
   const todayReleases=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE");
   const ready=todayReleases.filter(r=>r.releaseReady).length;
-  const mounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const mounts=getPendingReleaseCars().length;
   const battery=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
   const active=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
   const wash=mobileWashPendingToday();
@@ -1898,7 +1981,7 @@ function syncMobileAttention(){
   const allowed=currentUser.role==="Główny Koordynator";box.style.display=allowed?"block":"none";if(!allowed)return;
   const day=nextWorkingDayIso();
   const notReady=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE"&&!r.releaseReady);
-  const mounts=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done)).length;
+  const mounts=getPendingReleaseCars().length;
   const overdue=batteryTests.filter(t=>!t.away&&getCarStatus(t.vin)!=="WYJECHAŁ"&&batteryRowState(t).key==="overdue").length;
   const total=notReady.length+mounts+overdue;box.classList.toggle("ok",total===0);box.classList.remove("open");
   if($("#mobileAttentionCount"))$("#mobileAttentionCount").textContent=total;
@@ -1937,7 +2020,7 @@ function renderGlobalVinSearch(){
   if(!hits.length){out.classList.add("open");out.innerHTML='<div class="muted">Nie znaleziono samochodu.</div>';return}
   const c=hits[0], rel=releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(c.vin)).sort((a,b)=>`${b.date||""} ${b.time||""}`.localeCompare(`${a.date||""} ${a.time||""}`))[0],eq=getCarReleaseEquipment(c.vin);
   const done=eq?.items?.filter(x=>x.done).length||0,total=eq?.items?.length||0,arch=c.status==="WYJECHAŁ"||rel?.status==="WYDANE";
-  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
+  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||c.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
   addMobileRecentVin(c.vin);
 }
 
@@ -2090,7 +2173,7 @@ function renderTomorrowReadyAlert(){
   const day=nextWorkingDayIso();
   const tomorrowCars=releaseData.filter(r=>r.date===day&&r.status!=="WYDANE");
   const notReady=tomorrowCars.filter(r=>!r.releaseReady);
-  const mountWaiting=releaseData.filter(r=>r.status!=="WYDANE"&&r.mountOrdered&&getInstallerWorkItems(r).some(x=>!x.done));
+  const mountWaiting=getPendingReleaseCars();
   const overdueBattery=(typeof batteryTests!=="undefined"?batteryTests:[]).filter(t=>!t.away&&(()=>{const st=batteryRowState(t);return st.key==="overdue"})());
   const cats=[
     {label:"Auta na następny dzień niegotowe",count:notReady.length},
@@ -2329,6 +2412,50 @@ if(!localStorage.getItem(CLEAN_15_CARS_KEY)){
   localStorage.setItem(CLEAN_15_CARS_KEY,"1");
 }
 
+/* ---------- IMPORT Z EXCELA: HERBOWA — OSTATNIE 100 SAMOCHODÓW ---------- */
+// Dane pobrane z arkusza "Herbowa": VIN, Klient, Doposażenie.
+// Import jest jednorazowy na danym urządzeniu. Czyści wyłącznie dane samochodów
+// i powiązane dane operacyjne; użytkownicy, hasła i uprawnienia pozostają bez zmian.
+const HERBOWA_LAST100_IMPORT_KEY="toyotaHerbowaLast100_20260830_V1";
+if(!localStorage.getItem(HERBOWA_LAST100_IMPORT_KEY)){
+  const herbowaCars=[{"vin":"JTDKBCBB60A611700","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB70A611401","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB60A613608","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB30A613596","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB60A613530","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB10A611569","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB40A611338","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB20A611595","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB40A610948","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"YARKBBC3600472347","client":"Fortum","equipment":"Dywaniki gumowe"},{"vin":"JTNAGACK303093674","client":"BUdokrusz","equipment":"Alarm"},{"vin":"NMTBD3BE80R132152","client":"Espes","equipment":"Alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE50E278073","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe"},{"vin":"SB1ZB3AE70E278110","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe"},{"vin":"YAREDYHT2RJ132381","client":"EXORIGO-UPOS S. A.","equipment":"czujnii parkowania przód + alarm Herbowa 16"},{"vin":"YAREDYHT0RJ132380","client":"EXORIGO-UPOS S. A.","equipment":"czujnii parkowania przód + alarm Herbowa 16"},{"vin":"JTPABACA00R069486","client":"EVER CLEANING SP. Z O.O.","equipment":"H16:, Wykładzina Dywaniki gumowe bagażnika, alarm"},{"vin":"YAREMZKUXRJ133902","client":"ENERGA CIEPŁO OSTROŁĘKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"alarm, Wykładzina bagażnika (wersja 5 os.), dywaniki gumowe przód i tył,, hak holowniczy wypinany poziomo, przegroda bagażnika materiałowa (Nr katalogowy: A PZ4L0-H5121)"},{"vin":"SB1ZB3AE40E291171","client":"GREENYARD LOGISTICS POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Alarm"},{"vin":"SB1ZB3AE90E283485","client":"FARMIO S.A.","equipment":"Dywaniki gumowe, mata bagażnika, alarm Herbowa"},{"vin":"SB1ZB3AE00E291426","client":"HAP ARMATURA GRUPA SBS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"alarm"},{"vin":"JTDKBCBB70A611608","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB90A611304","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB10A613371","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB40A611811","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB20A611760","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB70A611723","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB50A613647","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB80A611438","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB40A611422","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"YARTDF6F7RG092465","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C"},{"vin":"YARTDF6F5RG092464","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C"},{"vin":"NMTBD3BE50R131167","client":"TRACZYK-OŚLIZŁO ANNA","equipment":"ALARM"},{"vin":"YAREDYHT8RJ121434","client":"Innovative Facility Management Polska Spółka z ograniczoną odpowiedzialnością","equipment":"?"},{"vin":"JTNAGACK303094470","client":"\"WACKER NEUSON\" SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Listwa ochronna na tylny zderzak (stal),Podświetlenie drzwi z logo Camry, alarm"},{"vin":"JTNAGACK403093974","client":"CWS WORKWEAR POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"ALARM"},{"vin":"SB1ZB3AE20E297860","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Dywaniki zamiennik, Apteczka - zestaw pierwszej pomocy DIN13164, Alarm"},{"vin":"SB1ZB3AE00E297856","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Dywaniki zamiennik, Apteczka - zestaw pierwszej pomocy DIN13164, Alarm"},{"vin":"SB1ZB3AE10E293055","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE90E293255","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE10E293220","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"JTNAGACK403093098","client":"FARMIO S.A.","equipment":"Alarm, dywaniki gumowe"},{"vin":"SB1ZB3AE40E293275","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE60E293410","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE20E291217","client":"GREENYARD LOGISTICS POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Alarm"},{"vin":"SB1ZB3AE10E293198","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE50E293043","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"JTJCCBAZ502047264","client":"ALCON POLSKA SP.Z.O.O.","equipment":"ALARM LEXUS HERBOWA"},{"vin":"JTJCCBAZ402046753","client":"ALCON POLSKA SP.Z.O.O.","equipment":"ALARM LEXUS HERBOWA"},{"vin":"JTDKBCBB70A613472","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB80A611164","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB60A611289","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB60A611258","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB20A611113","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB50A613616","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB70A611432","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB70A611415","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB80A613481","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB90A611786","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBB80A611357","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKBCBBX0A611327","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"YARTDF6F9RG092709","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C"},{"vin":"SB1ZB3AE90E294616","client":"Qemetica","equipment":"alarm"},{"vin":"YAREDYHZ2RJ136340","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm"},{"vin":"YAREDYHZ4RJ136341","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm"},{"vin":"SB1ZB3AE60E293004","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE90E291120","client":"ENGIE SERVICES SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Hak Wypinany"},{"vin":"SB1ZB3AEX0E293362","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"YAREDYHZ8RJ136343","client":"MONSTER","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm"},{"vin":"YAREMZKU3RJ130615","client":"ENERGA","equipment":"alarm, Wykładzina bagażnika (wersja 5 os.), dywaniki gumowe przód i tył, alarm, hak holowniczy wypinany poziomo, przegroda bagażnika materiałowa (Nr katalogowy: A PZ4L0-H5121)"},{"vin":"SB1ZB3AE70E293089","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"JTJCJBGA902042799","client":"PRUSZYŃSKI","equipment":"H16: Dywaniki gumowe, alarm"},{"vin":"JTNAGACK703093659","client":"SANOFI","equipment":".alarm, dywaniki gumowe,"},{"vin":"SB1ZB3AE70E278219","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe"},{"vin":"JTM5CAAV20J010696","client":"ALCON POLSKA SP.Z.O.O.","equipment":"alarm"},{"vin":"SB1ZB3AEX0E287397","client":"Dartom","equipment":"alarm"},{"vin":"NMTBD3BE50R130004","client":"tb","equipment":"alarm"},{"vin":"SB1ZB3AEX0E293491","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164"},{"vin":"YAREDYHZ6RJ136342","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm"},{"vin":"SB1ZB3AE20E291671","client":"LOGSYSTEM","equipment":"Czujniki przód+tyl, ble"},{"vin":"SB1ZB3AE30E291517","client":"LOGSYSTEM","equipment":"Czujniki przód+tyl, ble"},{"vin":"JTPAAAAA10R260520","client":"SYMFONIA","equipment":"alarm, czujniki parkowania przód + tył Herbowa"},{"vin":"JTPAAAAA10R260386","client":"SYMFONIA","equipment":"alarm, czujniki parkowania przód + tył Herbowa"},{"vin":"JTJCCBAZ202047738","client":"ALCON","equipment":"ALARM LEXUS HERBOWA"},{"vin":"JTNAGACK603094978","client":"POLSKI FUNDUSZ ROZWOJU","equipment":"IDCAN"},{"vin":"JTM5DABV20J006658","client":"LUX MED SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"H16: Dywaniki gumowe, Q_Save_ID_Can, alarm"},{"vin":"JTJCCBAZX02047874","client":"ALCON","equipment":"ALARM LEXUS HERBOWA"},{"vin":"NMTBD3BE30R132155","client":"QUEISSER PHARMA","equipment":"Alarm Herbowa 16"},{"vin":"JTNABACB109013140","client":"Bury PIOTR","equipment":"Alarm, chlapacze p i t, pakiet bezpieczeństwa, wideorejestrator"},{"vin":"JTDKBCBB60A611311","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"JTDKGCGB60A215597","client":"TB","equipment":"ble42"},{"vin":"SB1ZB3AE10E298255","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"zestaw pierwszej pomocy DIN13164"},{"vin":"SB1ZB3AE40E298072","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"zestaw pierwszej pomocy DIN13164"},{"vin":"AHTBE3CD807472323","client":"TRZUSKAWICA","equipment":"lampu led"},{"vin":"AHTBE3CD407472058","client":"TRZUSKAWICA","equipment":"lampu led"},{"vin":"AHTBE3CD207472429","client":"TRZUSKAWICA","equipment":"lampu led"},{"vin":"JTDKBCBB80A613495","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm"},{"vin":"SB1ZB3AE40E291140","client":"CULLIGAN POLSKA SP.ZO.O","equipment":"kurtki-dzięcioł"},{"vin":"YARKBBC3800452519","client":"Innovative Facility Management Polska Spółka z ograniczoną odpowiedzialnością","equipment":"?"},{"vin":"YAREDYHT7RJ112689","client":"ENGIE SERVICES SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"relingi dachowe"}];
+  releaseData=[];
+  fleetCars=herbowaCars.map(c=>({
+    vin:normalizeVin(c.vin),
+    status:"AKTYWNY",
+    client:c.client||"",
+    equipment:c.equipment||"",
+    source:"Herbowa"
+  }));
+  batteryTests=[];
+  mountJobs=[];
+  localStorage.setItem("toyotaFleetDemoV2","[]");
+  localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+  localStorage.setItem("toyotaMountJobsV3","[]");
+  localStorage.setItem("toyotaBatteryTestsV1","[]");
+  localStorage.setItem("toyotaWashRecordsV1","[]");
+  localStorage.setItem(HERBOWA_LAST100_IMPORT_KEY,"1");
+}
+
+/* ---------- ORYGINALNE WIERSZE Z EXCELA — KONTROLA DOPOSAŻENIA ---------- */
+const HERBOWA_SOURCE_ROWS={"JTDKBCBB60A611700":{"excelRow":2619,"date":"20,08,2026","vin":"JTDKBCBB60A611700","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2016/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB70A611401":{"excelRow":2620,"date":"20,08,2026","vin":"JTDKBCBB70A611401","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2017/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB60A613608":{"excelRow":2621,"date":"20,08,2026","vin":"JTDKBCBB60A613608","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2018/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB30A613596":{"excelRow":2622,"date":"20,08,2026","vin":"JTDKBCBB30A613596","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2019/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB60A613530":{"excelRow":2623,"date":"20,08,2026","vin":"JTDKBCBB60A613530","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2020/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB10A611569":{"excelRow":2624,"date":"20,08,2026","vin":"JTDKBCBB10A611569","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2021/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB40A611338":{"excelRow":2625,"date":"20,08,2026","vin":"JTDKBCBB40A611338","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2022/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB20A611595":{"excelRow":2626,"date":"20,08,2026","vin":"JTDKBCBB20A611595","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2024/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB40A610948":{"excelRow":2627,"date":"20,08,2026","vin":"JTDKBCBB40A610948","client":"Coca Cola","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2025/2026","status":"W","sentDate":"25.08.2026","notes":""},"YARKBBC3600472347":{"excelRow":2628,"date":"20,08,2026","vin":"YARKBBC3600472347","client":"Fortum ","equipment":"Dywaniki gumowe","shippingTo":"","orderNo":"4190/2026","status":"W","sentDate":"21.08.2026","notes":""},"JTNAGACK303093674":{"excelRow":2629,"date":"20,08,2026","vin":"JTNAGACK303093674","client":"BUdokrusz","equipment":"Alarm","shippingTo":"","orderNo":"4192/2026","status":"W","sentDate":"21.08.2026","notes":""},"NMTBD3BE80R132152":{"excelRow":2630,"date":"20,08,2026","vin":"NMTBD3BE80R132152","client":"Espes","equipment":"Alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"4193/2026","status":"W","sentDate":"21.08.2026","notes":""},"SB1ZB3AE50E278073":{"excelRow":2631,"date":"21,08,2026","vin":"SB1ZB3AE50E278073","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe","shippingTo":"","orderNo":"4204/2026","status":"W","sentDate":"21.08.2026","notes":"225/45R17 Firestone"},"SB1ZB3AE70E278110":{"excelRow":2632,"date":"21,08,2026","vin":"SB1ZB3AE70E278110","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe","shippingTo":"","orderNo":"4205/2026","status":"W","sentDate":"21.08.2026","notes":"225/45R17 Firestone"},"YAREDYHT2RJ132381":{"excelRow":2633,"date":"21,08,2026","vin":"YAREDYHT2RJ132381","client":"EXORIGO-UPOS S. A.","equipment":" czujnii parkowania przód + alarm Herbowa 16","shippingTo":"","orderNo":"2037/2026","status":"W","sentDate":"24.08.2026","notes":""},"YAREDYHT0RJ132380":{"excelRow":2634,"date":"21,08,2026","vin":"YAREDYHT0RJ132380","client":"EXORIGO-UPOS S. A.","equipment":"czujnii parkowania przód + alarm Herbowa 16","shippingTo":"","orderNo":"2036/2026","status":"W","sentDate":"24.08.2026","notes":""},"JTPABACA00R069486":{"excelRow":2635,"date":"21,08,2026","vin":"JTPABACA00R069486","client":"EVER CLEANING SP. Z O.O.","equipment":"H16:, Wykładzina Dywaniki gumowe bagażnika, alarm","shippingTo":"","orderNo":"4206/2026","status":"W","sentDate":"21.08.2026","notes":""},"YAREMZKUXRJ133902":{"excelRow":2636,"date":"21,08,2026","vin":"YAREMZKUXRJ133902","client":"ENERGA CIEPŁO OSTROŁĘKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"alarm, Wykładzina bagażnika (wersja 5 os.), dywaniki gumowe przód i tył,, hak holowniczy wypinany poziomo, przegroda bagażnika materiałowa (Nr katalogowy: A PZ4L0-H5121)  ","shippingTo":"","orderNo":"2041/2026","status":"W","sentDate":"25.08.2026","notes":"HAK + wiązka"},"SB1ZB3AE40E291171":{"excelRow":2637,"date":"21,08,2026","vin":"SB1ZB3AE40E291171","client":"GREENYARD LOGISTICS POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Alarm ","shippingTo":"","orderNo":"4207/2026","status":"W","sentDate":"21.08.2026","notes":""},"SB1ZB3AE90E283485":{"excelRow":2638,"date":"21,08,2026","vin":"SB1ZB3AE90E283485","client":"FARMIO S.A.","equipment":"Dywaniki gumowe, mata bagażnika, alarm Herbowa ","shippingTo":"","orderNo":"4208/2026","status":"W","sentDate":"25.08.2026","notes":""},"SB1ZB3AE00E291426":{"excelRow":2639,"date":"21,08,2026","vin":"SB1ZB3AE00E291426","client":"HAP ARMATURA GRUPA SBS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"alarm","shippingTo":"","orderNo":"2042/2026","status":"W","sentDate":"25.08.2026","notes":""},"JTDKBCBB70A611608":{"excelRow":2640,"date":"21,08,2026","vin":"JTDKBCBB70A611608","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2035/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB90A611304":{"excelRow":2641,"date":"21,08,2026","vin":"JTDKBCBB90A611304","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2034/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB10A613371":{"excelRow":2642,"date":"21,08,2026","vin":"JTDKBCBB10A613371","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2033/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB40A611811":{"excelRow":2643,"date":"21,08,2026","vin":"JTDKBCBB40A611811","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2032/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB20A611760":{"excelRow":2644,"date":"21,08,2026","vin":"JTDKBCBB20A611760","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2031/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB70A611723":{"excelRow":2645,"date":"21,08,2026","vin":"JTDKBCBB70A611723","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2030/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB50A613647":{"excelRow":2646,"date":"21,08,2026","vin":"JTDKBCBB50A613647","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2029/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB80A611438":{"excelRow":2647,"date":"21,08,2026","vin":"JTDKBCBB80A611438","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2028/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB40A611422":{"excelRow":2648,"date":"21,08,2026","vin":"JTDKBCBB40A611422","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2038/2026","status":"W","sentDate":"26.08.2026","notes":""},"YARTDF6F7RG092465":{"excelRow":2649,"date":"21,08,2026","vin":"YARTDF6F7RG092465","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C","shippingTo":"Opony ogarnia IG","orderNo":"4210/2026","status":"N","sentDate":"","notes":""},"YARTDF6F5RG092464":{"excelRow":2650,"date":"21,08,2026","vin":"YARTDF6F5RG092464","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C","shippingTo":"Opony ogarnia IG","orderNo":"4211/2026","status":"N","sentDate":"","notes":""},"NMTBD3BE50R131167":{"excelRow":2651,"date":"21,08,2026","vin":"NMTBD3BE50R131167","client":"TRACZYK-OŚLIZŁO ANNA","equipment":"ALARM","shippingTo":"","orderNo":"4209/2026","status":"W","sentDate":"25.08.2026","notes":""},"YAREDYHT8RJ121434":{"excelRow":2652,"date":"29,07,2026","vin":"YAREDYHT8RJ121434","client":"Innovative Facility Management Polska Spółka z ograniczoną odpowiedzialnością","equipment":"?","shippingTo":"","orderNo":"","status":"N","sentDate":"","notes":""},"JTNAGACK303094470":{"excelRow":2653,"date":"21,08,2026","vin":"JTNAGACK303094470","client":"\"WACKER NEUSON\" SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Listwa ochronna na tylny zderzak (stal),Podświetlenie drzwi z logo Camry, alarm","shippingTo":"","orderNo":"4228/2026","status":"W","sentDate":"25.08.2026","notes":"listwa na 04/09"},"JTNAGACK403093974":{"excelRow":2654,"date":"21,08,2026","vin":"JTNAGACK403093974","client":"CWS WORKWEAR POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"ALARM","shippingTo":"","orderNo":"4231/2026","status":"W","sentDate":"24.08.2026","notes":""},"SB1ZB3AE20E297860":{"excelRow":2655,"date":"21,08,2026","vin":"SB1ZB3AE20E297860","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Dywaniki zamiennik, Apteczka - zestaw pierwszej pomocy DIN13164, Alarm","shippingTo":"","orderNo":"4215/2026","status":"W","sentDate":"24.08.2026","notes":""},"SB1ZB3AE00E297856":{"excelRow":2656,"date":"21,08,2026","vin":"SB1ZB3AE00E297856","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Dywaniki zamiennik, Apteczka - zestaw pierwszej pomocy DIN13164, Alarm","shippingTo":"","orderNo":"4216/2026","status":"W","sentDate":"24.08.2026","notes":""},"SB1ZB3AE10E293055":{"excelRow":2657,"date":"24,08,2026","vin":"SB1ZB3AE10E293055","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2050/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE90E293255":{"excelRow":2658,"date":"24,08,2026","vin":"SB1ZB3AE90E293255","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2051/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE10E293220":{"excelRow":2659,"date":"24,08,2026","vin":"SB1ZB3AE10E293220","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2052/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTNAGACK403093098":{"excelRow":2660,"date":"24,08,2026","vin":"JTNAGACK403093098","client":"FARMIO S.A.","equipment":"Alarm, dywaniki gumowe","shippingTo":"","orderNo":"4232/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE40E293275":{"excelRow":2661,"date":"24,08,2026","vin":"SB1ZB3AE40E293275","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2053/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE60E293410":{"excelRow":2662,"date":"24,08,2026","vin":"SB1ZB3AE60E293410","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2054/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE20E291217":{"excelRow":2663,"date":"24,08,2026","vin":"SB1ZB3AE20E291217","client":"GREENYARD LOGISTICS POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Alarm ","shippingTo":"","orderNo":"4233/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE10E293198":{"excelRow":2664,"date":"24,08,2026","vin":"SB1ZB3AE10E293198","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2055/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE50E293043":{"excelRow":2665,"date":"24,08,2026","vin":"SB1ZB3AE50E293043","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2056/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTJCCBAZ502047264":{"excelRow":2666,"date":"24,08,2026","vin":"JTJCCBAZ502047264","client":"ALCON POLSKA SP.Z.O.O.","equipment":"ALARM LEXUS HERBOWA","shippingTo":"","orderNo":"466/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTJCCBAZ402046753":{"excelRow":2667,"date":"24,08,2026","vin":"JTJCCBAZ402046753","client":"ALCON POLSKA SP.Z.O.O.","equipment":"ALARM LEXUS HERBOWA","shippingTo":"","orderNo":"467/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTDKBCBB70A613472":{"excelRow":2668,"date":"24,08,2026","vin":"JTDKBCBB70A613472","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2060/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB80A611164":{"excelRow":2669,"date":"24,08,2026","vin":"JTDKBCBB80A611164","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2061/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB60A611289":{"excelRow":2670,"date":"24,08,2026","vin":"JTDKBCBB60A611289","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2062/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB60A611258":{"excelRow":2671,"date":"24,08,2026","vin":"JTDKBCBB60A611258","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2063/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB20A611113":{"excelRow":2672,"date":"24,08,2026","vin":"JTDKBCBB20A611113","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2064/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB50A613616":{"excelRow":2673,"date":"24,08,2026","vin":"JTDKBCBB50A613616","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2065/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB70A611432":{"excelRow":2674,"date":"24,08,2026","vin":"JTDKBCBB70A611432","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2066/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB70A611415":{"excelRow":2675,"date":"24,08,2026","vin":"JTDKBCBB70A611415","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2067/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB80A613481":{"excelRow":2676,"date":"24,08,2026","vin":"JTDKBCBB80A613481","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2108/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB90A611786":{"excelRow":2677,"date":"24,08,2026","vin":"JTDKBCBB90A611786","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2109/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBB80A611357":{"excelRow":2678,"date":"24,08,2026","vin":"JTDKBCBB80A611357","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2110/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKBCBBX0A611327":{"excelRow":2679,"date":"24,08,2026","vin":"JTDKBCBBX0A611327","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2111/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"YARTDF6F9RG092709":{"excelRow":2680,"date":"24,08,2026","vin":"YARTDF6F9RG092709","client":"MIRBUD SPÓŁKA AKCYJNA","equipment":"Opony wielosezon (najtańsze) 215/75R16C","shippingTo":"Opony ogarnia IG","orderNo":"4274/2026","status":"N","sentDate":"","notes":""},"SB1ZB3AE90E294616":{"excelRow":2681,"date":"25,08,2026","vin":"SB1ZB3AE90E294616","client":"Qemetica","equipment":"alarm","shippingTo":"","orderNo":"4236/2026","status":"W","sentDate":"26.08.2026","notes":""},"YAREDYHZ2RJ136340":{"excelRow":2682,"date":"25,08,2026","vin":"YAREDYHZ2RJ136340","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm","shippingTo":"","orderNo":"2080/2026","status":"Z","sentDate":"","notes":""},"YAREDYHZ4RJ136341":{"excelRow":2683,"date":"25,08,2026","vin":"YAREDYHZ4RJ136341","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm","shippingTo":"","orderNo":"2081/2026","status":"Z","sentDate":"","notes":""},"SB1ZB3AE60E293004":{"excelRow":2684,"date":"25,08,2026","vin":"SB1ZB3AE60E293004","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2082/2026","status":"Z","sentDate":"","notes":""},"SB1ZB3AE90E291120":{"excelRow":2685,"date":"25,08,2026","vin":"SB1ZB3AE90E291120","client":"ENGIE SERVICES SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"Hak Wypinany","shippingTo":"","orderNo":"4238/2026","status":"N","sentDate":"Wydany !!!! PJ","notes":""},"SB1ZB3AEX0E293362":{"excelRow":2686,"date":"26,08,2026","vin":"SB1ZB3AEX0E293362","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2093/2026","status":"Z","sentDate":"","notes":""},"YAREDYHZ8RJ136343":{"excelRow":2687,"date":"26,08,2026","vin":"YAREDYHZ8RJ136343","client":"MONSTER","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm","shippingTo":"","orderNo":"2094/2026","status":"Z","sentDate":"","notes":""},"YAREMZKU3RJ130615":{"excelRow":2688,"date":"26,08,2026","vin":"YAREMZKU3RJ130615","client":"ENERGA","equipment":"alarm, Wykładzina bagażnika (wersja 5 os.), dywaniki gumowe przód i tył, alarm, hak holowniczy wypinany poziomo, przegroda bagażnika materiałowa (Nr katalogowy: A PZ4L0-H5121)","shippingTo":"","orderNo":"2095/2026","status":"Z","sentDate":"","notes":""},"SB1ZB3AE70E293089":{"excelRow":2689,"date":"26,08,2026","vin":"SB1ZB3AE70E293089","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2096/2026","status":"Z","sentDate":"","notes":""},"JTJCJBGA902042799":{"excelRow":2690,"date":"26,08,2026","vin":"JTJCJBGA902042799","client":"PRUSZYŃSKI","equipment":"H16: Dywaniki gumowe, alarm","shippingTo":"","orderNo":"477/2026","status":"W","sentDate":"26.08.2026","notes":""},"JTNAGACK703093659":{"excelRow":2691,"date":"26,08,2026","vin":"JTNAGACK703093659","client":"SANOFI","equipment":".alarm, dywaniki gumowe,","shippingTo":"","orderNo":"4244/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AE70E278219":{"excelRow":2692,"date":"26,08,2026","vin":"SB1ZB3AE70E278219","client":"ATUT RENTAL SP. Z O.O.","equipment":"Dywaniki gumowa, alar, opony zimowe","shippingTo":"","orderNo":"4245/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTM5CAAV20J010696":{"excelRow":2693,"date":"26,08,2026","vin":"JTM5CAAV20J010696","client":"ALCON POLSKA SP.Z.O.O.","equipment":"alarm","shippingTo":"","orderNo":"4246/2026","status":"W","sentDate":"26.08.2026","notes":""},"SB1ZB3AEX0E287397":{"excelRow":2694,"date":"26,08,2026","vin":"SB1ZB3AEX0E287397","client":"Dartom","equipment":"alarm","shippingTo":"","orderNo":"4247/2026","status":"W","sentDate":"26.08.2026","notes":""},"NMTBD3BE50R130004":{"excelRow":2695,"date":"26,08,2026","vin":"NMTBD3BE50R130004","client":"tb","equipment":"alarm","shippingTo":"","orderNo":"3753/2026","status":"W","sentDate":"27.08.2026","notes":""},"SB1ZB3AEX0E293491":{"excelRow":2696,"date":"27,08,2026","vin":"SB1ZB3AEX0E293491","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Nakładka ochronna na tylny zderzak - czarna, alarm, Apteczka - zestaw pierwszej pomocy DIN13164","shippingTo":"","orderNo":"2102/2026","status":"Z","sentDate":"","notes":""},"YAREDYHZ6RJ136342":{"excelRow":2697,"date":"27,08,2026","vin":"YAREDYHZ6RJ136342","client":"MONSTER ENERGY EUROPE","equipment":"H16: Przednie czujniki parkowania, Dywaniki gumowe przednie i drugi rząd siedzień, alarm","shippingTo":"","orderNo":"2103/2026","status":"Z","sentDate":"","notes":""},"SB1ZB3AE20E291671":{"excelRow":2698,"date":"27,08,2026","vin":"SB1ZB3AE20E291671","client":"LOGSYSTEM","equipment":"Czujniki przód+tyl, ble","shippingTo":"","orderNo":"4268/2026","status":"W","sentDate":"27.08.2026","notes":""},"SB1ZB3AE30E291517":{"excelRow":2699,"date":"27,08,2026","vin":"SB1ZB3AE30E291517","client":"LOGSYSTEM","equipment":"Czujniki przód+tyl, ble","shippingTo":"","orderNo":"4269/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTPAAAAA10R260520":{"excelRow":2700,"date":"27,08,2026","vin":"JTPAAAAA10R260520","client":"SYMFONIA","equipment":"alarm, czujniki parkowania przód + tył Herbowa","shippingTo":"","orderNo":"2104/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTPAAAAA10R260386":{"excelRow":2701,"date":"27,08,2026","vin":"JTPAAAAA10R260386","client":"SYMFONIA","equipment":"alarm, czujniki parkowania przód + tył Herbowa","shippingTo":"","orderNo":"2105/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTJCCBAZ202047738":{"excelRow":2702,"date":"27,08,2026","vin":"JTJCCBAZ202047738","client":"ALCON","equipment":"ALARM LEXUS HERBOWA","shippingTo":"","orderNo":"482/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTNAGACK603094978":{"excelRow":2703,"date":"27,08,2026","vin":"JTNAGACK603094978","client":"POLSKI FUNDUSZ ROZWOJU","equipment":"IDCAN","shippingTo":"","orderNo":"4265/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTM5DABV20J006658":{"excelRow":2704,"date":"27,08,2026","vin":"JTM5DABV20J006658","client":"LUX MED SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":"H16: Dywaniki gumowe, Q_Save_ID_Can, alarm","shippingTo":"","orderNo":"4266/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTJCCBAZX02047874":{"excelRow":2705,"date":"27,08,2026","vin":"JTJCCBAZX02047874","client":"ALCON","equipment":"ALARM LEXUS HERBOWA","shippingTo":"","orderNo":"481/2026","status":"W","sentDate":"27.08.2026","notes":""},"NMTBD3BE30R132155":{"excelRow":2706,"date":"27,08,2026","vin":"NMTBD3BE30R132155","client":"QUEISSER PHARMA","equipment":"Alarm Herbowa 16","shippingTo":"","orderNo":"4267/2026","status":"W","sentDate":"27.08.2026","notes":""},"JTNABACB109013140":{"excelRow":2707,"date":"27,08,2026","vin":"JTNABACB109013140","client":"Bury PIOTR","equipment":"Alarm, chlapacze p i t, pakiet bezpieczeństwa, wideorejestrator","shippingTo":"","orderNo":"4278/2026","status":"W","sentDate":"28.08.2026","notes":"wideorejest"},"JTDKBCBB60A611311":{"excelRow":2708,"date":"27,08,2026","vin":"JTDKBCBB60A611311","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2119/2026","status":"W","sentDate":"28.08.2026","notes":"0D001"},"JTDKGCGB60A215597":{"excelRow":2709,"date":"27,08,2026","vin":"JTDKGCGB60A215597","client":"TB","equipment":"ble42","shippingTo":"","orderNo":"4282/2026","status":"W","sentDate":"28.08.2026","notes":""},"SB1ZB3AE10E298255":{"excelRow":2710,"date":"28,08,2026","vin":"SB1ZB3AE10E298255","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":" zestaw pierwszej pomocy DIN13164 ","shippingTo":"","orderNo":"4289/2026","status":"W","sentDate":"28.08.2026","notes":""},"SB1ZB3AE40E298072":{"excelRow":2711,"date":"28,08,2026","vin":"SB1ZB3AE40E298072","client":"AIR LIQUIDE POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","equipment":" zestaw pierwszej pomocy DIN13164 ","shippingTo":"","orderNo":"4291/2026","status":"W","sentDate":"28.08.2026","notes":""},"AHTBE3CD807472323":{"excelRow":2712,"date":"28,08,2026","vin":"AHTBE3CD807472323","client":"TRZUSKAWICA ","equipment":"lampu led","shippingTo":"","orderNo":"4285/2026","status":"W","sentDate":"28.08.2026","notes":""},"AHTBE3CD407472058":{"excelRow":2713,"date":"28,08,2026","vin":"AHTBE3CD407472058","client":"TRZUSKAWICA ","equipment":"lampu led","shippingTo":"","orderNo":"4287/2026","status":"W","sentDate":"28.08.2026","notes":""},"AHTBE3CD207472429":{"excelRow":2714,"date":"28,08,2026","vin":"AHTBE3CD207472429","client":"TRZUSKAWICA ","equipment":"lampu led","shippingTo":"","orderNo":"4288/2026","status":"W","sentDate":"28.08.2026","notes":""},"JTDKBCBB80A613495":{"excelRow":2715,"date":"24,08,2026","vin":"JTDKBCBB80A613495","client":"COCA-COLA HBC POLSKA SP. ZO.O.","equipment":"H16: Dywaniki gumowe, Pasy mocujące PW250-0D001 , Apteczka - zestaw pierwszej pomocy DIN13164, Gumowa wykładzina bagażnika A PW241-0D002, alarm ","shippingTo":"","orderNo":"2121/2026","status":"NOWE!!!!  ","sentDate":"","notes":""},"SB1ZB3AE40E291140":{"excelRow":2716,"date":"13,08,2026","vin":"SB1ZB3AE40E291140","client":"CULLIGAN POLSKA SP.ZO.O","equipment":"kurtki-dzięcioł","shippingTo":"","orderNo":"","status":"N","sentDate":"","notes":""},"YARKBBC3800452519":{"excelRow":2717,"date":"27,08,2026","vin":"YARKBBC3800452519","client":"Innovative Facility Management Polska Spółka z ograniczoną odpowiedzialnością","equipment":"?","shippingTo":"","orderNo":"","status":"N","sentDate":"","notes":""},"YAREDYHT7RJ112689":{"excelRow":2718,"date":"27,08,2026","vin":"YAREDYHT7RJ112689","client":"ENGIE SERVICES SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ ","equipment":"relingi dachowe","shippingTo":"","orderNo":"4294/2026","status":"N","sentDate":"","notes":""}};
+(function attachHerbowaSourceRows(){
+  let changed=false;
+  fleetCars.forEach(c=>{
+    const before=JSON.stringify(c.workItems||[]);ensureFleetWorkItems(c);if(before!==JSON.stringify(c.workItems||[]))changed=true;
+    const src=HERBOWA_SOURCE_ROWS[normalizeVin(c.vin)];
+    if(!src)return;
+    if(!c.sourceRow || c.sourceRow.excelRow!==src.excelRow){
+      c.sourceRow=src;
+      c.source="Herbowa";
+      if(!c.client && src.client)c.client=src.client;
+      if(!c.equipment && src.equipment)c.equipment=src.equipment;
+      changed=true;
+    }
+  });
+  if(changed)saveCars();
+})();
+
 let selectedOwner="";
 let editingMountIndex=null;
 function saveMountJobs(){localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}
@@ -2354,12 +2481,19 @@ function syncMountCompletionToRelease(vin, alarmDone, extraDone){
 
   normalizeReleaseRequirements(r);
 
-  // Doposażeniowiec potwierdza wykonanie tylko zadań zleconych przez koordynatora.
+  // Doposażeniowiec potwierdza wykonanie zadań przypisanych do samochodu.
   if(typeof alarmDone==="boolean" && (r.alarmRequired||r.idCanRequired||r.metaRequired)) r.alarmReady=alarmDone;
   if(typeof extraDone==="boolean" && r.extraRequired) r.extraReady=extraDone;
 
   recalcReleaseStatus(r);
   saveRelease();
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(c){
+    const relItems=ensureReleaseWorkItems(r);
+    ensureFleetWorkItems(c);
+    c.workItems.forEach(ci=>{const ri=relItems.find(x=>String(x.name||"").toLocaleLowerCase("pl-PL")===String(ci.name||"").toLocaleLowerCase("pl-PL"));if(ri)ci.done=!!ri.done;});
+    saveCars();
+  }
   if(typeof renderUrgentMountAlerts==="function") renderUrgentMountAlerts();
 }
 
@@ -2367,28 +2501,58 @@ function syncMountCompletionToRelease(vin, alarmDone, extraDone){
 
 function getPendingReleaseCars(){
   const today=isoToday();
-  return releaseData
+  const releaseRows=releaseData
     .map(normalizeReleaseRequirements)
-    .filter(r=>r.status!=="WYDANE" && !!r.mountOrdered && getInstallerWorkItems(r).some(x=>!x.done))
+    .filter(r=>r.status!=="WYDANE" && getInstallerWorkItems(r).some(x=>!x.done))
     .map(r=>({
-      vin:r.vin, client:r.client||"", model:r.model||"", date:r.date||"", time:r.time||"",
+      source:"release",
+      vin:r.vin,client:r.client||"",model:r.model||"",date:r.date||"",time:r.time||"",
       daysToRelease:r.date?daysBetweenIso(today,r.date):999,
-      alarmMissing:!!r.alarmRequired && !r.alarmReady,
-      idCanMissing:!!r.idCanRequired && !r.alarmReady,
-      metaMissing:!!r.metaRequired && !r.alarmReady,
-      extraMissing:!!r.extraRequired && !r.extraReady,
       missingItems:getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name)
-    }))
-    .sort((a,b)=>(a.daysToRelease-b.daysToRelease)||String(a.time).localeCompare(String(b.time)));
+    }));
+  const releaseVins=new Set(releaseRows.map(x=>normalizeVin(x.vin)));
+  const fleetRows=fleetCars
+    .filter(carIsOnMainLot)
+    .filter(c=>!releaseVins.has(normalizeVin(c.vin)))
+    .map(c=>({c,missing:getFleetInstallerWorkItems(c).filter(x=>!x.done)}))
+    .filter(x=>x.missing.length>0)
+    .map(({c,missing})=>({
+      source:"fleet",vin:c.vin,client:c.client||carExcelSource(c)?.client||"",model:c.model||"",date:"",time:"",daysToRelease:999,
+      missingItems:missing.map(x=>x.name)
+    }));
+  return [...releaseRows,...fleetRows].sort((a,b)=>{
+    if(a.source!==b.source)return a.source==="release"?-1:1;
+    return (a.daysToRelease-b.daysToRelease)||String(a.time||"").localeCompare(String(b.time||""))||String(a.vin||"").localeCompare(String(b.vin||""));
+  });
 }
-function getUrgentReleaseCars(){
-  return getPendingReleaseCars().filter(x=>x.daysToRelease<=1);
-}
-function getPlannedReleaseCars(){
-  return getPendingReleaseCars().filter(x=>x.daysToRelease>1);
-}
+function getUrgentReleaseCars(){return getPendingReleaseCars().filter(x=>x.source==="release"&&x.daysToRelease<=1)}
+function getPlannedReleaseCars(){return getPendingReleaseCars().filter(x=>x.source==="fleet"||x.daysToRelease>1)}
 
 function urgentMissingText(u){ return (u.missingItems||[]).join(" + "); }
+function mountTaskContext(vin){
+  const n=normalizeVin(vin);
+  const r=releaseData.find(x=>normalizeVin(x.vin)===n&&x.status!=="WYDANE");
+  if(r){normalizeReleaseRequirements(r);return {source:"release",record:r,items:getInstallerWorkItems(r)}}
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(c)return {source:"fleet",record:c,items:getFleetInstallerWorkItems(c)};
+  return null;
+}
+function mountTasksForVin(vin){const ctx=mountTaskContext(vin);return ctx?ctx.items:[]}
+function mountTaskMatchesKind(name,kind){
+  if(kind==="alarm")return mountTaskIsAlarm(name);
+  if(kind==="idCan")return /id\s*can/i.test(String(name||""));
+  if(kind==="meta")return /(^|\b)meta(\b|$)/i.test(String(name||""));
+  return !mountTaskIsAlarm(name)&&!/id\s*can/i.test(String(name||""))&&!/(^|\b)meta(\b|$)/i.test(String(name||""));
+}
+function setMountCategoryDone(vin,kind,done,job=null){
+  const n=normalizeVin(vin);
+  const explicit=new Set((Array.isArray(job?.tasks)?job.tasks:[]).map(x=>String(x||"").toLocaleLowerCase("pl-PL")));
+  const shouldTouch=name=>{const key=String(name||"").toLocaleLowerCase("pl-PL");return explicit.size?explicit.has(key)&&mountTaskMatchesKind(name,kind):mountTaskMatchesKind(name,kind)};
+  const r=releaseData.find(x=>normalizeVin(x.vin)===n&&x.status!=="WYDANE");
+  if(r){ensureReleaseWorkItems(r);r.workItems.forEach(it=>{if(shouldTouch(it.name))it.done=!!done});syncLegacyReleaseFlags(r);recalcReleaseStatus(r);saveRelease();}
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(c){ensureFleetWorkItems(c);c.workItems.forEach(it=>{if(shouldTouch(it.name))it.done=!!done});saveCars();}
+}
 
 function renderUrgentMountAlerts(){
   const urgent=getUrgentReleaseCars();
@@ -2413,7 +2577,7 @@ function renderUrgentMountAlerts(){
     workerBox.classList.toggle("show",urgent.length>0);
     workerList.innerHTML=urgent.map(u=>{
       const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(u.vin) && x.status!=="WYDANE");
-      const tasks=r?ensureReleaseWorkItems(r).filter(x=>!x.done).map(x=>x.name):[];
+      const tasks=mountTasksForVin(u.vin).filter(x=>!x.done).map(x=>x.name);
       return `
       <div class="urgent-item" data-urgent-vin="${u.vin}">
         <div>
@@ -2437,11 +2601,11 @@ function renderUrgentMountAlerts(){
     planBox.classList.toggle("show",planned.length>0);
     planList.innerHTML=planned.map(u=>{
       const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(u.vin) && x.status!=="WYDANE");
-      const tasks=r?getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name):[];
+      const tasks=mountTasksForVin(u.vin).filter(x=>!x.done).map(x=>x.name);
       return `<div class="mount-plan-item" data-plan-vin="${u.vin}">
-        <div><strong>${u.vin}</strong><div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}</div>
+        <div><strong>${u.vin}</strong><div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}${u.source==="fleet"?" • NA PLACU":""}</div>
         <div class="urgent-work">${tasks.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("")}</div></div>
-        <div><span class="mount-plan-badge">DO ZROBIENIA • ${u.daysToRelease} DNI</span><button class="urgent-open-btn" style="margin-left:8px" type="button">Otwórz →</button></div>
+        <div><span class="mount-plan-badge">${u.source==="fleet"?"NA PLACU • DO ZROBIENIA":`DO ZROBIENIA • ${u.daysToRelease} DNI`}</span><button class="urgent-open-btn" style="margin-left:8px" type="button">Otwórz →</button></div>
       </div>`;
     }).join("");
     planList.querySelectorAll("[data-plan-vin]").forEach(card=>{card.onclick=()=>openUrgentInMountForm(card.dataset.planVin)});
@@ -2457,6 +2621,7 @@ function mountJobMonthKey(v){
 function renderOwners(){
   renderUrgentMountAlerts();
   const urgentCount=getUrgentReleaseCars().length;
+  const autoQueueCount=getPendingReleaseCars().length;
   $("#peopleCards").innerHTML="";
   const installers=APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name);
   if(currentUser?.role==="Doposażeniowiec"){installers.sort((a,b)=>a===currentUser.name?-1:b===currentUser.name?1:a.localeCompare(b,"pl"));}
@@ -2467,7 +2632,8 @@ function renderOwners(){
     b.innerHTML=`<div class="person-name">${name}</div>
       <div class="person-role">Doposażeniowiec</div>
       <div class="person-count">${jobs.length}</div>
-      <div class="muted">zleceń</div>
+      <div class="muted">zapisanych montaży</div>
+      ${autoQueueCount?`<div class="muted" style="margin-top:6px;font-weight:900">DO MONTAŻU: ${autoQueueCount}</div>`:""}
       ${urgentCount?`<div class="person-urgent">SAMOCHÓD PILNY!!! ${urgentCount}</div>`:""}
       <div class="person-open"><span>Otwórz tabelę</span><span>→</span></div>`;
     b.onclick=()=>openOwner(name);
@@ -2513,7 +2679,7 @@ function renderMountTable(){
       <td>${r.extra ? `<label class="ready-label"><input class="mount-done-toggle" data-kind="extra" data-vin="${r.vin}" type="checkbox" ${r.extraCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowane</span></label>${r.extraDesc?`<div style="margin-top:5px">${r.extraDesc}</div>`:""}` : '<span class="mount-badge no">NIE</span>'}</td>
       <td><b>${String(r.hours||"").replace(".",",")}</b></td>
       <td>${r.notes||"—"}</td>
-      <td>${(()=>{const done=(!r.alarm||r.alarmCompleted!==false)&&(!r.idCan||r.idCanCompleted!==false)&&(!r.meta||r.metaCompleted!==false)&&(!r.extra||r.extraCompleted!==false);const coord=/Koordynator/i.test(currentUser?.role||"");if(r.closed)return `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${r.closedBy||""}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`;return `<button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${r.vin}" data-close-date="${r.date||""}">ZLECENIE ZAMKNIĘTE</button>`:""}`})()}</td>
+      <td>${(()=>{const done=(!r.alarm||r.alarmCompleted!==false)&&(!r.idCan||r.idCanCompleted!==false)&&(!r.meta||r.metaCompleted!==false)&&(!r.extra||r.extraCompleted!==false)&&mountTasksForVin(r.vin).every(x=>x.done);const coord=/Koordynator/i.test(currentUser?.role||"");if(r.closed)return `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${r.closedBy||""}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`;return `<button class="mount-edit-btn" type="button" data-edit-vin="${r.vin}" data-edit-date="${r.date||""}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${r.vin}" data-close-date="${r.date||""}">ZLECENIE ZAMKNIĘTE</button>`:""}`})()}</td>
     </tr>`).join("") :
     `<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak montaży.</td></tr>`;
 
@@ -2536,8 +2702,8 @@ function renderMountTable(){
       const job=mountJobs.find(j=>j.owner===selectedOwner && normalizeVin(j.vin)===normalizeVin(btn.dataset.closeVin) && String(j.date||"")===String(btn.dataset.closeDate||""));
       if(!job) return;
       const sameVinJobs=mountJobs.filter(j=>normalizeVin(j.vin)===normalizeVin(job.vin));
-      const done=sameVinJobs.every(j=>(!j.alarm||j.alarmCompleted!==false)&&(!j.idCan||j.idCanCompleted!==false)&&(!j.meta||j.metaCompleted!==false)&&(!j.extra||j.extraCompleted!==false));
-      if(!done){alert("Nie można zamknąć zlecenia — nie wszystkie prace przy tym samochodzie są jeszcze potwierdzone.");return;}
+      const done=sameVinJobs.every(j=>(!j.alarm||j.alarmCompleted!==false)&&(!j.idCan||j.idCanCompleted!==false)&&(!j.meta||j.metaCompleted!==false)&&(!j.extra||j.extraCompleted!==false))&&mountTasksForVin(job.vin).every(x=>x.done);
+      if(!done){alert("Nie można zamknąć zlecenia — samochód ma jeszcze niewykonane doposażenie na liście montażu.");return;}
       const workers=[...new Set(sameVinJobs.map(j=>j.owner).filter(Boolean))];
       if(!confirm(`Zamknąć zlecenie dla VIN ${job.vin}${workers.length>1?`?\n\nWspólny samochód: ${workers.join(" + ")}`:"?"}`)) return;
       const closedAt=new Date().toISOString();
@@ -2554,6 +2720,7 @@ function renderMountTable(){
 
       const kind=cb.dataset.kind;
       job[kind+"Completed"]=cb.checked;
+      setMountCategoryDone(job.vin,kind,cb.checked,job);
       saveMountJobs();
 
       // Alarm readiness is true when every selected alarm-type installation
@@ -2638,52 +2805,36 @@ function mountVinMatches(query){
 
 
 
-function renderMountDynamicTasks(r){
-  const box=$("#mountDynamicTasks"); if(!box) return;
-  if(!r){box.innerHTML="";return;}
-  const items=getInstallerWorkItems(r);
-  box.innerHTML=items.length?`<div style="font-size:12px;font-weight:1000;margin-bottom:8px">POTWIERDŹ WYKONANE PRACE</div>${items.map(x=>`<label class="mount-choice"><input type="checkbox" class="mount-dynamic-task" data-task-name="${x.name.replace(/"/g,'&quot;')}"><span><strong>${x.name}</strong><small>${x.done?"Praca jest już potwierdzona przy samochodzie — zaznacz, jeśli Ty również ją wykonywałeś.":"Zaznacz po wykonaniu tej konkretnej pracy."}</small></span></label>`).join("")}`:"";
-  box.querySelectorAll(".mount-dynamic-task").forEach(cb=>cb.onchange=updateMountChoices);
-  updateMountChoices();
+function renderMountDynamicTasksForVin(vin){
+  const box=$("#mountDynamicTasks");if(!box)return;
+  const items=mountTasksForVin(vin);
+  box.innerHTML=items.length?`<div style="font-size:12px;font-weight:1000;margin-bottom:8px">POTWIERDŹ WYKONANE PRACE</div>${items.map(x=>`<label class="mount-choice"><input type="checkbox" class="mount-dynamic-task" data-task-name="${String(x.name||"").replace(/"/g,'&quot;')}"><span><strong>${escapeHtml(x.name)}</strong><small>${x.done?"Praca jest już potwierdzona przy samochodzie — zaznacz, jeśli Ty również ją wykonywałeś.":"Zaznacz po wykonaniu tej konkretnej pracy."}</small></span></label>`).join("")}`:`<div class="muted">Brak prac doposażeniowych do wykonania.</div>`;
+  box.querySelectorAll(".mount-dynamic-task").forEach(cb=>cb.onchange=updateMountChoices);updateMountChoices();
 }
+function renderMountDynamicTasks(r){if(!r){const box=$("#mountDynamicTasks");if(box)box.innerHTML="";return;}renderMountDynamicTasksForVin(r.vin)}
 function completeDynamicMountTasks(vin){
-  const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(vin) && x.status!=="WYDANE"); if(!r)return;
-  ensureReleaseWorkItems(r);
-  document.querySelectorAll(".mount-dynamic-task:checked").forEach(el=>{const n=el.dataset.taskName; const it=r.workItems.find(x=>x.name===n); if(it)it.done=true;});
-  syncLegacyReleaseFlags(r); saveRelease();
+  const selected=[...document.querySelectorAll(".mount-dynamic-task:checked")].map(el=>el.dataset.taskName||"");if(!selected.length)return;
+  const n=normalizeVin(vin),set=new Set(selected.map(x=>x.toLocaleLowerCase("pl-PL")));
+  const r=releaseData.find(x=>normalizeVin(x.vin)===n&&x.status!=="WYDANE");
+  if(r){ensureReleaseWorkItems(r);r.workItems.forEach(it=>{if(set.has(String(it.name||"").toLocaleLowerCase("pl-PL")))it.done=true});syncLegacyReleaseFlags(r);saveRelease();}
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(c){ensureFleetWorkItems(c);c.workItems.forEach(it=>{if(set.has(String(it.name||"").toLocaleLowerCase("pl-PL")))it.done=true});saveCars();}
 }
+
 function openUrgentInMountForm(vin){
-  const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(vin) && x.status!=="WYDANE");
-  if(!r)return;
-  normalizeReleaseRequirements(r);
-
-  resetMountForm();
-  $("#mountFormCard").classList.add("open");
-  $("#mountFormTitle").textContent="Pilny montaż";
-  $("#mountVinInput").value=r.vin;
-
-  const items=getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name);
-
-  $("#mountAssignment").classList.add("show");
-  $("#mountAssignmentItems").innerHTML=items.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("");
-  $("#mountAssignmentMeta").textContent=[
-    r.client||"",
-    r.model||"",
-    r.date?`wydanie ${r.date} ${r.time||""}`:"",
-    r.info?`info: ${r.info}`:""
-  ].filter(Boolean).join(" • ");
-
-  renderMountDynamicTasks(r);
-  // Pola techniczne pozostają dostępne do ewidencji montażu (np. kod alarmu).
-  updateMountChoices();
-
-  $("#mountSaveMessage").textContent="";
-  $("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
+  const ctx=mountTaskContext(vin);if(!ctx)return;const item=ctx.record;
+  resetMountForm();$("#mountFormCard").classList.add("open");$("#mountFormTitle").textContent=ctx.source==="release"?"Montaż samochodu":"Montaż — samochód na placu";$("#mountVinInput").value=item.vin;
+  const items=ctx.items.filter(x=>!x.done).map(x=>x.name);$("#mountAssignment").classList.add("show");$("#mountAssignmentItems").innerHTML=items.map(x=>`<span class="mount-assignment-chip">${escapeHtml(x)}</span>`).join("");
+  if(ctx.source==="release")$("#mountAssignmentMeta").textContent=[item.client||"",item.model||"",item.date?`wydanie ${item.date} ${item.time||""}`:"",item.info?`info: ${item.info}`:""].filter(Boolean).join(" • ");
+  else{const src=carExcelSource(item);$("#mountAssignmentMeta").textContent=[item.client||src?.client||"","NA PLACU",src?.orderNo?`zlecenie ${src.orderNo}`:"",item.equipment?`info: ${item.equipment}`:""].filter(Boolean).join(" • ")}
+  renderMountDynamicTasksForVin(item.vin);updateMountChoices();$("#mountSaveMessage").textContent="";$("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function applyReleaseTasksToMount(vin){
-  const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(vin) && x.status!=="WYDANE");
-  renderMountDynamicTasks(r||null);
+  renderMountDynamicTasksForVin(vin);const ctx=mountTaskContext(vin),box=$("#mountAssignment"),items=$("#mountAssignmentItems"),meta=$("#mountAssignmentMeta");if(!ctx||!box||!items||!meta)return;
+  const missing=ctx.items.filter(x=>!x.done).map(x=>x.name);box.classList.add("show");items.innerHTML=missing.map(x=>`<span class="mount-assignment-chip">${escapeHtml(x)}</span>`).join("");
+  if(ctx.source==="fleet"){const src=carExcelSource(ctx.record);meta.textContent=[ctx.record.client||src?.client||"","NA PLACU",src?.orderNo?`zlecenie ${src.orderNo}`:""].filter(Boolean).join(" • ")}
+  else{const r=ctx.record;meta.textContent=[r.client||"",r.model||"",r.date?`wydanie ${r.date} ${r.time||""}`:""].filter(Boolean).join(" • ")}
 }
 
 function renderMountVinSuggestions(){
@@ -2833,6 +2984,7 @@ function saveNewMount(){
     owner:existing?.owner || selectedOwner,
     date:existing?.date || todayShort(),
     vin,
+    tasks:selectedTasks,
     alarm,
     alarmCode:alarm?alarmCode:"",
     alarmCompleted:alarm ? (existing?.alarmCompleted ?? true) : false,
@@ -2983,7 +3135,7 @@ $("#releaseVin").onblur=()=>{
   const hits=releaseVinMatches(q);
   if(hits.length===1) applyCarEquipmentToRelease(hits[0].vin);
 };
-$("#releaseInfo").oninput=()=>{ releaseMountOrderedDraft=false; renderReleaseMountOrderState(); };
+$("#releaseInfo").oninput=()=>{ releaseMountOrderedDraft=releaseDraftInstallerItems().length>0; renderReleaseMountOrderState(); };
 $("#releaseMountOrderBtn").onclick=()=>{ releaseMountOrderedDraft=true; renderReleaseMountOrderState(); };
 $("#saveReleaseEntry").onclick=addReleaseEntry;
 
