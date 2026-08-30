@@ -2025,7 +2025,7 @@ function renderExtraWorks(){
 
   tbody.innerHTML=rows.length ? rows.map(w=>{
     const text=w.text||[w.type,w.vin,w.note].filter(Boolean).join(" — ")||"Praca dodatkowa";
-    return `<tr class="completed ${r.closed?"mount-closed-row":""}">
+    return `<tr class="completed">
       <td>${formatExtraWorkDate(w.date)}</td>
       <td><b>${text}</b></td>
       <td><span class="extra-work-status">DO INDYWIDUALNEJ WYCENY</span></td>
@@ -2332,8 +2332,8 @@ if(!localStorage.getItem(CLEAN_15_CARS_KEY)){
 let selectedOwner="";
 let editingMountIndex=null;
 function saveMountJobs(){localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}
-const MOUNT_INSTALLERS=APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name);
-function mountOtherInstaller(owner){return MOUNT_INSTALLERS.find(n=>n!==owner)||""}
+function getMountInstallers(){return APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name)}
+function mountOtherInstaller(owner){return getMountInstallers().find(n=>n!==owner)||""}
 function mountJobParticipants(job){return [job.owner,...(Array.isArray(job.collaborators)?job.collaborators:[])].filter(Boolean)}
 function mountJobHasParticipant(job,name){return mountJobParticipants(job).includes(name)}
 function mountWorkersForVin(vin){
@@ -2477,15 +2477,16 @@ function renderOwners(){
 
 function openOwner(name){
   selectedOwner=name;
-  $("#ownerTitle").textContent=name;
-  updateMountCollaboratorControl();
-  renderUrgentMountAlerts();
-  renderMountTable();
-  renderExtraWorks();
-  resetMountForm();
-  closeExtraWorkForm();
-  $("#mountFormCard").classList.remove("open");
+  const title=$("#ownerTitle"); if(title) title.textContent=name;
+  // Najpierw otwieramy widok pracownika. Dzięki temu błąd w sekcji pomocniczej
+  // (np. prace dodatkowe) nie może już zablokować wejścia do tabeli Jakuba/Mateusza.
   show("mountList");
+  const safeRun=(label,fn)=>{try{fn()}catch(e){console.error(`Montaże — ${label}`,e)}};
+  safeRun("kontrolka współpracy",updateMountCollaboratorControl);
+  safeRun("alerty",renderUrgentMountAlerts);
+  safeRun("tabela",renderMountTable);
+  safeRun("prace dodatkowe",renderExtraWorks);
+  safeRun("formularz",()=>{resetMountForm();closeExtraWorkForm();$("#mountFormCard")?.classList.remove("open")});
 }
 
 function renderMountTable(){
