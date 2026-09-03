@@ -372,11 +372,12 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 @media(max-width:720px){.auth-card{padding:19px;border-radius:19px}.auth-card h1{font-size:22px}.auth-actions{flex-direction:column}.admin-password-controls{display:grid;grid-template-columns:1fr}.admin-password-controls input{min-width:0;width:100%}}
 
 
+.mount-car-shell{max-width:980px;margin:0 auto}.mount-car-shell .mount-entry{margin-bottom:0}.mount-car-shell .mount-entry.open{display:block}
 /* Podział doposażeniowca: do zamontowania / zamontowane */
 .mount-worker-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
 .mount-stage-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;box-shadow:var(--shadow);cursor:pointer;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
 .mount-stage-card:hover{border-color:#98a2b3}.mount-stage-card strong{font-size:23px;line-height:1.1}.mount-stage-card .stage-count{font-size:42px;font-weight:1000;margin-top:18px}.mount-stage-card .stage-arrow{font-weight:1000;margin-top:20px;display:flex;justify-content:space-between;align-items:center}.mount-stage-card.done{border-color:#b7d7c4;background:#f4fbf6}.mount-stage-card.done .stage-count{color:#176b3a}.mount-stage-card.todo .stage-count{color:#b54708}.mount-close-count{margin-top:10px;font-size:12px;font-weight:1000;color:#b42318}.mount-stage-card.done .mount-close-count{color:#176b3a}
-.mount-done-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.mount-done-summary>div{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px}.mount-done-summary small{display:block;color:var(--muted);font-weight:800}.mount-done-summary b{display:block;font-size:24px;margin-top:5px}
+.mount-done-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.mount-done-summary>div{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px}.mount-done-summary small{display:block;color:var(--muted);font-weight:800}.mount-done-summary b{display:block;font-size:24px;margin-top:5px}
 @media(max-width:700px){.mount-worker-choice{grid-template-columns:1fr}.mount-stage-card{min-height:145px}.mount-stage-card strong{font-size:20px}.mount-stage-card .stage-count{font-size:34px}.mount-done-summary{grid-template-columns:1fr}}
 
 
@@ -698,6 +699,42 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <div class="urgent-list" id="mountWorkerPlanList"></div>
   </div>
 
+
+
+  <div class="mount-list-wrap">
+    <table class="mount-new-table">
+      <thead>
+        <tr>
+          <th>DATA</th>
+          <th>VIN</th>
+          <th>ALARM</th>
+          <th>KOD ALARMU</th>
+          <th>ID CAN</th>
+          <th>META</th>
+          <th>DODATKOWE WYPOSAŻENIE</th>
+          <th>GODZINY</th>
+          <th>UWAGI</th>
+          <th>AKCJE</th>
+        </tr>
+      </thead>
+      <tbody id="mountRows"></tbody>
+    </table>
+  </div>
+
+
+</section>
+
+<section id="mountCarView" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backMountCar">←</button>
+      <div>
+        <h1 id="mountCarTitle">Montaż samochodu</h1>
+        <div class="muted" id="mountCarSubtitle" style="margin-top:5px">Wykonaj i zapisz prace przy wybranym samochodzie.</div>
+      </div>
+    </div>
+  </div>
+  <div class="mount-car-shell">
   <div class="mount-entry" id="mountFormCard">
     <h2 id="mountFormTitle">Nowy montaż</h2>
     <div class="editing-note" id="mountEditingNote">Edytujesz istniejący wpis. Po zapisaniu tabela i powiązane statusy zostaną zaktualizowane.</div>
@@ -785,28 +822,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     </div>
     <div class="mount-form-msg" id="mountSaveMessage"></div>
   </div>
-
-  <div class="mount-list-wrap">
-    <table class="mount-new-table">
-      <thead>
-        <tr>
-          <th>DATA</th>
-          <th>VIN</th>
-          <th>ALARM</th>
-          <th>KOD ALARMU</th>
-          <th>ID CAN</th>
-          <th>META</th>
-          <th>DODATKOWE WYPOSAŻENIE</th>
-          <th>GODZINY</th>
-          <th>UWAGI</th>
-          <th>AKCJE</th>
-        </tr>
-      </thead>
-      <tbody id="mountRows"></tbody>
-    </table>
   </div>
-
-
 </section>
 
 <section id="mountDoneList" class="view">
@@ -817,7 +833,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     </div>
   </div>
   <div class="period-nav"><button id="mountDonePrevMonth">← Miesiąc</button><button class="today-btn" id="mountDoneThisMonth">Bieżący</button><div class="period-label" id="mountDoneMonthLabel"></div><button id="mountDoneNextMonth">Miesiąc →</button></div>
-  <div class="mount-done-summary"><div><small>ZAMONTOWANE W MIESIĄCU</small><b id="mountDoneCount">0</b></div><div><small>ZLECENIA DO ZAMKNIĘCIA</small><b id="mountDoneHours">0</b></div></div>
+  <div class="mount-done-summary"><div><small>ZAMONTOWANE W MIESIĄCU</small><b id="mountDoneCount">0</b></div><div><small>ŁĄCZNIE GODZIN</small><b id="mountDoneHours">0 h</b></div><div><small>ZLECENIA DO ZAMKNIĘCIA</small><b id="mountDoneToClose">0</b></div></div>
   <div class="mount-list-wrap">
     <table class="mount-new-table">
       <thead><tr><th>DATA</th><th>VIN</th><th>ALARM</th><th>KOD ALARMU</th><th>ID CAN</th><th>META</th><th>DODATKOWE WYPOSAŻENIE</th><th>GODZINY</th><th>UWAGI</th><th>AKCJE</th></tr></thead>
@@ -981,10 +997,10 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <div class="bonus-topbar">
       <div class="bonus-field"><label>Miesiąc rozliczenia</label><input id="bonusMonth" type="month"></div>
       <div class="bonus-field"><label>Liczba wydanych samochodów • wpisz ręcznie</label><input id="bonusIssuedCars" type="number" min="0" step="1" value="0" inputmode="numeric"><div class="bonus-meta">To jest liczba do wyliczenia premii wynikowej, nie premia dodatkowa.</div></div>
-      <div class="bonus-field"><label>Umyte samochody • automatycznie</label><input id="bonusWashedCars" type="number" min="0" step="1" value="0" readonly></div>
-      <button class="btn" id="bonusResetBtn" type="button">Odśwież dane z systemu</button>
+      <div class="bonus-field"><label>Liczba umytych samochodów • wpisz ręcznie</label><input id="bonusWashedCars" type="number" min="0" step="1" value="0" inputmode="numeric"><div class="bonus-meta">Wpisz liczbę umytych aut dla Konrada. System przeliczy premię automatycznie.</div></div>
+      <button class="btn" id="bonusResetBtn" type="button">Pobierz dane z systemu</button>
     </div>
-    <div class="bonus-callout ok" style="margin-top:0"><strong>Rozliczenie łączy dane ręczne i automatyczne.</strong><div class="bonus-small" style="margin-top:5px">Liczbę wydanych samochodów dla koordynatorów wpisujesz ręcznie na podstawie drugiej aplikacji. System przelicza z niej premię wynikową według stawek. <b>Nie jest to premia dodatkowa.</b> Premię dodatkową wpisujesz ręcznie osobno na karcie konkretnego pracownika. Myjnia jest pobierana automatycznie z wykonanych myć, a godziny Mateusza i Jakuba z zapisanych montaży w wybranym miesiącu.</div></div>
+    <div class="bonus-callout ok" style="margin-top:0"><strong>Rozliczenie łączy dane ręczne i automatyczne.</strong><div class="bonus-small" style="margin-top:5px">Liczbę wydanych samochodów dla koordynatorów wpisujesz ręcznie na podstawie drugiej aplikacji. System przelicza z niej premię wynikową według stawek. <b>Nie jest to premia dodatkowa.</b> Premię dodatkową wpisujesz ręcznie osobno na karcie konkretnego pracownika. Myjnia jest pobierana automatycznie z wykonanych myć, a godziny Mateusza i Jakuba z zapisanych montaży w wybranym miesiącu. Dla Konrada, Mateusza i Jakuba możesz też wpisać premię główną ręcznie — wtedy zastępuje ona automatyczne wyliczenie, ale nie zmienia danych o myciach ani godzinach.</div></div>
 
     <div class="bonus-tabs">
       <button class="bonus-tab active" data-bonus-tab="bonusSummaryPane" type="button">Podsumowanie</button>
@@ -1006,7 +1022,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <section id="bonusEmployeesPane" class="bonus-pane hidden"><div class="bonus-employee-grid" id="bonusEmployeeCards"></div></section>
 
     <section id="bonusDoposPane" class="bonus-pane hidden">
-      <div class="bonus-panel"><h2>Doposażeniowcy — premia progresywna</h2><p class="muted">Premia jest liczona warstwowo: pierwsze 170 h po 30 zł, 171–200 h po 40 zł, 201–230 h po 50 zł, 231–260 h po 55 zł, a każda godzina powyżej 260 h po 60 zł.</p><div class="bonus-employee-grid" id="bonusDoposCards"></div></div>
+      <div class="bonus-panel"><h2>Doposażeniowcy — premia progresywna / ręczna</h2><p class="muted">Domyślnie premia jest liczona warstwowo: pierwsze 170 h po 30 zł, 171–200 h po 40 zł, 201–230 h po 50 zł, 231–260 h po 55 zł, a każda godzina powyżej 260 h po 60 zł.</p><div class="bonus-employee-grid" id="bonusDoposCards"></div></div>
     </section>
 
     <section id="bonusHrExportPane" class="bonus-pane hidden">
@@ -1066,7 +1082,7 @@ function storageJSON(key,fallback,kind="any") {
     return fallback;
   }
 }
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView","bonusAdminView"];
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView","bonusAdminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 function loginFromName(name){
   return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
@@ -1330,7 +1346,7 @@ function bonusEsc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&l
 function bonusPeriod(){const raw=$("#bonusMonth")?.value||`${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,"0")}`;const p=raw.split("-");return {year:Number(p[0])||new Date().getFullYear(),month:Number(p[1])||new Date().getMonth()+1,raw}}
 function bonusStorageKey(){return `toyotaPremieAdminV1-${bonusPeriod().raw}`}
 function bonusSave(){try{localStorage.setItem(bonusStorageKey(),JSON.stringify(bonusState))}catch(e){}}
-function bonusLoad(){bonusState=bonusFreshState();try{const raw=localStorage.getItem(bonusStorageKey());if(!raw)return;const saved=JSON.parse(raw);if(saved.discretionary?.denis&&!saved.discretionary?.denys)saved.discretionary.denys=saved.discretionary.denis;if(saved.emails?.denis&&!saved.emails?.denys)saved.emails.denys=saved.emails.denis;if(saved.files?.denis&&!saved.files?.denys)saved.files.denys=saved.files.denis;bonusState={...bonusState,...saved,hours:{...bonusState.hours,...(saved.hours||{})},discretionary:{...bonusState.discretionary,...(saved.discretionary||{})},emails:{...bonusState.emails,...(saved.emails||{})},files:{...bonusState.files,...(saved.files||{})}}}catch(e){}}
+function bonusLoad(){bonusState=bonusFreshState();try{const raw=localStorage.getItem(bonusStorageKey());if(!raw)return;const saved=JSON.parse(raw);if(saved.discretionary?.denis&&!saved.discretionary?.denys)saved.discretionary.denys=saved.discretionary.denis;if(saved.emails?.denis&&!saved.emails?.denys)saved.emails.denys=saved.emails.denis;if(saved.files?.denis&&!saved.files?.denys)saved.files.denys=saved.files.denis;bonusState={...bonusState,...saved,hours:{...bonusState.hours,...(saved.hours||{})},discretionary:{...bonusState.discretionary,...(saved.discretionary||{})},emails:{...bonusState.emails,...(saved.emails||{})},files:{...bonusState.files,...(saved.files||{})}};delete bonusState.manualMain}catch(e){}}
 function bonusOperationalMetrics(){
  const mk=bonusPeriod().raw;
  const washed=Array.isArray(washRecords)?washRecords.filter(w=>w&&w.washedAt&&dateMonthKey(w.washedDate||String(w.washedAt||"").slice(0,10))===mk).length:0;
@@ -1352,15 +1368,16 @@ function bonusSyncOperationalMetrics(){
  bonusState.hours={...bonusState.hours,mateusz:m.hours.mateusz,jakub:m.hours.jakub};
 }
 function bonusTierHours(h){h=Math.max(0,Number(h)||0);let x=h,total=0,a=Math.min(x,170);total+=a*30;x-=a;if(x>0){const b=Math.min(x,30);total+=b*40;x-=b}if(x>0){const c=Math.min(x,30);total+=c*50;x-=c}if(x>0){const d=Math.min(x,30);total+=d*55;x-=d}if(x>0)total+=x*60;return total}
-function bonusCalc(e){let main=0;if(e.type==="issued")main=bonusState.issued*e.rate+(e.fixedBonus||0);if(e.type==="washed")main=bonusState.washed*e.rate;if(e.type==="hours")main=bonusTierHours(bonusState.hours[e.id]);const extras=(bonusState.discretionary[e.id]||[]).reduce((sum,b)=>sum+Math.max(0,Number(b.amount)||0),0);return {main,extras,bonus:main+extras,total:e.base+main+extras}}
+function bonusAutoMain(e){let main=0;if(e.type==="issued")main=bonusState.issued*e.rate+(e.fixedBonus||0);if(e.type==="washed")main=bonusState.washed*e.rate;if(e.type==="hours")main=bonusTierHours(bonusState.hours[e.id]);return main}
+function bonusCalc(e){const main=bonusAutoMain(e);const extras=(bonusState.discretionary[e.id]||[]).reduce((sum,b)=>sum+Math.max(0,Number(b.amount)||0),0);return {main,extras,bonus:main+extras,total:e.base+main+extras}}
 function bonusDesc(e){if(e.type==="issued"){let x=`${bonusState.issued} wydanych aut × ${e.rate} zł = ${bonusMoney(bonusState.issued*e.rate)}`;if(e.fixedBonus)x+=` + stała premia ${bonusMoney(e.fixedBonus)}`;return x}if(e.type==="washed")return `${bonusState.washed} umytych aut × ${e.rate} zł = ${bonusMoney(bonusState.washed*e.rate)}`;const h=bonusState.hours[e.id]||0;return `${h} h → premia progresywna ${bonusMoney(bonusTierHours(h))}`}
 function bonusRenderSummary(){let base=0,bonus=0,total=0;const tb=$("#bonusSummaryRows");if(!tb)return;tb.innerHTML="";BONUS_EMPLOYEES.forEach(e=>{const c=bonusCalc(e);base+=e.base;bonus+=c.bonus;total+=c.total;const tr=document.createElement("tr");tr.innerHTML=`<td><strong>${bonusEsc(e.name)}</strong></td><td><span class="bonus-pill ${e.type==="hours"?"blue":""}">${bonusEsc(e.role)}</span></td><td class="bonus-money">${bonusMoney(e.base)}</td><td class="bonus-money">${bonusMoney(c.main)}</td><td class="bonus-money">${bonusMoney(c.extras)}</td><td class="bonus-money"><strong>${bonusMoney(c.bonus)}</strong></td><td class="bonus-money"><strong>${bonusMoney(c.total)}</strong></td>`;tb.appendChild(tr)});$("#bonusKpiEmployees").textContent=BONUS_EMPLOYEES.length;$("#bonusKpiBase").textContent=bonusMoney(base);$("#bonusKpiBonus").textContent=bonusMoney(bonus);$("#bonusKpiTotal").textContent=bonusMoney(total)}
 function bonusAddDiscretionary(id){if(!bonusState.discretionary[id])bonusState.discretionary[id]=[];bonusState.discretionary[id].push({amount:0,comment:""});bonusSave();bonusRefresh()}
 function bonusRemoveDiscretionary(id,index){bonusState.discretionary[id]?.splice(index,1);bonusSave();bonusRefresh()}
 function bonusDiscretionaryHtml(e){if(!bonusState.discretionary[e.id])bonusState.discretionary[e.id]=[];if(!bonusState.discretionary[e.id].length)bonusState.discretionary[e.id].push({amount:0,comment:""});const items=bonusState.discretionary[e.id];const rows=items.map((b,i)=>`<div class="bonus-row"><div><label>Premia dodatkowa brutto • wpisz ręcznie</label><input data-bonus-amount="${e.id}" data-bonus-index="${i}" type="number" min="0" step="10" value="${Number(b.amount)||0}" inputmode="decimal"><div class="bonus-meta">Ręczna premia niezależna od wydanych aut. Eksport: kod 308 · Do urlopu: NIE</div></div><div><label>Komentarz — za co jest premia?</label><input data-bonus-comment="${e.id}" data-bonus-index="${i}" type="text" placeholder="np. dodatkowe zadanie, transfer auta" value="${bonusEsc(b.comment||"")}"></div>${i===0?"<span></span>":`<button class="btn" type="button" data-bonus-remove="${e.id}" data-bonus-index="${i}">Usuń</button>`}</div>`).join("");return `<div class="bonus-discretionary"><div class="bonus-discretionary-head"><strong>Premia dodatkowa — ręcznie <span class="bonus-pill no">Do urlopu: N</span></strong><button class="btn" type="button" data-bonus-add="${e.id}">+ Dodaj kolejną premię</button></div><div class="bonus-list">${rows}</div></div>`}
-function bonusCard(e,showHours){const c=bonusCalc(e),wrap=document.createElement("div");wrap.className="bonus-emp";wrap.innerHTML=`<h3>${bonusEsc(e.name)}</h3><div class="role">${bonusEsc(e.role)}</div><div class="calc"><strong>Podstawa:</strong> ${bonusMoney(e.base)}<br><strong>Zasada premii wynikowej:</strong> ${bonusDesc(e)}<br><span class="bonus-pill ok">Premia wynikowa: kod 301 · urlop T</span></div><div class="bonus-inputs">${showHours?`<div><label>Wypracowane godziny • automatycznie z montaży</label><input data-bonus-hours="${e.id}" type="number" min="0" step="0.25" value="${bonusState.hours[e.id]||0}" readonly><div class="bonus-meta">Suma godzin zapisanych przez pracownika w wybranym miesiącu.</div></div>`:""}<div><label>Nr teczki</label><input data-bonus-file="${e.id}" type="text" placeholder="do uzupełnienia" value="${bonusEsc(bonusState.files[e.id]||"")}"></div><div><label>E-mail pracownika</label><input data-bonus-email="${e.id}" type="email" placeholder="pracownik@firma.pl" value="${bonusEsc(bonusState.emails[e.id]||"")}"></div></div>${bonusDiscretionaryHtml(e)}<div class="bonus-total">Premia wynikowa: <span>${bonusMoney(c.main)}</span></div><div class="bonus-note" style="margin-top:4px">Premia dodatkowa ręczna: <strong>${bonusMoney(c.extras)}</strong></div><div class="bonus-note" style="margin-top:4px">Premia razem: <strong data-bonus-total="${e.id}">${bonusMoney(c.bonus)}</strong></div><div class="bonus-note">Łączne wynagrodzenie brutto przy powyższych danych: <strong data-bonus-gross="${e.id}">${bonusMoney(c.total)}</strong></div>`;return wrap}
+function bonusCard(e,showHours){const c=bonusCalc(e),wrap=document.createElement("div");wrap.className="bonus-emp";wrap.innerHTML=`<h3>${bonusEsc(e.name)}</h3><div class="role">${bonusEsc(e.role)}</div><div class="calc"><strong>Podstawa:</strong> ${bonusMoney(e.base)}<br><strong>Zasada premii wynikowej:</strong> ${bonusDesc(e)}<br><span class="bonus-pill ok">Premia wynikowa: kod 301 · urlop T</span></div><div class="bonus-inputs">${showHours?`<div><label>Wypracowane godziny • wpisz ręcznie</label><input data-bonus-hours="${e.id}" type="number" min="0" step="0.25" value="${bonusState.hours[e.id]||0}" inputmode="decimal"><div class="bonus-meta">Wpisz liczbę godzin z miesiąca. Premia progresywna przeliczy się automatycznie.</div></div>`:""}<div><label>Nr teczki</label><input data-bonus-file="${e.id}" type="text" placeholder="do uzupełnienia" value="${bonusEsc(bonusState.files[e.id]||"")}"></div><div><label>E-mail pracownika</label><input data-bonus-email="${e.id}" type="email" placeholder="pracownik@firma.pl" value="${bonusEsc(bonusState.emails[e.id]||"")}"></div></div>${bonusDiscretionaryHtml(e)}<div class="bonus-total">Premia wynikowa: <span>${bonusMoney(c.main)}</span></div><div class="bonus-note" style="margin-top:4px">Premia dodatkowa ręczna: <strong>${bonusMoney(c.extras)}</strong></div><div class="bonus-note" style="margin-top:4px">Premia razem: <strong data-bonus-total="${e.id}">${bonusMoney(c.bonus)}</strong></div><div class="bonus-note">Łączne wynagrodzenie brutto przy powyższych danych: <strong data-bonus-gross="${e.id}">${bonusMoney(c.total)}</strong></div>`;return wrap}
 function bonusRenderCards(){const ec=$("#bonusEmployeeCards"),dc=$("#bonusDoposCards");if(!ec||!dc)return;ec.innerHTML="";dc.innerHTML="";BONUS_EMPLOYEES.filter(e=>e.type!=="hours").forEach(e=>ec.appendChild(bonusCard(e,false)));BONUS_EMPLOYEES.filter(e=>e.type==="hours").forEach(e=>dc.appendChild(bonusCard(e,true)));bonusAttachInputs()}
-function bonusAttachInputs(){document.querySelectorAll("[data-bonus-add]").forEach(el=>el.onclick=()=>bonusAddDiscretionary(el.dataset.bonusAdd));document.querySelectorAll("[data-bonus-remove]").forEach(el=>el.onclick=()=>bonusRemoveDiscretionary(el.dataset.bonusRemove,Number(el.dataset.bonusIndex)));document.querySelectorAll("[data-bonus-amount]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusAmount,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].amount=Math.max(0,Number(el.value||0));bonusSave();bonusRenderSummary();bonusRenderExport();const card=el.closest(".bonus-emp"),e=BONUS_EMPLOYEES.find(x=>x.id===id);if(card&&e){const c=bonusCalc(e);const main=card.querySelector(".bonus-total span"),notes=card.querySelectorAll(".bonus-note strong"),total=card.querySelector(`[data-bonus-total="${id}"]`),gross=card.querySelector(`[data-bonus-gross="${id}"]`);if(main)main.textContent=bonusMoney(c.main);if(notes[0])notes[0].textContent=bonusMoney(c.extras);if(total)total.textContent=bonusMoney(c.bonus);if(gross)gross.textContent=bonusMoney(c.total)}});document.querySelectorAll("[data-bonus-comment]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusComment,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].comment=el.value;bonusSave();bonusRenderExport()});document.querySelectorAll("[data-bonus-email]").forEach(el=>el.oninput=()=>{bonusState.emails[el.dataset.bonusEmail]=el.value;bonusSave()});document.querySelectorAll("[data-bonus-file]").forEach(el=>el.oninput=()=>{bonusState.files[el.dataset.bonusFile]=el.value.trim();bonusSave();bonusRenderExport()})}
+function bonusAttachInputs(){document.querySelectorAll("[data-bonus-hours]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusHours;bonusState.hours[id]=Math.max(0,Number(String(el.value||0).replace(",","."))||0);bonusSave();bonusRenderSummary();bonusRenderExport();const card=el.closest(".bonus-emp"),e=BONUS_EMPLOYEES.find(x=>x.id===id);if(card&&e){const c=bonusCalc(e),main=card.querySelector(".bonus-total span"),total=card.querySelector(`[data-bonus-total="${id}"]`),gross=card.querySelector(`[data-bonus-gross="${id}"]`),calc=card.querySelector(".calc");if(main)main.textContent=bonusMoney(c.main);if(total)total.textContent=bonusMoney(c.bonus);if(gross)gross.textContent=bonusMoney(c.total);if(calc)calc.innerHTML=`<strong>Podstawa:</strong> ${bonusMoney(e.base)}<br><strong>Zasada premii wynikowej:</strong> ${bonusDesc(e)}<br><span class="bonus-pill ok">Premia wynikowa: kod 301 · urlop T</span>`}});document.querySelectorAll("[data-bonus-add]").forEach(el=>el.onclick=()=>bonusAddDiscretionary(el.dataset.bonusAdd));document.querySelectorAll("[data-bonus-remove]").forEach(el=>el.onclick=()=>bonusRemoveDiscretionary(el.dataset.bonusRemove,Number(el.dataset.bonusIndex)));document.querySelectorAll("[data-bonus-amount]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusAmount,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].amount=Math.max(0,Number(el.value||0));bonusSave();bonusRenderSummary();bonusRenderExport();const card=el.closest(".bonus-emp"),e=BONUS_EMPLOYEES.find(x=>x.id===id);if(card&&e){const c=bonusCalc(e);const main=card.querySelector(".bonus-total span"),notes=card.querySelectorAll(".bonus-note strong"),total=card.querySelector(`[data-bonus-total="${id}"]`),gross=card.querySelector(`[data-bonus-gross="${id}"]`);if(main)main.textContent=bonusMoney(c.main);if(notes[0])notes[0].textContent=bonusMoney(c.extras);if(total)total.textContent=bonusMoney(c.bonus);if(gross)gross.textContent=bonusMoney(c.total)}});document.querySelectorAll("[data-bonus-comment]").forEach(el=>el.oninput=()=>{const id=el.dataset.bonusComment,i=Number(el.dataset.bonusIndex);bonusState.discretionary[id][i].comment=el.value;bonusSave();bonusRenderExport()});document.querySelectorAll("[data-bonus-email]").forEach(el=>el.oninput=()=>{bonusState.emails[el.dataset.bonusEmail]=el.value;bonusSave()});document.querySelectorAll("[data-bonus-file]").forEach(el=>el.oninput=()=>{bonusState.files[el.dataset.bonusFile]=el.value.trim();bonusSave();bonusRenderExport()})}
 function bonusNameParts(full){const p=String(full).trim().split(/\s+/);return {first:p.shift()||"",last:p.join(" ")||""}}
 function bonusHrData(){const period=bonusPeriod();return BONUS_EMPLOYEES.map(e=>{const c=bonusCalc(e),n=bonusNameParts(e.name);return [bonusState.files[e.id]||"",n.last.toUpperCase(),n.first.toUpperCase(),period.year,period.month,c.main||null,null,null,null,null,c.extras||null,null,null,null,null,null,null,null,null,""]})}
 function bonusDetailData(){const rows=[];BONUS_EMPLOYEES.forEach(e=>{const c=bonusCalc(e);if(c.main>0)rows.push([e.name,"Premia wynikająca z systemu",301,"T","T",c.main,bonusDesc(e)]);(bonusState.discretionary[e.id]||[]).forEach(b=>{const amount=Math.max(0,Number(b.amount)||0);if(amount>0)rows.push([e.name,"Dodatkowe zadanie / polecenie",308,"N","T",amount,b.comment||""])});});return rows}
@@ -1371,7 +1388,7 @@ function bonusDownloadBlob(blob,name){const url=URL.createObjectURL(blob),a=docu
 function bonusExportCsv(){const p=bonusPeriod(),csv="\ufeff"+bonusWorkbookRows().map(r=>r.map(bonusCsvCell).join(";")).join("\r\n");bonusDownloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8"}),`premie_wsparcie_operacyjne_${p.year}_${String(p.month).padStart(2,"0")}.csv`)}
 function bonusExportXlsx(){const p=bonusPeriod();if(typeof XLSX==="undefined"){alert("Nie udało się załadować modułu XLSX. Użyj eksportu CSV albo otwórz panel z dostępem do internetu.");return}const wb=XLSX.utils.book_new(),ws=XLSX.utils.aoa_to_sheet(bonusWorkbookRows());ws["!cols"]=[{wch:20},{wch:18},{wch:16},{wch:8},{wch:9},...Array.from({length:14},()=>({wch:18})),{wch:28}];XLSX.utils.book_append_sheet(wb,ws,"Arkusz1");const details=[["Pracownik","Rodzaj składnika","Kod","Do urlopu","Do zasiłku","Kwota brutto","Komentarz"],...bonusDetailData()],ws2=XLSX.utils.aoa_to_sheet(details);ws2["!cols"]=[{wch:24},{wch:30},{wch:10},{wch:12},{wch:12},{wch:15},{wch:48}];XLSX.utils.book_append_sheet(wb,ws2,"Opis premii");XLSX.writeFile(wb,`PREMIE_WSPARCIE_${p.year}_${String(p.month).padStart(2,"0")}.xlsx`)}
 function bonusSetTopInputs(){if($("#bonusIssuedCars"))$("#bonusIssuedCars").value=bonusState.issued||0;if($("#bonusWashedCars"))$("#bonusWashedCars").value=bonusState.washed||0}
-function bonusRefresh(){bonusSyncOperationalMetrics();bonusSetTopInputs();bonusRenderSummary();bonusRenderCards();bonusRenderExport()}
+function bonusRefresh(){bonusSetTopInputs();bonusRenderSummary();bonusRenderCards();bonusRenderExport()}
 function bonusSelectTab(id){document.querySelectorAll(".bonus-tab").forEach(b=>b.classList.toggle("active",b.dataset.bonusTab===id));document.querySelectorAll(".bonus-pane").forEach(p=>p.classList.toggle("hidden",p.id!==id))}
 function renderBonusAdmin(){if(!hasAccess("admin"))return;const m=$("#bonusMonth");if(m&&!m.value)m.value=`${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,"0")}`;bonusLoad();bonusSetTopInputs();bonusRefresh();bonusSelectTab("bonusSummaryPane")}
 function initBonusAdmin(){
@@ -1379,7 +1396,8 @@ function initBonusAdmin(){
  document.querySelectorAll(".bonus-tab").forEach(b=>b.onclick=()=>bonusSelectTab(b.dataset.bonusTab));
  if(m)m.onchange=()=>{bonusLoad();bonusSetTopInputs();bonusRefresh()};
  if($("#bonusIssuedCars"))$("#bonusIssuedCars").oninput=e=>{bonusState.issued=Math.max(0,Math.floor(Number(e.target.value||0)));bonusSave();bonusRenderSummary();bonusRenderCards();bonusRenderExport()};
- if($("#bonusResetBtn"))$("#bonusResetBtn").onclick=()=>{bonusSyncOperationalMetrics();bonusSave();bonusRefresh();logAction("Odświeżenie danych premiowych",bonusPeriod().raw)};
+ if($("#bonusWashedCars"))$("#bonusWashedCars").oninput=e=>{bonusState.washed=Math.max(0,Math.floor(Number(e.target.value||0)));bonusSave();bonusRenderSummary();bonusRenderCards();bonusRenderExport()};
+ if($("#bonusResetBtn"))$("#bonusResetBtn").onclick=()=>{bonusSyncOperationalMetrics();bonusSave();bonusRefresh();logAction("Pobranie danych premiowych z systemu",bonusPeriod().raw)};
  if($("#bonusExportXlsxBtn"))$("#bonusExportXlsxBtn").onclick=bonusExportXlsx;
  if($("#bonusExportCsvBtn"))$("#bonusExportCsvBtn").onclick=bonusExportCsv;
  if($("#openBonusAdmin"))$("#openBonusAdmin").onclick=()=>{if(!hasAccess("admin"))return;renderBonusAdmin();show("bonusAdminView");logAction("Otwarcie modułu","Premia")};
@@ -2735,6 +2753,7 @@ const HERBOWA_SOURCE_ROWS={"JTDKBCBB60A611700":{"excelRow":2619,"date":"20,08,20
 
 let selectedOwner="";
 let editingMountIndex=null;
+let mountCarReturnView="mountList";
 function saveMountJobs(){localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}
 function getMountInstallers(){return APP_USERS.filter(u=>u.role==="Doposażeniowiec").map(u=>u.name)}
 function mountOtherInstaller(owner){return getMountInstallers().find(n=>n!==owner)||""}
@@ -2937,8 +2956,7 @@ function bindMountRows(scope,fromDone=false){
     btn.onclick=()=>{
       const idx=mountJobs.findIndex(j=>j.owner===selectedOwner&&normalizeVin(j.vin)===normalizeVin(btn.dataset.editVin)&&String(j.date||"")===String(btn.dataset.editDate||""));
       if(idx<0)return;
-      if(fromDone){show("mountList");renderUrgentMountAlerts();renderMountTable();}
-      startEditMount(idx);
+      startEditMount(idx,fromDone?"mountDoneList":"mountList");
     };
   });
   scope.querySelectorAll(".mount-close-btn").forEach(btn=>{
@@ -3038,8 +3056,10 @@ function renderMountDoneTable(){
   const md=shiftedMonth(mountMonthOffset),label=$("#mountDoneMonthLabel");if(label)label.textContent=monthLabel(md);const mk=monthKey(md);
   const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&mountJobIsCompleted(j)).sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed))||String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
   const toClose=mountOrdersToClose(selectedOwner,mk);
+  const totalHours=jobs.reduce((sum,j)=>sum+(Number(j.hours)||0),0);
   if($("#mountDoneCount"))$("#mountDoneCount").textContent=[...new Set(jobs.map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
-  if($("#mountDoneHours"))$("#mountDoneHours").textContent=String(toClose);
+  if($("#mountDoneHours"))$("#mountDoneHours").textContent=`${Number.isInteger(totalHours)?totalHours:totalHours.toFixed(1)} h`;
+  if($("#mountDoneToClose"))$("#mountDoneToClose").textContent=String(toClose);
   const tbody=$("#mountDoneRows");if(!tbody)return;
   tbody.innerHTML=jobs.length?jobs.map(mountJobRowHtml).join(""):`<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak zamontowanych samochodów w wybranym miesiącu.</td></tr>`;
   bindMountRows(tbody,true);
@@ -3124,11 +3144,36 @@ function completeDynamicMountTasks(vin){
 
 function openUrgentInMountForm(vin){
   const ctx=mountTaskContext(vin);if(!ctx)return;const item=ctx.record;
-  resetMountForm();$("#mountFormCard").classList.add("open");$("#mountFormTitle").textContent=ctx.source==="release"?"Montaż samochodu":"Montaż — samochód na placu";$("#mountVinInput").value=item.vin;
+  mountCarReturnView="mountList";
+  resetMountForm();
+  show("mountCarView");
+  $("#mountFormCard").classList.add("open");
+  $("#mountFormTitle").textContent=ctx.source==="release"?"Montaż samochodu":"Montaż — samochód na placu";
+  if($("#mountCarTitle"))$("#mountCarTitle").textContent=item.vin||"Montaż samochodu";
+  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||"",ctx.source==="release"?"Samochód z planu wydań":"Samochód na placu"].filter(Boolean).join(" • ");
+  $("#mountVinInput").value=item.vin;
   const items=ctx.items.filter(x=>!x.done).map(x=>x.name);$("#mountAssignment").classList.add("show");$("#mountAssignmentItems").innerHTML=items.map(x=>`<span class="mount-assignment-chip">${escapeHtml(x)}</span>`).join("");
   if(ctx.source==="release")$("#mountAssignmentMeta").textContent=[item.client||"",item.model||"",item.date?`wydanie ${item.date} ${item.time||""}`:"",item.info?`info: ${item.info}`:""].filter(Boolean).join(" • ");
   else{const src=carExcelSource(item);$("#mountAssignmentMeta").textContent=[item.client||src?.client||"","NA PLACU",src?.orderNo?`zlecenie ${src.orderNo}`:"",item.equipment?`info: ${item.equipment}`:""].filter(Boolean).join(" • ")}
-  renderMountDynamicTasksForVin(item.vin);updateMountChoices();$("#mountSaveMessage").textContent="";$("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
+  renderMountDynamicTasksForVin(item.vin);updateMountChoices();$("#mountSaveMessage").textContent="";
+}
+
+function openBlankMountForm(){
+  if(!selectedOwner)return;
+  mountCarReturnView="mountList";
+  resetMountForm();
+  show("mountCarView");
+  $("#mountFormCard").classList.add("open");
+  if($("#mountCarTitle"))$("#mountCarTitle").textContent="Nowy montaż";
+  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=selectedOwner;
+  setTimeout(()=>$("#mountVinInput")?.focus(),0);
+}
+
+function closeMountCarView(){
+  resetMountForm();
+  $("#mountFormCard")?.classList.remove("open");
+  if(mountCarReturnView==="mountDoneList"){renderMountDoneTable();renderExtraWorks();show("mountDoneList");}
+  else{renderUrgentMountAlerts();renderMountTable();show("mountList");}
 }
 
 function applyReleaseTasksToMount(vin){
@@ -3184,13 +3229,17 @@ function todayShort(){
 }
 
 
-function startEditMount(index){
+function startEditMount(index,returnView="mountList"){
   const job=mountJobs[index];
   if(!job) return;
 
   editingMountIndex=index;
+  mountCarReturnView=returnView;
+  show("mountCarView");
   $("#mountFormCard").classList.add("open");
   $("#mountFormTitle").textContent="Edytuj montaż";
+  if($("#mountCarTitle"))$("#mountCarTitle").textContent=job.vin||"Edytuj montaż";
+  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||job.owner||"","Edycja montażu"].filter(Boolean).join(" • ");
   $("#mountEditingNote").classList.add("show");
   $("#saveMountJob").textContent="Zapisz zmiany";
 
@@ -3214,7 +3263,6 @@ function startEditMount(index){
   $("#mountVinSuggestions").classList.remove("open");
   $("#mountVinMessage").textContent="";
   $("#mountSaveMessage").textContent="";
-  $("#mountFormCard").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function saveNewMount(){
@@ -3315,14 +3363,18 @@ function saveNewMount(){
   completeDynamicMountTasks(vin);
   if(alarm || idCan || meta || extra) syncMountCompletionToRelease(vin, alarmReady, extraReady);
 
+  const wasEditing=editingMountIndex!==null;
+  const returnView=mountCarReturnView;
   saveMountJobs();
-  logAction(editingMountIndex!==null?"Edycja montażu":"Zapis montażu",`${vin} • ${selectedTasks.join(", ")} • ${hours} h${alarmCode?" • kod alarmu: "+alarmCode:""}`);
+  logAction(wasEditing?"Edycja montażu":"Zapis montażu",`${vin} • ${selectedTasks.join(", ")} • ${hours} h${alarmCode?" • kod alarmu: "+alarmCode:""}`);
   renderMountTable();
   renderMountDoneTable();
   renderMountWorkerMenu();
   renderUrgentMountAlerts();
   resetMountForm();
   $("#mountFormCard").classList.remove("open");
+  if(returnView==="mountDoneList"){renderMountDoneTable();renderExtraWorks();show("mountDoneList");}
+  else{renderMountTable();renderUrgentMountAlerts();show("mountList");}
 }
 
 
@@ -3499,11 +3551,9 @@ if($("#backWorkerMenuToOwners"))$("#backWorkerMenuToOwners").onclick=()=>{render
 if($("#openMountTodo"))$("#openMountTodo").onclick=openMountTodoForOwner;
 if($("#openMountDone"))$("#openMountDone").onclick=openMountDoneForOwner;
 if($("#backMountDoneToMenu"))$("#backMountDoneToMenu").onclick=()=>{renderMountWorkerMenu();show("mountWorkerMenu")};
-$("#toggleMountForm").onclick=()=>{
-  $("#mountFormCard").classList.toggle("open");
-  if($("#mountFormCard").classList.contains("open")) $("#mountVinInput").focus();
-};
-$("#cancelMountJob").onclick=()=>{resetMountForm();$("#mountFormCard").classList.remove("open")};
+$("#toggleMountForm").onclick=openBlankMountForm;
+if($("#backMountCar"))$("#backMountCar").onclick=closeMountCarView;
+$("#cancelMountJob").onclick=closeMountCarView;
 $("#addExtraWorkBtn").onclick=()=>openExtraWorkForm();
 $("#cancelExtraWorkBtn").onclick=closeExtraWorkForm;
 $("#saveExtraWorkBtn").onclick=saveExtraWorkEntry;
