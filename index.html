@@ -420,11 +420,1188 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 @media(max-width:800px){.bonus-grid{grid-template-columns:repeat(2,1fr)}.bonus-employee-grid{grid-template-columns:1fr}.bonus-inputs{grid-template-columns:1fr}.bonus-row{grid-template-columns:1fr}.bonus-mapping{grid-template-columns:1fr}}
 @media(max-width:480px){.bonus-grid{grid-template-columns:1fr}.bonus-tabs{display:grid;grid-template-columns:1fr 1fr}.bonus-tab{width:100%}.bonus-topbar{display:grid;grid-template-columns:1fr}.bonus-topbar .btn{width:100%}}
 
+
+/* ===== ZADANIA / ZLECENIA ===== */
+.task-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.task-kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.task-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.task-kpi strong{display:block;font-size:26px;margin-top:5px}
+.task-create-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.task-create-card[hidden]{display:none!important}
+.task-form-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:10px;margin-top:12px}
+.task-form-grid .wide{grid-column:span 2}
+.task-form-grid .full{grid-column:1/-1}
+.task-form-grid input,.task-form-grid select,.task-form-grid textarea,.task-filterbar select{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit}
+.task-form-grid textarea{min-height:72px;resize:vertical}
+.task-filterbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:12px}
+.task-filterbar .task-filter-label{font-size:10px;font-weight:1000;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
+.task-filterbar .btn{padding:8px 10px;font-size:11px}
+.task-filterbar .btn.active{background:#17191c;color:#fff;border-color:#17191c}
+.task-filterbar select{width:auto;min-width:155px;padding:8px 30px 8px 10px;font-size:11px;font-weight:800}
+.task-list{display:grid;gap:10px}
+.task-card{background:#fff;border:1px solid var(--line);border-left:5px solid #98a2b3;border-radius:14px;padding:14px 15px;box-shadow:var(--shadow)}
+.task-card.task-overdue{border-left-color:#d92d20;background:#fff9f8}
+.task-card.task-today{border-left-color:#f79009;background:#fffdf7}
+.task-card.task-done{border-left-color:#16a34a;background:#f8fff9;opacity:.86}
+.task-card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.task-title{font-size:15px;font-weight:1000;line-height:1.25}
+.task-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.task-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#eef1f4;color:#475467;font-size:10px;font-weight:1000;white-space:nowrap}
+.task-badge.high{background:#fee4e2;color:#b42318}
+.task-badge.normal{background:#fff4cc;color:#7a5600}
+.task-badge.low{background:#eaf2ff;color:#175cd3}
+.task-badge.done{background:#dff4e6;color:#137a3d}
+.task-badge.overdue{background:#d92d20;color:#fff}
+.task-description{font-size:12px;line-height:1.5;margin-top:8px;color:#344054;white-space:normal}
+.task-meta{display:flex;gap:8px 14px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px solid #eceff2;font-size:11px;color:#667085}
+.task-meta b{color:#344054}
+.task-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.task-actions .btn{padding:8px 10px;font-size:11px}
+.task-empty{background:#fff;border:1px dashed #cfd5dc;border-radius:14px;padding:28px;text-align:center;color:#667085;font-weight:700}
+.task-deadline-note{font-size:11px;font-weight:900;margin-top:4px}
+.task-deadline-note.overdue{color:#b42318}
+.task-deadline-note.today{color:#b54708}
+.task-count-pill{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#fee4e2;color:#b42318;font-size:10px;font-weight:1000;margin-left:6px}
+@media(max-width:900px){.task-form-grid{grid-template-columns:1fr 1fr}.task-form-grid .wide{grid-column:span 2}}
+@media(max-width:600px){.task-kpis{grid-template-columns:1fr 1fr 1fr;gap:6px}.task-kpi{padding:10px}.task-kpi strong{font-size:21px}.task-form-grid{grid-template-columns:1fr}.task-form-grid .wide,.task-form-grid .full{grid-column:auto}.task-card-top{flex-direction:column}.task-badges{justify-content:flex-start}.task-filterbar select{width:100%}}
+
+
+.task-assignees-box{border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px;max-height:190px;overflow:auto}
+.task-assignees-actions{display:flex;gap:6px;margin-bottom:7px;flex-wrap:wrap}
+.task-assignees-actions button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 8px;font-size:10px;font-weight:900;cursor:pointer}
+.task-assignees-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.task-assignee-choice{display:flex;align-items:flex-start;gap:7px;padding:7px 8px;border:1px solid #e5e7eb;border-radius:9px;background:#fafbfc;font-size:11px;font-weight:800;cursor:pointer}
+.task-assignee-choice input{width:17px!important;height:17px;flex:0 0 auto;margin:0}
+.task-assignee-choice span{min-width:0}
+.task-assignee-choice small{display:block;color:var(--muted);font-size:9px;margin-top:2px;font-weight:700}
+@media(max-width:600px){.task-assignees-list{grid-template-columns:1fr}}
+
+
+/* Zadania: każde niewykonane zadanie jest czerwone niezależnie od terminu */
+.task-card:not(.task-done){
+  border-left-color:#d92d20!important;
+  background:#fff7f7!important;
+}
+.task-card:not(.task-done) .task-title{
+  color:#b42318;
+}
+#openTasks.task-has-open{
+  border-color:#d92d20!important;
+  background:#fff7f7!important;
+}
+#openTasks.task-has-open .module-icon{
+  background:#fee4e2!important;
+  color:#b42318!important;
+}
+#openTasks.task-has-open .module-arrow{
+  color:#d92d20!important;
+}
+#openTasks.task-has-open .module-copy h2{
+  color:#b42318;
+}
+
+
+/* ===== GLOBALNY LIFTING UI — styl enterprise / Toyota ===== */
+:root{
+  --bg:#f3f5f8;
+  --bg-2:#eef2f6;
+  --card:#ffffff;
+  --card-soft:#fafbfd;
+  --text:#101828;
+  --text-2:#344054;
+  --muted:#667085;
+  --line:#dbe1e8;
+  --line-strong:#c7d0da;
+  --accent:#d71920;
+  --accent-dark:#b4171d;
+  --accent-soft:#fff1f1;
+  --green:#137a3d;
+  --green-bg:#ecfdf3;
+  --yellow:#9a6700;
+  --yellow-bg:#fffaeb;
+  --red:#b42318;
+  --red-bg:#fef3f2;
+  --blue:#175cd3;
+  --blue-bg:#eff4ff;
+  --shadow:0 12px 30px rgba(16,24,40,.07);
+  --shadow-soft:0 6px 18px rgba(16,24,40,.05);
+  --radius-sm:12px;
+  --radius-md:16px;
+  --radius-lg:22px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at top left, rgba(215,25,32,.045), transparent 320px),
+    linear-gradient(180deg,#f7f9fc 0%,#f1f4f8 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.top{
+  position:sticky;
+  top:0;
+  z-index:500;
+  padding:18px 26px;
+  background:
+    linear-gradient(90deg, rgba(12,15,22,.98) 0%, rgba(18,23,31,.98) 54%, rgba(26,31,39,.98) 100%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow:0 10px 28px rgba(2,6,23,.22);
+  backdrop-filter:blur(10px);
+}
+.brand{
+  font-size:17px;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.brand b{
+  color:#ff434a;
+}
+.top > div:last-child{
+  font-size:12px;
+  letter-spacing:.1em;
+  color:#d0d5dd;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.shell{
+  max-width:1460px;
+  padding:24px 24px 34px;
+}
+.view.active{
+  animation:fadeInView .18s ease;
+}
+@keyframes fadeInView{
+  from{opacity:.0;transform:translateY(4px)}
+  to{opacity:1;transform:none}
+}
+h1{font-size:34px;line-height:1.08;letter-spacing:-.03em}
+h2{font-size:24px;line-height:1.15;letter-spacing:-.02em}
+h3{font-size:18px;line-height:1.2}
+.muted{color:var(--muted)}
+.user-bar,
+.branch-bar{
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:var(--shadow-soft);
+}
+.user-bar{
+  justify-content:space-between;
+  border-radius:18px;
+  padding:10px 14px;
+  margin-bottom:14px;
+}
+.user-pill,
+.owner-badge,
+.branch-pill,
+.password-status,
+.audit-type{
+  border-radius:999px !important;
+  font-weight:1000 !important;
+}
+.user-pill{
+  padding:10px 14px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--text);
+}
+.user-switcher,
+.mobile-user-switch,
+.mobile-user-switch-sheet,
+.branch-switch-btn,
+.btn,
+.back,
+input,
+select,
+textarea{
+  transition:all .16s ease;
+}
+.user-switcher,
+.mobile-user-switch,
+.mobile-user-switch-sheet{
+  min-height:42px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+}
+.branch-bar{
+  padding:12px 14px;
+  border-radius:18px;
+  gap:12px;
+}
+.branch-label{
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+.branch-pill{
+  background:#13171d;
+  padding:9px 13px;
+  font-size:11px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.branch-switch-btn{
+  border-radius:999px;
+  padding:9px 13px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:#475467;
+}
+.branch-switch-btn:hover{
+  border-color:#b7c2ce;
+  background:#fafbfc;
+}
+.branch-switch-btn.active{
+  background:#13171d;
+  color:#fff;
+  border-color:#13171d;
+  box-shadow:0 8px 18px rgba(19,23,29,.18);
+}
+.branch-switch-btn[data-branch="ALEJE"].active{
+  background:#175cd3;
+  border-color:#175cd3;
+}
+.btn{
+  min-height:42px;
+  padding:10px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  font-weight:900;
+  box-shadow:0 1px 2px rgba(16,24,40,.04);
+}
+.btn:hover{
+  transform:translateY(-1px);
+  border-color:#bfc7d1;
+  box-shadow:0 8px 18px rgba(16,24,40,.09);
+}
+.btn.primary{
+  background:linear-gradient(180deg,var(--accent) 0%,var(--accent-dark) 100%);
+  border-color:var(--accent-dark);
+  color:#fff;
+}
+.btn.primary:hover{
+  box-shadow:0 10px 22px rgba(215,25,32,.22);
+}
+.back{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:var(--shadow-soft);
+}
+.back:hover{
+  transform:translateY(-1px);
+  border-color:#bec7d2;
+}
+input,select,textarea{
+  border:1px solid var(--line);
+  border-radius:14px !important;
+  background:#fff;
+  color:var(--text);
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;
+  border-color:rgba(215,25,32,.45);
+  box-shadow:0 0 0 4px rgba(215,25,32,.08);
+}
+.field label{
+  font-size:10px !important;
+  letter-spacing:.08em;
+  font-weight:1000 !important;
+  color:var(--muted) !important;
+  text-transform:uppercase;
+}
+.message.ok{
+  border-radius:12px;
+  padding:10px 12px;
+  background:var(--green-bg);
+  color:var(--green);
+}
+.message.error{
+  border-radius:12px;
+  padding:10px 12px;
+  background:var(--red-bg);
+  color:var(--red);
+}
+
+/* wspólna estetyka kart */
+.module,
+.month,
+.folder,
+.tool-card,
+.dashboard-panel,
+.home-side-card,
+.table-wrap,
+.time-block,
+.admin-card,
+.task-card,
+.wash-stat,
+.wash-card,
+.auth-card,
+.mobile-more-sheet,
+.mobile-sheet,
+.mobile-inline-sheet,
+.owner-card,
+.car-card,
+.release-card,
+.battery-card,
+.archive-card,
+.report-card,
+.panel,
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px !important;
+  box-shadow:var(--shadow);
+}
+.month,
+.dashboard-panel,
+.home-side-card,
+.tool-card,
+.admin-card,
+.auth-card,
+.task-create-card{
+  overflow:hidden;
+}
+.header-row,
+.home-head,
+.day-head,
+.vehicle-head{
+  margin-bottom:18px;
+}
+.header-left{
+  gap:14px;
+}
+.owner-badge{
+  background:#f3f6f9;
+  color:#344054;
+  border:1px solid #e4e8ee;
+  padding:9px 13px;
+}
+
+/* Dashboard / Start */
+.dashboard-hero{
+  background:
+    radial-gradient(circle at right top, rgba(255,255,255,.09), transparent 220px),
+    linear-gradient(135deg,#0f1720 0%,#17212c 62%,#1f2937 100%);
+  border-radius:24px;
+  box-shadow:0 20px 34px rgba(15,23,32,.18);
+  border:1px solid rgba(255,255,255,.05);
+  padding:30px 32px;
+}
+.dashboard-hero:before{
+  width:5px;
+  background:linear-gradient(180deg,#ff4d56 0%, #d71920 100%);
+}
+.home-eyebrow,
+.home-section-kicker{
+  font-size:10px;
+  letter-spacing:.14em;
+}
+.dashboard-hero h1{
+  font-size:34px;
+}
+.dashboard-hero-user{
+  border-left:1px solid rgba(255,255,255,.1);
+  padding-left:22px;
+}
+.home-kpis{
+  gap:12px;
+}
+.home-kpi,
+.kpi{
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  background:linear-gradient(180deg,#ffffff 0%, #fbfcfe 100%);
+}
+.home-kpi:before{
+  width:4px;
+  border-radius:0 6px 6px 0;
+}
+.dashboard-grid{
+  gap:14px;
+}
+.dashboard-panel{
+  padding:20px;
+}
+.dashboard-panel-head h2{
+  font-size:22px;
+}
+.dashboard-modules .module,
+.modules .module{
+  border-radius:18px;
+}
+.dashboard-modules .module{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);
+  min-height:98px;
+}
+.dashboard-modules .module:hover,
+.modules .module:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 24px rgba(16,24,40,.08);
+  border-color:#c7cfd8;
+}
+.module-icon{
+  background:linear-gradient(180deg,#f8fafc 0%,#edf1f5 100%);
+  border:1px solid #e4e7ec;
+  border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+}
+.module-copy small{
+  color:#98a2b3 !important;
+  letter-spacing:.1em;
+}
+.module-copy h2{
+  font-size:22px !important;
+}
+.module-copy p{
+  color:#667085 !important;
+}
+#openTasks.task-has-open{
+  background:linear-gradient(180deg,#fff7f7 0%, #fff 100%) !important;
+}
+
+/* sekcje tabel / list */
+.table-wrap{
+  overflow:hidden;
+}
+table:not(.mount-table){
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+}
+table:not(.mount-table) th{
+  background:#f8fafc;
+  color:#475467;
+  font-size:11px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  font-weight:1000;
+  border-bottom:1px solid var(--line);
+  padding:12px 12px;
+  position:sticky;
+  top:0;
+  z-index:1;
+}
+table:not(.mount-table) td{
+  padding:12px 12px;
+  border-bottom:1px solid #edf1f5;
+  font-size:12px;
+  vertical-align:middle;
+}
+table:not(.mount-table) tr:hover td{
+  background:#fafbfd;
+}
+.table-wrap .empty,
+.empty,
+.task-empty{
+  border-radius:16px;
+  border:1px dashed #d4dbe4;
+  background:#fff;
+  padding:28px;
+}
+
+/* foldery, samochody, wydania */
+.month{
+  padding:20px 22px;
+}
+.month strong{
+  font-size:40px;
+}
+.folders{
+  gap:14px;
+}
+.folder{
+  padding:20px;
+  border-radius:18px;
+}
+.folder:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 26px rgba(16,24,40,.08);
+}
+.folder-count{
+  font-size:38px;
+}
+.folder-place{
+  background:#f8fafc;
+  border:1px solid #edf1f5;
+  border-radius:12px;
+  padding:7px 9px;
+}
+.time-block{
+  border-radius:18px;
+}
+.time-head{
+  background:#f8fafc;
+  padding:14px 16px;
+}
+.car-row{
+  transition:background .15s ease, transform .15s ease;
+}
+.car-row:hover{
+  background:#fafbfd;
+}
+.car-row.issued{
+  background:linear-gradient(180deg,#f0fbf4 0%,#edf9f1 100%);
+}
+.status,
+.badge,
+.audit-type,
+.car-branch{
+  border-radius:999px !important;
+  font-weight:1000 !important;
+}
+
+/* doposażenia */
+.mount-table{
+  min-width:1180px;
+  border-collapse:separate;
+  border-spacing:0;
+  background:#fff;
+}
+.mount-table th{
+  position:sticky;
+  top:0;
+  z-index:1;
+  background:linear-gradient(180deg,#f7ddeb 0%,#f2cfe3 100%);
+  border-color:#2b2f36;
+  font-size:12px;
+  letter-spacing:.03em;
+}
+.mount-table td{
+  border-color:#20242b;
+}
+.mount-table tr.done td{
+  background:#dff5d8;
+}
+.mount-table tr.warning td{
+  background:#fff7bf;
+}
+
+/* zadania */
+.task-kpi,
+.task-create-card{
+  box-shadow:var(--shadow);
+  border-radius:18px;
+}
+.task-kpi{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);
+}
+.task-card{
+  border-left-width:6px !important;
+}
+.task-card-top{
+  gap:16px;
+}
+.task-badge{
+  font-size:10px;
+  letter-spacing:.04em;
+}
+.task-actions .btn{
+  min-height:38px;
+}
+.task-assignee-choice{
+  border-radius:12px;
+}
+
+/* logowanie */
+.auth-gate{
+  background:rgba(10,13,18,.52) !important;
+  backdrop-filter:blur(8px);
+}
+.auth-card{
+  border-radius:24px !important;
+  box-shadow:0 28px 50px rgba(2,6,23,.24) !important;
+  border:1px solid rgba(255,255,255,.6) !important;
+}
+.auth-brand{
+  letter-spacing:.12em !important;
+}
+.auth-copy,
+.auth-session-note{
+  color:#667085 !important;
+}
+
+/* admin, raporty, myjnia */
+.admin-card h2,
+.admin-card h3{
+  letter-spacing:-.02em;
+}
+.admin-table th{
+  background:#f8fafc;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:10px;
+  color:#667085;
+}
+.audit-log{
+  border-radius:16px;
+  overflow:hidden;
+}
+.wash-stat,
+.wash-card{
+  border-radius:18px !important;
+}
+.wash-stat strong{
+  letter-spacing:-.03em;
+}
+
+/* poprawa elementów pomocniczych */
+.help,
+.hint,
+.note,
+.box-note{
+  background:#f8fafc;
+  border:1px solid #e7edf3;
+  border-radius:14px;
+}
+::-webkit-scrollbar{
+  width:10px;
+  height:10px;
+}
+::-webkit-scrollbar-track{
+  background:#edf1f5;
+  border-radius:999px;
+}
+::-webkit-scrollbar-thumb{
+  background:#c2c9d3;
+  border-radius:999px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#aab4bf;
+}
+
+/* MOBILE — bardziej aplikacyjny styl */
+@media(max-width:720px){
+  body{
+    padding-bottom:90px;
+    background:
+      linear-gradient(180deg,#f8fafc 0%,#f2f5f8 100%);
+  }
+  .shell{
+    padding:12px 12px 28px;
+  }
+  .mobile-home{
+    padding-bottom:4px;
+  }
+  .mobile-header{
+    padding:6px 2px 16px;
+  }
+  .mobile-brand{
+    color:#d71920;
+    letter-spacing:.16em;
+  }
+  .mobile-header h1{
+    font-size:29px;
+    letter-spacing:-.03em;
+  }
+  .mobile-date{
+    font-size:12px;
+  }
+  .mobile-user-switch{
+    background:#fff;
+    border:1px solid #e4e8ee;
+    box-shadow:var(--shadow-soft);
+  }
+  .mobile-summary{
+    background:
+      radial-gradient(circle at right top, rgba(255,255,255,.1), transparent 140px),
+      linear-gradient(135deg,#10161f 0%,#19232f 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:0 16px 28px rgba(15,23,32,.18);
+    border-radius:22px;
+    padding:18px;
+  }
+  .mobile-summary strong{
+    font-size:21px;
+  }
+  .mobile-attention{
+    border-radius:18px;
+    box-shadow:var(--shadow-soft);
+  }
+  .mobile-section{
+    background:transparent;
+    margin-bottom:12px;
+  }
+  .mobile-section-head h2{
+    font-size:19px;
+    letter-spacing:-.02em;
+  }
+  .mobile-search-card,
+  .mobile-task,
+  .mobile-more-sheet,
+  .mobile-card,
+  .mobile-inline-sheet,
+  .mobile-ready-card,
+  .mobile-quick-card{
+    border-radius:18px !important;
+    box-shadow:var(--shadow-soft);
+  }
+  .mobile-tasks{
+    gap:10px;
+  }
+  .mobile-task{
+    background:linear-gradient(180deg,#fff 0%,#fcfdff 100%);
+    padding:14px 13px;
+    min-height:118px;
+  }
+  .mobile-task-icon{
+    font-size:18px;
+  }
+  .mobile-task-count{
+    font-size:30px;
+  }
+  .mobile-task-label{
+    font-size:11px;
+    letter-spacing:.01em;
+  }
+  .mobile-bottom-nav{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    border-radius:20px;
+    border:1px solid rgba(215,221,228,.95);
+    background:rgba(255,255,255,.96);
+    box-shadow:0 18px 34px rgba(15,23,32,.16);
+  }
+  .mobile-bottom-nav button{
+    border-radius:14px;
+    min-height:54px;
+    font-size:9px;
+    color:#6b7280;
+  }
+  .mobile-bottom-nav button.active{
+    background:linear-gradient(180deg,#17191c 0%,#232933 100%);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(17,25,40,.18);
+  }
+  .task-card,
+  .task-create-card,
+  .table-wrap,
+  .dashboard-panel,
+  .home-side-card,
+  .tool-card,
+  .month,
+  .folder,
+  .admin-card,
+  .wash-card,
+  .wash-stat{
+    border-radius:18px !important;
+    box-shadow:var(--shadow-soft);
+  }
+  .task-filterbar{
+    border-radius:16px;
+  }
+}
+
+
+/* ===== ENTERPRISE SHELL V2 — realna przebudowa całej aplikacji ===== */
+.desktop-sidebar{display:none}
+.enterprise-topbar{display:flex}
+
+@media(min-width:721px){
+  body{
+    min-height:100vh;
+    background:#f2f5f8;
+  }
+  .desktop-sidebar{
+    display:flex;
+    position:fixed;
+    z-index:800;
+    left:0;
+    top:0;
+    bottom:0;
+    width:244px;
+    padding:22px 14px 16px;
+    flex-direction:column;
+    background:
+      radial-gradient(circle at 0 0,rgba(215,25,32,.16),transparent 210px),
+      linear-gradient(180deg,#111820 0%,#18222d 60%,#111820 100%);
+    color:#fff;
+    border-right:1px solid rgba(255,255,255,.06);
+    box-shadow:14px 0 34px rgba(15,23,42,.12);
+  }
+  .desktop-sidebar-brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:3px 9px 22px;
+    border-bottom:1px solid rgba(255,255,255,.09);
+    margin-bottom:17px;
+  }
+  .desktop-brand-mark{
+    width:42px;height:42px;border-radius:50%;
+    display:grid;place-items:center;
+    border:3px solid #fff;
+    font-size:22px;font-weight:1000;font-family:Arial;
+  }
+  .desktop-sidebar-brand strong{
+    display:block;color:#ff3c44;font-size:19px;letter-spacing:.035em;
+  }
+  .desktop-sidebar-brand span{
+    display:block;color:#9fa9b5;font-size:9px;font-weight:900;letter-spacing:.12em;margin-top:2px;
+  }
+  .desktop-side-nav{
+    display:grid;
+    gap:4px;
+    overflow-y:auto;
+    padding-right:2px;
+  }
+  .desktop-nav-caption{
+    margin:14px 10px 5px;
+    font-size:8px;
+    color:#6f7d8c;
+    font-weight:1000;
+    letter-spacing:.16em;
+  }
+  .desktop-nav-item{
+    min-height:45px;
+    width:100%;
+    border:0;
+    border-radius:11px;
+    background:transparent;
+    color:#cbd3dc;
+    display:grid;
+    grid-template-columns:30px minmax(0,1fr) auto;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    text-align:left;
+    font:inherit;
+    font-size:12px;
+    font-weight:850;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .desktop-nav-item:hover{
+    color:#fff;
+    background:rgba(255,255,255,.07);
+  }
+  .desktop-nav-item.active{
+    color:#fff;
+    background:linear-gradient(135deg,#e51f28 0%,#c9151d 100%);
+    box-shadow:0 9px 18px rgba(215,25,32,.22);
+  }
+  .desktop-nav-icon{
+    width:28px;height:28px;border-radius:8px;
+    display:grid;place-items:center;
+    color:currentColor;
+  }
+  .desktop-nav-icon svg{
+    width:18px;height:18px;
+    fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;
+  }
+  .desktop-nav-count{
+    min-width:22px;height:22px;padding:0 7px;border-radius:999px;
+    display:grid;place-items:center;
+    background:#e31b23;color:#fff;
+    font-size:9px;font-weight:1000;
+  }
+  .desktop-nav-item.active .desktop-nav-count{
+    background:#fff;color:#cf1720;
+  }
+  .desktop-sidebar-footer{
+    margin-top:auto;
+    padding:15px 8px 2px;
+    border-top:1px solid rgba(255,255,255,.09);
+  }
+  .desktop-side-label{
+    font-size:8px;letter-spacing:.14em;font-weight:1000;color:#6f7d8c;
+  }
+  .desktop-side-branch-name{
+    color:#fff;font-weight:1000;font-size:13px;margin:6px 0 9px;
+  }
+  .desktop-side-branches{
+    display:grid;grid-template-columns:1fr 1fr;gap:5px;
+  }
+  .desktop-sidebar .branch-switch-btn{
+    padding:7px 6px;
+    min-height:34px;
+    border-radius:9px;
+    background:rgba(255,255,255,.06);
+    color:#cbd3dc;
+    border:1px solid rgba(255,255,255,.1);
+    font-size:9px;
+  }
+  .desktop-sidebar .branch-switch-btn.active{
+    background:#fff;color:#17191c;border-color:#fff;
+    box-shadow:none;
+  }
+  .desktop-sidebar .branch-switch-btn[data-branch="ALEJE"].active{
+    background:#eaf3ff;color:#175cd3;border-color:#cfe2ff;
+  }
+  .desktop-side-user{
+    display:flex;align-items:center;gap:9px;
+    margin-top:13px;padding-top:13px;border-top:1px solid rgba(255,255,255,.08);
+  }
+  .desktop-user-avatar{
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;
+    background:#2b3642;border:1px solid rgba(255,255,255,.12);
+    font-size:10px;font-weight:1000;color:#fff;flex:0 0 auto;
+  }
+  .desktop-side-user strong{
+    display:block;font-size:10px;color:#fff;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .desktop-side-user span{
+    display:block;font-size:8px;color:#8793a0;margin-top:2px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+
+  .enterprise-topbar{
+    position:sticky;
+    top:0;
+    z-index:600;
+    margin-left:244px;
+    min-height:72px;
+    padding:10px 24px;
+    background:rgba(255,255,255,.92);
+    color:#101828;
+    border-bottom:1px solid #e4e8ee;
+    box-shadow:0 5px 16px rgba(16,24,40,.045);
+    backdrop-filter:blur(14px);
+  }
+  .enterprise-top-copy{
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .enterprise-top-copy>span{
+    font-size:8px;letter-spacing:.14em;font-weight:1000;color:#98a2b3;
+  }
+  .enterprise-top-copy>strong{
+    margin-top:3px;font-size:18px;letter-spacing:-.02em;color:#101828;
+  }
+  .enterprise-top-actions{
+    display:flex;align-items:center;gap:14px;
+  }
+  .enterprise-top-branch{
+    display:grid;gap:2px;text-align:right;padding-right:14px;border-right:1px solid #e4e7ec;
+  }
+  .enterprise-top-branch span{
+    font-size:8px;color:#98a2b3;font-weight:900;text-transform:uppercase;letter-spacing:.08em;
+  }
+  .enterprise-top-branch b{
+    font-size:11px;color:#344054;
+  }
+  .enterprise-user-button{
+    border:0;background:transparent;color:#101828;
+    display:grid;grid-template-columns:34px minmax(100px,1fr) 16px;gap:8px;align-items:center;
+    padding:5px 6px;border-radius:12px;cursor:pointer;text-align:left;
+  }
+  .enterprise-user-button:hover{background:#f5f7fa}
+  .enterprise-user-avatar{
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;background:#20252c;color:#fff;font-size:10px;font-weight:1000;
+  }
+  .enterprise-user-copy b{display:block;font-size:10px}
+  .enterprise-user-copy small{display:block;font-size:8px;color:#98a2b3;margin-top:1px}
+
+  .shell{
+    max-width:none !important;
+    width:auto;
+    margin:0 0 0 244px !important;
+    padding:24px 26px 36px !important;
+  }
+  .shell>.user-bar,
+  .shell>.branch-bar{
+    display:none !important;
+  }
+  .view{
+    max-width:1420px;
+    margin:0 auto;
+  }
+  .view:not(#mainHome)>.header-row:first-child,
+  .view:not(#mainHome)>.home-head:first-child,
+  .view:not(#mainHome)>.day-head:first-child,
+  .view:not(#mainHome)>.vehicle-head:first-child{
+    background:#fff;
+    border:1px solid #e0e6ed;
+    border-radius:18px;
+    padding:16px 18px;
+    box-shadow:0 8px 20px rgba(16,24,40,.055);
+    margin-bottom:14px;
+  }
+  .view:not(#mainHome)>.header-row:first-child h1,
+  .view:not(#mainHome)>.home-head:first-child h1,
+  .view:not(#mainHome)>.day-head:first-child h1,
+  .view:not(#mainHome)>.vehicle-head:first-child h1{
+    font-size:25px;
+  }
+  .view:not(#mainHome) .table-wrap{
+    box-shadow:0 8px 20px rgba(16,24,40,.05);
+  }
+
+  /* Mniej "kafelkowego" chaosu, więcej systemowego rytmu */
+  .modules{gap:10px}
+  .dashboard-panel,.home-side-card,.admin-card,.tool-card,.task-create-card,.task-card,.month,.folder,.panel{
+    box-shadow:0 7px 20px rgba(16,24,40,.055) !important;
+  }
+  .dashboard-panel,.home-side-card,.admin-card,.tool-card,.task-create-card,.panel{
+    border-radius:16px !important;
+  }
+  .table-wrap{border-radius:16px !important}
+  .dashboard-search{
+    background:#fff !important;
+    border:1px solid #e0e6ed !important;
+    box-shadow:0 7px 20px rgba(16,24,40,.05) !important;
+  }
+}
+
+/* Telefon zostaje bez desktopowego sidebara, ale wygląda jak aplikacja */
+@media(max-width:720px){
+  .desktop-sidebar{display:none!important}
+  .enterprise-topbar{display:none!important}
+  .shell>.user-bar{display:none!important}
+  .shell>.branch-bar{
+    display:flex!important;
+    position:sticky;
+    top:0;
+    z-index:300;
+    margin:-2px 0 10px!important;
+    background:rgba(248,250,252,.94)!important;
+    backdrop-filter:blur(12px);
+    box-shadow:none!important;
+    border:0!important;
+    padding:5px 0 8px!important;
+  }
+  .shell>.branch-bar>.muted{display:none}
+  .branch-switch-btn{
+    border-radius:12px!important;
+    min-height:40px!important;
+  }
+  .mobile-header{
+    background:transparent;
+    position:relative;
+  }
+  .mobile-section{
+    padding:0!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+  .mobile-section-head{
+    padding:2px 2px 0;
+  }
+  .mobile-search-row input{
+    background:#fff!important;
+    box-shadow:0 5px 14px rgba(16,24,40,.055);
+  }
+  .mobile-task{
+    border-color:#e2e7ed!important;
+  }
+  .mobile-task[data-tone="red"]{
+    border-color:#f1b7ba!important;
+    background:linear-gradient(180deg,#fff5f5,#fff)!important;
+  }
+  .task-create-card{
+    padding:14px!important;
+  }
+  .task-filterbar{
+    position:sticky;
+    top:54px;
+    z-index:120;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+  }
+  .view:not(#mainHome)>.header-row:first-child,
+  .view:not(#mainHome)>.home-head:first-child,
+  .view:not(#mainHome)>.day-head:first-child,
+  .view:not(#mainHome)>.vehicle-head:first-child{
+    background:#fff;
+    border:1px solid #e4e8ee;
+    border-radius:18px;
+    padding:12px;
+    box-shadow:0 6px 16px rgba(16,24,40,.05);
+  }
+  .view:not(#mainHome)>.header-row:first-child h1,
+  .view:not(#mainHome)>.home-head:first-child h1,
+  .view:not(#mainHome)>.day-head:first-child h1,
+  .view:not(#mainHome)>.vehicle-head:first-child h1{
+    font-size:22px;
+  }
+}
+
 </style>
 <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body class="auth-locked">
-<div class="top"><div class="brand"><b>TOYOTA</b> • DZIAŁ FLOTOWY</div><div>PANEL OPERACYJNY</div></div>
+
+<aside class="desktop-sidebar" id="desktopSidebar" aria-label="Główna nawigacja">
+  <div class="desktop-sidebar-brand">
+    <div class="desktop-brand-mark">T</div>
+    <div><strong>TOYOTA</strong><span>PANEL FLOTOWY</span></div>
+  </div>
+
+  <nav class="desktop-side-nav">
+    <div class="desktop-nav-caption">PRACA</div>
+    <button class="desktop-nav-item active" type="button" data-desktop-route="mainHome">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9h-6v-6H9v6H3z"/></svg></span><span>Start</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="releaseHome" data-desktop-access="releases">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M3 13l2-5h14l2 5v6h-2v-2H5v2H3v-6zm3.5-3-1.2 3h13.4l-1.2-3h-11zM7 15.5h.01M17 15.5h.01"/></svg></span><span>Wydania</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="carsView" data-desktop-access="cars">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M5 7h14l2 5v6H3v-6l2-5zm2 8h.01M17 15h.01M6 7l1-3h10l1 3"/></svg></span><span>Samochody</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="tasksView">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v16H7zM9 9l2 2 4-4M9 15l2 2 4-4"/></svg></span><span>Zadania</span><span class="desktop-nav-count" id="desktopTaskCount">0</span>
+    </button>
+
+    <div class="desktop-nav-caption">OPERACJE</div>
+    <button class="desktop-nav-item" type="button" data-desktop-route="mountOwners" data-desktop-access="mounts">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M14 6l4-4 4 4-4 4M10 14l-6 6M5 13l6 6M13 5l6 6"/></svg></span><span>Doposażenia</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="batteryView" data-desktop-access="battery">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M6 7h12v10H6zM18 10h2v4h-2M9 10v4M7 12h4"/></svg></span><span>Akumulatory</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="washView" data-desktop-access="wash">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3s5 6 5 10a5 5 0 01-10 0c0-4 5-10 5-10z"/></svg></span><span>Myjnia</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="archiveView">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 4h18v3H3zM9 11h6"/></svg></span><span>Archiwum</span>
+    </button>
+
+    <div class="desktop-nav-caption">SYSTEM</div>
+    <button class="desktop-nav-item" type="button" data-desktop-route="adminView" data-desktop-access="admin">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zM4 12l2-1 .5-2.5-1-2 2-2 2 1L12 4l2.5 1.5 2-1 2 2-1 2L18 11l2 1v3l-2 1-.5 2.5 1 2-2 2-2-1L12 23l-2.5-1.5-2 1-2-2 1-2L6 16l-2-1z"/></svg></span><span>Administrator</span>
+    </button>
+  </nav>
+
+  <div class="desktop-sidebar-footer">
+    <div class="desktop-side-label">ODDZIAŁ</div>
+    <div class="desktop-side-branch-name" id="desktopSidebarBranch">Herbowa 16</div>
+    <div class="desktop-side-branches">
+      <button class="branch-switch-btn" type="button" data-branch="HERBOWA">Herbowa</button>
+      <button class="branch-switch-btn" type="button" data-branch="ALEJE">Aleje</button>
+    </div>
+    <div class="desktop-side-user">
+      <div class="desktop-user-avatar" id="desktopUserAvatar">IG</div>
+      <div><strong id="desktopSidebarUser">—</strong><span id="desktopSidebarRole">—</span></div>
+    </div>
+  </div>
+</aside>
+
+<div class="top enterprise-topbar">
+  <div class="enterprise-top-copy">
+    <span id="desktopPageEyebrow">TOYOTA • OPERACJE FLOTOWE</span>
+    <strong id="desktopPageTitle">Panel główny</strong>
+  </div>
+  <div class="enterprise-top-actions">
+    <div class="enterprise-top-branch"><span>Oddział</span><b id="desktopTopBranch">Herbowa 16</b></div>
+    <button class="enterprise-user-button" id="desktopTopUserBtn" type="button">
+      <span class="enterprise-user-avatar" id="desktopTopAvatar">IG</span>
+      <span class="enterprise-user-copy"><b id="desktopTopUser">—</b><small id="desktopTopRole">—</small></span>
+      <span>⌄</span>
+    </button>
+  </div>
+</div>
+
 
 <div class="auth-gate" id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
   <div class="auth-card">
@@ -479,6 +1656,8 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
         <button class="mobile-task" id="mobileTaskMounts" data-mobile-access="mounts" data-mobile-route="mountOwners" type="button"><div><div class="mobile-task-icon">🔧</div><div class="mobile-task-count" id="mobileMountCount">0</div></div><div><div class="mobile-task-label">Montaże</div><div class="mobile-task-sub">otwarte zlecenia</div></div></button>
         <button class="mobile-task" id="mobileTaskBattery" data-mobile-access="battery" data-mobile-route="batteryView" type="button"><div><div class="mobile-task-icon">🔋</div><div class="mobile-task-count" id="mobileBatteryCount">0</div></div><div><div class="mobile-task-label">Akumulatory</div><div class="mobile-task-sub">wymagają reakcji</div></div></button>
         <button class="mobile-task" id="mobileTaskWash" data-mobile-access="wash" data-mobile-route="washView" type="button"><div><div class="mobile-task-icon">🧽</div><div class="mobile-task-count" id="mobileWashCount">0</div></div><div><div class="mobile-task-label">Myjnia</div><div class="mobile-task-sub">do mycia dziś</div></div></button>
+
+        <button class="mobile-task" id="mobileTaskAssigned" data-mobile-route="tasksView" type="button"><div><div class="mobile-task-icon">✓</div><div class="mobile-task-count" id="mobileAssignedTaskCount">0</div></div><div><div class="mobile-task-label">Zadania</div><div class="mobile-task-sub" id="mobileAssignedTaskSub">zlecone Tobie</div></div></button>
       </div>
       <div class="mobile-ready-card" id="mobileReadyCard" data-home-access="releases">
         <div class="mobile-ready-copy"><b id="mobileReadyLabel">Gotowość wydań</b><div id="mobileReadySub">—</div><div class="mobile-ready-bar"><span id="mobileReadyBar"></span></div></div><div class="mobile-ready-pct" id="mobileReadyPercent">—</div>
@@ -543,6 +1722,11 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
         <button class="module" id="openWash">
           <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5 6 5 10a5 5 0 01-10 0c0-4 5-10 5-10zM9.5 14.5a3 3 0 003 1.5"/></svg></span>
           <span class="module-copy"><small>MYJNIA</small><h2>Myjnia</h2><p>Plan mycia i historia wykonania.</p></span><span class="module-arrow">→</span>
+        </button>
+
+        <button class="module" id="openTasks">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16H7zM9.5 9l1.5 1.5L14.5 7M9.5 15l1.5 1.5 3.5-3.5"/></svg></span>
+          <span class="module-copy"><small>ZLECENIA</small><h2>Zadania</h2><p id="tasksModuleSummary">Zlecanie zadań i kontrola terminów.</p></span><span class="module-arrow">→</span>
         </button>
         <button class="module" id="openAdmin">
           <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zM4 12l2-1 .5-2.5-1-2 2-2 2 1L12 4l2.5 1.5 2-1 2 2-1 2L18 11l2 1v3l-2 1-.5 2.5 1 2-2 2-2-1L12 23l-2.5-1.5-2 1-2-2 1-2L6 16l-2-1z"/></svg></span>
@@ -992,6 +2176,54 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   <div class="admin-card"><h2>Moje dodatkowe prace</h2><div class="wash-bonus-list" id="washBonusList"></div></div>
 </section>
 
+
+<section id="tasksView" class="view">
+  <div class="header-row">
+    <div class="header-left"><button class="back" id="backMainFromTasks">←</button><div><h1>Zadania</h1><div class="muted" style="margin-top:5px">Zlecenia dla pracowników z terminem wykonania.</div></div></div>
+    <span class="owner-badge" id="taskHeaderBadge">0 otwartych</span>
+  </div>
+
+  <div class="task-kpis">
+    <div class="task-kpi"><small>Otwarte</small><strong id="taskOpenCount">0</strong></div>
+    <div class="task-kpi"><small>Po terminie</small><strong id="taskOverdueCount">0</strong></div>
+    <div class="task-kpi"><small>Wykonane</small><strong id="taskDoneCount">0</strong></div>
+  </div>
+
+  <div class="task-create-card" id="taskCreateCard" hidden>
+    <div class="header-row" style="margin-bottom:0"><div><h2>+ Zleć zadanie</h2><div class="muted" style="margin-top:4px">Wybierz pracownika i ustaw dokładny termin wykonania.</div></div></div>
+    <div class="task-form-grid">
+      <div class="field wide"><label>ZADANIE</label><input id="taskTitle" placeholder="np. Przestawić samochody na miejsca wydań"></div>
+      <div class="field wide"><label>PRACOWNICY</label>
+        <div class="task-assignees-box">
+          <div class="task-assignees-actions">
+            <button type="button" id="taskSelectAllAssignees">Zaznacz wszystkich</button>
+            <button type="button" id="taskClearAssignees">Wyczyść</button>
+          </div>
+          <div class="task-assignees-list" id="taskAssigneeList"></div>
+        </div>
+      </div>
+      <div class="field"><label>TERMIN DO</label><input id="taskDueAt" type="datetime-local"></div>
+      <div class="field"><label>PRIORYTET</label><select id="taskPriority"><option value="normal">Normalny</option><option value="high">Pilny</option><option value="low">Niski</option></select></div>
+      <div class="field"><label>ODDZIAŁ</label><select id="taskBranch"><option value="HERBOWA">Herbowa 16</option><option value="ALEJE">Toyota Aleje</option><option value="ALL">Oba oddziały</option></select></div>
+      <div class="field full"><label>OPIS / UWAGI</label><textarea id="taskDescription" placeholder="Szczegóły zadania, numer VIN, miejsce, dodatkowe informacje…"></textarea></div>
+    </div>
+    <div class="actions" style="margin-top:10px"><button class="btn primary" id="createTaskBtn" type="button">Zleć zadanie</button></div>
+    <div class="message" id="taskCreateMessage"></div>
+  </div>
+
+  <div class="task-filterbar">
+    <span class="task-filter-label">Widok</span>
+    <button class="btn task-scope-btn active" data-task-scope="mine" type="button">Moje zadania</button>
+    <button class="btn task-scope-btn" id="taskAllScopeBtn" data-task-scope="all" type="button">Wszystkie</button>
+    <span class="task-filter-label">Status</span>
+    <select id="taskStatusFilter"><option value="open">Otwarte</option><option value="all">Wszystkie</option><option value="done">Wykonane</option><option value="overdue">Po terminie</option></select>
+    <span class="task-filter-label">Oddział</span>
+    <select id="taskBranchFilter"><option value="all">Wszystkie oddziały</option><option value="HERBOWA">Herbowa 16</option><option value="ALEJE">Toyota Aleje</option></select>
+  </div>
+
+  <div class="task-list" id="taskList"></div>
+</section>
+
 <section id="archiveView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backMainFromArchive">←</button><div><h1>Archiwum samochodów</h1><div class="muted" style="margin-top:5px">Samochód trafia tutaj automatycznie po oznaczeniu jako WYDANY. Historia nie jest kasowana.</div></div></div><span class="owner-badge" id="archiveCount"></span></div>
   <div class="searchbar"><input id="archiveSearch" placeholder="Szukaj po VIN"></div>
@@ -1089,6 +2321,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
       <button data-mobile-more-route="carsView" data-mobile-access="cars" type="button">Lista samochodów</button>
       <button data-mobile-more-route="batteryView" data-mobile-access="battery" type="button">Akumulatory</button>
       <button data-mobile-more-route="washView" data-mobile-access="wash" type="button">Myjnia</button>
+      <button data-mobile-more-route="tasksView" type="button">Zadania</button>
       <button data-mobile-more-route="adminView" data-mobile-access="admin" type="button">Administrator</button>
     </div>
   </div>
@@ -1111,7 +2344,7 @@ function storageJSON(key,fallback,kind="any") {
     return fallback;
   }
 }
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","archiveView","adminView","bonusAdminView"];
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","tasksView","archiveView","adminView","bonusAdminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 function loginFromName(name){
   return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
@@ -1152,6 +2385,7 @@ function renderBranchUi(){
   const name=branchLabel();
   const p=document.getElementById("currentBranchPill"),n=document.getElementById("currentBranchName"),c=document.getElementById("carsBranchLabel");
   if(n)n.textContent=name;if(c)c.textContent=name;if(p)p.classList.toggle("aleje",currentBranch===BRANCH_ALEJE);
+  ["desktopSidebarBranch","desktopTopBranch"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=name});
   document.querySelectorAll(".branch-switch-btn").forEach(btn=>{
     const active=normalizeBranch(btn.dataset.branch)===currentBranch;
     btn.classList.toggle("active",active);btn.setAttribute("aria-pressed",active?"true":"false");
@@ -1308,6 +2542,14 @@ function resolveInitialUser(){
 }
 let currentUser=resolveInitialUser();
 let auditLog=storageJSON("toyotaAuditLogV1",[],"array").filter(x=>x&&typeof x==="object");
+
+const ASSIGNED_TASKS_KEY="toyotaAssignedTasksV1";
+let assignedTasks=storageJSON(ASSIGNED_TASKS_KEY,[],"array").filter(x=>x&&typeof x==="object");
+let taskScope="mine";
+let taskStatusFilter="open";
+let taskBranchFilter="all";
+function saveAssignedTasks(){try{localStorage.setItem(ASSIGNED_TASKS_KEY,JSON.stringify(assignedTasks))}catch(e){alert("Nie udało się zapisać zadań w pamięci przeglądarki.")}}
+
 function logAction(action,details=""){if(!currentUser)return;auditLog.unshift({at:new Date().toLocaleString("pl-PL"),user:currentUser.name,action,details});auditLog=auditLog.slice(0,200);try{localStorage.setItem("toyotaAuditLogV1",JSON.stringify(auditLog))}catch(e){}}
 function hasAccess(module){return !!currentUser?.access?.includes(module)}
 function persistActiveUser(){
@@ -1319,6 +2561,16 @@ function renderUserSwitchers(){
   if(desktop){desktop.textContent="Zmień użytkownika";desktop.onclick=()=>requestUserSwitch()}
   if(mobile){mobile.textContent="Konto";mobile.onclick=()=>requestUserSwitch()}
   const pill=document.getElementById("currentUserPill");if(pill&&currentUser)pill.textContent=`${currentUser.name} • ${currentUser.role}`;
+  if(currentUser){
+    const initials=String(currentUser.name||"?").split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()||"?";
+    const map={
+      desktopSidebarUser:currentUser.name,desktopSidebarRole:currentUser.role,
+      desktopTopUser:currentUser.name,desktopTopRole:currentUser.role,
+      desktopUserAvatar:initials,desktopTopAvatar:initials
+    };
+    Object.entries(map).forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value});
+  }
+  const topUser=document.getElementById("desktopTopUserBtn");if(topUser)topUser.onclick=()=>requestUserSwitch();
 }
 function switchUserById(userId){
   const next=APP_USERS.find(u=>String(u.userId)===String(userId));if(!next)return false;
@@ -1332,8 +2584,34 @@ function switchUserById(userId){
   logAction("Zmiana użytkownika",previous?`${previous} → ${next.name}`:next.name);return true;
 }
 window.fleetSwitchUser=requestUserSwitch;
-function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));updateMobileNav(id);if(id==="mainHome")setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention()},0)}
-function applyUserAccess(){if(!currentUser)return;if($("#currentUserPill"))$("#currentUserPill").textContent=currentUser.role;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");renderUserSwitchers();updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
+function desktopSectionForView(id){
+  if(id==="mainHome")return "mainHome";
+  if(["releaseHome","releaseDay","releaseVehicle"].includes(id))return "releaseHome";
+  if(["mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList"].includes(id))return "mountOwners";
+  if(["washView","washPendingView","washDoneView","washBonusView"].includes(id))return "washView";
+  if(id==="bonusAdminView")return "adminView";
+  return id;
+}
+function updateDesktopNav(id){
+  const section=desktopSectionForView(id);
+  document.querySelectorAll("[data-desktop-route]").forEach(btn=>btn.classList.toggle("active",btn.dataset.desktopRoute===section));
+  const titles={
+    mainHome:["PANEL OPERACYJNY","Panel główny"],
+    releaseHome:["OPERACJE","Wydania samochodów"],
+    carsView:["FLOTA","Samochody"],
+    tasksView:["ORGANIZACJA PRACY","Zadania"],
+    mountOwners:["WARSZTAT","Doposażenia"],
+    batteryView:["KONTROLA","Akumulatory"],
+    washView:["OPERACJE","Myjnia"],
+    archiveView:["HISTORIA","Archiwum"],
+    adminView:["SYSTEM","Administrator"]
+  };
+  const t=titles[section]||["TOYOTA • OPERACJE FLOTOWE","Panel flotowy"];
+  const eyebrow=document.getElementById("desktopPageEyebrow"),title=document.getElementById("desktopPageTitle");
+  if(eyebrow)eyebrow.textContent=t[0];if(title)title.textContent=t[1];
+}
+function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));updateMobileNav(id);updateDesktopNav(id);if(id==="mainHome")setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention()},0)}
+function applyUserAccess(){if(!currentUser)return;if($("#currentUserPill"))$("#currentUserPill").textContent=currentUser.role;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.querySelectorAll("[data-desktop-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.desktopAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");renderUserSwitchers();updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
 function auditMonthKey(at){const m=String(at||"").match(/(\d{1,2})[.\/]\s?(\d{1,2})[.\/]\s?(\d{4})/);return m?`${m[3]}-${String(m[2]).padStart(2,"0")}`:""}
 const MONTHLY_REPORTS_KEY="toyotaMonthlyReportsV1";
 let monthlyReports=storageJSON(MONTHLY_REPORTS_KEY,{},"object");
@@ -2261,6 +3539,7 @@ function renderMainDashboard(){
   if($("#homeProgressPercent"))$("#homeProgressPercent").textContent=todayReleases.length?`${pct}%`:"—";
   if($("#homeProgressBar"))$("#homeProgressBar").style.width=`${pct}%`;
   if($("#homeProgressSub"))$("#homeProgressSub").textContent=todayReleases.length?(pct===100?"Wszystkie dzisiejsze auta mają potwierdzoną gotowość.":`${todayReleases.length-todayReady} ${todayReleases.length-todayReady===1?"samochód wymaga":"samochody wymagają"} jeszcze potwierdzenia.`):"Dzisiejszy plan nie zawiera wydań.";
+  renderTaskHomeSummary();
   renderMobileDashboard();
 }
 
@@ -2300,6 +3579,7 @@ function renderMobileDashboard(){
   if($("#mobileMoreUserName"))$("#mobileMoreUserName").textContent=currentUser.name||"—";
   if($("#mobileMoreUserRole"))$("#mobileMoreUserRole").textContent=currentUser.role||"—";
   renderMobileRecentVins();
+  renderTaskHomeSummary();
 }
 function syncMobileAttention(){
   const box=$("#mobileAttention");if(!box||!currentUser)return;
@@ -2322,6 +3602,19 @@ function renderMobileRecentVins(){
 function runMobileVinSearch(){
   const inp=$("#mobileVinSearch"),out=$("#mobileVinResult");if(!inp||!out)return;const q=normalizeVin(inp.value);$("#globalVinSearch").value=q;renderGlobalVinSearch();out.innerHTML=$("#globalVinResult").innerHTML;out.classList.add("open");const hit=fleetCars.find(c=>normalizeVin(c.vin).endsWith(q)||normalizeVin(c.vin).includes(q));if(q.length>=4&&hit)addMobileRecentVin(hit.vin);
 }
+
+function openDesktopRoute(route){
+  if(route==="mainHome"){show("mainHome");return}
+  if(route==="releaseHome"){if(!hasAccess("releases"))return;renderReleaseHome();show("releaseHome");return}
+  if(route==="carsView"){if(!hasAccess("cars"))return;renderCars();show("carsView");return}
+  if(route==="tasksView"){renderTasks();show("tasksView");return}
+  if(route==="mountOwners"){if(!hasAccess("mounts"))return;renderOwners();show("mountOwners");return}
+  if(route==="batteryView"){if(!hasAccess("battery"))return;renderBattery();show("batteryView");return}
+  if(route==="washView"){if(!hasAccess("wash"))return;renderWash();show("washView");return}
+  if(route==="archiveView"){renderArchive();show("archiveView");return}
+  if(route==="adminView"){if(!hasAccess("admin"))return;renderAdmin();show("adminView");return}
+}
+
 function openMobileRoute(route){
   closeMobileMore();
   if(route==="releaseHome"){if(!hasAccess("releases"))return;renderReleaseHome();show("releaseHome");return}
@@ -2329,11 +3622,12 @@ function openMobileRoute(route){
   if(route==="carsView"){if(!hasAccess("cars"))return;renderCars();show("carsView");return}
   if(route==="batteryView"){if(!hasAccess("battery"))return;renderBattery();show("batteryView");return}
   if(route==="washView"){if(!hasAccess("wash"))return;renderWash();show("washView");return}
+  if(route==="tasksView"){renderTasks();show("tasksView");return}
   if(route==="adminView"){if(!hasAccess("admin"))return;renderAdmin();show("adminView");return}
 }
 function updateMobileNav(viewId){
   const home=$("#mobileNavHome"),rel=$("#mobileNavReleases"),cars=$("#mobileNavCars");[home,rel,cars,$("#mobileNavTasks"),$("#mobileNavMore")].forEach(x=>x?.classList.remove("active"));
-  if(viewId==="mainHome")home?.classList.add("active");else if(["releaseHome","releaseDay","releaseVehicle"].includes(viewId))rel?.classList.add("active");else if(viewId==="carsView")cars?.classList.add("active");
+  if(viewId==="mainHome")home?.classList.add("active");else if(["releaseHome","releaseDay","releaseVehicle"].includes(viewId))rel?.classList.add("active");else if(viewId==="carsView")cars?.classList.add("active");else if(viewId==="tasksView")$("#mobileNavTasks")?.classList.add("active");
 }
 function openMobileMore(){const b=$("#mobileMoreBackdrop");if(b){b.classList.add("open");b.setAttribute("aria-hidden","false");$("#mobileNavMore")?.classList.add("active")}}
 function closeMobileMore(){const b=$("#mobileMoreBackdrop");if(b){b.classList.remove("open");b.setAttribute("aria-hidden","true");$("#mobileNavMore")?.classList.remove("active")}}
@@ -2348,6 +3642,210 @@ function renderGlobalVinSearch(){
   out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||c.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
   addMobileRecentVin(c.vin);
 }
+
+
+/* ---------- ASSIGNED TASKS ---------- */
+function canAssignTasks(){
+  const role=String(currentUser?.role||"");
+  return !!currentUser && (hasAccess("admin") || role==="Główny Koordynator" || role.includes("Koordynator"));
+}
+function canDeleteTasks(){
+  return !!currentUser && (
+    String(currentUser.userId||"")==="user-1" ||
+    String(currentUser.baseName||"")==="Igor Gieruszka" ||
+    String(currentUser.login||"")==="igor.gieruszka"
+  );
+}
+function taskUserById(id){return APP_USERS.find(u=>String(u.userId)===String(id))||null}
+function taskAssigneeIds(t){
+  if(Array.isArray(t?.assigneeIds)&&t.assigneeIds.length)return t.assigneeIds.map(String);
+  if(t?.assigneeId)return [String(t.assigneeId)];
+  return [];
+}
+function taskAssigneeNames(t){
+  const ids=taskAssigneeIds(t);
+  const names=ids.map(id=>taskUserById(id)?.name).filter(Boolean);
+  if(names.length)return names;
+  if(Array.isArray(t?.assigneeNames)&&t.assigneeNames.length)return t.assigneeNames;
+  if(t?.assigneeName)return [t.assigneeName];
+  return ["Nieznany pracownik"];
+}
+function taskAssigneeName(t){return taskAssigneeNames(t).join(", ")}
+function taskCreatorName(t){return taskUserById(t.createdById)?.name||t.createdByName||"—"}
+function taskIsMine(t){
+  const myId=String(currentUser?.userId||"");
+  const ids=taskAssigneeIds(t);
+  if(ids.length)return ids.includes(myId);
+  const names=taskAssigneeNames(t);
+  return names.includes(currentUser?.name);
+}
+function taskBranchName(v){return v==="ALEJE"?"Toyota Aleje":v==="HERBOWA"?"Herbowa 16":"Oba oddziały"}
+function taskDueDate(t){const d=new Date(String(t?.dueAt||""));return Number.isNaN(d.getTime())?null:d}
+function taskDueState(t){
+  if(t.status==="done")return {key:"done",label:"WYKONANE"};
+  const d=taskDueDate(t);if(!d)return {key:"open",label:"OTWARTE"};
+  const now=new Date(),diff=d.getTime()-now.getTime();
+  if(diff<0)return {key:"overdue",label:"PO TERMINIE"};
+  const sameDay=d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()&&d.getDate()===now.getDate();
+  if(sameDay)return {key:"today",label:"DZISIAJ"};
+  return {key:"open",label:"OTWARTE"};
+}
+function formatTaskDue(v){
+  const d=new Date(String(v||""));if(Number.isNaN(d.getTime()))return "—";
+  return new Intl.DateTimeFormat("pl-PL",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(d);
+}
+function taskLocalInputValue(date=new Date()){
+  const d=new Date(date),pad=n=>String(n).padStart(2,"0");
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function taskPriorityLabel(v){return v==="high"?"PILNY":v==="low"?"NISKI":"NORMALNY"}
+function taskScopeBase(){
+  let list=assignedTasks.slice();
+  if(taskScope!=="all"||!canAssignTasks())list=list.filter(taskIsMine);
+  if(taskBranchFilter!=="all")list=list.filter(t=>t.branch===taskBranchFilter||t.branch==="ALL");
+  return list;
+}
+function taskFilteredList(){
+  let list=taskScopeBase();
+  if(taskStatusFilter==="open")list=list.filter(t=>t.status!=="done");
+  else if(taskStatusFilter==="done")list=list.filter(t=>t.status==="done");
+  else if(taskStatusFilter==="overdue")list=list.filter(t=>t.status!=="done"&&taskDueState(t).key==="overdue");
+  return list.sort((a,b)=>{
+    const ad=a.status==="done",bd=b.status==="done";if(ad!==bd)return ad?1:-1;
+    const ao=taskDueState(a).key==="overdue",bo=taskDueState(b).key==="overdue";if(ao!==bo)return ao?-1:1;
+    const da=taskDueDate(a)?.getTime()||Number.MAX_SAFE_INTEGER,db=taskDueDate(b)?.getTime()||Number.MAX_SAFE_INTEGER;
+    return da-db;
+  });
+}
+function renderTaskHomeSummary(){
+  if(!currentUser)return;
+  const mine=assignedTasks.filter(taskIsMine);
+  const open=mine.filter(t=>t.status!=="done");
+  const overdue=open.filter(t=>taskDueState(t).key==="overdue");
+  const summary=$("#tasksModuleSummary");
+  if(summary)summary.textContent=open.length?`${open.length} otwartych${overdue.length?` • ${overdue.length} po terminie`:""}`:"Brak otwartych zadań.";
+  if($("#mobileAssignedTaskCount"))$("#mobileAssignedTaskCount").textContent=open.length;
+  if($("#mobileAssignedTaskSub"))$("#mobileAssignedTaskSub").textContent=overdue.length?`${overdue.length} po terminie`:"zlecone Tobie";
+  const tile=$("#mobileTaskAssigned");if(tile)tile.dataset.tone=open.length?"red":"green";
+  const desktopTask=$("#openTasks");if(desktopTask)desktopTask.classList.toggle("task-has-open",open.length>0);
+  const sideCount=$("#desktopTaskCount");if(sideCount){sideCount.textContent=open.length;sideCount.hidden=open.length===0;}
+}
+function createAssignedTask(){
+  const msg=$("#taskCreateMessage");if(msg){msg.textContent="";msg.className="message"}
+  if(!canAssignTasks())return;
+  const title=String($("#taskTitle")?.value||"").trim();
+  const assigneeIds=[...document.querySelectorAll(".task-assignee-check:checked")].map(x=>String(x.value));
+  const dueAt=String($("#taskDueAt")?.value||"");
+  const description=String($("#taskDescription")?.value||"").trim();
+  const priority=String($("#taskPriority")?.value||"normal");
+  const branch=String($("#taskBranch")?.value||currentBranch);
+  if(title.length<3){if(msg){msg.textContent="Wpisz treść zadania.";msg.className="message error"}return}
+  const assignees=assigneeIds.map(taskUserById).filter(Boolean);
+  if(!assignees.length){if(msg){msg.textContent="Wybierz co najmniej jednego pracownika.";msg.className="message error"}return}
+  const due=new Date(dueAt);
+  if(!dueAt||Number.isNaN(due.getTime())){if(msg){msg.textContent="Ustaw termin wykonania.";msg.className="message error"}return}
+  if(due.getTime()<Date.now()-60000){if(msg){msg.textContent="Termin nie może być w przeszłości.";msg.className="message error"}return}
+  const task={
+    id:`task-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,
+    title,description,
+    assigneeIds:assignees.map(u=>u.userId),
+    assigneeNames:assignees.map(u=>u.name),
+    dueAt,
+    priority:["high","normal","low"].includes(priority)?priority:"normal",
+    branch:["HERBOWA","ALEJE","ALL"].includes(branch)?branch:"ALL",
+    status:"open",createdAt:new Date().toISOString(),createdById:currentUser.userId,createdByName:currentUser.name,
+    completedAt:"",completedById:"",completedByName:""
+  };
+  assignedTasks.unshift(task);saveAssignedTasks();logAction("Zlecenie zadania",`${assignees.map(u=>u.name).join(", ")}: ${title}; termin ${formatTaskDue(dueAt)}`);
+  $("#taskTitle").value="";$("#taskDescription").value="";$("#taskPriority").value="normal";
+  document.querySelectorAll(".task-assignee-check").forEach(x=>x.checked=false);
+  const next=new Date(Date.now()+24*60*60*1000);next.setMinutes(0,0,0);$("#taskDueAt").value=taskLocalInputValue(next);
+  if(msg){msg.textContent=`Zadanie zlecone dla ${assignees.length} ${assignees.length===1?"osoby":"osób"}.`;msg.className="message ok"}
+  renderTasks();renderTaskHomeSummary();
+}
+function completeAssignedTask(id,done=true){
+  const t=assignedTasks.find(x=>String(x.id)===String(id));if(!t)return;
+  if(!taskIsMine(t)&&!canAssignTasks())return;
+  if(done){
+    t.status="done";t.completedAt=new Date().toISOString();t.completedById=currentUser.userId;t.completedByName=currentUser.name;
+    logAction("Wykonanie zadania",`${taskAssigneeName(t)}: ${t.title}`);
+  }else{
+    t.status="open";t.completedAt="";t.completedById="";t.completedByName="";
+    logAction("Przywrócenie zadania",`${taskAssigneeName(t)}: ${t.title}`);
+  }
+  saveAssignedTasks();renderTasks();renderTaskHomeSummary();
+}
+function deleteAssignedTask(id){
+  if(!canDeleteTasks())return;
+  const t=assignedTasks.find(x=>String(x.id)===String(id));if(!t)return;
+  if(!confirm(`Usunąć zadanie „${t.title}”?`))return;
+  assignedTasks=assignedTasks.filter(x=>String(x.id)!==String(id));saveAssignedTasks();
+  logAction("Usunięcie zadania",`${taskAssigneeName(t)}: ${t.title}`);renderTasks();renderTaskHomeSummary();
+}
+function changeAssignedTaskDeadline(id){
+  if(!canAssignTasks())return;
+  const t=assignedTasks.find(x=>String(x.id)===String(id));if(!t)return;
+  const old=String(t.dueAt||"").replace("T"," ");
+  const value=prompt("Nowy termin (RRRR-MM-DD GG:MM)",old);
+  if(value===null)return;
+  const normalized=value.trim().replace(/\s+/,"T");
+  const d=new Date(normalized);
+  if(!normalized||Number.isNaN(d.getTime())){alert("Nieprawidłowy termin. Przykład: 2026-09-12 15:30");return}
+  t.dueAt=normalized.slice(0,16);saveAssignedTasks();logAction("Zmiana terminu zadania",`${t.title}: ${formatTaskDue(t.dueAt)}`);renderTasks();renderTaskHomeSummary();
+}
+function renderTasks(){
+  if(!currentUser)return;
+  const manager=canAssignTasks();
+  if(taskScope==="all"&&!manager)taskScope="mine";
+  const createCard=$("#taskCreateCard");if(createCard)createCard.hidden=!manager;
+  const allBtn=$("#taskAllScopeBtn");if(allBtn)allBtn.hidden=!manager;
+  const assigneeList=$("#taskAssigneeList");
+  if(assigneeList){
+    const selectedIds=new Set([...document.querySelectorAll(".task-assignee-check:checked")].map(x=>String(x.value)));
+    assigneeList.innerHTML=APP_USERS.map(u=>`<label class="task-assignee-choice"><input class="task-assignee-check" type="checkbox" value="${escapeHtml(u.userId)}" ${selectedIds.has(String(u.userId))?"checked":""}><span>${escapeHtml(u.name)}<small>${escapeHtml(u.role)}</small></span></label>`).join("");
+  }
+  const due=$("#taskDueAt");if(due&&!due.value){const d=new Date(Date.now()+24*60*60*1000);d.setMinutes(0,0,0);due.value=taskLocalInputValue(d)}
+  const branch=$("#taskBranch");if(branch&&!branch.dataset.initialized){branch.value=currentBranch;branch.dataset.initialized="1"}
+  if($("#taskStatusFilter"))$("#taskStatusFilter").value=taskStatusFilter;
+  if($("#taskBranchFilter"))$("#taskBranchFilter").value=taskBranchFilter;
+  document.querySelectorAll(".task-scope-btn").forEach(b=>b.classList.toggle("active",b.dataset.taskScope===taskScope));
+  const base=taskScopeBase(),open=base.filter(t=>t.status!=="done"),done=base.filter(t=>t.status==="done"),overdue=open.filter(t=>taskDueState(t).key==="overdue");
+  if($("#taskOpenCount"))$("#taskOpenCount").textContent=open.length;
+  if($("#taskDoneCount"))$("#taskDoneCount").textContent=done.length;
+  if($("#taskOverdueCount"))$("#taskOverdueCount").textContent=overdue.length;
+  if($("#taskHeaderBadge"))$("#taskHeaderBadge").textContent=`${open.length} ${open.length===1?"otwarte":"otwartych"}`;
+  const rows=taskFilteredList();
+  const list=$("#taskList");
+  if(!list)return;
+  list.innerHTML=rows.length?rows.map(t=>{
+    const state=taskDueState(t),assigneeName=taskAssigneeName(t),mine=taskIsMine(t),doneTask=t.status==="done";
+    const completed=doneTask?`<span><b>Wykonał:</b> ${escapeHtml(t.completedByName||taskUserById(t.completedById)?.name||"—")}${t.completedAt?` • ${new Date(t.completedAt).toLocaleString("pl-PL")}`:""}</span>`:"";
+    const desc=t.description?`<div class="task-description">${escapeHtml(t.description).replace(/\n/g,"<br>")}</div>`:"";
+    return `<div class="task-card ${state.key==="overdue"?"task-overdue":state.key==="today"?"task-today":doneTask?"task-done":""}">
+      <div class="task-card-top"><div><div class="task-title">${escapeHtml(t.title)}</div><div class="task-deadline-note ${state.key}">${state.key==="overdue"?"⚠ Termin minął: ":"Termin: "}${escapeHtml(formatTaskDue(t.dueAt))}</div></div>
+      <div class="task-badges"><span class="task-badge ${escapeHtml(t.priority||"normal")}">${taskPriorityLabel(t.priority)}</span><span class="task-badge ${state.key}">${state.label}</span></div></div>
+      ${desc}
+      <div class="task-meta"><span><b>Pracownicy:</b> ${escapeHtml(assigneeName)}</span><span><b>Oddział:</b> ${escapeHtml(taskBranchName(t.branch))}</span><span><b>Zlecił:</b> ${escapeHtml(taskCreatorName(t))}</span>${completed}</div>
+      <div class="task-actions">
+        ${!doneTask&&(mine||manager)?`<button class="btn primary" data-task-complete="${escapeHtml(t.id)}" type="button">✓ Oznacz wykonane</button>`:""}
+        ${doneTask&&(mine||manager)?`<button class="btn" data-task-reopen="${escapeHtml(t.id)}" type="button">Przywróć</button>`:""}
+        ${manager?`<button class="btn" data-task-deadline="${escapeHtml(t.id)}" type="button">Zmień termin</button>`:""}${canDeleteTasks()?`<button class="btn" style="color:#b42318" data-task-delete="${escapeHtml(t.id)}" type="button">Usuń</button>`:""}
+      </div>
+    </div>`;
+  }).join(""):`<div class="task-empty">${taskStatusFilter==="done"?"Brak wykonanych zadań.":"Brak zadań w tym widoku."}</div>`;
+  list.querySelectorAll("[data-task-complete]").forEach(b=>b.onclick=()=>completeAssignedTask(b.dataset.taskComplete,true));
+  list.querySelectorAll("[data-task-reopen]").forEach(b=>b.onclick=()=>completeAssignedTask(b.dataset.taskReopen,false));
+  list.querySelectorAll("[data-task-delete]").forEach(b=>b.onclick=()=>deleteAssignedTask(b.dataset.taskDelete));
+  list.querySelectorAll("[data-task-deadline]").forEach(b=>b.onclick=()=>changeAssignedTaskDeadline(b.dataset.taskDeadline));
+  document.querySelectorAll(".task-scope-btn").forEach(b=>b.onclick=()=>{taskScope=b.dataset.taskScope||"mine";renderTasks()});
+  if($("#taskStatusFilter"))$("#taskStatusFilter").onchange=e=>{taskStatusFilter=e.target.value;renderTasks()};
+  if($("#taskBranchFilter"))$("#taskBranchFilter").onchange=e=>{taskBranchFilter=e.target.value;renderTasks()};
+  if($("#createTaskBtn"))$("#createTaskBtn").onclick=createAssignedTask;
+  if($("#taskSelectAllAssignees"))$("#taskSelectAllAssignees").onclick=()=>document.querySelectorAll(".task-assignee-check").forEach(x=>x.checked=true);
+  if($("#taskClearAssignees"))$("#taskClearAssignees").onclick=()=>document.querySelectorAll(".task-assignee-check").forEach(x=>x.checked=false);
+  renderTaskHomeSummary();
+}
+
 
 /* ---------- EXTRA WORK FOR BONUS SETTLEMENT ---------- */
 let extraBonusWorks=storageJSON("toyotaExtraBonusWorksV1",[],"array").filter(x=>x&&typeof x==="object");
@@ -3650,12 +5148,13 @@ $("#saveMountJob").onclick=saveNewMount;
 
 if($("#mobileVinSearchBtn"))$("#mobileVinSearchBtn").onclick=runMobileVinSearch;
 if($("#mobileVinSearch"))$("#mobileVinSearch").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();runMobileVinSearch()}};
+document.querySelectorAll("[data-desktop-route]").forEach(b=>b.onclick=()=>openDesktopRoute(b.dataset.desktopRoute));
 document.querySelectorAll("[data-mobile-route]").forEach(b=>b.onclick=()=>openMobileRoute(b.dataset.mobileRoute));
 if($("#mobileAttentionToggle"))$("#mobileAttentionToggle").onclick=()=>{const b=$("#mobileAttention");if(b&&!b.classList.contains("ok"))b.classList.toggle("open")};
 if($("#mobileNavHome"))$("#mobileNavHome").onclick=()=>show("mainHome");
 if($("#mobileNavReleases"))$("#mobileNavReleases").onclick=()=>openMobileRoute("releaseHome");
 if($("#mobileNavCars"))$("#mobileNavCars").onclick=()=>openMobileRoute("carsView");
-if($("#mobileNavTasks"))$("#mobileNavTasks").onclick=()=>{show("mainHome");setTimeout(()=>$("#mobileTasksSection")?.scrollIntoView({behavior:"smooth",block:"start"}),50)};
+if($("#mobileNavTasks"))$("#mobileNavTasks").onclick=()=>{renderTasks();show("tasksView")};
 if($("#mobileNavMore"))$("#mobileNavMore").onclick=openMobileMore;
 if($("#mobileMoreBackdrop"))$("#mobileMoreBackdrop").onclick=e=>{if(e.target===$("#mobileMoreBackdrop"))closeMobileMore()};
 document.querySelectorAll("[data-mobile-more-route]").forEach(b=>b.onclick=()=>openMobileRoute(b.dataset.mobileMoreRoute));
@@ -3681,6 +5180,8 @@ $("#backWashFromPending").onclick=()=>{renderWash();show("washView")};
 $("#backWashFromDone").onclick=()=>{renderWash();show("washView")};
 $("#backWashFromBonus").onclick=()=>{renderWash();show("washView")};
 
+if($("#openTasks"))$("#openTasks").onclick=()=>{logAction("Otwarcie modułu","Zadania");renderTasks();show("tasksView")};
+if($("#backMainFromTasks"))$("#backMainFromTasks").onclick=()=>show("mainHome");
 $("#openAdmin").onclick=()=>{if(!hasAccess("admin"))return;renderAdmin();show("adminView")};
 $("#backMainFromAdmin").onclick=()=>show("mainHome");
 $("#clearAuditBtn").onclick=()=>{if(!hasAccess("admin"))return;if(confirm("Wyczyścić historię działań na tym urządzeniu?")){auditLog=[];localStorage.setItem("toyotaAuditLogV1","[]");renderAdmin();}};
@@ -3689,7 +5190,7 @@ $("#closeMonthBtn").onclick=closeSelectedMonth;$("#exportMonthlyReport").onclick
 syncIssuedToCars();
 syncBatteryCars();
 
-setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention();updateMobileNav("mainHome")},0);
+setTimeout(()=>{renderMainDashboard();renderTaskHomeSummary();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention();updateMobileNav("mainHome");updateDesktopNav("mainHome");renderUserSwitchers();renderBranchUi()},0);
 window.__FLEET_BOOT_OK=true;
 </script>
 
