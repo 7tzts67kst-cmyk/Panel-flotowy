@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Toyota Fleet UI SAFE BUILD 2026-09-10 -->
 <!-- GitHub Pages build: Toyota Fleet Panel 2026-09-10 -->
 <html lang="pl">
 <head>
@@ -2327,6 +2328,28 @@ table:not(.mount-table) tr:hover td{
   </div>
 </div>
 <script>
+
+const localStorage=(()=>{
+  try{
+    const s=window.localStorage;
+    const testKey="__toyota_storage_test__";
+    s.setItem(testKey,"1");
+    s.removeItem(testKey);
+    return s;
+  }catch(e){
+    const mem=Object.create(null);
+    console.warn("Pamięć trwała niedostępna — uruchomiono tryb awaryjny.");
+    return {
+      getItem:key=>Object.prototype.hasOwnProperty.call(mem,key)?mem[key]:null,
+      setItem:(key,value)=>{mem[key]=String(value)},
+      removeItem:key=>{delete mem[key]},
+      clear:()=>{Object.keys(mem).forEach(key=>delete mem[key])},
+      key:index=>Object.keys(mem)[index]??null,
+      get length(){return Object.keys(mem).length}
+    };
+  }
+})();
+
 const $=s=>document.querySelector(s);
 function storageJSON(key,fallback,kind="any") {
   let raw=null;
