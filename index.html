@@ -371,6 +371,15 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 .admin-password-box{border:1px solid #e1e4e8;border-radius:11px;background:#fafafa;padding:10px;margin:0 0 10px}.admin-password-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}.admin-password-head b{font-size:11px}.password-status{font-size:10px;font-weight:900;padding:4px 7px;border-radius:999px;background:#fff3cd;color:#7a5700}.password-status.set{background:#e9f7ee;color:#146c3b}.admin-password-controls{display:flex;gap:7px;flex-wrap:wrap}.admin-password-controls input{min-width:180px;flex:1;min-height:42px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit}.admin-password-controls .btn{min-height:42px}
 @media(max-width:720px){.auth-card{padding:19px;border-radius:19px}.auth-card h1{font-size:22px}.auth-actions{flex-direction:column}.admin-password-controls{display:grid;grid-template-columns:1fr}.admin-password-controls input{min-width:0;width:100%}}
 
+/* Oddziały: Herbowa 16 / Toyota Aleje */
+.branch-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.branch-label{font-size:10px;font-weight:1000;letter-spacing:.08em;color:var(--muted)}
+.branch-pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;background:#17191c;color:#fff;font-size:11px;font-weight:1000}
+.branch-dot{width:8px;height:8px;border-radius:50%;background:#ff4248}.branch-pill.aleje .branch-dot{background:#60a5fa}
+.car-branch{display:inline-flex;margin-top:5px;padding:4px 7px;border-radius:999px;background:#eef1f3;color:#475467;font-size:9px;font-weight:1000}
+@media(max-width:720px){.branch-bar{margin:0 0 10px}.branch-label{display:none}}
+.mount-branch-divider td{background:#eef2f6!important;color:#344054!important;font-weight:1000!important;letter-spacing:.04em;border-top:2px solid #cfd5dc!important;border-bottom:1px solid #cfd5dc!important;padding:9px 10px!important}.mount-branch-divider.aleje td{background:#eef6ff!important;color:#175cd3!important}.mount-branch-badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;background:#f2f4f7;color:#475467;font-size:10px;font-weight:1000;white-space:nowrap}.mount-branch-badge.aleje{background:#eaf3ff;color:#175cd3}.mount-branch-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#ef4444}.mount-branch-badge.aleje:before{background:#3b82f6}
+
 
 .mount-car-shell{max-width:980px;margin:0 auto}.mount-car-shell .mount-entry{margin-bottom:0}.mount-car-shell .mount-entry.open{display:block}
 /* Podział doposażeniowca: do zamontowania / zamontowane */
@@ -414,6 +423,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     <h1 id="authTitle">Wejście do aplikacji</h1>
     <div class="auth-copy">Wpisz swój login i hasło. Po poprawnym wejściu sesja na tym urządzeniu jest ważna do końca dnia.</div>
     <div class="auth-field"><label for="authLogin">LOGIN</label><input id="authLogin" type="text" inputmode="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="np. igor.gieruszka"></div>
+    <div class="auth-field"><label for="authBranch">ODDZIAŁ</label><select id="authBranch"><option value="HERBOWA">Herbowa 16</option><option value="ALEJE">Toyota Aleje</option></select></div>
     <div class="auth-field"><label for="authPassword">HASŁO</label><input id="authPassword" type="password" inputmode="text" autocomplete="current-password" placeholder="Wpisz hasło"></div>
     <div class="auth-password-state" id="authPasswordState"></div>
     <div class="auth-message" id="authMessage" aria-live="polite"></div>
@@ -424,6 +434,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 
 <main class="shell">
 <div class="user-bar"><button id="userSwitcher" class="user-switcher" type="button">Zmień użytkownika</button><span class="user-pill" id="currentUserPill">—</span></div>
+<div class="branch-bar"><span class="branch-label">AKTYWNY ODDZIAŁ</span><span class="branch-pill" id="currentBranchPill"><span class="branch-dot"></span><span id="currentBranchName">Herbowa 16</span></span><span class="muted" style="font-size:11px">Nowe samochody są automatycznie przypisywane do tego oddziału.</span></div>
 <section id="mainHome" class="view active">
 
   <div class="mobile-home" id="mobileHome">
@@ -652,7 +663,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   </div>
   <div class="mount-worker-choice">
     <button class="mount-stage-card todo" id="openMountTodo" type="button">
-      <div><div class="muted" style="font-weight:900;font-size:11px">PRACA BIEŻĄCA</div><strong>Do zamontowania</strong><div class="stage-count" id="mountMenuTodoCount">0</div><div class="muted">Samochody oczekujące na wykonanie doposażenia.</div><div class="mount-close-count">Do zamknięcia: <span id="mountMenuTodoCloseCount">0</span> zleceń</div></div>
+      <div><div class="muted" style="font-weight:900;font-size:11px">PRACA BIEŻĄCA</div><strong>Do zamontowania</strong><div class="stage-count" id="mountMenuTodoCount">0</div><div class="muted">Samochody oczekujące na wykonanie doposażenia w bieżącym oddziale.</div><div class="mount-close-count">Do zamknięcia: <span id="mountMenuTodoCloseCount">0</span> zleceń</div></div>
       <div class="stage-arrow"><span>Otwórz listę</span><span>→</span></div>
     </button>
     <button class="mount-stage-card done" id="openMountDone" type="button">
@@ -706,6 +717,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
       <thead>
         <tr>
           <th>DATA</th>
+          <th>ODDZIAŁ</th>
           <th>VIN</th>
           <th>ALARM</th>
           <th>KOD ALARMU</th>
@@ -836,7 +848,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
   <div class="mount-done-summary"><div><small>ZAMONTOWANE W MIESIĄCU</small><b id="mountDoneCount">0</b></div><div><small>ŁĄCZNIE GODZIN</small><b id="mountDoneHours">0 h</b></div><div><small>ZLECENIA DO ZAMKNIĘCIA</small><b id="mountDoneToClose">0</b></div></div>
   <div class="mount-list-wrap">
     <table class="mount-new-table">
-      <thead><tr><th>DATA</th><th>VIN</th><th>ALARM</th><th>KOD ALARMU</th><th>ID CAN</th><th>META</th><th>DODATKOWE WYPOSAŻENIE</th><th>GODZINY</th><th>UWAGI</th><th>AKCJE</th></tr></thead>
+      <thead><tr><th>DATA</th><th>ODDZIAŁ</th><th>VIN</th><th>ALARM</th><th>KOD ALARMU</th><th>ID CAN</th><th>META</th><th>DODATKOWE WYPOSAŻENIE</th><th>GODZINY</th><th>UWAGI</th><th>AKCJE</th></tr></thead>
       <tbody id="mountDoneRows"></tbody>
     </table>
   </div>
@@ -877,7 +889,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
 </section>
 
 <section id="carsView" class="view">
-  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromCars">←</button><div><h1>Lista samochodów</h1><div class="muted" style="margin-top:5px">Codzienna baza VIN-ów.</div></div></div><span class="owner-badge" id="carsCount"></span></div>
+  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromCars">←</button><div><h1>Lista samochodów</h1><div class="muted" style="margin-top:5px">Codzienna baza VIN-ów • <b id="carsBranchLabel">Herbowa 16</b>.</div></div></div><span class="owner-badge" id="carsCount"></span></div>
   <div class="vin-tools">
     <div class="tool-card">
       <h3>Dodaj samochód do bazy</h3><div class="muted" style="font-size:12px;margin-top:5px">Możesz wpisać także krótszy VIN. Podpowiadanie po ostatnich 4–6 znakach nadal działa.</div>
@@ -891,7 +903,7 @@ body.auth-locked{overflow:hidden}body.auth-locked .top,body.auth-locked .shell,b
     </div>
   </div>
   <div class="searchbar"><input id="carSearch" placeholder="Szukaj po VIN lub statusie"></div>
-  <div class="table-wrap"><table class="car-table"><thead><tr><th>VIN</th><th>STATUS</th><th>DOPOSAŻENIE</th><th>STAN MONTAŻU</th></tr></thead><tbody id="carRows"></tbody></table></div>
+  <div class="table-wrap"><table class="car-table"><thead><tr><th>VIN / ODDZIAŁ</th><th>STATUS</th><th>DOPOSAŻENIE</th><th>STAN MONTAŻU</th></tr></thead><tbody id="carRows"></tbody></table></div>
 </section>
 
 <section id="batteryView" class="view">
@@ -1110,6 +1122,19 @@ const APP_USERS=[...DEFAULT_APP_USERS.map((u,idx)=>{const profile=userProfileOve
 const USER_PASSWORDS_KEY="toyotaUserPasswordsV3";
 const PASSWORD_BOOTSTRAP_KEY="toyotaPasswordBootstrapV4AllUsers";
 const AUTH_SESSION_KEY="toyotaAuthSessionV3";
+const BRANCH_HERBOWA="HERBOWA",BRANCH_ALEJE="ALEJE";
+let currentBranch=BRANCH_HERBOWA;
+function branchLabel(branch=currentBranch){return branch===BRANCH_ALEJE?"Toyota Aleje":"Herbowa 16"}
+function normalizeBranch(branch){return branch===BRANCH_ALEJE?BRANCH_ALEJE:BRANCH_HERBOWA}
+function carBranch(c){return normalizeBranch(c?.branch)}
+function carBranchByVin(vin){const c=fleetCars?.find?.(x=>normalizeVin(x.vin)===normalizeVin(vin));return c?carBranch(c):BRANCH_HERBOWA}
+function inCurrentBranchVin(vin){return carBranchByVin(vin)===currentBranch}
+function vinIsOnCurrentBranchList(vin){const n=normalizeVin(vin);return !!n&&fleetCars.some(c=>normalizeVin(c.vin)===n&&carBranch(c)===currentBranch)}
+function renderBranchUi(){
+  const name=branchLabel();
+  const p=document.getElementById("currentBranchPill"),n=document.getElementById("currentBranchName"),c=document.getElementById("carsBranchLabel");
+  if(n)n.textContent=name;if(c)c.textContent=name;if(p)p.classList.toggle("aleje",currentBranch===BRANCH_ALEJE);
+}
 let userPasswords=storageJSON(USER_PASSWORDS_KEY,{},"object");
 function passwordKey(u){return String(u?.baseName||u?.userId||u?.name||"")}
 function passwordDigest(value){
@@ -1134,8 +1159,8 @@ function clearUserPassword(u){
 }
 function authDayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
 function readAuthSession(){return storageJSON(AUTH_SESSION_KEY,null,"nullableObject")}
-function validAuthSession(){const s=readAuthSession();if(!s||s.day!==authDayKey())return null;return APP_USERS.find(u=>String(u.userId)===String(s.userId))||null}
-function writeAuthSession(u){try{localStorage.setItem(AUTH_SESSION_KEY,JSON.stringify({userId:u.userId,day:authDayKey()}))}catch(e){}}
+function validAuthSession(){const s=readAuthSession();if(!s||s.day!==authDayKey())return null;currentBranch=normalizeBranch(s.branch);return APP_USERS.find(u=>String(u.userId)===String(s.userId))||null}
+function writeAuthSession(u){try{localStorage.setItem(AUTH_SESSION_KEY,JSON.stringify({userId:u.userId,day:authDayKey(),branch:currentBranch}))}catch(e){}}
 function clearAuthSession(){try{localStorage.removeItem(AUTH_SESSION_KEY)}catch(e){}}
 (function bootstrapDefaultPasswords(){
   let done=false;try{done=localStorage.getItem(PASSWORD_BOOTSTRAP_KEY)==="1"}catch(e){}
@@ -1170,18 +1195,18 @@ function openAuthGate(userId="",switching=false){
   authIsSwitch=!!switching;
   const cancel=document.getElementById("authCancelBtn");if(cancel)cancel.hidden=!authIsSwitch;
   const msg=document.getElementById("authMessage"),loginInput=document.getElementById("authLogin"),passwordInput=document.getElementById("authPassword");
-  if(msg)msg.textContent="";if(loginInput)loginInput.value="";if(passwordInput)passwordInput.value="";updateAuthPasswordState();
+  if(msg)msg.textContent="";if(loginInput)loginInput.value="";if(passwordInput)passwordInput.value="";const branchSelect=document.getElementById("authBranch");if(branchSelect)branchSelect.value=currentBranch;updateAuthPasswordState();
   gate.hidden=false;document.body.classList.add("auth-locked");setTimeout(()=>loginInput?.focus(),0);
 }
 function closeAuthGate(){const gate=document.getElementById("authGate");if(gate)gate.hidden=true;document.body.classList.remove("auth-locked");const msg=document.getElementById("authMessage");if(msg)msg.textContent="";}
 function authenticateSelectedUser(){
   const loginInput=document.getElementById("authLogin"),passwordInput=document.getElementById("authPassword"),msg=document.getElementById("authMessage");
   if(!loginInput)return false;
-  const u=findUserByLogin(loginInput.value),typed=String(passwordInput?.value||"");
+  const u=findUserByLogin(loginInput.value),typed=String(passwordInput?.value||"");currentBranch=normalizeBranch(document.getElementById("authBranch")?.value);
   if(!u){if(msg)msg.textContent="Nieprawidłowy login lub hasło.";loginInput.focus();return false}
   const required=passwordIsSet(u);
   if(required&&passwordDigest(typed)!==userPasswords[passwordKey(u)]){if(msg)msg.textContent="Nieprawidłowy login lub hasło.";passwordInput?.select();return false}
-  currentUser=u;persistActiveUser();writeAuthSession(u);closeAuthGate();renderUserSwitchers();
+  currentUser=u;persistActiveUser();writeAuthSession(u);closeAuthGate();renderUserSwitchers();renderBranchUi();
   try{applyUserAccess();show("mainHome");renderMainDashboard();renderMobileDashboard();renderTomorrowReadyAlert();syncMobileAttention()}catch(e){console.error("Uruchomienie po uwierzytelnieniu",e)}
   logAction("Wejście do aplikacji",u.name);return true;
 }
@@ -1192,7 +1217,7 @@ function initAuthGate(){
   if(enter)enter.onclick=authenticateSelectedUser;if(passwordInput)passwordInput.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();authenticateSelectedUser()}};
   if(cancel)cancel.onclick=()=>{closeAuthGate();renderUserSwitchers()};
   const sessionUser=validAuthSession();
-  if(sessionUser){currentUser=sessionUser;persistActiveUser();closeAuthGate()}else{clearAuthSession();openAuthGate("",false)}
+  if(sessionUser){currentUser=sessionUser;persistActiveUser();closeAuthGate();renderBranchUi()}else{clearAuthSession();openAuthGate("",false)}
 }
 function saveCustomUsers(){customUsers=APP_USERS.filter(u=>String(u.userId).startsWith("custom-")).map(u=>({userId:u.userId,baseName:u.baseName,name:u.name,login:u.login,role:u.role,access:[...u.access]}));localStorage.setItem(CUSTOM_USERS_KEY,JSON.stringify(customUsers))}
 function loginAvailable(login,exceptUserId=""){const key=normalizeLogin(login);return !!key&&!APP_USERS.some(u=>String(u.userId)!==String(exceptUserId)&&normalizeLogin(u.login)===key)}
@@ -1870,6 +1895,7 @@ function updateCheckLook(){
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
 let fleetCars=storageJSON("toyotaFleetCarsDB3",[],"array").filter(x=>x&&typeof x==="object");
+fleetCars.forEach(c=>{c.branch=normalizeBranch(c.branch)});
 
 // PLAN DEMONSTRACYJNY: 20 samochodów na najbliższy tydzień roboczy (31.08–04.09.2026).
 // Uruchamia się tylko raz na danym urządzeniu, aby późniejsze zmiany użytkownika nie były nadpisywane.
@@ -1972,7 +1998,7 @@ if(!localStorage.getItem(FRESH_CARS_PENDING_KEY)){
 
 function normalizeVin(v){return (v||"").toUpperCase().replace(/[^A-Z0-9]/g,"").trim()}
 function saveCars(){localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars))}
-function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY"};fleetCars.unshift(c)}return c}
+function ensureCar(vin){const n=normalizeVin(vin);let c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c){c={vin:n,status:"AKTYWNY",branch:currentBranch};fleetCars.unshift(c)}return c}
 function ensureFleetWorkItems(c){
   if(!c)return[];
   const names=parseReleaseWorkItems(c.equipment||"");
@@ -2078,7 +2104,7 @@ function carExcelSourceDetail(c){
 function renderCars(){
   syncIssuedToCars();
   const q=($("#carSearch").value||"").toLowerCase();
-  const rows=fleetCars.filter(c=>{
+  const rows=fleetCars.filter(c=>carBranch(c)===currentBranch).filter(c=>{
     const eq=getCarReleaseEquipment(c.vin);
     const equipment=eq?eq.items.map(x=>x.name).join(" "):"";
     const src=carExcelSource(c);
@@ -2090,8 +2116,10 @@ function renderCars(){
     if(diff!==0)return diff;
     return String(a.vin).localeCompare(String(b.vin));
   });
-  const activeCount=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
-  const issuedCount=fleetCars.filter(c=>c.status==="WYJECHAŁ").length;
+  const branchCars=fleetCars.filter(c=>carBranch(c)===currentBranch);
+  const activeCount=branchCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const issuedCount=branchCars.filter(c=>c.status==="WYJECHAŁ").length;
+  renderBranchUi();
   $("#carsCount").textContent=`${activeCount} aktywnych • ${issuedCount} wydanych`;
   $("#carRows").innerHTML=rows.length?rows.map(c=>{
     const issued=c.status==="WYJECHAŁ";
@@ -2100,13 +2128,13 @@ function renderCars(){
     const sourceButton=carExcelSourceButton(c);
     const sourceDetail=carExcelSourceDetail(c);
     if(!eq || !eq.items.length){
-      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}">Brak wpisanego doposażenia${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td></tr>${sourceDetail}`;
+      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}">Brak wpisanego doposażenia${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td></tr>${sourceDetail}`;
     }
     const done=eq.items.filter(x=>x.done).length, total=eq.items.length;
     const allDone=done===total;
     const itemHtml=eq.items.map(x=>`<span style="display:inline-block;margin:2px 5px 2px 0;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:${x.done?'#e9f8ef':'#fff0ee'};color:${x.done?'#137a3d':'#b42318'}">${x.done?'✓':'○'} ${escapeHtml(x.name)}</span>`).join("");
     const state=issued?"WYDANY":(k1?"K1":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`));
-    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}</td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td>${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td></tr>${sourceDetail}`;
+    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td>${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td></tr>${sourceDetail}`;
   }).join(""):`<tr><td colspan="4" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
 
   document.querySelectorAll("[data-car-source]").forEach(btn=>{
@@ -2137,12 +2165,12 @@ function addCar(){
   if(vin.length<4){msg.textContent="VIN musi mieć co najmniej 4 znaki.";msg.className="message error";return}
   if(fleetCars.some(r=>normalizeVin(r.vin)===vin)){msg.textContent="Ten VIN już istnieje w bazie.";msg.className="message error";return}
   const equipment=$("#newCarEquipment") ? $("#newCarEquipment").value.trim() : "";
-  fleetCars.unshift({vin,status:"AKTYWNY",equipment,workItems:parseReleaseWorkItems(equipment).map(name=>({name,done:false}))});saveCars();logAction("Dodanie samochodu",vin+(equipment?` • Doposażenie: ${equipment}`:""));syncBatteryCars();$("#newVin").value="";if($("#newCarEquipment"))$("#newCarEquipment").value="";msg.textContent=`Dodano VIN ${vin}${equipment?" wraz z listą doposażenia":""}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
+  fleetCars.unshift({vin,status:"AKTYWNY",branch:currentBranch,equipment,workItems:parseReleaseWorkItems(equipment).map(name=>({name,done:false}))});saveCars();logAction("Dodanie samochodu",`${vin} • ${branchLabel()}${equipment?` • Doposażenie: ${equipment}`:""}`);syncBatteryCars();$("#newVin").value="";if($("#newCarEquipment"))$("#newCarEquipment").value="";msg.textContent=`Dodano VIN ${vin} do oddziału ${branchLabel()}${equipment?" wraz z listą doposażenia":""}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
 }
 function renderVinSuggestions(){
   const q=normalizeVin($("#vinLookup").value);$("#vinLookup").value=q;const box=$("#vinSuggestions"),msg=$("#vinLookupMessage");
   if(q.length<4){box.classList.remove("open");box.innerHTML="";msg.textContent="Wpisz ostatnie 4–6 znaków VIN-u.";return}
-  const ending=fleetCars.filter(r=>normalizeVin(r.vin).endsWith(q));const containing=fleetCars.filter(r=>!normalizeVin(r.vin).endsWith(q)&&normalizeVin(r.vin).includes(q));const m=[...ending,...containing].slice(0,8);
+  const branchCars=fleetCars.filter(r=>carBranch(r)===currentBranch);const ending=branchCars.filter(r=>normalizeVin(r.vin).endsWith(q));const containing=branchCars.filter(r=>!normalizeVin(r.vin).endsWith(q)&&normalizeVin(r.vin).includes(q));const m=[...ending,...containing].slice(0,8);
   if(!m.length){box.classList.remove("open");msg.textContent="Brak pasującego VIN-u.";msg.className="message error";return}
   box.innerHTML=m.map(r=>`<div class="vin-option" data-vin="${r.vin}"><div class="vin-full">${r.vin}</div><div class="vin-meta">${r.status}</div></div>`).join("");box.classList.add("open");msg.textContent=`Znaleziono ${m.length}.`;msg.className="message ok";
   box.querySelectorAll(".vin-option").forEach(o=>o.onclick=()=>{$("#vinLookup").value=o.dataset.vin;box.classList.remove("open");msg.textContent=`Pełny VIN: ${o.dataset.vin}`});
@@ -2160,6 +2188,7 @@ function renderArchive(){
 }
 function renderMainDashboard(){
   if(!currentUser)return;
+  renderBranchUi();
   const first=(currentUser.name||"").trim().split(/\s+/)[0]||"";
   const greeting=$("#homeGreeting");if(greeting)greeting.textContent=first?`Dzień dobry, ${first}`:"Panel operacyjny";
   const dateLabel=$("#homeDateLabel");if(dateLabel)dateLabel.textContent=new Intl.DateTimeFormat("pl-PL",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
@@ -2172,7 +2201,7 @@ function renderMainDashboard(){
   });
 
   const today=isoToday();
-  const activeCars=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const activeCars=fleetCars.filter(c=>carBranch(c)===currentBranch&&c.status!=="WYJECHAŁ").length;
   const todayReleases=releaseData.filter(r=>r.date===today&&r.status!=="WYDANE");
   const todayReady=todayReleases.filter(r=>r.releaseReady).length;
   const openMounts=getPendingReleaseCars().length;
@@ -2213,7 +2242,7 @@ function renderMobileDashboard(){
   const ready=todayReleases.filter(r=>r.releaseReady).length;
   const mounts=getPendingReleaseCars().length;
   const battery=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
-  const active=fleetCars.filter(c=>c.status!=="WYJECHAŁ").length;
+  const active=fleetCars.filter(c=>carBranch(c)===currentBranch&&c.status!=="WYJECHAŁ").length;
   const wash=mobileWashPendingToday();
   const pct=todayReleases.length?Math.round(ready/todayReleases.length*100):0;
   if($("#mobileGreeting"))$("#mobileGreeting").textContent=first?`Dzisiaj, ${first}`:"Dzisiaj";
@@ -2751,6 +2780,26 @@ const HERBOWA_SOURCE_ROWS={"JTDKBCBB60A611700":{"excelRow":2619,"date":"20,08,20
   if(releaseChanged)saveRelease();
 })();
 
+function mountJobBranch(job){
+  if(job?.branch===BRANCH_ALEJE||job?.branch===BRANCH_HERBOWA)return job.branch;
+  return carBranchByVin(job?.vin);
+}
+(function migrateMountBranches(){
+  let changed=false;
+  mountJobs.forEach(j=>{if(j&&j.branch!==BRANCH_ALEJE&&j.branch!==BRANCH_HERBOWA){j.branch=carBranchByVin(j.vin);changed=true;}});
+  if(changed)localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs));
+})();
+function mountBranchBadge(branch){const b=normalizeBranch(branch);return `<span class="mount-branch-badge ${b===BRANCH_ALEJE?"aleje":""}">${escapeHtml(branchLabel(b))}</span>`}
+function mountGroupedRowsHtml(jobs){
+  if(!jobs.length)return "";
+  const order=[BRANCH_ALEJE,BRANCH_HERBOWA];
+  return order.map(branch=>{
+    const rows=jobs.filter(j=>mountJobBranch(j)===branch);
+    if(!rows.length)return "";
+    return `<tr class="mount-branch-divider ${branch===BRANCH_ALEJE?"aleje":""}"><td colspan="11">${escapeHtml(branchLabel(branch))} • ${rows.length} ${rows.length===1?"wpis":"wpisy"}</td></tr>`+rows.map(mountJobRowHtml).join("");
+  }).join("");
+}
+
 let selectedOwner="";
 let editingMountIndex=null;
 let mountCarReturnView="mountList";
@@ -2797,23 +2846,33 @@ function syncMountCompletionToRelease(vin, alarmDone, extraDone){
 
 function getPendingReleaseCars(){
   const today=isoToday();
+  // „Do zamontowania” pokazuje wyłącznie auta znajdujące się na Liście samochodów
+  // aktualnie zalogowanego oddziału. Wydania z drugiego oddziału nie trafiają do tej kolejki.
+  const currentBranchVins=new Set(
+    fleetCars
+      .filter(c=>carBranch(c)===currentBranch)
+      .map(c=>normalizeVin(c.vin))
+      .filter(Boolean)
+  );
   const releaseRows=releaseData
     .map(normalizeReleaseRequirements)
+    .filter(r=>currentBranchVins.has(normalizeVin(r.vin)))
     .filter(r=>r.status!=="WYDANE" && getInstallerWorkItems(r).some(x=>!x.done))
     .map(r=>({
       source:"release",
-      vin:r.vin,client:r.client||"",model:r.model||"",date:r.date||"",time:r.time||"",
+      vin:r.vin,branch:carBranchByVin(r.vin),client:r.client||"",model:r.model||"",date:r.date||"",time:r.time||"",
       daysToRelease:r.date?daysBetweenIso(today,r.date):999,
       missingItems:getInstallerWorkItems(r).filter(x=>!x.done).map(x=>x.name)
     }));
   const releaseVins=new Set(releaseRows.map(x=>normalizeVin(x.vin)));
   const fleetRows=fleetCars
+    .filter(c=>carBranch(c)===currentBranch)
     .filter(carIsOnMainLot)
     .filter(c=>!releaseVins.has(normalizeVin(c.vin)))
     .map(c=>({c,missing:getFleetInstallerWorkItems(c).filter(x=>!x.done)}))
     .filter(x=>x.missing.length>0)
     .map(({c,missing})=>({
-      source:"fleet",vin:c.vin,client:c.client||carExcelSource(c)?.client||"",model:c.model||"",date:"",time:"",daysToRelease:999,
+      source:"fleet",vin:c.vin,branch:carBranch(c),client:c.client||carExcelSource(c)?.client||"",model:c.model||"",date:"",time:"",daysToRelease:999,
       missingItems:missing.map(x=>x.name)
     }));
   return [...releaseRows,...fleetRows].sort((a,b)=>{
@@ -2861,7 +2920,7 @@ function renderUrgentMountAlerts(){
       <div class="urgent-item">
         <div>
           <strong>${u.vin}</strong>
-          <div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • ${u.date} ${u.time||""}`:""}</div>
+          <div class="muted">${mountBranchBadge(u.branch)} <span style="margin-left:6px">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • ${u.date} ${u.time||""}`:""}</span></div>
         </div>
         <div class="urgent-mini">${urgentMissingText(u)}</div>
       </div>`).join("");
@@ -2878,7 +2937,7 @@ function renderUrgentMountAlerts(){
       <div class="urgent-item" data-urgent-vin="${u.vin}">
         <div>
           <strong>${u.vin}</strong>
-          <div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}</div>
+          <div class="muted">${mountBranchBadge(u.branch)} <span style="margin-left:6px">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}</span></div>
           <div class="urgent-work">${tasks.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("")}</div>
         </div>
         <button class="urgent-open-btn" type="button">Otwórz montaż →</button>
@@ -2899,7 +2958,7 @@ function renderUrgentMountAlerts(){
       const r=releaseData.find(x=>normalizeVin(x.vin)===normalizeVin(u.vin) && x.status!=="WYDANE");
       const tasks=mountTasksForVin(u.vin).filter(x=>!x.done).map(x=>x.name);
       return `<div class="mount-plan-item" data-plan-vin="${u.vin}">
-        <div><strong>${u.vin}</strong><div class="muted">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}${u.source==="fleet"?" • NA PLACU":""}</div>
+        <div><strong>${u.vin}</strong><div class="muted">${mountBranchBadge(u.branch)} <span style="margin-left:6px">${u.client}${u.model?` • ${u.model}`:""}${u.date?` • wydanie ${u.date} ${u.time||""}`:""}${u.source==="fleet"?" • NA PLACU":""}</span></div>
         <div class="urgent-work">${tasks.map(x=>`<span class="mount-assignment-chip">${x}</span>`).join("")}</div></div>
         <div><span class="mount-plan-badge">${u.source==="fleet"?"NA PLACU • DO ZROBIENIA":`DO ZROBIENIA • ${u.daysToRelease} DNI`}</span><button class="urgent-open-btn" style="margin-left:8px" type="button">Otwórz →</button></div>
       </div>`;
@@ -2932,6 +2991,7 @@ function mountJobRowHtml(r){
     : `<button class="mount-edit-btn" type="button" data-edit-vin="${vinAttr}" data-edit-date="${dateAttr}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${vinAttr}" data-close-date="${dateAttr}">ZLECENIE ZAMKNIĘTE</button>`:""}`;
   return `<tr class="completed ${r.closed?"mount-closed-row":""}">
       <td>${escapeHtml(r.date||"")}</td>
+      <td>${mountBranchBadge(mountJobBranch(r))}</td>
       <td class="vin-cell">${escapeHtml(r.vin||"")}${mountSharedNote(r)}</td>
       <td>${r.alarm?`<label class="ready-label"><input class="mount-done-toggle" data-kind="alarm" data-vin="${vinAttr}" data-date="${dateAttr}" type="checkbox" ${r.alarmCompleted!==false?"checked":""} ${r.closed?"disabled":""}><span>Zamontowany</span></label>`:'<span class="mount-badge no">NIE</span>'}</td>
       <td class="mount-code">${r.alarm ? escapeHtml(r.alarmCode||"—") : "—"}</td>
@@ -3015,8 +3075,8 @@ function renderMountWorkerMenu(){
   if(!selectedOwner)return;
   const title=$("#mountWorkerMenuTitle");if(title)title.textContent=selectedOwner;
   const pending=[...new Set(getPendingReleaseCars().map(x=>normalizeVin(x.vin)).filter(Boolean))].length;
-  const done=[...new Set(mountJobs.filter(j=>j.owner===selectedOwner&&mountJobIsCompleted(j)).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
-  const toClose=mountOrdersToClose(selectedOwner);
+  const done=[...new Set(mountJobs.filter(j=>j.owner===selectedOwner&&mountJobIsCompleted(j)&&vinIsOnCurrentBranchList(j.vin)).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
+  const toClose=[...new Set(mountJobs.filter(j=>j.owner===selectedOwner&&mountJobIsCompleted(j)&&!j.closed&&vinIsOnCurrentBranchList(j.vin)).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
   if($("#mountMenuTodoCount"))$("#mountMenuTodoCount").textContent=pending;
   if($("#mountMenuDoneCount"))$("#mountMenuDoneCount").textContent=done;
   if($("#mountMenuTodoCloseCount"))$("#mountMenuTodoCloseCount").textContent=toClose;
@@ -3044,24 +3104,26 @@ function openMountDoneForOwner(){
 }
 function renderMountTable(){
   const md=shiftedMonth(mountMonthOffset),label=$("#mountMonthLabel");if(label)label.textContent=monthLabel(md);const mk=monthKey(md);
-  const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&!mountJobIsCompleted(j)).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
+  const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&!mountJobIsCompleted(j)&&vinIsOnCurrentBranchList(j.vin)).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
   if($("#ownerCount"))$("#ownerCount").textContent=`${jobs.length} w toku`;
   const toClose=mountOrdersToClose(selectedOwner,mk);
   if($("#ownerHours"))$("#ownerHours").textContent=String(toClose);
   const tbody=$("#mountRows");if(!tbody)return;
-  tbody.innerHTML=jobs.length?jobs.map(mountJobRowHtml).join(""):`<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak rozpoczętych montaży. Samochody oczekujące są pokazane wyżej w sekcji „Samochody do zrobienia”.</td></tr>`;
+  tbody.innerHTML=jobs.length?mountGroupedRowsHtml(jobs):`<tr><td colspan="11" style="padding:24px;text-align:center;color:#6b7280">Brak rozpoczętych montaży. Samochody oczekujące są pokazane wyżej w sekcji „Samochody do zrobienia”.</td></tr>`;
   bindMountRows(tbody,false);
 }
 function renderMountDoneTable(){
   const md=shiftedMonth(mountMonthOffset),label=$("#mountDoneMonthLabel");if(label)label.textContent=monthLabel(md);const mk=monthKey(md);
-  const jobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&mountJobIsCompleted(j)).sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed))||String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
-  const toClose=mountOrdersToClose(selectedOwner,mk);
-  const totalHours=jobs.reduce((sum,j)=>sum+(Number(j.hours)||0),0);
+  const allCompletedJobs=mountJobs.filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&mountJobIsCompleted(j));
+  const jobs=allCompletedJobs.filter(j=>vinIsOnCurrentBranchList(j.vin)).sort((a,b)=>(Number(!!a.closed)-Number(!!b.closed))||String(b.date||"").localeCompare(String(a.date||""))||String(a.vin||"").localeCompare(String(b.vin||"")));
+  const toClose=[...new Set(jobs.filter(j=>!j.closed).map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
+  // Godziny pracownika są wspólne dla obu oddziałów — filtr lokalizacji dotyczy tylko widocznych samochodów.
+  const totalHours=allCompletedJobs.reduce((sum,j)=>sum+(Number(j.hours)||0),0);
   if($("#mountDoneCount"))$("#mountDoneCount").textContent=[...new Set(jobs.map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
   if($("#mountDoneHours"))$("#mountDoneHours").textContent=`${Number.isInteger(totalHours)?totalHours:totalHours.toFixed(1)} h`;
   if($("#mountDoneToClose"))$("#mountDoneToClose").textContent=String(toClose);
   const tbody=$("#mountDoneRows");if(!tbody)return;
-  tbody.innerHTML=jobs.length?jobs.map(mountJobRowHtml).join(""):`<tr><td colspan="10" style="padding:24px;text-align:center;color:#6b7280">Brak zamontowanych samochodów w wybranym miesiącu.</td></tr>`;
+  tbody.innerHTML=jobs.length?mountGroupedRowsHtml(jobs):`<tr><td colspan="11" style="padding:24px;text-align:center;color:#6b7280">Brak zamontowanych samochodów w wybranym miesiącu.</td></tr>`;
   bindMountRows(tbody,true);
 }
 
@@ -3119,8 +3181,9 @@ function updateMountChoices(){
 function mountVinMatches(query){
   const q=normalizeVin(query);
   if(q.length<4) return [];
-  const endMatches=fleetCars.filter(c=>normalizeVin(c.vin).endsWith(q));
-  const contains=fleetCars.filter(c=>!normalizeVin(c.vin).endsWith(q) && normalizeVin(c.vin).includes(q));
+  const branchCars=fleetCars.filter(c=>carBranch(c)===currentBranch);
+  const endMatches=branchCars.filter(c=>normalizeVin(c.vin).endsWith(q));
+  const contains=branchCars.filter(c=>!normalizeVin(c.vin).endsWith(q) && normalizeVin(c.vin).includes(q));
   return [...endMatches,...contains].slice(0,8);
 }
 
@@ -3150,7 +3213,7 @@ function openUrgentInMountForm(vin){
   $("#mountFormCard").classList.add("open");
   $("#mountFormTitle").textContent=ctx.source==="release"?"Montaż samochodu":"Montaż — samochód na placu";
   if($("#mountCarTitle"))$("#mountCarTitle").textContent=item.vin||"Montaż samochodu";
-  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||"",ctx.source==="release"?"Samochód z planu wydań":"Samochód na placu"].filter(Boolean).join(" • ");
+  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||"",branchLabel(item.branch||carBranchByVin(item.vin)),ctx.source==="release"?"Samochód z planu wydań":"Samochód na placu"].filter(Boolean).join(" • ");
   $("#mountVinInput").value=item.vin;
   const items=ctx.items.filter(x=>!x.done).map(x=>x.name);$("#mountAssignment").classList.add("show");$("#mountAssignmentItems").innerHTML=items.map(x=>`<span class="mount-assignment-chip">${escapeHtml(x)}</span>`).join("");
   if(ctx.source==="release")$("#mountAssignmentMeta").textContent=[item.client||"",item.model||"",item.date?`wydanie ${item.date} ${item.time||""}`:"",item.info?`info: ${item.info}`:""].filter(Boolean).join(" • ");
@@ -3239,7 +3302,7 @@ function startEditMount(index,returnView="mountList"){
   $("#mountFormCard").classList.add("open");
   $("#mountFormTitle").textContent="Edytuj montaż";
   if($("#mountCarTitle"))$("#mountCarTitle").textContent=job.vin||"Edytuj montaż";
-  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||job.owner||"","Edycja montażu"].filter(Boolean).join(" • ");
+  if($("#mountCarSubtitle"))$("#mountCarSubtitle").textContent=[selectedOwner||job.owner||"",branchLabel(mountJobBranch(job)),"Edycja montażu"].filter(Boolean).join(" • ");
   $("#mountEditingNote").classList.add("show");
   $("#saveMountJob").textContent="Zapisz zmiany";
 
@@ -3333,6 +3396,7 @@ function saveNewMount(){
     owner:existing?.owner || selectedOwner,
     date:existing?.date || todayShort(),
     vin,
+    branch:existing?.branch || carBranchByVin(vin),
     tasks:selectedTasks,
     alarm,
     alarmCode:alarm?alarmCode:"",
@@ -3366,7 +3430,7 @@ function saveNewMount(){
   const wasEditing=editingMountIndex!==null;
   const returnView=mountCarReturnView;
   saveMountJobs();
-  logAction(wasEditing?"Edycja montażu":"Zapis montażu",`${vin} • ${selectedTasks.join(", ")} • ${hours} h${alarmCode?" • kod alarmu: "+alarmCode:""}`);
+  logAction(wasEditing?"Edycja montażu":"Zapis montażu",`${vin} • ${branchLabel(record.branch)} • ${selectedTasks.join(", ")} • ${hours} h${alarmCode?" • kod alarmu: "+alarmCode:""}`);
   renderMountTable();
   renderMountDoneTable();
   renderMountWorkerMenu();
