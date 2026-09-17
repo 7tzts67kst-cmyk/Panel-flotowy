@@ -285,7 +285,7 @@ h1,h2,h3{margin:0}.muted{color:var(--muted)}
 /* Raport miesięczny */
 .report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.report-kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fafafa}.report-kpi strong{display:block;font-size:26px;margin-top:4px}.report-section{margin-top:14px}.report-status{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:1000;background:#eef2f6}.report-status.closed{background:#e9f8ef;color:#167044}.report-actions{display:flex;gap:8px;flex-wrap:wrap}.report-note{font-size:11px;color:#667085;margin-top:8px}@media(max-width:700px){.report-grid{grid-template-columns:1fr 1fr}.report-kpi{padding:11px}.report-kpi strong{font-size:22px}.report-actions .btn{flex:1}}
 /* Użytkownicy i panel administratora */
-.user-bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:0 0 14px;flex-wrap:wrap}.user-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.user-switch-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;color:#667085}.user-switcher{min-height:40px;max-width:250px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 34px 8px 11px;font:inherit;font-size:12px;font-weight:900;color:#111}.mobile-user-switch{min-width:0;max-width:170px;min-height:42px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:#fff;color:#111;padding:8px 28px 8px 10px;font-size:12px;font-weight:900}.mobile-user-switch-wrap{padding:3px 2px 12px}.mobile-user-switch-wrap label{display:block;font-size:10px;font-weight:1000;color:var(--muted);margin-bottom:6px}.mobile-user-switch-sheet{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:9px 34px 9px 11px;font-size:13px;font-weight:900}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px}.admin-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}.role-myjnia .release-toolbar,.role-myjnia #releaseAddCard,.role-myjnia .release-edit-btn,.role-myjnia #markIssued,.role-myjnia #undoIssued,.role-myjnia #checkReleaseReady,.role-myjnia #checkFuelReady,.role-myjnia #labFuelReady,.role-myjnia label[for="checkReleaseReady"]{display:none!important}
+.user-bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:0 0 14px;flex-wrap:wrap}.user-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.user-switch-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;color:#667085}.user-switcher{min-height:40px;max-width:250px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 34px 8px 11px;font:inherit;font-size:12px;font-weight:900;color:#111}.mobile-user-switch{min-width:0;max-width:170px;min-height:42px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:#fff;color:#111;padding:8px 28px 8px 10px;font-size:12px;font-weight:900}.mobile-user-switch-wrap{padding:3px 2px 12px}.mobile-user-switch-wrap label{display:block;font-size:10px;font-weight:1000;color:var(--muted);margin-bottom:6px}.mobile-user-switch-sheet{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:9px 34px 9px 11px;font-size:13px;font-weight:900}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:12px}.admin-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}.role-myjnia .release-toolbar,.role-myjnia #releaseAddCard,.role-myjnia .release-edit-btn,.role-myjnia #markIssued,.role-myjnia #undoIssued,.role-myjnia #checkReleaseReady,.role-myjnia #checkFuelReady,.role-myjnia #labFuelReady,.role-myjnia #checkTiresReady,.role-myjnia #labTiresReady,.role-myjnia label[for="checkReleaseReady"]{display:none!important}
 
 /* Myjnia */
 .wash-week-board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}.wash-day-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:left;cursor:pointer;min-height:145px}.wash-day-card.active{border:2px solid #e50000}.wash-day-card strong{display:block;font-size:28px;margin:8px 0}.wash-day-card .stats{font-size:11px;line-height:1.55}.wash-moved{display:inline-block;background:#fff3cd;color:#7a4b00;border:1px solid #ffd86b;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:1000;margin-top:5px}@media(max-width:850px){.wash-week-board{grid-template-columns:1fr 1fr}.wash-day-card{min-height:120px}}@media(max-width:520px){.wash-week-board{grid-template-columns:1fr}}
@@ -2704,6 +2704,120 @@ table:not(.mount-table) tr:hover td{
   }
 }
 
+
+/* ===== MODUŁ OPONY ===== */
+.tires-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}.tires-kpi{background:#fff;border:1px solid #ead7c2;border-left:4px solid #d97706;border-radius:16px;padding:14px;box-shadow:var(--shadow-soft)}.tires-kpi.done{border-color:#c9dfd0;border-left-color:#168a45}.tires-kpi span{display:block;font-size:9px;letter-spacing:.08em;color:#667085;font-weight:1000}.tires-kpi b{display:block;font-size:28px;margin-top:6px}.tires-note{padding:12px 14px;margin-bottom:12px;border:1px solid #dde4eb;border-radius:14px;background:#fff;color:#667085;font-size:10px;font-weight:750;line-height:1.45}.tires-status{display:inline-flex;align-items:center;padding:6px 9px;border-radius:999px;font-size:9px;font-weight:1000;white-space:nowrap}.tires-status.pending{background:#fff1e8;color:#b54708}.tires-status.done{background:#eaf8ef;color:#137a3d}.tires-toggle-btn{border:0;border-radius:10px;padding:8px 10px;background:#168a45;color:#fff;font-size:9px;font-weight:1000;cursor:pointer;white-space:nowrap}.tires-toggle-btn.undo{background:#fff;border:1px solid #d0d5dd;color:#475467}.tires-row-pending td{background:#fffcf7}.tires-row-done td{background:#fbfffc}@media(max-width:720px){.tires-summary{grid-template-columns:1fr 1fr;gap:7px}.tires-kpi{padding:11px;border-radius:14px}.tires-kpi b{font-size:23px}.tires-note{padding:10px;font-size:9px}.tires-toggle-btn{width:100%;min-height:38px}}
+
+
+/* Opony są opcjonalne dla gotowości do wydania */
+.tires-status.pending{background:#f2f4f7!important;color:#475467!important}
+.tires-row-pending td{background:#fff!important}
+
+
+/* ===== OPONY — 3 ETAPY ===== */
+.tires-stage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.tires-stage-card{
+  display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:11px;align-items:center;
+  width:100%;padding:14px;border:1px solid #dde3ea;border-radius:17px;background:#fff;text-align:left;
+  box-shadow:0 5px 16px rgba(16,24,40,.05);cursor:pointer;transition:.15s ease;color:#101828
+}
+.tires-stage-card:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(16,24,40,.08)}
+.tires-stage-card.active{outline:2px solid #111827;outline-offset:-2px}
+.tires-stage-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:20px;font-weight:1000;background:#f2f4f7}
+.tires-stage-card.replace .tires-stage-icon{background:#fff3e8;color:#b54708}
+.tires-stage-card.done .tires-stage-icon{background:#eaf9ef;color:#137a3d}
+.tires-stage-card.shipping .tires-stage-icon{background:#eaf2ff;color:#175cd3}
+.tires-stage-card small{display:block;font-size:8px;font-weight:1000;letter-spacing:.09em;color:#98a2b3}
+.tires-stage-card strong{display:block;font-size:16px;margin-top:3px}
+.tires-stage-card span{display:block;font-size:9px;color:#667085;margin-top:4px;line-height:1.35}
+.tires-stage-card>b{font-size:30px;line-height:1}
+.tires-add-card{
+  display:grid;grid-template-columns:minmax(220px,.8fr) minmax(330px,1.2fr);gap:14px;align-items:center;
+  margin-bottom:12px;padding:13px 14px;border:1px solid #dde3ea;border-radius:16px;background:#fff;
+  box-shadow:0 4px 14px rgba(16,24,40,.04)
+}
+.tires-add-card>div:first-child strong{display:block;font-size:13px}
+.tires-add-card>div:first-child span{display:block;font-size:9px;color:#667085;margin-top:4px;line-height:1.4}
+.tires-add-controls{display:grid;grid-template-columns:minmax(180px,1fr) auto;gap:7px}
+.tires-add-card .message{grid-column:1/-1;margin:0}
+.tires-list-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:16px 0 8px}
+.tires-list-head small{font-size:8px;font-weight:1000;letter-spacing:.1em;color:#98a2b3}
+.tires-list-head h2{font-size:20px;margin-top:2px}
+.tires-list-head .searchbar{width:min(420px,50%);margin:0}
+.tires-status.replace{background:#fff3e8;color:#b54708}
+.tires-status.done{background:#eaf9ef;color:#137a3d}
+.tires-status.shipping{background:#eaf2ff;color:#175cd3}
+.tires-row-replace td{background:#fffdf9}
+.tires-row-done td{background:#fbfffc}
+.tires-row-shipping td{background:#fbfdff}
+.tires-actions{display:flex;gap:6px;flex-wrap:wrap}
+.tires-toggle-btn.shipping{background:#175cd3}
+.tires-secondary-btn{border:1px solid #d0d5dd;border-radius:10px;background:#fff;color:#475467;padding:8px 9px;font-size:9px;font-weight:1000;cursor:pointer}
+.tires-secondary-btn.danger{color:#b42318;border-color:#f2c6c2;background:#fff8f7}
+
+@media(max-width:720px){
+  .tires-stage-grid{grid-template-columns:1fr!important;gap:8px!important}
+  .tires-stage-card{grid-template-columns:42px minmax(0,1fr) auto!important;padding:11px!important;border-radius:15px!important}
+  .tires-stage-icon{width:40px;height:40px;border-radius:12px}
+  .tires-stage-card strong{font-size:14px}
+  .tires-stage-card span{font-size:8px}
+  .tires-stage-card>b{font-size:24px}
+  .tires-add-card{grid-template-columns:1fr!important;gap:9px!important;padding:11px!important}
+  .tires-add-controls{grid-template-columns:1fr!important}
+  .tires-add-controls .btn{width:100%}
+  .tires-list-head{display:block!important;margin-top:12px!important}
+  .tires-list-head .searchbar{width:100%!important;margin-top:8px!important}
+  .tires-actions{display:grid!important;grid-template-columns:1fr!important;width:100%!important}
+  .tires-actions button{width:100%!important;min-height:38px!important}
+}
+
+
+/* ===== OPONY: WPIS RĘCZNY + ZLECENIE Z LISTY SAMOCHODÓW ===== */
+.tires-add-controls-manual{
+  display:grid!important;
+  grid-template-columns:1.15fr .8fr 1fr auto!important;
+  gap:7px!important;
+  align-items:end!important;
+}
+.tires-manual-badge{
+  display:inline-flex;
+  margin-top:5px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#fff3e8;
+  color:#b54708;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.04em;
+}
+.car-actions-stack{display:grid;gap:6px;min-width:145px}
+.car-tire-order-btn{
+  width:100%;
+  min-height:34px;
+  padding:7px 9px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  background:#fff;
+  color:#344054;
+  font-size:9px;
+  font-weight:1000;
+  cursor:pointer;
+  line-height:1.2;
+}
+.car-tire-order-btn:hover{border-color:#98a2b3;background:#f8fafc}
+.car-tire-order-btn.state-replace{background:#fff3e8;border-color:#f1c59c;color:#b54708}
+.car-tire-order-btn.state-done{background:#eaf9ef;border-color:#acd8b9;color:#137a3d}
+.car-tire-order-btn.state-shipping{background:#eaf2ff;border-color:#bdd1f5;color:#175cd3}
+@media(max-width:1000px){
+  .tires-add-controls-manual{grid-template-columns:1fr 1fr!important}
+  .tires-add-controls-manual .btn{width:100%}
+}
+@media(max-width:720px){
+  .tires-add-controls-manual{grid-template-columns:1fr!important}
+  .car-actions-stack{width:100%;min-width:0}
+  .car-tire-order-btn{width:100%!important;min-height:38px!important}
+}
+
 </style>
 <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
@@ -2736,6 +2850,9 @@ table:not(.mount-table) tr:hover td{
     </button>
     <button class="desktop-nav-item" type="button" data-desktop-route="batteryView" data-desktop-access="battery">
       <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M6 7h12v10H6zM18 10h2v4h-2M9 10v4M7 12h4"/></svg></span><span>Akumulatory</span>
+    </button>
+    <button class="desktop-nav-item" type="button" data-desktop-route="tiresView" data-desktop-access="cars">
+      <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v5M12 15v5M4 12h5M15 12h5"/></svg></span><span>Opony</span>
     </button>
     <button class="desktop-nav-item" type="button" data-desktop-route="washView" data-desktop-access="wash">
       <span class="desktop-nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3s5 6 5 10a5 5 0 01-10 0c0-4 5-10 5-10z"/></svg></span><span>Myjnia</span>
@@ -2847,6 +2964,7 @@ table:not(.mount-table) tr:hover td{
         <button class="mobile-task" id="mobileTaskReleases" data-mobile-access="releases" data-mobile-route="releaseHome" type="button"><div><div class="mobile-task-icon">🚗</div><div class="mobile-task-count" id="mobileReleaseCount">0</div></div><div><div class="mobile-task-label">Wydania</div><div class="mobile-task-sub" id="mobileReleaseSub">dzisiaj</div></div></button>
         <button class="mobile-task" id="mobileTaskMounts" data-mobile-access="mounts" data-mobile-route="mountOwners" type="button"><div><div class="mobile-task-icon">🔧</div><div class="mobile-task-count" id="mobileMountCount">0</div></div><div><div class="mobile-task-label">Montaże</div><div class="mobile-task-sub">otwarte zlecenia</div></div></button>
         <button class="mobile-task" id="mobileTaskBattery" data-mobile-access="battery" data-mobile-route="batteryView" type="button"><div><div class="mobile-task-icon">🔋</div><div class="mobile-task-count" id="mobileBatteryCount">0</div></div><div><div class="mobile-task-label">Akumulatory</div><div class="mobile-task-sub">wymagają reakcji</div></div></button>
+        <button class="mobile-task" id="mobileTaskTires" data-mobile-access="cars" data-mobile-route="tiresView" type="button"><div><div class="mobile-task-icon">◉</div><div class="mobile-task-count" id="mobileTiresCount">0</div></div><div><div class="mobile-task-label">Opony</div><div class="mobile-task-sub">status niepotwierdzony</div></div></button>
         <button class="mobile-task" id="mobileTaskWash" data-mobile-access="wash" data-mobile-route="washView" type="button"><div><div class="mobile-task-icon">🧽</div><div class="mobile-task-count" id="mobileWashCount">0</div></div><div><div class="mobile-task-label">Myjnia</div><div class="mobile-task-sub">do mycia dziś</div></div></button>
 
         <button class="mobile-task" id="mobileTaskAssigned" data-mobile-route="tasksView" type="button"><div><div class="mobile-task-icon">✓</div><div class="mobile-task-count" id="mobileAssignedTaskCount">0</div></div><div><div class="mobile-task-label">Zadania</div><div class="mobile-task-sub" id="mobileAssignedTaskSub">zlecone Tobie</div></div></button>
@@ -2910,6 +3028,10 @@ table:not(.mount-table) tr:hover td{
         <button class="module" id="openBattery">
           <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11v10H7zM18 10h2v4h-2M4 10v4M10 10v4M8 12h4"/></svg></span>
           <span class="module-copy"><small>KONTROLA</small><h2>Testy akumulatorów</h2><p>Terminy, K1 i testy cykliczne.</p></span><span class="module-arrow">→</span>
+        </button>
+        <button class="module" id="openTires">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v5M12 15v5M4 12h5M15 12h5M6.3 6.3l3.5 3.5M14.2 14.2l3.5 3.5M17.7 6.3l-3.5 3.5M9.8 14.2l-3.5 3.5"/></svg></span>
+          <span class="module-copy"><small>SERWIS</small><h2>Opony</h2><p id="tiresModuleSummary">Kontrola wymiany opon na samochodach.</p></span><span class="module-arrow">→</span>
         </button>
         <button class="module" id="openWash">
           <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s5 6 5 10a5 5 0 01-10 0c0-4 5-10 5-10zM9.5 14.5a3 3 0 003 1.5"/></svg></span>
@@ -3026,6 +3148,7 @@ table:not(.mount-table) tr:hover td{
       <h2>Gotowość wyposażenia</h2>
       <div class="checks">
         <div id="releaseWorkChecklist"></div>
+        <label class="check" id="labTiresReady"><input id="checkTiresReady" type="checkbox"><span><strong>Opony wymienione <em style="font-style:normal;color:#667085;font-size:10px">(jeśli dotyczy)</em></strong><small>Zaznacz tylko wtedy, gdy samochód miał zleconą wymianę opon. Brak zaznaczenia nie blokuje gotowości ani wydania.</small></span></label>
         <label class="check" id="labFuelReady"><input id="checkFuelReady" type="checkbox"><span><strong>Paliwo zatankowane</strong><small>Potwierdź poziom paliwa przed oznaczeniem samochodu jako gotowy. Rodzaj paliwa nie ma znaczenia.</small></span></label>
         <label class="check" id="labReleaseReady"><input id="checkReleaseReady" type="checkbox"><span><strong>Gotowy do wydania</strong><small>Potwierdza osoba sprawdzająca po kontroli samochodu.</small></span></label>
       </div>
@@ -3347,6 +3470,67 @@ table:not(.mount-table) tr:hover td{
   </div>
 </section>
 
+<section id="tiresView" class="view">
+  <div class="header-row">
+    <div class="header-left"><button class="back" id="backMainFromTires">←</button><div><h1>Opony</h1><div class="muted" style="margin-top:5px">Obsługa zleceń opon w aktywnym oddziale.</div></div></div>
+    <span class="owner-badge" id="tiresCount">0 aut</span>
+  </div>
+
+  <div class="tires-stage-grid">
+    <button class="tires-stage-card replace active" type="button" data-tires-stage="replace">
+      <div class="tires-stage-icon">↻</div>
+      <div><small>ETAP 1</small><strong>Do wymiany</strong><span>Samochody ze zleceniem wymiany opon.</span></div>
+      <b id="tiresPendingCount">0</b>
+    </button>
+    <button class="tires-stage-card done" type="button" data-tires-stage="done">
+      <div class="tires-stage-icon">✓</div>
+      <div><small>ETAP 2</small><strong>Wymienione</strong><span>Opony zostały już wymienione.</span></div>
+      <b id="tiresDoneCount">0</b>
+    </button>
+    <button class="tires-stage-card shipping" type="button" data-tires-stage="shipping">
+      <div class="tires-stage-icon">→</div>
+      <div><small>ETAP 3</small><strong>Do wysyłki</strong><span>Samochody przygotowane do wysyłki.</span></div>
+      <b id="tiresShippingCount">0</b>
+    </button>
+  </div>
+
+  <div class="tires-add-card">
+    <div>
+      <strong>Dodaj samochód do wymiany opon</strong>
+      <span>Możesz wybrać auto z Listy samochodów albo wpisać VIN / rejestrację ręcznie, jeśli pojazdu nie ma w systemie.</span>
+    </div>
+    <div class="tires-add-controls tires-add-controls-manual">
+      <div class="field">
+        <label>VIN / NUMER REJESTRACYJNY</label>
+        <input id="tiresAddVin" list="tiresVinOptions" placeholder="Wybierz VIN albo wpisz auto ręcznie">
+        <datalist id="tiresVinOptions"></datalist>
+      </div>
+      <div class="field">
+        <label>MODEL (OPCJONALNIE)</label>
+        <input id="tiresAddModel" placeholder="np. Corolla">
+      </div>
+      <div class="field">
+        <label>KLIENT / OPIS (OPCJONALNIE)</label>
+        <input id="tiresAddClient" placeholder="np. klient lub opis auta">
+      </div>
+      <button class="btn primary" id="tiresAddBtn" type="button">Dodaj do wymiany</button>
+    </div>
+    <div class="message" id="tiresAddMessage"></div>
+  </div>
+
+  <div class="tires-list-head">
+    <div><small id="tiresListKicker">ETAP 1</small><h2 id="tiresListTitle">Do wymiany</h2></div>
+    <div class="searchbar"><input id="tiresSearch" placeholder="Szukaj po VIN, kliencie lub modelu"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="car-table tires-table">
+      <thead><tr><th>VIN / ODDZIAŁ</th><th>SAMOCHÓD / KLIENT</th><th>STATUS OPON</th><th>OSTATNIA ZMIANA</th><th>AKCJA</th></tr></thead>
+      <tbody id="tiresRows"></tbody>
+    </table>
+  </div>
+</section>
+
 <section id="batteryView" class="view">
   <div class="header-row">
     <div class="header-left">
@@ -3560,6 +3744,7 @@ table:not(.mount-table) tr:hover td{
       <button data-mobile-more-route="mountOwners" data-mobile-access="mounts" type="button">Montaże</button>
       <button data-mobile-more-route="carsView" data-mobile-access="cars" type="button">Lista samochodów</button>
       <button data-mobile-more-route="batteryView" data-mobile-access="battery" type="button">Akumulatory</button>
+      <button data-mobile-more-route="tiresView" data-mobile-access="cars" type="button">Opony</button>
       <button data-mobile-more-route="washView" data-mobile-access="wash" type="button">Myjnia</button>
       <button data-mobile-more-route="tasksView" type="button">Zadania</button>
       <button data-mobile-more-route="adminView" data-mobile-access="admin" type="button">Administrator</button>
@@ -3606,7 +3791,7 @@ function storageJSON(key,fallback,kind="any") {
     return fallback;
   }
 }
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","carsView","batteryView","washView","washPendingView","washDoneView","washBonusView","tasksView","archiveView","adminView","bonusAdminView"];
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","carsView","tiresView","batteryView","washView","washPendingView","washDoneView","washBonusView","tasksView","archiveView","adminView","bonusAdminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 function loginFromName(name){
   return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
@@ -3656,7 +3841,7 @@ function renderBranchUi(){
 function refreshAfterBranchSwitch(){
   const safe=fn=>{try{if(typeof fn==="function")fn()}catch(e){console.error("Odświeżenie po zmianie oddziału",e)}};
   safe(renderMainDashboard);safe(renderMobileDashboard);safe(renderTomorrowReadyAlert);safe(syncMobileAttention);
-  safe(renderCars);safe(renderReleaseHome);safe(renderBattery);safe(renderOwners);safe(renderMountWorkerMenu);safe(renderMountTable);safe(renderMountDoneTable);safe(renderUrgentMountAlerts);
+  safe(renderCars);safe(renderReleaseHome);safe(renderTires);safe(renderBattery);safe(renderOwners);safe(renderMountWorkerMenu);safe(renderMountTable);safe(renderMountDoneTable);safe(renderUrgentMountAlerts);
   const active=document.querySelector(".view.active")?.id||"";
   if(active==="mountCarView"){safe(renderMountWorkerMenu);show("mountWorkerMenu")}
   else if(active==="vehicleView"){safe(renderReleaseHome);show("releaseHome")}
@@ -3895,6 +4080,7 @@ function updateDesktopNav(id){
     tasksView:["ORGANIZACJA PRACY","Zadania"],
     mountOwners:["WARSZTAT","Doposażenia"],
     batteryView:["KONTROLA","Akumulatory"],
+    tiresView:["SERWIS","Opony"],
     washView:["OPERACJE","Myjnia"],
     archiveView:["HISTORIA","Archiwum"],
     adminView:["SYSTEM","Administrator"]
@@ -3904,7 +4090,7 @@ function updateDesktopNav(id){
   if(eyebrow)eyebrow.textContent=t[0];if(title)title.textContent=t[1];
 }
 function show(id){views.forEach(v=>$("#"+v)?.classList.toggle("active",v===id));updateMobileNav(id);updateDesktopNav(id);scheduleMobileModuleUi();setTimeout(scheduleMobileModuleUi,30);if(id==="mainHome")setTimeout(()=>{renderMainDashboard();renderTomorrowReadyAlert();renderArchiveHomeCount();syncMobileAttention();scheduleMobileModuleUi()},0)}
-function applyUserAccess(){if(!currentUser)return;if($("#currentUserPill"))$("#currentUserPill").textContent=currentUser.role;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.querySelectorAll("[data-desktop-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.desktopAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");renderUserSwitchers();updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
+function applyUserAccess(){if(!currentUser)return;if($("#currentUserPill"))$("#currentUserPill").textContent=currentUser.role;$("#openReleases").style.display=hasAccess("releases")?"":"none";$("#openMounts").style.display=hasAccess("mounts")?"":"none";$("#openCars").style.display=hasAccess("cars")?"":"none";$("#openTires").style.display=hasAccess("cars")?"":"none";$("#openBattery").style.display=hasAccess("battery")?"":"none";$("#openWash").style.display=hasAccess("wash")?"":"none";$("#openAdmin").style.display=hasAccess("admin")?"":"none";document.querySelectorAll("[data-mobile-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.mobileAccess)});document.querySelectorAll("[data-desktop-access]").forEach(el=>{el.hidden=!hasAccess(el.dataset.desktopAccess)});document.body.classList.toggle("role-myjnia",currentUser.role==="Myjnia");renderUserSwitchers();updateMobileNav(document.querySelector(".view.active")?.id||"mainHome");}
 function auditMonthKey(at){const m=String(at||"").match(/(\d{1,2})[.\/]\s?(\d{1,2})[.\/]\s?(\d{4})/);return m?`${m[3]}-${String(m[2]).padStart(2,"0")}`:""}
 const MONTHLY_REPORTS_KEY="toyotaMonthlyReportsV1";
 let monthlyReports=storageJSON(MONTHLY_REPORTS_KEY,{},"object");
@@ -4148,6 +4334,7 @@ function normalizeReleaseRequirements(r){
   if(!r.extraRequired) r.extraReady=true;
   if(typeof r.matsReady!=="boolean") r.matsReady=false;
   if(typeof r.fuelReady!=="boolean") r.fuelReady=(r.status==="WYDANE");
+  if(typeof r.tiresReady!=="boolean") r.tiresReady=false;
   if(typeof r.releaseReady!=="boolean") r.releaseReady=(r.status==="GOTOWY"||r.status==="WYDANE");
   if(typeof r.mountOrdered!=="boolean") r.mountOrdered=true; // starsze zlecenia zachowują dotychczasowe działanie
   ensureReleaseWorkItems(r); syncLegacyReleaseFlags(r);
@@ -4474,6 +4661,8 @@ function openVehicle(id){
   $("#vehicleDetails").innerHTML=`<div class="detail"><small>Klient</small><b>${r.client}</b></div><div class="detail"><small>Model</small><b>${r.model}</b></div><div class="detail"><small>VIN</small><b>${r.vin}</b></div><div class="detail"><small>Miejsce</small><b>${r.place||"—"}</b></div>`;
   normalizeReleaseRequirements(r);
   $("#vehicleInfo").textContent=r.info||"Brak dodatkowych informacji.";
+  const tiresReady=isTiresChanged(r.vin)||!!r.tiresReady; r.tiresReady=tiresReady;
+  $("#checkTiresReady").checked=tiresReady;
   $("#checkFuelReady").checked=!!r.fuelReady;
   $("#checkReleaseReady").checked=!!r.releaseReady;
   renderReleaseWorkChecklist(r);
@@ -4491,6 +4680,8 @@ function renderReleaseWorkChecklist(r){
 function updateCheckLook(){
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
   normalizeReleaseRequirements(r);
+  const tiresReady=isTiresChanged(r.vin)||!!r.tiresReady; r.tiresReady=tiresReady;
+  $("#labTiresReady").classList.toggle("checked",tiresReady);
   $("#labFuelReady").classList.toggle("checked",!!r.fuelReady);
   $("#labReleaseReady").classList.toggle("checked",!!r.releaseReady);
   if($("#markIssued"))$("#markIssued").disabled=r.status==="WYDANE"||!r.releaseReady;
@@ -4498,7 +4689,7 @@ function updateCheckLook(){
   const items=ensureReleaseWorkItems(r), done=items.filter(x=>x.done).length;
   recalcReleaseStatus(r);
   const pending=!allReleaseWorkDone(r);
-  $("#checkSummary").innerHTML=`<b>${done}/${items.length} prac potwierdzonych</b>${pending?'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Są jeszcze niepotwierdzone pozycje.</div>':'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Wszystkie wpisane prace są potwierdzone.</div>'}${r.fuelReady?'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Paliwo zatankowane.</div>':'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Potwierdź zatankowanie paliwa.</div>'}${r.status==="GOTOWY"?'<div style="margin-top:7px;color:#168a45;font-weight:1000">✓ SAMOCHÓD OZNACZONY JAKO GOTOWY DO WYDANIA</div>':''}`;
+  $("#checkSummary").innerHTML=`<b>${done}/${items.length} prac potwierdzonych</b>${pending?'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Są jeszcze niepotwierdzone pozycje.</div>':'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Wszystkie wpisane prace są potwierdzone.</div>'}${tiresReady?'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Opony wymienione.</div>':'<div style="margin-top:7px;color:#667085;font-weight:800">○ Opony: brak potwierdzenia — nie blokuje gotowości.</div>'}${r.fuelReady?'<div style="margin-top:7px;color:#168a45;font-weight:900">✓ Paliwo zatankowane.</div>':'<div style="margin-top:7px;color:#b42318;font-weight:900">⚠ Potwierdź zatankowanie paliwa.</div>'}${r.status==="GOTOWY"?'<div style="margin-top:7px;color:#168a45;font-weight:1000">✓ SAMOCHÓD OZNACZONY JAKO GOTOWY DO WYDANIA</div>':''}`;
 }
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
@@ -4726,6 +4917,28 @@ function carExcelSourceDetail(c){
     <div class="excel-source-note">To jest zapis źródłowy z Excela. Checklista powyżej jest tworzona automatycznie z pola „Doposażenie”, dlatego w razie wątpliwości możesz porównać ją z tym oryginalnym wpisem.</div>
   </div></td></tr>`;
 }
+
+function carTireOrderButtonHtml(c){
+  if(c.status==="WYJECHAŁ")return "";
+  const state=tireWorkflowState(c.vin);
+  if(state==="none"){
+    return `<button type="button" class="car-tire-order-btn" data-car-tire-order="${escapeHtml(normalizeVin(c.vin))}">Zleć wymianę opon</button>`;
+  }
+  const labels={replace:"OPONY • DO WYMIANY",done:"OPONY • WYMIENIONE",shipping:"OPONY • DO WYSYŁKI"};
+  return `<button type="button" class="car-tire-order-btn state-${state}" data-car-tire-open="${escapeHtml(normalizeVin(c.vin))}">${labels[state]||"OPONY"}</button>`;
+}
+function orderTiresFromCarList(vin){
+  const n=normalizeVin(vin),c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c)return;
+  if(tireWorkflowState(n)==="none"){
+    setTireWorkflowState(n,"replace");
+    logAction("Zlecenie wymiany opon z Listy samochodów",n);
+  }else{
+    tiresStage=tireWorkflowState(n);
+    renderTires();
+    show("tiresView");
+  }
+}
+
 function renderCars(){
   syncIssuedToCars();
   const q=($("#carSearch").value||"").toLowerCase();
@@ -4753,13 +4966,13 @@ function renderCars(){
     const sourceButton=carExcelSourceButton(c);
     const sourceDetail=carExcelSourceDetail(c);
     if(!eq || !eq.items.length){
-      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell" style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}"><div class="car-equipment-empty">Brak wpisanego doposażenia</div>${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td><td>${carPlatesButtonHtml(c)}</td><td>${carMountOrderButtonHtml(c)}</td></tr>${sourceDetail}`;
+      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell" style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}"><div class="car-equipment-empty">Brak wpisanego doposażenia</div>${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack">${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
     }
     const done=eq.items.filter(x=>x.done).length, total=eq.items.length;
     const allDone=done===total;
     const itemHtml=`<div class="car-equipment-list">${eq.items.map(x=>`<span class="car-equipment-chip ${x.done?"done":"todo"}">${x.done?"✓":"○"} ${escapeHtml(x.name)}</span>`).join("")}</div>`;
     const state=issued?"WYDANY":(k1?"K1":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`));
-    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell">${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td><td>${carPlatesButtonHtml(c)}</td><td>${carMountOrderButtonHtml(c)}</td></tr>${sourceDetail}`;
+    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell">${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack">${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
   }).join(""):`<tr><td colspan="6" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
 
   document.querySelectorAll("[data-car-source]").forEach(btn=>{
@@ -4787,6 +5000,8 @@ function renderCars(){
   });
   document.querySelectorAll("[data-car-plates]").forEach(btn=>btn.onclick=()=>toggleCarPlatesInCar(btn.dataset.carPlates));
   document.querySelectorAll("[data-car-mount-order]").forEach(btn=>btn.onclick=()=>openCarMountOrder(btn.dataset.carMountOrder));
+  document.querySelectorAll("[data-car-tire-order]").forEach(btn=>btn.onclick=()=>orderTiresFromCarList(btn.dataset.carTireOrder));
+  document.querySelectorAll("[data-car-tire-open]").forEach(btn=>btn.onclick=()=>{tiresStage=tireWorkflowState(btn.dataset.carTireOpen);renderTires();show("tiresView")});
   if(typeof scheduleMobileModuleUi==="function")scheduleMobileModuleUi();
 }
 function addCar(){
@@ -4840,6 +5055,11 @@ function renderMainDashboard(){
   if($("#homeTodayReady"))$("#homeTodayReady").textContent=`${todayReady} gotowych`;
   if($("#homeOpenMounts"))$("#homeOpenMounts").textContent=openMounts;
   if($("#homeBatteryDue"))$("#homeBatteryDue").textContent=batteryDue;
+  const tireCars=getTireWorkflowCars(currentBranch);
+  const tiresPending=tireCars.filter(c=>tireWorkflowState(c.vin)==="replace").length;
+  const tiresDone=tireCars.filter(c=>tireWorkflowState(c.vin)==="done").length;
+  const tiresShipping=tireCars.filter(c=>tireWorkflowState(c.vin)==="shipping").length;
+  if($("#tiresModuleSummary"))$("#tiresModuleSummary").textContent=`Do wymiany: ${tiresPending} • Wymienione: ${tiresDone} • Do wysyłki: ${tiresShipping}`;
 
   const upcoming=releaseData.filter(r=>r.status!=="WYDANE"&&r.date>=today).sort((a,b)=>`${a.date||""} ${a.time||""}`.localeCompare(`${b.date||""} ${b.time||""}`))[0];
   const next=$("#homeNextRelease");
@@ -4872,7 +5092,9 @@ function renderMobileDashboard(){
   const ready=todayReleases.filter(r=>r.releaseReady).length;
   const mounts=getPendingReleaseCars().length;
   const battery=batteryTests.filter(t=>getCarStatus(t.vin)!=="WYJECHAŁ"&&!t.away&&["new","today","overdue"].includes(batteryRowState(t).key)).length;
-  const active=fleetCars.filter(c=>carBranch(c)===currentBranch&&c.status!=="WYJECHAŁ").length;
+  const activeCarsInBranch=fleetCars.filter(c=>carBranch(c)===currentBranch&&c.status!=="WYJECHAŁ");
+  const tires=getTireWorkflowCars(currentBranch).filter(c=>tireWorkflowState(c.vin)==="replace").length;
+  const active=activeCarsInBranch.length;
   const wash=mobileWashPendingToday();
   const pct=todayReleases.length?Math.round(ready/todayReleases.length*100):0;
   if($("#mobileGreeting"))$("#mobileGreeting").textContent=first?`Dzisiaj, ${first}`:"Dzisiaj";
@@ -4883,8 +5105,9 @@ function renderMobileDashboard(){
   if($("#mobileReleaseSub"))$("#mobileReleaseSub").textContent=`${ready} gotowych • dzisiaj`;
   if($("#mobileMountCount"))$("#mobileMountCount").textContent=mounts;
   if($("#mobileBatteryCount"))$("#mobileBatteryCount").textContent=battery;
+  if($("#mobileTiresCount"))$("#mobileTiresCount").textContent=tires;
   if($("#mobileWashCount"))$("#mobileWashCount").textContent=wash;
-  const tone=(id,count)=>{const el=$(id);if(el)el.dataset.tone=count>0?"red":"green"};tone("#mobileTaskMounts",mounts);tone("#mobileTaskBattery",battery);tone("#mobileTaskWash",wash);
+  const tone=(id,count)=>{const el=$(id);if(el)el.dataset.tone=count>0?"red":"green"};tone("#mobileTaskMounts",mounts);tone("#mobileTaskBattery",battery);if($("#mobileTaskTires"))$("#mobileTaskTires").dataset.tone=tires>0?"purple":"green";tone("#mobileTaskWash",wash);
   if($("#mobileTaskReleases"))$("#mobileTaskReleases").dataset.tone=todayReleases.length&&ready<todayReleases.length?"red":"green";
   if($("#mobileReadyLabel"))$("#mobileReadyLabel").textContent=todayReleases.length?`${ready} z ${todayReleases.length} gotowych`:"Brak wydań na dziś";
   if($("#mobileReadySub"))$("#mobileReadySub").textContent=todayReleases.length?(pct===100?"Wszystkie dzisiejsze auta są gotowe.":`${todayReleases.length-ready} czeka na potwierdzenie gotowości.`):"Dzisiejszy plan jest pusty.";
@@ -4924,6 +5147,7 @@ function openDesktopRoute(route){
   if(route==="tasksView"){renderTasks();show("tasksView");return}
   if(route==="mountOwners"){if(!hasAccess("mounts"))return;renderOwners();show("mountOwners");return}
   if(route==="batteryView"){if(!hasAccess("battery"))return;renderBattery();show("batteryView");return}
+  if(route==="tiresView"){if(!hasAccess("cars"))return;renderTires();show("tiresView");return}
   if(route==="washView"){if(!hasAccess("wash"))return;renderWash();show("washView");return}
   if(route==="archiveView"){renderArchive();show("archiveView");return}
   if(route==="adminView"){if(!hasAccess("admin"))return;renderAdmin();show("adminView");return}
@@ -4935,6 +5159,7 @@ function openMobileRoute(route){
   if(route==="mountOwners"){if(!hasAccess("mounts"))return;renderOwners();show("mountOwners");return}
   if(route==="carsView"){if(!hasAccess("cars"))return;renderCars();show("carsView");return}
   if(route==="batteryView"){if(!hasAccess("battery"))return;renderBattery();show("batteryView");return}
+  if(route==="tiresView"){if(!hasAccess("cars"))return;renderTires();show("tiresView");return}
   if(route==="washView"){if(!hasAccess("wash"))return;renderWash();show("washView");return}
   if(route==="tasksView"){renderTasks();show("tasksView");return}
   if(route==="adminView"){if(!hasAccess("admin"))return;renderAdmin();show("adminView");return}
@@ -4945,6 +5170,7 @@ function mobileSectionForView(id){
   if(["mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList"].includes(id))return ["DOPOSAŻENIA",selectedOwner||"Doposażenia"];
   if(id==="carsView")return ["FLOTA","Samochody"];
   if(id==="batteryView")return ["KONTROLA","Akumulatory"];
+  if(id==="tiresView")return ["SERWIS","Opony"];
   if(["washView","washPendingView","washDoneView","washBonusView"].includes(id))return ["MYJNIA","Obsługa myjni"];
   if(id==="tasksView")return ["ZADANIA","Zadania"];
   if(id==="archiveView")return ["HISTORIA","Archiwum"];
@@ -5290,6 +5516,278 @@ function renderExtraWorks(){
   document.querySelectorAll("[data-extra-delete]").forEach(btn=>{
     btn.onclick=()=>deleteExtraWork(Number(btn.dataset.extraDelete));
   });
+}
+
+
+/* ---------- TIRES / OPONY ---------- */
+const TIRES_MANUAL_CARS_KEY="toyotaTiresManualCarsV1";
+let tireManualCars=storageJSON(TIRES_MANUAL_CARS_KEY,[],"array").filter(x=>x&&typeof x==="object");
+function saveTireManualCars(){localStorage.setItem(TIRES_MANUAL_CARS_KEY,JSON.stringify(tireManualCars))}
+function tireManualCarForVin(vin,branch=currentBranch){
+  const n=normalizeVin(vin);
+  return tireManualCars.find(c=>normalizeVin(c.vin)===n&&normalizeBranch(c.branch)===normalizeBranch(branch))||null;
+}
+function tireEntityForVin(vin){
+  const n=normalizeVin(vin);
+  return fleetCars.find(c=>normalizeVin(c.vin)===n) || tireManualCars.find(c=>normalizeVin(c.vin)===n) || null;
+}
+function getTireWorkflowCars(branch=currentBranch){
+  const b=normalizeBranch(branch);
+  const fleet=fleetCars.filter(c=>carBranch(c)===b&&c.status!=="WYJECHAŁ"&&tireWorkflowState(c.vin)!=="none");
+  const manual=tireManualCars.filter(c=>normalizeBranch(c.branch)===b&&tireWorkflowState(c.vin)!=="none");
+  const seen=new Set(fleet.map(c=>normalizeVin(c.vin)));
+  return [...fleet,...manual.filter(c=>!seen.has(normalizeVin(c.vin)))];
+}
+let tiresStage="replace";
+
+function tireCarForVin(vin){return tireEntityForVin(vin)}
+
+function tireWorkflowState(vin){
+  const c=tireCarForVin(vin);
+  if(!c)return "none";
+  if(c.tiresShipping===true)return "shipping";
+  if(c.tiresChanged===true)return "done";
+  if(c.tiresRequested===true)return "replace";
+  return "none";
+}
+
+function isTiresChanged(vin){return tireWorkflowState(vin)==="done"||tireWorkflowState(vin)==="shipping"}
+
+function tiresChangeMeta(vin){
+  const c=tireCarForVin(vin);
+  const state=tireWorkflowState(vin);
+  if(state==="shipping")return {at:c?.tiresShippingAt||"",by:c?.tiresShippingBy||""};
+  if(state==="done")return {at:c?.tiresChangedAt||"",by:c?.tiresChangedBy||""};
+  return {at:c?.tiresRequestedAt||"",by:c?.tiresRequestedBy||""};
+}
+
+function setTireWorkflowState(vin,state,{log=true,rerender=true,manualData=null}={}){
+  const n=normalizeVin(vin);if(!n)return;
+  let c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  let isManual=false;
+
+  if(!c){
+    c=tireManualCarForVin(n,currentBranch);
+    isManual=true;
+    if(!c&&state!=="none"){
+      c={
+        vin:n,
+        displayId:String(manualData?.displayId||vin||n).trim().toUpperCase(),
+        model:String(manualData?.model||"").trim(),
+        client:String(manualData?.client||"").trim(),
+        branch:currentBranch,
+        manualTireEntry:true,
+        createdAt:new Date().toISOString(),
+        createdBy:currentUser?.name||""
+      };
+      tireManualCars.unshift(c);
+    }
+  }
+  if(!c)return;
+
+  const now=new Date().toISOString(),by=currentUser?.name||"";
+
+  if(state==="replace"){
+    c.tiresRequested=true;
+    c.tiresRequestedAt=now;
+    c.tiresRequestedBy=by;
+    c.tiresChanged=false;
+    c.tiresChangedAt="";
+    c.tiresChangedBy="";
+    c.tiresShipping=false;
+    c.tiresShippingAt="";
+    c.tiresShippingBy="";
+  }else if(state==="done"){
+    c.tiresRequested=true;
+    c.tiresChanged=true;
+    c.tiresChangedAt=now;
+    c.tiresChangedBy=by;
+    c.tiresShipping=false;
+    c.tiresShippingAt="";
+    c.tiresShippingBy="";
+  }else if(state==="shipping"){
+    c.tiresRequested=true;
+    c.tiresChanged=true;
+    if(!c.tiresChangedAt){c.tiresChangedAt=now;c.tiresChangedBy=by}
+    c.tiresShipping=true;
+    c.tiresShippingAt=now;
+    c.tiresShippingBy=by;
+  }else{
+    if(isManual||c.manualTireEntry===true){
+      tireManualCars=tireManualCars.filter(x=>x!==c);
+      saveTireManualCars();
+    }else{
+      c.tiresRequested=false;
+      c.tiresRequestedAt="";
+      c.tiresRequestedBy="";
+      c.tiresChanged=false;
+      c.tiresChangedAt="";
+      c.tiresChangedBy="";
+      c.tiresShipping=false;
+      c.tiresShippingAt="";
+      c.tiresShippingBy="";
+    }
+  }
+
+  if(state!=="none"){
+    if(c.manualTireEntry===true)saveTireManualCars();
+    else saveCars();
+  }else if(c.manualTireEntry!==true){
+    saveCars();
+  }
+
+  if(c.manualTireEntry!==true){
+    releaseData.filter(r=>normalizeVin(r.vin)===n).forEach(r=>{r.tiresReady=(state==="done"||state==="shipping")});
+    saveRelease();
+  }
+
+  if(log){
+    const action=state==="replace"?"Opony — do wymiany":state==="done"?"Opony wymienione":state==="shipping"?"Opony — do wysyłki":"Usunięcie z modułu Opony";
+    logAction(action,`${c.displayId||c.vin}${c.manualTireEntry?" • wpis ręczny":""}`);
+  }
+
+  if(rerender){
+    renderTires();
+    if($("#carRows"))renderCars();
+    if(selectedVehicle&&c.manualTireEntry!==true){
+      const r=releaseData.find(x=>x.id===selectedVehicle);
+      if(r&&normalizeVin(r.vin)===n){
+        if($("#checkTiresReady"))$("#checkTiresReady").checked=(state==="done"||state==="shipping");
+        updateCheckLook();
+      }
+    }
+    renderMainDashboard();
+    renderMobileDashboard();
+  }
+}
+function setTiresChanged(vin,value,{log=true,rerender=true}={}){
+  setTireWorkflowState(vin,value?"done":"replace",{log,rerender});
+}
+
+function toggleTiresChanged(vin){
+  setTireWorkflowState(vin,isTiresChanged(vin)?"replace":"done");
+}
+
+function tireRelatedRelease(vin){
+  const c=tireCarForVin(vin);
+  if(c?.manualTireEntry)return null;
+  return releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(vin))
+    .sort((a,b)=>`${b.date||""} ${b.time||""}`.localeCompare(`${a.date||""} ${a.time||""}`))[0]||null;
+}
+function tireDisplayId(c){return c?.manualTireEntry?String(c.displayId||c.vin||""):String(c?.vin||"")}
+function tireDisplayModel(c){return c?.manualTireEntry?String(c.model||""):String(tireRelatedRelease(c?.vin)?.model||c?.model||"")}
+function tireDisplayClient(c){return c?.manualTireEntry?String(c.client||""):String(tireRelatedRelease(c?.vin)?.client||c?.client||"")}
+
+function addCarToTires(){
+  const msg=$("#tiresAddMessage");
+  const raw=String($("#tiresAddVin")?.value||"").trim();
+  const vin=normalizeVin(raw);
+  const model=String($("#tiresAddModel")?.value||"").trim();
+  const client=String($("#tiresAddClient")?.value||"").trim();
+
+  if(msg){msg.textContent="";msg.className="message"}
+  if(vin.length<2){
+    if(msg){msg.textContent="Wpisz VIN albo numer rejestracyjny.";msg.className="message error"}
+    return;
+  }
+
+  const fleetCar=fleetCars.find(x=>normalizeVin(x.vin)===vin&&carBranch(x)===currentBranch&&x.status!=="WYJECHAŁ");
+  const manualCar=tireManualCarForVin(vin,currentBranch);
+
+  if((fleetCar&&tireWorkflowState(vin)!=="none") || (manualCar&&tireWorkflowState(vin)!=="none")){
+    if(msg){msg.textContent="Ten samochód jest już w module Opony.";msg.className="message error"}
+    return;
+  }
+
+  if(fleetCar){
+    setTireWorkflowState(vin,"replace");
+    if(msg){msg.textContent="Zlecenie dodane. Samochód trafił do „Do wymiany”.";msg.className="message ok"}
+  }else{
+    setTireWorkflowState(vin,"replace",{
+      manualData:{displayId:raw.toUpperCase(),model,client}
+    });
+    if(msg){msg.textContent="Samochód dodany ręcznie do „Do wymiany”. Nie został dodany do Listy samochodów.";msg.className="message ok"}
+  }
+
+  $("#tiresAddVin").value="";
+  if($("#tiresAddModel"))$("#tiresAddModel").value="";
+  if($("#tiresAddClient"))$("#tiresAddClient").value="";
+}
+function tireStageActionHtml(c,state){
+  const vin=escapeHtml(c.vin);
+  if(state==="replace"){
+    return `<div class="tires-actions"><button class="tires-toggle-btn" type="button" data-tires-state="done" data-tires-vin="${vin}">✓ Opony wymienione</button><button class="tires-secondary-btn danger" type="button" data-tires-remove="${vin}">Usuń ze zlecenia</button></div>`;
+  }
+  if(state==="done"){
+    return `<div class="tires-actions"><button class="tires-toggle-btn shipping" type="button" data-tires-state="shipping" data-tires-vin="${vin}">→ Do wysyłki</button><button class="tires-secondary-btn" type="button" data-tires-state="replace" data-tires-vin="${vin}">Cofnij do wymiany</button></div>`;
+  }
+  return `<div class="tires-actions"><button class="tires-secondary-btn" type="button" data-tires-state="done" data-tires-vin="${vin}">← Cofnij do wymienionych</button><button class="tires-secondary-btn danger" type="button" data-tires-remove="${vin}">Zakończ / usuń</button></div>`;
+}
+
+function renderTires(){
+  const q=String($("#tiresSearch")?.value||"").trim().toLowerCase();
+
+  const allFleetActive=fleetCars.filter(c=>carBranch(c)===currentBranch&&c.status!=="WYJECHAŁ");
+  const workflow=getTireWorkflowCars(currentBranch);
+  const replace=workflow.filter(c=>tireWorkflowState(c.vin)==="replace");
+  const done=workflow.filter(c=>tireWorkflowState(c.vin)==="done");
+  const shipping=workflow.filter(c=>tireWorkflowState(c.vin)==="shipping");
+
+  if($("#tiresCount"))$("#tiresCount").textContent=`${workflow.length} aut`;
+  if($("#tiresPendingCount"))$("#tiresPendingCount").textContent=replace.length;
+  if($("#tiresDoneCount"))$("#tiresDoneCount").textContent=done.length;
+  if($("#tiresShippingCount"))$("#tiresShippingCount").textContent=shipping.length;
+
+  if($("#tiresModuleSummary")){
+    $("#tiresModuleSummary").textContent=`Do wymiany: ${replace.length} • Wymienione: ${done.length} • Do wysyłki: ${shipping.length}`;
+  }
+  if($("#mobileTiresCount"))$("#mobileTiresCount").textContent=replace.length;
+  if($("#mobileTaskTires"))$("#mobileTaskTires").dataset.tone=replace.length?"red":"green";
+
+  const options=$("#tiresVinOptions");
+  if(options){
+    options.innerHTML=allFleetActive
+      .filter(c=>tireWorkflowState(c.vin)==="none")
+      .map(c=>`<option value="${escapeHtml(c.vin)}">${escapeHtml(tireDisplayModel(c))} ${escapeHtml(tireDisplayClient(c))}</option>`)
+      .join("");
+  }
+
+  document.querySelectorAll("[data-tires-stage]").forEach(btn=>btn.classList.toggle("active",btn.dataset.tiresStage===tiresStage));
+
+  const cfg={
+    replace:{title:"Do wymiany",kicker:"ETAP 1",rows:replace},
+    done:{title:"Wymienione",kicker:"ETAP 2",rows:done},
+    shipping:{title:"Do wysyłki",kicker:"ETAP 3",rows:shipping}
+  }[tiresStage]||{title:"Do wymiany",kicker:"ETAP 1",rows:replace};
+
+  if($("#tiresListTitle"))$("#tiresListTitle").textContent=cfg.title;
+  if($("#tiresListKicker"))$("#tiresListKicker").textContent=cfg.kicker;
+
+  const rows=cfg.rows.filter(c=>{
+    return !q||`${tireDisplayId(c)} ${tireDisplayClient(c)} ${tireDisplayModel(c)}`.toLowerCase().includes(q);
+  }).sort((a,b)=>tireDisplayId(a).localeCompare(tireDisplayId(b),"pl"));
+
+  const body=$("#tiresRows");if(!body)return;
+  body.innerHTML=rows.length?rows.map(c=>{
+    const state=tireWorkflowState(c.vin),meta=tiresChangeMeta(c.vin);
+    const labels={replace:"DO WYMIANY",done:"✓ OPONY WYMIENIONE",shipping:"DO WYSYŁKI"};
+    const metaText=meta.at?`${new Date(meta.at).toLocaleString("pl-PL")}${meta.by?` • ${escapeHtml(meta.by)}`:""}`:"—";
+    return `<tr class="tires-row-${state}">
+      <td class="vin-cell">${escapeHtml(tireDisplayId(c))}<div class="car-branch">${escapeHtml(branchLabel(c.branch||carBranch(c)))}</div>${c.manualTireEntry?'<div class="tires-manual-badge">DODANY RĘCZNIE</div>':""}</td>
+      <td><b>${escapeHtml(tireDisplayModel(c)||"—")}</b><div class="muted" style="margin-top:3px">${escapeHtml(tireDisplayClient(c)||"—")}</div></td>
+      <td><span class="tires-status ${state}">${labels[state]}</span></td>
+      <td>${metaText}</td>
+      <td>${tireStageActionHtml(c,state)}</td>
+    </tr>`;
+  }).join(""):`<tr><td colspan="5" style="padding:24px;text-align:center;color:#667085">Brak samochodów w sekcji „${escapeHtml(cfg.title)}”.</td></tr>`;
+
+  body.querySelectorAll("[data-tires-state]").forEach(btn=>btn.onclick=()=>setTireWorkflowState(btn.dataset.tiresVin,btn.dataset.tiresState));
+  body.querySelectorAll("[data-tires-remove]").forEach(btn=>btn.onclick=()=>{
+    const vin=btn.dataset.tiresRemove;
+    if(confirm(`Usunąć ${vin} z procesu Opony?`))setTireWorkflowState(vin,"none");
+  });
+
+  if(typeof scheduleMobileModuleUi==="function")scheduleMobileModuleUi();
 }
 
 /* ---------- BATTERY TESTS ---------- */
@@ -6557,6 +7055,14 @@ $("#backReleaseDay").onclick=()=>{renderDay();show("releaseDay")};
 
 
 
+$("#checkTiresReady").onchange=()=>{
+  const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
+  const checked=$("#checkTiresReady").checked;
+  r.tiresReady=checked;
+  setTiresChanged(r.vin,checked,{log:true,rerender:false});
+  saveRelease();updateCheckLook();renderReleaseHome();renderTomorrowReadyAlert();renderTires();
+};
+
 $("#checkFuelReady").onchange=()=>{
   const r=releaseData.find(x=>x.id===selectedVehicle);if(!r)return;
   r.fuelReady=$("#checkFuelReady").checked;
@@ -6636,6 +7142,12 @@ $("#addCarBtn").onclick=addCar;$("#newVin").onkeydown=e=>{if(e.key==="Enter")add
 $("#openBattery").onclick=()=>{if(!hasAccess("battery"))return;logAction("Otwarcie modułu","Testy akumulatorów");renderBattery();show("batteryView")};
 $("#backMainFromBattery").onclick=()=>show("mainHome");
 $("#batterySearch").oninput=renderBattery;
+if($("#openTires"))$("#openTires").onclick=()=>{if(!hasAccess("cars"))return;logAction("Otwarcie modułu","Opony");tiresStage="replace";renderTires();show("tiresView")};
+if($("#backMainFromTires"))$("#backMainFromTires").onclick=()=>show("mainHome");
+if($("#tiresSearch"))$("#tiresSearch").oninput=renderTires;
+if($("#tiresAddBtn"))$("#tiresAddBtn").onclick=addCarToTires;
+if($("#tiresAddVin"))$("#tiresAddVin").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();addCarToTires()}};
+document.querySelectorAll("[data-tires-stage]").forEach(btn=>btn.onclick=()=>{tiresStage=btn.dataset.tiresStage;renderTires()});
 
 
 $("#openWash").onclick=()=>{if(!hasAccess("wash"))return;logAction("Otwarcie modułu","Myjnia");renderWash();show("washView")};
