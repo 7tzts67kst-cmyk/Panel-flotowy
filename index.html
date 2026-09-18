@@ -6450,6 +6450,47 @@ body.tires-scanner-open{overflow:hidden}
   background:linear-gradient(to bottom,rgba(0,0,0,.05),transparent 28%,transparent 72%,rgba(0,0,0,.08));
 }
 
+
+/* ===== SKANER VIN v3 iPHONE ===== */
+.tires-scanner-version{
+  display:inline-flex;
+  margin-left:6px;
+  padding:3px 6px;
+  border-radius:999px;
+  background:#175cd3;
+  color:#fff;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.tires-scanner-photo{
+  padding:11px 17px 2px;
+}
+.tires-photo-btn{
+  width:100%;
+  min-height:46px;
+  border-color:#98b6e6!important;
+  background:#eef4ff!important;
+  color:#175cd3!important;
+  font-weight:1000!important;
+}
+.tires-scanner-photo>small{
+  display:block;
+  margin-top:6px;
+  color:#667085;
+  font-size:8px;
+  line-height:1.35;
+}
+@media(max-width:720px){
+  .tires-scanner-photo{
+    padding:10px 12px 2px!important;
+  }
+  .tires-photo-btn{
+    min-height:50px!important;
+    font-size:11px!important;
+  }
+}
+
 </style>
 <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
@@ -7389,7 +7430,7 @@ body.tires-scanner-open{overflow:hidden}
     <div class="tires-scanner-modal" role="dialog" aria-modal="true" aria-labelledby="tiresScannerTitle">
       <div class="tires-scanner-head">
         <div>
-          <small>OPONY • SKANER VIN</small>
+          <small>OPONY • SKANER VIN <b class="tires-scanner-version">v3 iPHONE</b></small>
           <h2 id="tiresScannerTitle">Zeskanuj VIN</h2>
           <span>Skieruj aparat na kod kreskowy VIN. Skaner będzie próbował aż odczyta pełne 17 znaków.</span>
         </div>
@@ -7406,6 +7447,14 @@ body.tires-scanner-open{overflow:hidden}
 
       <div class="tires-scanner-status" id="tiresScannerStatus">
         Uruchamianie aparatu…
+      </div>
+
+      <div class="tires-scanner-photo">
+        <input id="tiresScannerPhotoInput" type="file" accept="image/*" capture="environment" hidden>
+        <button class="btn tires-photo-btn" id="tiresScannerPhotoBtn" type="button">
+          📷 ZRÓB ZDJĘCIE KODU VIN
+        </button>
+        <small>Jeśli skanowanie na żywo nie zadziała, zrób zdjęcie samego kodu kreskowego.</small>
       </div>
 
       <div class="tires-scanner-manual">
@@ -11001,21 +11050,46 @@ function setTiresScannerStatus(message,type=""){
   status.className=`tires-scanner-status${type?` ${type}`:""}`;
 }
 
+function loadExternalScriptOnce(src){
+  return new Promise((resolve,reject)=>{
+    const existing=[...document.scripts].find(s=>s.src===src);
+    if(existing){
+      if(window.ZXingBrowser?.BrowserMultiFormatReader)return resolve();
+      existing.addEventListener("load",()=>resolve(),{once:true});
+      existing.addEventListener("error",()=>reject(new Error(`Błąd: ${src}`)),{once:true});
+      return;
+    }
+    const script=document.createElement("script");
+    script.src=src;
+    script.async=true;
+    script.crossOrigin="anonymous";
+    script.onload=()=>resolve();
+    script.onerror=()=>reject(new Error(`Nie udało się pobrać: ${src}`));
+    document.head.appendChild(script);
+  });
+}
+
 function loadTiresZXing(){
   if(window.ZXingBrowser?.BrowserMultiFormatReader)return Promise.resolve(window.ZXingBrowser);
   if(tiresScannerZXingPromise)return tiresScannerZXingPromise;
 
-  tiresScannerZXingPromise=new Promise((resolve,reject)=>{
-    const script=document.createElement("script");
-    script.src="https://unpkg.com/@zxing/browser@0.2.1/umd/zxing-browser.min.js";
-    script.async=true;
-    script.onload=()=>{
-      if(window.ZXingBrowser?.BrowserMultiFormatReader)resolve(window.ZXingBrowser);
-      else reject(new Error("ZXing nie został załadowany"));
-    };
-    script.onerror=()=>reject(new Error("Nie udało się pobrać skanera ZXing"));
-    document.head.appendChild(script);
-  });
+  const sources=[
+    "https://cdn.jsdelivr.net/npm/@zxing/browser@0.2.1/umd/zxing-browser.min.js",
+    "https://unpkg.com/@zxing/browser@0.2.1/umd/zxing-browser.min.js"
+  ];
+
+  tiresScannerZXingPromise=(async()=>{
+    let lastError=null;
+    for(const src of sources){
+      try{
+        await loadExternalScriptOnce(src);
+        if(window.ZXingBrowser?.BrowserMultiFormatReader)return window.ZXingBrowser;
+      }catch(err){lastError=err}
+    }
+    tiresScannerZXingPromise=null;
+    throw lastError||new Error("ZXing nie został załadowany");
+  })();
+
   return tiresScannerZXingPromise;
 }
 
@@ -11236,10 +11310,39 @@ async function openTiresVinScanner(){
     setTiresScannerStatus(
       denied
         ?"Brak dostępu do aparatu. Zezwól na kamerę w Safari albo wpisz VIN ręcznie poniżej."
-        :"Nie udało się uruchomić automatycznego skanera. Wpisz VIN ręcznie poniżej.",
+        :"Nie udało się uruchomić skanowania na żywo. Użyj przycisku „Zrób zdjęcie kodu VIN” albo wpisz VIN ręcznie.",
       "error"
     );
     manual?.focus();
+  }
+}
+
+async function scanTiresVinFromPhoto(file){
+  if(!file)return;
+  setTiresScannerStatus("Analizuję zdjęcie kodu VIN…");
+  try{
+    const ZX=await loadTiresZXing();
+    if(!ZX?.BrowserMultiFormatReader)throw new Error("Brak silnika skanera");
+
+    const reader=new ZX.BrowserMultiFormatReader();
+    const url=URL.createObjectURL(file);
+    try{
+      const result=await reader.decodeFromImageUrl(url);
+      let raw="";
+      try{
+        raw=typeof result?.getText==="function"?result.getText():(result?.text||result?.rawValue||String(result||""));
+      }catch(e){}
+      if(!applyScannedTireVin(raw,{silentInvalid:false})){
+        setTiresScannerStatus("Na zdjęciu nie znaleziono pełnego VIN-u. Zrób zdjęcie bliżej kodu kreskowego albo wpisz VIN ręcznie.","error");
+      }
+    }finally{
+      URL.revokeObjectURL(url);
+    }
+  }catch(err){
+    setTiresScannerStatus("Nie udało się odczytać kodu ze zdjęcia. Zrób wyraźniejsze zdjęcie albo wpisz VIN ręcznie.","error");
+  }finally{
+    const inp=$("#tiresScannerPhotoInput");
+    if(inp)inp.value="";
   }
 }
 
@@ -13733,6 +13836,8 @@ if($("#tiresScanVinBtn"))$("#tiresScanVinBtn").onclick=openTiresVinScanner;
 if($("#tiresScannerClose"))$("#tiresScannerClose").onclick=closeTiresVinScanner;
 if($("#tiresScannerCancel"))$("#tiresScannerCancel").onclick=closeTiresVinScanner;
 if($("#tiresScannerUseManual"))$("#tiresScannerUseManual").onclick=useManualTiresScannerVin;
+if($("#tiresScannerPhotoBtn"))$("#tiresScannerPhotoBtn").onclick=()=>$("#tiresScannerPhotoInput")?.click();
+if($("#tiresScannerPhotoInput"))$("#tiresScannerPhotoInput").onchange=e=>scanTiresVinFromPhoto(e.target.files?.[0]||null);
 if($("#tiresScannerManualVin"))$("#tiresScannerManualVin").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();useManualTiresScannerVin()}};
 if($("#tiresScannerBackdrop"))$("#tiresScannerBackdrop").onclick=e=>{if(e.target===$("#tiresScannerBackdrop"))closeTiresVinScanner()};
 if($("#tiresAddVin"))$("#tiresAddVin").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();addCarToTires()}};
