@@ -4903,89 +4903,1523 @@ body.warehouse-history-open{overflow:hidden}
 }
 
 
-/* ===== DOPOSAŻENIA — PRZEJŚCIE DO ARCHIWUM PO ZAMKNIĘCIU ===== */
-#mountClosedRows tr.mount-just-closed td{
-  animation:mountJustClosedPulse 2.4s ease-out;
+/* ===== LISTA SAMOCHODÓW — KOPIOWANIE VIN + LOKALIZACJA ===== */
+.car-vin-line{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-width:0;
 }
-@keyframes mountJustClosedPulse{
-  0%,25%{
-    background:#c8f0d4!important;
-    box-shadow:inset 0 0 0 2px #17803d;
+.car-vin-line>span{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.vin-copy-btn{
+  flex:0 0 25px;
+  width:25px;
+  height:25px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:1px solid #d0d5dd;
+  border-radius:7px;
+  background:#fff;
+  color:#475467;
+  font-size:13px;
+  font-weight:1000;
+  line-height:1;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.vin-copy-btn:hover{
+  border-color:#175cd3;
+  background:#eef4ff;
+  color:#175cd3;
+}
+.vin-copy-btn.copied{
+  border-color:#86c99a;
+  background:#eaf9ef;
+  color:#137a3d;
+}
+@media(max-width:720px){
+  .vin-copy-btn{
+    width:29px!important;
+    height:29px!important;
+    flex-basis:29px!important;
+    font-size:15px!important;
   }
-  100%{
-    background:#eaf8ee!important;
-    box-shadow:inset 0 0 0 0 transparent;
+}
+
+
+/* ===== ADMIN V2 — UŻYTKOWNICY JAKO OSOBNY MODUŁ ===== */
+.admin-launch-grid{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:12px;
+  margin:14px 0;
+}
+.admin-launch-card{
+  min-height:126px;
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:13px;
+  padding:16px;
+  border:1px solid #dfe4ea;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(16,24,40,.045);
+}
+button.admin-launch-card{
+  width:100%;
+  text-align:left;
+  cursor:pointer;
+  color:inherit;
+}
+.admin-launch-card.users:hover{
+  border-color:#98b6e6;
+  box-shadow:0 8px 24px rgba(23,92,211,.08);
+}
+.admin-launch-icon{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:#eef4ff;
+  color:#175cd3;
+  font-size:20px;
+  font-weight:1000;
+}
+.admin-launch-card.bonus .admin-launch-icon{
+  background:#f3eefc;
+  color:#6941c6;
+  font-size:11px;
+}
+.admin-launch-copy small{
+  display:block;
+  color:#98a2b3;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.admin-launch-copy strong{
+  display:block;
+  margin-top:3px;
+  color:#101828;
+  font-size:17px;
+}
+.admin-launch-copy span{
+  display:block;
+  margin-top:5px;
+  color:#667085;
+  font-size:9px;
+  line-height:1.35;
+}
+.admin-launch-stat{
+  min-width:72px;
+  text-align:right;
+}
+.admin-launch-stat b{
+  display:block;
+  color:#175cd3;
+  font-size:26px;
+}
+.admin-launch-stat span{
+  color:#98a2b3;
+  font-size:7px;
+  font-weight:900;
+}
+.admin-launch-card>i{
+  color:#98a2b3;
+  font-size:20px;
+  font-style:normal;
+}
+
+.admin-users-kicker{
+  margin-bottom:3px;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.admin-users-overview{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  margin:13px 0;
+}
+.admin-users-overview>div{
+  padding:13px 14px;
+  border:1px solid #e2e7ec;
+  border-radius:14px;
+  background:#fff;
+}
+.admin-users-overview small{
+  display:block;
+  color:#98a2b3;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.09em;
+}
+.admin-users-overview b{
+  display:block;
+  margin-top:3px;
+  color:#101828;
+  font-size:25px;
+}
+.admin-users-overview span{
+  color:#667085;
+  font-size:8px;
+}
+
+.admin-user-add-card{
+  padding:15px;
+  border-radius:17px;
+  background:#111827;
+  color:#fff;
+  margin-bottom:13px;
+}
+.admin-user-add-head small{
+  display:block;
+  color:#93c5fd;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.admin-user-add-head strong{
+  display:block;
+  margin-top:3px;
+  font-size:17px;
+}
+.admin-user-add-head span{
+  display:block;
+  margin-top:4px;
+  color:#cbd5e1;
+  font-size:8px;
+}
+.admin-user-add-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr 1fr auto;
+  gap:8px;
+  align-items:end;
+  margin-top:12px;
+}
+.admin-user-add-grid label{color:#cbd5e1!important}
+.admin-user-add-grid input,
+.admin-user-add-grid select{background:#fff!important;color:#101828!important}
+.admin-user-add-btn{min-height:42px!important}
+
+.admin-users-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin:13px 0 9px;
+}
+.admin-users-search{
+  width:min(420px,100%);
+}
+.admin-users-toolbar-note{
+  color:#667085;
+  font-size:8px;
+  text-align:right;
+}
+
+.admin-user-cards{
+  display:grid;
+  gap:11px;
+}
+.admin-user-card{
+  overflow:hidden;
+  border:1px solid #dfe4ea;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 5px 16px rgba(16,24,40,.035);
+}
+.admin-user-card-head{
+  display:grid;
+  grid-template-columns:45px minmax(0,1fr) auto;
+  gap:11px;
+  align-items:center;
+  padding:13px 15px;
+  background:#f8fafc;
+  border-bottom:1px solid #e4e7ec;
+}
+.admin-user-avatar{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:#111827;
+  color:#fff;
+  font-size:12px;
+  font-weight:1000;
+}
+.admin-user-identity strong{
+  display:block;
+  color:#101828;
+  font-size:13px;
+}
+.admin-user-identity span{
+  display:block;
+  margin-top:2px;
+  color:#667085;
+  font-size:8px;
+}
+.admin-user-identity em{
+  display:inline-flex;
+  margin-top:5px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#eef4ff;
+  color:#175cd3;
+  font-size:7px;
+  font-weight:1000;
+  font-style:normal;
+}
+.admin-user-card-status{
+  display:grid;
+  justify-items:end;
+  gap:6px;
+}
+.admin-user-card-status .admin-permission-count{
+  color:#475467;
+  font-size:8px;
+}
+
+.admin-user-section{
+  padding:13px 15px;
+  border-top:1px solid #f0f2f4;
+}
+.admin-user-card-head + .admin-user-section{border-top:0}
+.admin-user-section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:10px;
+  margin-bottom:9px;
+}
+.admin-user-section-title small{
+  display:block;
+  color:#98a2b3;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.09em;
+}
+.admin-user-section-title strong{
+  display:block;
+  margin-top:2px;
+  color:#344054;
+  font-size:11px;
+}
+.admin-user-account-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr .8fr auto;
+  gap:8px;
+  align-items:end;
+}
+.admin-role-readonly>div{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  padding:8px 10px;
+  border:1px solid #e4e7ec;
+  border-radius:9px;
+  background:#f8fafc;
+  color:#475467;
+  font-size:9px;
+  font-weight:900;
+}
+.admin-permission-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.admin-permission-actions .btn{
+  min-height:32px;
+  padding:6px 9px;
+  font-size:8px;
+}
+.admin-permission-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+}
+.admin-permission-tile{
+  min-height:68px;
+  display:grid;
+  grid-template-columns:31px minmax(0,1fr) 31px;
+  align-items:center;
+  gap:8px;
+  padding:9px;
+  border:1px solid #dfe4ea;
+  border-radius:12px;
+  background:#fff;
+  color:#344054;
+  text-align:left;
+  cursor:pointer;
+}
+.admin-permission-tile:hover{
+  border-color:#aab8ca;
+  background:#fafcff;
+}
+.admin-permission-tile.active{
+  border-color:#84a9e5;
+  background:#eef4ff;
+}
+.admin-permission-tile.locked{
+  cursor:not-allowed;
+  opacity:.82;
+}
+.admin-permission-icon{
+  width:31px;
+  height:31px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:#f2f4f7;
+  color:#475467;
+  font-size:13px;
+  font-weight:1000;
+}
+.admin-permission-tile.active .admin-permission-icon{
+  background:#175cd3;
+  color:#fff;
+}
+.admin-permission-copy strong{
+  display:block;
+  color:#344054;
+  font-size:9px;
+}
+.admin-permission-copy small{
+  display:block;
+  margin-top:3px;
+  color:#98a2b3;
+  font-size:7px;
+  line-height:1.25;
+}
+.admin-permission-switch{
+  width:30px;
+  height:18px;
+  padding:2px;
+  display:flex;
+  justify-content:flex-start;
+  border-radius:999px;
+  background:#d0d5dd;
+  transition:.15s ease;
+}
+.admin-permission-switch i{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.15);
+}
+.admin-permission-tile.active .admin-permission-switch{
+  justify-content:flex-end;
+  background:#175cd3;
+}
+.admin-permission-savebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed #dfe4ea;
+}
+.admin-user-save-state{
+  color:#667085;
+  font-size:8px;
+  font-weight:800;
+}
+.admin-user-save-state.pending{
+  color:#b54708;
+}
+.admin-user-section.password .admin-password-controls{
+  margin:0!important;
+}
+.admin-users-empty{
+  padding:28px;
+  border:1px dashed #d0d5dd;
+  border-radius:14px;
+  text-align:center;
+  color:#667085;
+  font-size:10px;
+}
+
+@media(max-width:1050px){
+  .admin-permission-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .admin-user-account-grid{grid-template-columns:1fr 1fr}
+  .admin-user-account-grid>.btn{min-height:42px}
+}
+@media(max-width:720px){
+  .admin-launch-grid{grid-template-columns:1fr!important}
+  .admin-launch-card{
+    min-height:110px!important;
+    grid-template-columns:43px minmax(0,1fr) auto!important;
+    padding:12px!important;
+  }
+  .admin-launch-icon{width:43px!important;height:43px!important;border-radius:12px!important}
+  .admin-launch-card>i{display:none!important}
+  .admin-launch-stat b{font-size:22px!important}
+  .admin-launch-card.bonus .btn{grid-column:2/-1;width:100%!important}
+  .admin-users-overview{grid-template-columns:repeat(3,1fr)!important;gap:5px!important}
+  .admin-users-overview>div{padding:9px!important}
+  .admin-users-overview small{font-size:6px!important}
+  .admin-users-overview b{font-size:20px!important}
+  .admin-users-overview span{font-size:7px!important}
+  .admin-user-add-grid{grid-template-columns:1fr!important}
+  .admin-user-add-btn{width:100%!important}
+  .admin-users-toolbar{display:grid!important;grid-template-columns:1fr!important}
+  .admin-users-toolbar-note{text-align:left!important}
+  .admin-user-card-head{
+    grid-template-columns:39px minmax(0,1fr)!important;
+    padding:11px!important;
+  }
+  .admin-user-avatar{width:39px!important;height:39px!important}
+  .admin-user-card-status{
+    grid-column:1/-1!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+  }
+  .admin-user-section{padding:11px!important}
+  .admin-user-account-grid{grid-template-columns:1fr!important}
+  .admin-permission-grid{grid-template-columns:1fr!important}
+  .admin-permission-tile{min-height:62px!important}
+  .admin-permission-savebar{
+    align-items:stretch!important;
+    flex-direction:column!important;
+  }
+  .admin-permission-savebar .btn{width:100%!important}
+  .permission-title{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  .admin-permission-actions{width:100%!important}
+  .admin-permission-actions .btn{flex:1!important}
+}
+
+
+/* ===== LISTA SAMOCHODÓW — NR ZAWIESZKI ===== */
+.car-hanger-no{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:52px;
+  min-height:30px;
+  padding:6px 10px;
+  border:1px solid #c8d7ee;
+  border-radius:9px;
+  background:#f1f6fd;
+  color:#1849a9;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.03em;
+  white-space:nowrap;
+}
+.car-hanger-empty{
+  color:#98a2b3;
+  font-weight:900;
+}
+@media(max-width:720px){
+  .car-hanger-no{
+    min-width:0!important;
+    min-height:28px!important;
+    padding:5px 8px!important;
+    font-size:10px!important;
   }
 }
 
 
-/* ===== DOPOSAŻENIA — JEDNOZNACZNE STATUSY ===== */
-.mount-status-waiting{
-  display:inline-flex!important;
-  background:#fff0d5!important;
-  color:#a84306!important;
-  border:1px solid #efc789!important;
+/* ===== LISTA SAMOCHODÓW — TYLKO DODAWANIE AUTA ===== */
+.vin-tools.single{
+  grid-template-columns:1fr!important;
 }
-.mount-status-closed{
-  display:inline-flex!important;
-  background:#dff5e6!important;
-  color:#137a3d!important;
-  border:1px solid #a9d9b7!important;
-  font-weight:1000!important;
-  letter-spacing:.04em;
+.vin-tools.single .add-car-only{
+  width:100%;
 }
-#mountClosedList tr.mount-closed-row .mount-status-closed{
-  background:#cfeeda!important;
-  color:#0f6a34!important;
+.vin-tools.single .form-row{
+  align-items:end;
+}
+@media(max-width:720px){
+  .vin-tools.single .form-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+  .vin-tools.single #addCarBtn{
+    width:100%!important;
+  }
 }
 
 
-/* ===== ARCHIWUM DOPOSAŻEŃ — LICZNIK GODZIN ===== */
-.mount-archive-hours-counter{
+/* ===== LISTA SAMOCHODÓW — EDYTOWALNY NR ZAWIESZKI ===== */
+.car-hanger-cell{
+  min-width:150px;
+}
+.car-hanger-input{
+  width:100%;
+  min-width:120px;
+  max-width:170px;
+  min-height:34px;
+  padding:7px 9px;
+  border:1px solid #cfd7e3;
+  border-radius:9px;
+  background:#fff;
+  color:#101828;
+  font-size:11px;
+  font-weight:900;
+  line-height:1.2;
+  box-sizing:border-box;
+}
+.car-hanger-input::placeholder{
+  color:#98a2b3;
+  font-weight:700;
+}
+.car-hanger-input:focus{
+  outline:none;
+  border-color:#175cd3;
+  box-shadow:0 0 0 3px rgba(23,92,211,.10);
+}
+.car-hanger-input.saved{
+  border-color:#86c99a;
+  background:#f0fbf3;
+  color:#137a3d;
+}
+@media(max-width:720px){
+  #carsView .car-hanger-cell{
+    align-items:center!important;
+  }
+  #carsView .car-hanger-input{
+    width:min(100%,190px)!important;
+    min-width:0!important;
+    max-width:190px!important;
+    min-height:38px!important;
+    font-size:12px!important;
+  }
+}
+
+
+/* ===== DODAJ SAMOCHÓD — ROZBUDOWANY FORMULARZ ===== */
+.add-car-only{
+  padding:17px!important;
+}
+.add-car-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:13px;
+}
+.add-car-heading small{
+  display:block;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.add-car-heading h3{
+  margin-top:3px;
+  font-size:19px;
+}
+.add-car-heading span{
+  display:block;
+  margin-top:4px;
+  color:#667085;
+  font-size:9px;
+}
+.add-car-grid{
+  display:grid;
+  grid-template-columns:minmax(260px,.8fr) minmax(180px,.5fr) minmax(280px,1.4fr);
+  gap:10px;
+  align-items:start;
+}
+.add-car-vin{grid-column:1}
+.add-car-hanger{grid-column:2}
+.add-car-equipment{
+  grid-column:3;
+  grid-row:1 / span 2;
+}
+.add-car-equipment textarea{
+  width:100%;
+  min-height:145px;
+  height:145px;
+  padding:12px 13px;
+  border:1px solid #cfd7e3;
+  border-radius:11px;
+  background:#fff;
+  color:#101828;
+  font:inherit;
+  font-size:12px;
+  line-height:1.45;
+  resize:vertical;
+  box-sizing:border-box;
+}
+.add-car-equipment textarea:focus{
+  outline:none;
+  border-color:#175cd3;
+  box-shadow:0 0 0 3px rgba(23,92,211,.10);
+}
+.add-car-equipment-hint{
+  display:block;
+  margin-top:5px;
+  color:#98a2b3;
+  font-size:8px;
+}
+.add-car-options{
+  grid-column:1 / 3;
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) minmax(220px,1fr);
+  gap:9px;
+  align-items:stretch;
+}
+.transport-damage-toggle{
+  min-height:64px;
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:9px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid #d0d5dd;
+  border-radius:12px;
+  background:#fff;
+  color:#475467;
+  text-align:left;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.transport-damage-check{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:#f2f4f7;
+  color:#667085;
+  font-size:16px;
+  font-weight:1000;
+}
+.transport-damage-toggle strong{
+  display:block;
+  font-size:10px;
+}
+.transport-damage-toggle small{
+  display:block;
+  margin-top:3px;
+  color:#98a2b3;
+  font-size:7px;
+  line-height:1.3;
+}
+.transport-damage-toggle.active{
+  border-color:#e26a6a;
+  background:#fff1f1;
+  color:#b42318;
+}
+.transport-damage-toggle.active .transport-damage-check{
+  background:#b42318;
+  color:#fff;
+}
+.transport-damage-toggle.active small{
+  color:#b54747;
+}
+.add-car-submit{
+  min-height:64px!important;
+  width:100%!important;
+  font-size:10px!important;
+}
+.car-transport-damage-badge{
+  display:inline-flex;
+  margin-top:4px;
+  padding:4px 7px;
+  border:1px solid #f2b8b5;
+  border-radius:999px;
+  background:#fff0f0;
+  color:#b42318;
+  font-size:7px;
+  font-weight:1000;
+  letter-spacing:.05em;
+}
+@media(max-width:1050px) and (min-width:721px){
+  .add-car-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .add-car-equipment{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{
+    grid-column:1/-1!important;
+  }
+}
+@media(max-width:720px){
+  .add-car-only{padding:12px!important}
+  .add-car-grid{
+    grid-template-columns:1fr!important;
+  }
+  .add-car-vin,
+  .add-car-hanger,
+  .add-car-equipment,
+  .add-car-options{
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{
+    grid-template-columns:1fr!important;
+  }
+  .add-car-equipment textarea{
+    min-height:175px!important;
+    height:175px!important;
+    font-size:13px!important;
+  }
+  .transport-damage-toggle,
+  .add-car-submit{
+    min-height:58px!important;
+  }
+}
+
+
+/* ===== LISTA SAMOCHODÓW — PEŁNA EDYCJA ===== */
+.car-edit-btn{
+  min-height:31px;
+  padding:6px 9px;
+  border:1px solid #b8cceb;
+  border-radius:9px;
+  background:#eef4ff;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  cursor:pointer;
+}
+.car-edit-btn:hover{
+  background:#dfeaff;
+  border-color:#8faee0;
+}
+.car-edit-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:2600;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(15,23,42,.58);
+  backdrop-filter:blur(3px);
+}
+.car-edit-backdrop[hidden]{display:none!important}
+body.car-edit-open{overflow:hidden}
+.car-edit-modal{
+  width:min(820px,96vw);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 28px 80px rgba(15,23,42,.3);
+}
+.car-edit-head{
+  position:sticky;
+  top:0;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 18px;
+  border-bottom:1px solid #e4e7ec;
+  background:#fff;
+}
+.car-edit-head small{
+  display:block;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.car-edit-head h2{
+  margin-top:3px;
+  color:#101828;
+  font-size:20px;
+}
+.car-edit-head span{
+  display:block;
+  margin-top:4px;
+  color:#667085;
+  font-size:9px;
+}
+.car-edit-close{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  flex:0 0 36px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  background:#fff;
+  color:#475467;
+  font-size:22px;
+  cursor:pointer;
+}
+.car-edit-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  padding:16px 18px 10px;
+}
+.car-edit-equipment{
+  grid-column:1/-1;
+}
+.car-edit-equipment textarea{
+  width:100%;
+  min-height:145px;
+  padding:11px 12px;
+  border:1px solid #cfd7e3;
+  border-radius:10px;
+  background:#fff;
+  color:#101828;
+  font:inherit;
+  font-size:12px;
+  line-height:1.45;
+  resize:vertical;
+  box-sizing:border-box;
+}
+.car-edit-equipment textarea:focus{
+  outline:none;
+  border-color:#175cd3;
+  box-shadow:0 0 0 3px rgba(23,92,211,.10);
+}
+.car-edit-equipment small{
+  display:block;
+  margin-top:5px;
+  color:#98a2b3;
+  font-size:8px;
+}
+.car-edit-damage{
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr);
+  gap:9px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid #d0d5dd;
+  border-radius:12px;
+  background:#fff;
+  color:#475467;
+  text-align:left;
+  cursor:pointer;
+}
+.car-edit-damage>span{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:#f2f4f7;
+  color:#667085;
+  font-size:16px;
+  font-weight:1000;
+}
+.car-edit-damage strong{display:block;font-size:10px}
+.car-edit-damage small{display:block;margin-top:3px;color:#98a2b3;font-size:7px}
+.car-edit-damage.active{
+  border-color:#e26a6a;
+  background:#fff1f1;
+  color:#b42318;
+}
+.car-edit-damage.active>span{
+  background:#b42318;
+  color:#fff;
+}
+.car-edit-damage.active small{color:#b54747}
+#carEditMessage{margin:0 18px 8px}
+.car-edit-footer{
+  position:sticky;
+  bottom:0;
   display:flex;
   justify-content:flex-end;
-  margin:10px 0 14px;
+  gap:8px;
+  padding:12px 18px 16px;
+  border-top:1px solid #e4e7ec;
+  background:#fff;
 }
-.mount-archive-hours-counter>div{
-  min-width:280px;
-  padding:14px 18px;
-  border:1px solid #c9d8ef;
-  border-radius:16px;
-  background:linear-gradient(135deg,#f7faff,#eef4ff);
-  box-shadow:0 6px 18px rgba(23,92,211,.06);
+.car-edit-footer .btn{min-width:130px}
+@media(max-width:720px){
+  .car-edit-backdrop{padding:0!important;align-items:end!important}
+  .car-edit-modal{
+    width:100%!important;
+    max-height:94vh!important;
+    border-radius:20px 20px 0 0!important;
+  }
+  .car-edit-grid{grid-template-columns:1fr!important;padding:12px!important}
+  .car-edit-equipment,.car-edit-damage{grid-column:1!important}
+  .car-edit-equipment textarea{min-height:170px!important;font-size:13px!important}
+  #carEditMessage{margin:0 12px 8px!important}
+  .car-edit-footer{padding:10px 12px 14px!important}
+  .car-edit-footer .btn{flex:1!important;min-width:0!important}
 }
-.mount-archive-hours-counter small{
+
+
+/* ===== DODAJ SAMOCHÓD — NAZWA FIRMY ===== */
+.add-car-grid{
+  grid-template-columns:minmax(240px,.85fr) minmax(170px,.55fr) minmax(220px,.75fr) minmax(300px,1.4fr)!important;
+}
+.add-car-vin{grid-column:1!important}
+.add-car-hanger{grid-column:2!important}
+.add-car-company{grid-column:3!important}
+.add-car-equipment{
+  grid-column:4!important;
+  grid-row:1 / span 2!important;
+}
+.add-car-options{
+  grid-column:1 / 4!important;
+}
+@media(max-width:1180px) and (min-width:721px){
+  .add-car-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .add-car-vin,
+  .add-car-hanger,
+  .add-car-company{
+    grid-column:auto!important;
+  }
+  .add-car-equipment{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{
+    grid-column:1/-1!important;
+  }
+}
+@media(max-width:720px){
+  .add-car-company{grid-column:1!important}
+}
+
+
+/* ===== DODAJ SAMOCHÓD — KLIENT + FIRMA ===== */
+.add-car-grid{
+  grid-template-columns:minmax(220px,.85fr) minmax(150px,.52fr) minmax(190px,.68fr) minmax(190px,.72fr) minmax(300px,1.35fr)!important;
+}
+.add-car-vin{grid-column:1!important}
+.add-car-hanger{grid-column:2!important}
+.add-car-client{grid-column:3!important}
+.add-car-company{grid-column:4!important}
+.add-car-equipment{
+  grid-column:5!important;
+  grid-row:1 / span 2!important;
+}
+.add-car-options{
+  grid-column:1 / 5!important;
+}
+@media(max-width:1280px) and (min-width:721px){
+  .add-car-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .add-car-vin,
+  .add-car-hanger,
+  .add-car-client,
+  .add-car-company{
+    grid-column:auto!important;
+  }
+  .add-car-equipment{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{
+    grid-column:1/-1!important;
+  }
+}
+@media(max-width:720px){
+  .add-car-client,
+  .add-car-company{
+    grid-column:1!important;
+  }
+}
+
+
+/* ===== DODAJ SAMOCHÓD — BEZ NAZWY FIRMY ===== */
+.add-car-grid{
+  grid-template-columns:minmax(240px,.9fr) minmax(170px,.55fr) minmax(220px,.75fr) minmax(320px,1.4fr)!important;
+}
+.add-car-vin{grid-column:1!important}
+.add-car-hanger{grid-column:2!important}
+.add-car-client{grid-column:3!important}
+.add-car-equipment{
+  grid-column:4!important;
+  grid-row:1 / span 2!important;
+}
+.add-car-options{
+  grid-column:1 / 4!important;
+}
+@media(max-width:1180px) and (min-width:721px){
+  .add-car-grid{grid-template-columns:1fr 1fr!important}
+  .add-car-vin,
+  .add-car-hanger,
+  .add-car-client{grid-column:auto!important}
+  .add-car-equipment{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{grid-column:1/-1!important}
+}
+@media(max-width:720px){
+  .add-car-client{grid-column:1!important}
+}
+
+/* ===== LISTA SAMOCHODÓW — KLIENT ===== */
+.car-client-cell{
+  min-width:150px;
+  max-width:240px;
+  color:#344054;
+  font-size:10px;
+  font-weight:900;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.car-client-empty{
+  color:#98a2b3;
+  font-weight:800;
+}
+@media(max-width:720px){
+  #carsView .car-client-cell{
+    max-width:none!important;
+    font-size:11px!important;
+  }
+}
+
+
+/* ===== PODGLĄD DOPOSAŻENIA — DUŻE POLE TEKSTOWE ===== */
+.car-equipment-preview-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:8px;
+  min-height:30px;
+  padding:6px 9px;
+  border:1px solid #b8cceb;
+  border-radius:9px;
+  background:#eef4ff;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  cursor:pointer;
+}
+.car-equipment-preview-btn:hover{
+  background:#dfeaff;
+  border-color:#8faee0;
+}
+
+.equipment-preview-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:2650;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(15,23,42,.58);
+  backdrop-filter:blur(3px);
+}
+.equipment-preview-backdrop[hidden]{display:none!important}
+body.equipment-preview-open{overflow:hidden}
+
+.equipment-preview-modal{
+  width:min(720px,96vw);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 28px 80px rgba(15,23,42,.3);
+}
+.equipment-preview-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 18px;
+  border-bottom:1px solid #e4e7ec;
+}
+.equipment-preview-head small{
   display:block;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.equipment-preview-head h2{
+  margin-top:3px;
+  color:#101828;
+  font-size:20px;
+}
+.equipment-preview-head span{
+  display:block;
+  margin-top:4px;
+  color:#667085;
+  font-size:9px;
+}
+.equipment-preview-close{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  flex:0 0 36px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  background:#fff;
+  color:#475467;
+  font-size:22px;
+  cursor:pointer;
+}
+.equipment-preview-body{
+  padding:16px 18px;
+}
+.equipment-preview-field textarea{
+  width:100%;
+  min-height:180px;
+  height:180px;
+  padding:12px 13px;
+  border:1px solid #cfd7e3;
+  border-radius:11px;
+  background:#fff;
+  color:#101828;
+  font:inherit;
+  font-size:12px;
+  line-height:1.45;
+  resize:vertical;
+  box-sizing:border-box;
+}
+.equipment-preview-field textarea:focus{
+  outline:none;
+  border-color:#175cd3;
+  box-shadow:0 0 0 3px rgba(23,92,211,.10);
+}
+.equipment-preview-field small{
+  display:block;
+  margin-top:5px;
+  color:#98a2b3;
+  font-size:8px;
+}
+.equipment-preview-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  padding:12px 18px 16px;
+  border-top:1px solid #e4e7ec;
+}
+.equipment-preview-footer .btn{
+  min-width:130px;
+}
+@media(max-width:720px){
+  .equipment-preview-backdrop{
+    padding:0!important;
+    align-items:end!important;
+  }
+  .equipment-preview-modal{
+    width:100%!important;
+    max-height:92vh!important;
+    border-radius:20px 20px 0 0!important;
+  }
+  .equipment-preview-body{
+    padding:12px!important;
+  }
+  .equipment-preview-field textarea{
+    min-height:210px!important;
+    height:210px!important;
+    font-size:13px!important;
+  }
+  .equipment-preview-footer{
+    padding:10px 12px 14px!important;
+  }
+  .equipment-preview-footer .btn{
+    flex:1!important;
+    min-width:0!important;
+  }
+}
+
+
+/* ===== DODAJ SAMOCHÓD — WYBÓR ODDZIAŁU ===== */
+.add-car-grid{
+  grid-template-columns:minmax(220px,.85fr) minmax(150px,.52fr) minmax(190px,.68fr) minmax(180px,.62fr) minmax(320px,1.35fr)!important;
+}
+.add-car-vin{grid-column:1!important}
+.add-car-hanger{grid-column:2!important}
+.add-car-client{grid-column:3!important}
+.add-car-branch{grid-column:4!important}
+.add-car-equipment{
+  grid-column:5!important;
+  grid-row:1 / span 2!important;
+}
+.add-car-options{
+  grid-column:1 / 5!important;
+}
+.add-car-branch select{
+  width:100%;
+  min-height:42px;
+}
+@media(max-width:1280px) and (min-width:721px){
+  .add-car-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .add-car-vin,
+  .add-car-hanger,
+  .add-car-client,
+  .add-car-branch{
+    grid-column:auto!important;
+  }
+  .add-car-equipment{
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+  }
+  .add-car-options{
+    grid-column:1/-1!important;
+  }
+}
+@media(max-width:720px){
+  .add-car-branch{
+    grid-column:1!important;
+  }
+}
+
+
+/* ===== OPONY — SKANER VIN ===== */
+.tires-vin-input-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:7px;
+  align-items:stretch;
+}
+.tires-scan-btn{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:8px 11px;
+  border:1px solid #91afe1;
+  border-radius:10px;
+  background:#eef4ff;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.tires-scan-btn:hover{
+  background:#dfeaff;
+  border-color:#6f96d5;
+}
+.tires-scan-icon{
+  font-size:16px;
+  line-height:1;
+}
+
+.tires-scanner-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:2800;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(15,23,42,.72);
+  backdrop-filter:blur(4px);
+}
+.tires-scanner-backdrop[hidden]{display:none!important}
+body.tires-scanner-open{overflow:hidden}
+.tires-scanner-modal{
+  width:min(720px,96vw);
+  max-height:94vh;
+  overflow:auto;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 28px 90px rgba(0,0,0,.35);
+}
+.tires-scanner-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:15px 17px;
+  border-bottom:1px solid #e4e7ec;
+}
+.tires-scanner-head small{
+  display:block;
+  color:#175cd3;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.1em;
+}
+.tires-scanner-head h2{
+  margin-top:3px;
+  color:#101828;
+  font-size:20px;
+}
+.tires-scanner-head span{
+  display:block;
+  margin-top:4px;
+  color:#667085;
+  font-size:9px;
+}
+.tires-scanner-close{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  display:grid;
+  place-items:center;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  background:#fff;
+  color:#475467;
+  font-size:22px;
+  cursor:pointer;
+}
+.tires-scanner-camera{
+  position:relative;
+  margin:14px 17px 8px;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  min-height:260px;
+  border-radius:16px;
+  background:#0b1220;
+}
+.tires-scanner-camera video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.tires-scanner-frame{
+  position:absolute;
+  inset:50% auto auto 50%;
+  width:min(84%,560px);
+  height:96px;
+  transform:translate(-50%,-50%);
+  border:2px solid rgba(255,255,255,.92);
+  border-radius:14px;
+  box-shadow:0 0 0 999px rgba(0,0,0,.22);
+  pointer-events:none;
+}
+.tires-scanner-frame:before,
+.tires-scanner-frame:after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  height:2px;
+  background:#ef4444;
+  box-shadow:0 0 12px rgba(239,68,68,.7);
+}
+.tires-scanner-frame:before{top:50%}
+.tires-scanner-frame span{
+  position:absolute;
+  inset:-2px;
+  border-radius:14px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);
+}
+.tires-scanner-camera-label{
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(15,23,42,.78);
+  color:#fff;
+  font-size:8px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.tires-scanner-status{
+  margin:8px 17px 0;
+  padding:10px 11px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  background:#f8fafc;
+  color:#475467;
+  font-size:9px;
+  font-weight:800;
+  line-height:1.4;
+}
+.tires-scanner-status.ok{
+  border-color:#b7dfc3;
+  background:#effaf2;
+  color:#137a3d;
+}
+.tires-scanner-status.warning{
+  border-color:#efd09d;
+  background:#fff8ea;
+  color:#9a4b08;
+}
+.tires-scanner-status.error{
+  border-color:#f0bbb8;
+  background:#fff1f0;
+  color:#b42318;
+}
+.tires-scanner-manual{
+  padding:13px 17px 4px;
+}
+.tires-scanner-manual>label{
+  display:block;
+  margin-bottom:6px;
   color:#667085;
   font-size:8px;
   font-weight:1000;
   letter-spacing:.08em;
 }
-.mount-archive-hours-counter strong{
-  display:block;
-  margin-top:4px;
-  color:#175cd3;
-  font-size:34px;
-  line-height:1;
+.tires-scanner-manual>div{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:7px;
 }
-.mount-archive-hours-counter span{
-  display:block;
-  margin-top:5px;
-  color:#667085;
-  font-size:8px;
-  font-weight:800;
+.tires-scanner-manual input{
+  min-height:42px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.tires-scanner-footer{
+  display:flex;
+  justify-content:flex-end;
+  padding:10px 17px 16px;
 }
 @media(max-width:720px){
-  .mount-archive-hours-counter{
-    justify-content:stretch!important;
+  .tires-vin-input-row{
+    grid-template-columns:1fr!important;
   }
-  .mount-archive-hours-counter>div{
+  .tires-scan-btn{
     width:100%!important;
-    min-width:0!important;
-    padding:12px 14px!important;
+    min-height:44px!important;
   }
-  .mount-archive-hours-counter strong{
-    font-size:30px!important;
+  .tires-scanner-backdrop{
+    padding:0!important;
+    align-items:end!important;
+  }
+  .tires-scanner-modal{
+    width:100%!important;
+    max-height:96vh!important;
+    border-radius:20px 20px 0 0!important;
+  }
+  .tires-scanner-camera{
+    margin:10px 12px 7px!important;
+    min-height:220px!important;
+  }
+  .tires-scanner-frame{
+    width:88%!important;
+    height:84px!important;
+  }
+  .tires-scanner-status{
+    margin:7px 12px 0!important;
+  }
+  .tires-scanner-manual{
+    padding:11px 12px 4px!important;
+  }
+  .tires-scanner-manual>div{
+    grid-template-columns:1fr!important;
+  }
+  .tires-scanner-manual .btn{
+    width:100%!important;
+  }
+  .tires-scanner-footer{
+    padding:9px 12px 14px!important;
+  }
+  .tires-scanner-footer .btn{
+    width:100%!important;
   }
 }
 
@@ -5669,14 +7103,6 @@ body.warehouse-history-open{overflow:hidden}
     <button id="mountClosedNextMonth">Miesiąc →</button>
   </div>
 
-  <div class="mount-archive-hours-counter">
-    <div>
-      <small>ŁĄCZNIE GODZIN W WYBRANYM MIESIĄCU</small>
-      <strong id="mountClosedTotalHours">0 h</strong>
-      <span id="mountClosedHoursMeta">0 wpisów montażowych</span>
-    </div>
-  </div>
-
   <div class="mount-archive-detail-head">
     <div><small>ARCHIWUM</small><h2>Pełne wpisy montażowe</h2></div>
   </div>
@@ -5691,20 +7117,61 @@ body.warehouse-history-open{overflow:hidden}
 
 <section id="carsView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backMainFromCars">←</button><div><h1>Lista samochodów</h1><div class="muted" style="margin-top:5px">Codzienna baza VIN-ów • <b id="carsBranchLabel">Herbowa 16</b>.</div></div></div><span class="owner-badge" id="carsCount"></span></div>
-  <div class="vin-tools">
-    <div class="tool-card">
-      <h3>Dodaj samochód do bazy</h3><div class="muted" style="font-size:12px;margin-top:5px">Możesz wpisać także krótszy VIN. Podpowiadanie po ostatnich 4–6 znakach nadal działa.</div>
-      <div class="form-row"><div class="field"><label>VIN</label><input id="newVin" maxlength="17" placeholder="np. JTM5DA8V0J0052198 lub krótszy"></div><div class="field" style="flex:2"><label>DOPOSAŻENIE / WYMAGANE PRACE</label><input id="newCarEquipment" placeholder="np. alarm, ID CAN, hak, dywaniki gumowe"></div><button class="small-btn primary" id="addCarBtn">+ Dodaj samochód</button></div>
+  <div class="vin-tools single">
+    <div class="tool-card add-car-only">
+      <div class="add-car-heading">
+        <div>
+          <small>NOWY SAMOCHÓD</small>
+          <h3>Dodaj samochód do bazy</h3>
+          <span>Uzupełnij VIN, numer zawieszki i zakres doposażenia.</span>
+        </div>
+      </div>
+
+      <div class="add-car-grid">
+        <div class="field add-car-vin">
+          <label>VIN</label>
+          <input id="newVin" maxlength="17" placeholder="Wpisz VIN samochodu" autocomplete="off">
+        </div>
+
+        <div class="field add-car-hanger">
+          <label>NR ZAWIESZKI</label>
+          <input id="newCarHangerNo" placeholder="Wpisz nr zawieszki" autocomplete="off">
+        </div>
+
+        <div class="field add-car-client">
+          <label>KLIENT</label>
+          <input id="newCarClient" placeholder="Wpisz nazwę klienta" autocomplete="off">
+        </div>
+
+        <div class="field add-car-branch">
+          <label>ODDZIAŁ</label>
+          <select id="newCarBranch">
+            <option value="HERBOWA">Herbowa 16</option>
+            <option value="ALEJE">Toyota Aleje</option>
+          </select>
+        </div>
+
+        <div class="field add-car-equipment">
+          <label>DOPOSAŻENIE / WYMAGANE PRACE</label>
+          <textarea id="newCarEquipment" placeholder="Wpisz wszystkie elementy doposażenia, np. alarm, ID CAN, hak, dywaniki gumowe…"></textarea>
+          <small class="add-car-equipment-hint">Możesz rozdzielać elementy przecinkami.</small>
+        </div>
+
+        <div class="add-car-options">
+          <button type="button" class="transport-damage-toggle" id="newCarTransportDamage" aria-pressed="false">
+            <span class="transport-damage-check">!</span>
+            <span><strong>Szkoda transportowa</strong><small>Kliknij, jeśli samochód ma szkodę transportową</small></span>
+          </button>
+
+          <button class="small-btn primary add-car-submit" id="addCarBtn" type="button">+ DODAJ SAMOCHÓD DO BAZY</button>
+        </div>
+      </div>
+
       <div class="message" id="addCarMessage"></div>
     </div>
-    <div class="tool-card">
-      <h3>Podpowiedz pełny VIN</h3><div class="muted" style="font-size:12px;margin-top:5px">Wpisz końcówkę VIN-u, np. 5842.</div>
-      <div class="vin-lookup"><input id="vinLookup" autocomplete="off" placeholder="Wpisz ostatnie 4–6 znaków"><div class="vin-suggestions" id="vinSuggestions"></div></div>
-      <div class="message" id="vinLookupMessage"></div>
-    </div>
   </div>
-  <div class="searchbar"><input id="carSearch" placeholder="Szukaj po VIN lub statusie"></div>
-  <div class="table-wrap"><table class="car-table"><thead><tr><th>VIN / ODDZIAŁ</th><th>STATUS</th><th>DOPOSAŻENIE</th><th>STAN MONTAŻU</th><th>TABLICE</th><th>AKCJE</th></tr></thead><tbody id="carRows"></tbody></table></div>
+  <div class="searchbar"><input id="carSearch" placeholder="Szukaj po VIN lub nr zawieszki"></div>
+  <div class="table-wrap"><table class="car-table"><thead><tr><th>VIN / ODDZIAŁ</th><th>KLIENT</th><th>NR ZAWIESZKI</th><th>DOPOSAŻENIE</th><th>STAN MONTAŻU</th><th>TABLICE</th><th>AKCJE</th></tr></thead><tbody id="carRows"></tbody></table></div>
 
   <div class="car-mount-order-backdrop" id="carMountOrderBackdrop" hidden>
     <div class="car-mount-order-modal" role="dialog" aria-modal="true" aria-labelledby="carMountOrderTitle">
@@ -5721,6 +7188,101 @@ body.warehouse-history-open{overflow:hidden}
         <div class="message" id="carMountOrderMessage"></div>
       </div>
       <div class="car-mount-order-actions"><button class="btn" id="cancelCarMountOrder" type="button">Anuluj</button><button class="btn primary" id="saveCarMountOrder" type="button">Zleć montaż</button></div>
+    </div>
+  </div>
+
+  <div class="car-edit-backdrop" id="carEditBackdrop" hidden>
+    <div class="car-edit-modal" role="dialog" aria-modal="true" aria-labelledby="carEditTitle">
+      <div class="car-edit-head">
+        <div>
+          <small>EDYCJA SAMOCHODU</small>
+          <h2 id="carEditTitle">Samochód</h2>
+          <span id="carEditSubtitle">Zmień dane auta i zapisz.</span>
+        </div>
+        <button type="button" class="car-edit-close" id="carEditClose">×</button>
+      </div>
+
+      <div class="car-edit-grid">
+        <div class="field">
+          <label>VIN</label>
+          <input id="editCarVin" maxlength="17" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label>NR ZAWIESZKI</label>
+          <input id="editCarHangerNo" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label>ODDZIAŁ</label>
+          <select id="editCarBranch">
+            <option value="HERBOWA">Herbowa 16</option>
+            <option value="ALEJE">Toyota Aleje</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>MODEL</label>
+          <input id="editCarModel" placeholder="Model samochodu">
+        </div>
+
+        <div class="field">
+          <label>KLIENT</label>
+          <input id="editCarClient" placeholder="Klient">
+        </div>
+
+        <div class="field">
+          <label>NAZWA FIRMY</label>
+          <input id="editCarCompany" placeholder="Nazwa firmy">
+        </div>
+
+        <div class="field car-edit-equipment">
+          <label>DOPOSAŻENIE / WYMAGANE PRACE</label>
+          <textarea id="editCarEquipment" placeholder="np. alarm, ID CAN, hak, dywaniki gumowe"></textarea>
+          <small>Elementy możesz rozdzielać przecinkami.</small>
+        </div>
+
+        <button type="button" class="car-edit-damage" id="editCarTransportDamage" aria-pressed="false">
+          <span>!</span>
+          <div>
+            <strong>Szkoda transportowa</strong>
+            <small>Kliknij, aby włączyć lub wyłączyć oznaczenie.</small>
+          </div>
+        </button>
+      </div>
+
+      <div class="message" id="carEditMessage"></div>
+
+      <div class="car-edit-footer">
+        <button type="button" class="btn" id="cancelCarEdit">Anuluj</button>
+        <button type="button" class="btn primary" id="saveCarEdit">ZAPISZ ZMIANY</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="equipment-preview-backdrop" id="equipmentPreviewBackdrop" hidden>
+    <div class="equipment-preview-modal" role="dialog" aria-modal="true" aria-labelledby="equipmentPreviewTitle">
+      <div class="equipment-preview-head">
+        <div>
+          <small>PODGLĄD DOPOSAŻENIA</small>
+          <h2 id="equipmentPreviewTitle">Doposażenie</h2>
+          <span id="equipmentPreviewMeta">—</span>
+        </div>
+        <button type="button" class="equipment-preview-close" id="equipmentPreviewClose">×</button>
+      </div>
+
+      <div class="equipment-preview-body">
+        <div class="field equipment-preview-field">
+          <label>DOPOSAŻENIE / WYMAGANE PRACE</label>
+          <textarea id="equipmentPreviewText" readonly placeholder="Brak wpisanego doposażenia"></textarea>
+          <small>To jest to samo pole informacyjne, które uzupełniasz podczas dodawania samochodu.</small>
+        </div>
+      </div>
+
+      <div class="equipment-preview-footer">
+        <button type="button" class="btn" id="equipmentPreviewEdit">Edytuj samochód</button>
+        <button type="button" class="btn primary" id="equipmentPreviewDone">Zamknij</button>
+      </div>
     </div>
   </div>
 </section>
@@ -5760,9 +7322,15 @@ body.warehouse-history-open{overflow:hidden}
       <span>Możesz wybrać auto z Listy samochodów albo wpisać VIN / rejestrację ręcznie, jeśli pojazdu nie ma w systemie.</span>
     </div>
     <div class="tires-add-controls tires-add-controls-manual">
-      <div class="field">
+      <div class="field tires-vin-field">
         <label>VIN / NUMER REJESTRACYJNY</label>
-        <input id="tiresAddVin" list="tiresVinOptions" placeholder="Wybierz VIN albo wpisz auto ręcznie">
+        <div class="tires-vin-input-row">
+          <input id="tiresAddVin" list="tiresVinOptions" placeholder="Wybierz VIN albo wpisz auto ręcznie">
+          <button class="tires-scan-btn" id="tiresScanVinBtn" type="button" title="Skanuj VIN aparatem" aria-label="Skanuj VIN aparatem">
+            <span class="tires-scan-icon">⌗</span>
+            <span>SKANUJ VIN</span>
+          </button>
+        </div>
         <datalist id="tiresVinOptions"></datalist>
       </div>
       <div class="field">
@@ -5788,6 +7356,43 @@ body.warehouse-history-open{overflow:hidden}
       <thead><tr><th>VIN / ODDZIAŁ</th><th>SAMOCHÓD / KLIENT</th><th>STATUS OPON</th><th>OSTATNIA ZMIANA</th><th>AKCJA</th></tr></thead>
       <tbody id="tiresRows"></tbody>
     </table>
+  </div>
+
+  <div class="tires-scanner-backdrop" id="tiresScannerBackdrop" hidden>
+    <div class="tires-scanner-modal" role="dialog" aria-modal="true" aria-labelledby="tiresScannerTitle">
+      <div class="tires-scanner-head">
+        <div>
+          <small>OPONY • SKANER VIN</small>
+          <h2 id="tiresScannerTitle">Zeskanuj VIN</h2>
+          <span>Skieruj aparat na kod kreskowy z numerem VIN.</span>
+        </div>
+        <button class="tires-scanner-close" id="tiresScannerClose" type="button">×</button>
+      </div>
+
+      <div class="tires-scanner-camera" id="tiresScannerCamera">
+        <video id="tiresScannerVideo" autoplay muted playsinline></video>
+        <div class="tires-scanner-frame" aria-hidden="true">
+          <span></span>
+        </div>
+        <div class="tires-scanner-camera-label">Umieść kod VIN w ramce</div>
+      </div>
+
+      <div class="tires-scanner-status" id="tiresScannerStatus">
+        Uruchamianie aparatu…
+      </div>
+
+      <div class="tires-scanner-manual">
+        <label>VIN RĘCZNIE</label>
+        <div>
+          <input id="tiresScannerManualVin" maxlength="17" placeholder="Wpisz 17-znakowy VIN" autocomplete="off" autocapitalize="characters" spellcheck="false">
+          <button class="btn primary" id="tiresScannerUseManual" type="button">Użyj VIN</button>
+        </div>
+      </div>
+
+      <div class="tires-scanner-footer">
+        <button class="btn" id="tiresScannerCancel" type="button">Anuluj</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -6255,26 +7860,123 @@ body.warehouse-history-open{overflow:hidden}
 </section>
 
 <section id="adminView" class="view">
-  <div class="header-row"><div class="header-left"><button class="back" id="backMainFromAdmin">←</button><div><h1>Panel administratora</h1><div class="muted" style="margin-top:5px">Użytkownicy, uprawnienia i historia operacji.</div></div></div></div>
-
-  <div class="admin-card bonus-launch">
-    <div class="bonus-launch-row">
-      <div class="bonus-launch-copy"><h2>Premia</h2><p>Miesięczne rozliczenie wynagrodzeń, premii doposażeniowców oraz eksport do kadr.</p></div>
-      <button class="btn primary" id="openBonusAdmin" type="button">Otwórz system premiowy →</button>
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backMainFromAdmin">←</button>
+      <div>
+        <h1>Panel administratora</h1>
+        <div class="muted" style="margin-top:5px">Zarządzanie systemem, użytkownikami, raportami i historią operacji.</div>
+      </div>
     </div>
   </div>
-  <div class="period-nav"><button id="adminPrevMonth">← Miesiąc</button><button class="today-btn" id="adminThisMonth">Bieżący</button><div class="period-label" id="adminMonthLabel"></div><button id="adminNextMonth">Miesiąc →</button></div>
+
+  <div class="admin-launch-grid">
+    <button class="admin-launch-card users" id="openAdminUsers" type="button">
+      <div class="admin-launch-icon">👥</div>
+      <div class="admin-launch-copy">
+        <small>ZARZĄDZANIE ZESPOŁEM</small>
+        <strong>Użytkownicy i dostęp</strong>
+        <span>Konta, loginy, hasła i uprawnienia do modułów.</span>
+      </div>
+      <div class="admin-launch-stat">
+        <b id="adminUsersCount">0</b>
+        <span>użytkowników</span>
+      </div>
+      <i>→</i>
+    </button>
+
+    <div class="admin-launch-card bonus">
+      <div class="admin-launch-icon">PLN</div>
+      <div class="admin-launch-copy">
+        <small>ROZLICZENIA</small>
+        <strong>Premia</strong>
+        <span>Miesięczne rozliczenie wynagrodzeń i eksport do kadr.</span>
+      </div>
+      <button class="btn primary" id="openBonusAdmin" type="button">Otwórz →</button>
+    </div>
+  </div>
+
+  <div class="period-nav">
+    <button id="adminPrevMonth">← Miesiąc</button>
+    <button class="today-btn" id="adminThisMonth">Bieżący</button>
+    <div class="period-label" id="adminMonthLabel"></div>
+    <button id="adminNextMonth">Miesiąc →</button>
+  </div>
+
   <div class="admin-card" id="monthlyReportCard">
-    <div class="header-row"><div><h2>Raport miesięczny</h2><div class="muted" id="reportPeriodLabel"></div></div><span class="report-status" id="reportStatus">OTWARTY</span></div>
+    <div class="header-row">
+      <div><h2>Raport miesięczny</h2><div class="muted" id="reportPeriodLabel"></div></div>
+      <span class="report-status" id="reportStatus">OTWARTY</span>
+    </div>
     <div class="report-grid" id="reportKpis"></div>
     <div id="reportDetails"></div>
-    <div class="report-actions" style="margin-top:14px"><button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button><button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button><button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button></div>
+    <div class="report-actions" style="margin-top:14px">
+      <button class="btn" id="printMonthlyReport" type="button">Drukuj / zapisz PDF</button>
+      <button class="btn" id="exportMonthlyReport" type="button">Eksport do Excel (CSV)</button>
+      <button class="btn primary" id="closeMonthBtn" type="button">Zamknij miesiąc</button>
+    </div>
     <div class="report-note">Zamknięcie zapisuje migawkę raportu w archiwum. Samochody na placu, przyszłe wydania i otwarte prace nie są kasowane.</div>
   </div>
-  <div class="admin-card"><h2>Użytkownicy i dostęp</h2><div class="muted" style="margin-bottom:10px">Administrator może dodawać pracowników, zmieniać ich imiona i loginy, ustawiać hasła oraz dostęp do modułów. Hasła startowe są ustawione dla całego zespołu i możesz je tutaj później zmienić.</div><div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fafafa"><b>+ Dodaj pracownika</b><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px"><input id="newUserName" placeholder="Imię i nazwisko"><input id="newUserLogin" placeholder="Login, np. jan.kowalski" autocapitalize="none" spellcheck="false"><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Koordynator Klaudyny">Koordynator Klaudyny</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Kierowca">Kierowca</option><option value="Magazynier">Magazynier</option><option value="Pracownik">Pracownik</option></select></div><div style="margin-top:10px"><button class="btn primary" id="addUserBtn" type="button">+ Dodaj pracownika</button></div><div class="message" id="addUserMessage"></div></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Użytkownik</th><th>Rola</th><th>Konto i uprawnienia</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
-  <div class="admin-card"><div class="header-row"><div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div><button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button></div><div class="table-wrap"><table class="admin-table"><thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead><tbody id="auditRows"></tbody></table></div></div>
+
+  <div class="admin-card">
+    <div class="header-row">
+      <div><h2>Historia działań</h2><div class="muted">Ostatnie 200 operacji zapisanych na tym urządzeniu.</div></div>
+      <button class="btn" id="clearAuditBtn" type="button">Wyczyść historię</button>
+    </div>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Data i godzina</th><th>Użytkownik</th><th>Operacja</th><th>Szczegóły</th></tr></thead>
+        <tbody id="auditRows"></tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
+<section id="adminUsersView" class="view">
+  <div class="header-row">
+    <div class="header-left">
+      <button class="back" id="backAdminUsersToAdmin">←</button>
+      <div>
+        <div class="admin-users-kicker">PANEL ADMINISTRATORA</div>
+        <h1>Użytkownicy i dostęp</h1>
+        <div class="muted" style="margin-top:5px">Zarządzaj kontami i przydzielaj dostęp do modułów za pomocą kafelków.</div>
+      </div>
+    </div>
+    <span class="owner-badge" id="adminUsersViewCount">0 użytkowników</span>
+  </div>
+
+  <div class="admin-users-overview">
+    <div><small>UŻYTKOWNICY</small><b id="adminUsersTotal">0</b><span>aktywnych kont</span></div>
+    <div><small>Z HASŁEM</small><b id="adminUsersWithPassword">0</b><span>zabezpieczonych kont</span></div>
+    <div><small>ADMINISTRATORZY</small><b id="adminUsersAdmins">0</b><span>z dostępem do panelu</span></div>
+  </div>
+
+  <div class="admin-user-add-card">
+    <div class="admin-user-add-head">
+      <div>
+        <small>NOWE KONTO</small>
+        <strong>Dodaj pracownika</strong>
+        <span>Hasło startowe nowego konta: <b>1234</b>.</span>
+      </div>
+    </div>
+    <div class="admin-user-add-grid">
+      <div class="field"><label>Imię i nazwisko</label><input id="newUserName" placeholder="np. Jan Kowalski"></div>
+      <div class="field"><label>Login</label><input id="newUserLogin" placeholder="np. jan.kowalski" autocapitalize="none" spellcheck="false"></div>
+      <div class="field"><label>Rola</label><select id="newUserRole"><option value="Koordynator">Koordynator</option><option value="Koordynator Klaudyny">Koordynator Klaudyny</option><option value="Młodszy Koordynator">Młodszy Koordynator</option><option value="Doposażeniowiec">Doposażeniowiec</option><option value="Myjnia">Myjnia</option><option value="Kierowca">Kierowca</option><option value="Magazynier">Magazynier</option><option value="Pracownik">Pracownik</option></select></div>
+      <button class="btn primary admin-user-add-btn" id="addUserBtn" type="button">+ DODAJ PRACOWNIKA</button>
+    </div>
+    <div class="message" id="addUserMessage"></div>
+  </div>
+
+  <div class="admin-users-toolbar">
+    <div class="searchbar admin-users-search">
+      <input id="adminUsersSearch" placeholder="Szukaj po nazwisku, loginie lub roli">
+    </div>
+    <div class="admin-users-toolbar-note">Kliknij użytkownika i wybierz moduły, do których ma mieć dostęp.</div>
+  </div>
+
+  <div class="admin-user-cards" id="adminUserCards"></div>
+</section>
 
 <section id="bonusAdminView" class="view">
   <div class="header-row"><div class="header-left"><button class="back" id="backBonusToAdmin">←</button><div><h1>Premia</h1><div class="muted" style="margin-top:5px">Wsparcie Operacyjne — miesięczne rozliczenie wynagrodzeń i eksport do kadr.</div></div></div><span class="owner-badge">TYLKO ADMINISTRATOR</span></div>
@@ -6393,7 +8095,7 @@ function storageJSON(key,fallback,kind="any") {
     return fallback;
   }
 }
-const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","mountClosedList","carsView","tiresView","transportView","warehouseView","warehouseStockView","batteryView","washView","washPendingView","washDoneView","washBonusView","tasksView","archiveView","adminView","bonusAdminView"];
+const views=["mainHome","releaseHome","releaseDay","releaseVehicle","mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","mountClosedList","carsView","tiresView","transportView","warehouseView","warehouseStockView","batteryView","washView","washPendingView","washDoneView","washBonusView","tasksView","archiveView","adminView","adminUsersView","bonusAdminView"];
 const USER_PERMISSIONS_KEY="toyotaUserPermissionsV1";
 function loginFromName(name){
   return String(name||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l").replace(/[^a-z0-9]+/g,".").replace(/^\.+|\.+$/g,"");
@@ -6626,8 +8328,8 @@ function addNewUser(){
  let login=normalizeLogin($("#newUserLogin")?.value||"");if(!login)login=nextAvailableLogin(name);
  if(!validLoginFormat(login)){msg.textContent="Login musi mieć min. 3 znaki i może zawierać małe litery, cyfry, kropkę, myślnik lub podkreślenie.";msg.className="message error";return}
  if(!loginAvailable(login)){msg.textContent="Taki login jest już używany.";msg.className="message error";return}
- const defaults=role==="Doposażeniowiec"?["mounts","warehouse"]:role==="Myjnia"?["releases","wash"]:role==="Kierowca"?["transport"]:role==="Magazynier"?["warehouse"]:role.includes("Koordynator")?["releases","cars","battery","transport","warehouse"]:[];
- const id=`custom-${Date.now()}`;const u={userId:id,baseName:id,name,login,role,access:defaults};APP_USERS.push(u);userPasswords[passwordKey(u)]=passwordDigest("1234");saveUserPasswords();saveCustomUsers();logAction("Dodanie pracownika",`${name}; login ${login}; ${role}; hasło startowe ustawione`);$("#newUserName").value="";if($("#newUserLogin"))$("#newUserLogin").value="";renderUserSwitchers();renderAdmin();
+ const defaults=defaultAccessForRole(role);
+ const id=`custom-${Date.now()}`;const u={userId:id,baseName:id,name,login,role,access:defaults};APP_USERS.push(u);userPasswords[passwordKey(u)]=passwordDigest("1234");saveUserPasswords();saveCustomUsers();logAction("Dodanie pracownika",`${name}; login ${login}; ${role}; hasło startowe ustawione`);$("#newUserName").value="";if($("#newUserLogin"))$("#newUserLogin").value="";renderUserSwitchers();renderAdmin();renderAdminUsers();
 }
 function profileKey(u){return u.baseName||u.name}
 function saveUserProfile(u,newName,newLogin){
@@ -6643,6 +8345,26 @@ function saveUserProfile(u,newName,newLogin){
   renderUserSwitchers();logAction("Zmiana danych użytkownika",`${oldName} (${oldLogin}) → ${newName} (${newLogin})`);return true;
 }
 const ACCESS_LABELS={releases:"Wydania",mounts:"Montaże / doposażenia",cars:"Lista samochodów",battery:"Testy akumulatorów",wash:"Myjnia",transport:"Transport",warehouse:"Magazyn",admin:"Panel administratora"};
+const ACCESS_META={
+  releases:{icon:"↗",desc:"Wydania i przygotowanie samochodów"},
+  mounts:{icon:"⌁",desc:"Zlecenia i prace doposażeniowe"},
+  cars:{icon:"▦",desc:"Lista samochodów i dane floty"},
+  battery:{icon:"⚡",desc:"Kontrola i testy akumulatorów"},
+  wash:{icon:"◉",desc:"Obsługa modułu myjni"},
+  transport:{icon:"→",desc:"Transporty i kierowcy"},
+  warehouse:{icon:"□",desc:"Zamówienia części i wydania magazynu"},
+  admin:{icon:"⚙",desc:"Administracja systemem"}
+};
+function defaultAccessForRole(role){
+  role=String(role||"");
+  if(role==="Główny Koordynator")return ["releases","mounts","cars","battery","wash","transport","warehouse","admin"];
+  if(role==="Doposażeniowiec")return ["mounts","warehouse"];
+  if(role==="Myjnia")return ["releases","wash"];
+  if(role==="Kierowca")return ["transport"];
+  if(role==="Magazynier")return ["warehouse"];
+  if(role.includes("Koordynator"))return ["releases","cars","battery","transport","warehouse"];
+  return [];
+}
 function saveUserPermissions(name,access){
   if(APP_USERS.find(x=>x.name===name)?.role==="Główny Koordynator" && !access.includes("admin")){alert("Główny Koordynator musi zachować dostęp do Panelu administratora, aby nie zablokować zarządzania systemem.");return false}
   const target=APP_USERS.find(x=>x.name===name);const pkey=target?.baseName||name;userPermissionOverrides[pkey]=[...access];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));
@@ -6651,7 +8373,7 @@ function saveUserPermissions(name,access){
   logAction("Zmiana uprawnień użytkownika",`${name}: ${access.map(x=>ACCESS_LABELS[x]).join(", ")||"brak dostępu"}`);return true;
 }
 function resetUserPermissions(name){
-  const u0=APP_USERS.find(x=>x.name===name);const d=DEFAULT_APP_USERS.find(x=>x.name===(u0?.baseName||name));if(!d)return;delete userPermissionOverrides[u0?.baseName||name];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));const u=APP_USERS.find(x=>x.name===name);u.access=[...d.access];if(currentUser?.name===name){currentUser=u;persistActiveUser();applyUserAccess();renderUserSwitchers()}logAction("Przywrócenie domyślnych uprawnień",name);renderAdmin();
+  const u0=APP_USERS.find(x=>x.name===name);const d=DEFAULT_APP_USERS.find(x=>x.name===(u0?.baseName||name));if(!d)return;delete userPermissionOverrides[u0?.baseName||name];localStorage.setItem(USER_PERMISSIONS_KEY,JSON.stringify(userPermissionOverrides));const u=APP_USERS.find(x=>x.name===name);u.access=[...d.access];if(currentUser?.name===name){currentUser=u;persistActiveUser();applyUserAccess();renderUserSwitchers()}logAction("Przywrócenie domyślnych uprawnień",name);renderAdmin();renderAdminUsers();
 }
 const ACTIVE_USER_KEY="toyotaActiveUserIdV2";
 function readLegacyUser(){return storageJSON("toyotaCurrentUserV1",null,"nullableObject")}
@@ -6744,7 +8466,7 @@ function desktopSectionForView(id){
   if(["releaseHome","releaseDay","releaseVehicle"].includes(id))return "releaseHome";
   if(["mountOwners","mountWorkerMenu","mountList","mountCarView","mountDoneList","mountClosedList"].includes(id))return "mountOwners";
   if(["washView","washPendingView","washDoneView","washBonusView"].includes(id))return "washView";
-  if(id==="bonusAdminView")return "adminView";
+  if(["bonusAdminView","adminUsersView"].includes(id))return "adminView";
   return id;
 }
 function updateDesktopNav(id){
@@ -6808,17 +8530,180 @@ function csvCell(v){return `"${String(v??"").replaceAll('"','""')}"`}
 function exportSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const rows=[["RAPORT MIESIĘCZNY",mk],["Wydania",r.releases],["Wydane",r.issued],["Doposażenia",r.mounts],["Godziny montażu",r.hours.toFixed(1)],["Mycia",r.washes],["Ponowne mycia",r.repeatWash],["Testy akumulatorów",r.batteryCount],[],["DOPOSAŻENIOWCY"],["Pracownik","Samochody","Alarm","ID CAN","META","Inne","Godziny"],...Object.entries(r.mountBy).map(([n,x])=>[n,x.cars,x.alarm,x.idCan,x.meta,x.other,x.hours.toFixed(1)]),[],["DODATKOWA PREMIA MYJNIA",r.washBonus],["PRACE DODATKOWE DOPOSAŻENIOWCÓW",r.mountBonus]];const csv='\ufeff'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`raport-${mk}.csv`;a.click();URL.revokeObjectURL(a.href)}
 function printSelectedReport(){const md=shiftedMonth(adminMonthOffset),mk=monthKey(md),r=monthlyReports[mk]?.report||reportForMonth(mk);const w=window.open('', '_blank');if(!w)return alert('Przeglądarka zablokowała nowe okno. Zezwól na wyskakujące okna.');w.document.write(`<html><head><meta charset="utf-8"><title>Raport ${mk}</title><style>body{font-family:Arial;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0 18px}th,td{border-bottom:1px solid #ddd;padding:7px;text-align:left}h1{margin-bottom:4px}.muted{color:#555}.report-section{margin-top:20px}</style></head><body><h1>Raport miesięczny — ${mk}</h1><p>${monthlyReports[mk]?"MIESIĄC ZAMKNIĘTY":"RAPORT BIEŻĄCY"}</p>${reportHtml(r)}<script>setTimeout(()=>window.print(),250)<\/script>
 </body></html>`);w.document.close()}
+function adminInitials(name){
+  return String(name||"?").split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()||"?";
+}
+function updateAdminPermissionCount(card){
+  if(!card)return;
+  const count=card.querySelectorAll(".admin-permission-tile.active").length;
+  const out=card.querySelector(".admin-permission-count");
+  if(out)out.textContent=`${count}/${Object.keys(ACCESS_LABELS).length} modułów`;
+}
+function applyAdminRolePreset(card,user){
+  if(!card||!user)return;
+  const access=defaultAccessForRole(user.role);
+  card.querySelectorAll(".admin-permission-tile").forEach(btn=>{
+    const locked=user.role==="Główny Koordynator"&&btn.dataset.accessKey==="admin";
+    btn.classList.toggle("active",access.includes(btn.dataset.accessKey)||locked);
+  });
+  updateAdminPermissionCount(card);
+  const state=card.querySelector(".admin-user-save-state");
+  if(state){state.textContent="Profil roli ustawiony — zapisz zmiany";state.className="admin-user-save-state pending"}
+}
+function clearAdminPermissions(card,user){
+  if(!card||!user)return;
+  card.querySelectorAll(".admin-permission-tile").forEach(btn=>{
+    const locked=user.role==="Główny Koordynator"&&btn.dataset.accessKey==="admin";
+    btn.classList.toggle("active",locked);
+  });
+  updateAdminPermissionCount(card);
+  const state=card.querySelector(".admin-user-save-state");
+  if(state){state.textContent="Zmiany niezapisane";state.className="admin-user-save-state pending"}
+}
+function renderAdminUsers(){
+  const wrap=$("#adminUserCards");if(!wrap)return;
+
+  const q=String($("#adminUsersSearch")?.value||"").trim().toLowerCase();
+  const users=APP_USERS.map((u,idx)=>({u,idx})).filter(({u})=>
+    !q||`${u.name} ${u.login||""} ${u.role||""}`.toLowerCase().includes(q)
+  );
+
+  const total=APP_USERS.length;
+  const protectedCount=APP_USERS.filter(passwordIsSet).length;
+  const admins=APP_USERS.filter(u=>u.access.includes("admin")).length;
+  if($("#adminUsersViewCount"))$("#adminUsersViewCount").textContent=`${total} użytkowników`;
+  if($("#adminUsersTotal"))$("#adminUsersTotal").textContent=total;
+  if($("#adminUsersWithPassword"))$("#adminUsersWithPassword").textContent=protectedCount;
+  if($("#adminUsersAdmins"))$("#adminUsersAdmins").textContent=admins;
+
+  const addBtn=$("#addUserBtn");if(addBtn)addBtn.onclick=addNewUser;
+
+  wrap.innerHTML=users.length?users.map(({u,idx})=>{
+    const safeName=escapeHtml(u.name);
+    const safeLogin=escapeHtml(u.login||"");
+    const role=escapeHtml(u.role||"Pracownik");
+    const accessCount=u.access.length;
+    const permissionTiles=Object.entries(ACCESS_LABELS).map(([key,label])=>{
+      const meta=ACCESS_META[key]||{icon:"•",desc:""};
+      const active=u.access.includes(key);
+      const locked=u.role==="Główny Koordynator"&&key==="admin";
+      return `<button type="button" class="admin-permission-tile ${active?"active":""} ${locked?"locked":""}" data-access-key="${key}" ${locked?"aria-disabled=\"true\"":""}>
+        <span class="admin-permission-icon">${escapeHtml(meta.icon)}</span>
+        <span class="admin-permission-copy"><strong>${escapeHtml(label)}</strong><small>${escapeHtml(meta.desc)}</small></span>
+        <span class="admin-permission-switch"><i></i></span>
+      </button>`;
+    }).join("");
+
+    return `<article class="admin-user-card" data-admin-user-card="${idx}">
+      <div class="admin-user-card-head">
+        <div class="admin-user-avatar">${escapeHtml(adminInitials(u.name))}</div>
+        <div class="admin-user-identity">
+          <strong>${safeName}</strong>
+          <span>@${safeLogin}</span>
+          <em>${role}</em>
+        </div>
+        <div class="admin-user-card-status">
+          <span class="password-status ${passwordIsSet(u)?"set":""}">${passwordIsSet(u)?"HASŁO USTAWIONE":"BRAK HASŁA"}</span>
+          <b class="admin-permission-count">${accessCount}/${Object.keys(ACCESS_LABELS).length} modułów</b>
+        </div>
+      </div>
+
+      <div class="admin-user-section account">
+        <div class="admin-user-section-title"><small>KONTO</small><strong>Dane użytkownika</strong></div>
+        <div class="admin-user-account-grid">
+          <div class="field"><label>Imię i nazwisko</label><input class="admin-name-input" data-user="${idx}" value="${safeName}" placeholder="Imię i nazwisko"></div>
+          <div class="field"><label>Login</label><input class="admin-login-input" data-user="${idx}" value="${safeLogin}" placeholder="Login" autocapitalize="none" spellcheck="false"></div>
+          <div class="field admin-role-readonly"><label>Rola</label><div>${role}</div></div>
+          <button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz dane</button>
+        </div>
+      </div>
+
+      <div class="admin-user-section">
+        <div class="admin-user-section-title permission-title">
+          <div><small>UPRAWNIENIA</small><strong>Dostęp do modułów</strong></div>
+          <div class="admin-permission-actions">
+            <button class="btn admin-role-preset" data-user="${idx}" type="button">Ustaw wg roli</button>
+            ${u.role==="Główny Koordynator"?"":`<button class="btn admin-clear-access" data-user="${idx}" type="button">Wyczyść</button>`}
+          </div>
+        </div>
+        <div class="admin-permission-grid">${permissionTiles}</div>
+        <div class="admin-permission-savebar">
+          <span class="admin-user-save-state">Kliknij moduły, aby zmienić dostęp.</span>
+          <button class="btn primary save-user-access" data-user="${idx}" type="button">ZAPISZ UPRAWNIENIA</button>
+        </div>
+      </div>
+
+      <div class="admin-user-section password">
+        <div class="admin-user-section-title"><small>BEZPIECZEŃSTWO</small><strong>Hasło</strong></div>
+        <div class="admin-password-controls">
+          <input type="password" class="admin-password-input" data-user="${idx}" placeholder="Nowe hasło (min. 4 znaki)" autocomplete="new-password">
+          <button class="btn set-user-password" data-user="${idx}" type="button">Ustaw / zmień</button>
+          ${u.role!=="Główny Koordynator"&&passwordIsSet(u)?`<button class="btn clear-user-password" data-user="${idx}" type="button">Usuń hasło</button>`:""}
+        </div>
+      </div>
+    </article>`;
+  }).join(""):`<div class="admin-users-empty">Nie znaleziono użytkowników pasujących do wyszukiwania.</div>`;
+
+  wrap.querySelectorAll(".admin-permission-tile").forEach(btn=>btn.onclick=()=>{
+    const card=btn.closest(".admin-user-card");
+    const idx=Number(card?.dataset.adminUserCard);
+    const u=APP_USERS[idx];if(!u)return;
+    if(u.role==="Główny Koordynator"&&btn.dataset.accessKey==="admin")return;
+    btn.classList.toggle("active");
+    updateAdminPermissionCount(card);
+    const state=card.querySelector(".admin-user-save-state");
+    if(state){state.textContent="Zmiany niezapisane";state.className="admin-user-save-state pending"}
+  });
+
+  wrap.querySelectorAll(".admin-role-preset").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx];
+    applyAdminRolePreset(btn.closest(".admin-user-card"),u);
+  });
+  wrap.querySelectorAll(".admin-clear-access").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx];
+    clearAdminPermissions(btn.closest(".admin-user-card"),u);
+  });
+
+  wrap.querySelectorAll(".save-user-profile").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx];
+    const card=btn.closest(".admin-user-card");
+    const name=card.querySelector(`.admin-name-input[data-user="${idx}"]`)?.value||"";
+    const login=card.querySelector(`.admin-login-input[data-user="${idx}"]`)?.value||"";
+    if(saveUserProfile(u,name,login)){renderAdmin();renderAdminUsers()}
+  });
+
+  wrap.querySelectorAll(".save-user-access").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx];
+    const card=btn.closest(".admin-user-card");
+    const access=[...card.querySelectorAll(".admin-permission-tile.active")].map(x=>x.dataset.accessKey);
+    if(saveUserPermissions(u.name,access)){
+      renderAdmin();
+      renderAdminUsers();
+    }
+  });
+
+  wrap.querySelectorAll(".set-user-password").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx],card=btn.closest(".admin-user-card");
+    const inp=card.querySelector(`.admin-password-input[data-user="${idx}"]`);
+    if(setUserPassword(u,inp?.value||"")){
+      if(inp)inp.value="";
+      renderAdminUsers();
+    }
+  });
+  wrap.querySelectorAll(".clear-user-password").forEach(btn=>btn.onclick=()=>{
+    const idx=Number(btn.dataset.user),u=APP_USERS[idx];
+    if(confirm(`Usunąć hasło użytkownika ${u.name}?`)&&clearUserPassword(u))renderAdminUsers();
+  });
+}
+
 function renderAdmin(){
- const addBtn=$("#addUserBtn");if(addBtn)addBtn.onclick=addNewUser;
- $("#adminUsersRows").innerHTML=APP_USERS.map((u,idx)=>`<tr><td><b>${u.name}</b><div class="muted" style="margin-top:3px">${u.login}</div></td><td>${u.role}</td><td><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px;margin-bottom:9px"><input class="admin-name-input" data-user="${idx}" value="${u.name.replaceAll('&','&amp;').replaceAll('"','&quot;')}" placeholder="Imię i nazwisko"><input class="admin-login-input" data-user="${idx}" value="${String(u.login||'').replaceAll('&','&amp;').replaceAll('"','&quot;')}" placeholder="Login" autocapitalize="none" spellcheck="false"></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px"><button class="btn save-user-profile" data-user="${idx}" type="button">Zapisz dane</button></div><div class="admin-password-box"><div class="admin-password-head"><b>HASŁO</b><span class="password-status ${passwordIsSet(u)?"set":""}">${passwordIsSet(u)?"USTAWIONE":"BRAK HASŁA"}</span></div><div class="admin-password-controls"><input type="password" class="admin-password-input" data-user="${idx}" placeholder="Nowe hasło (min. 4 znaki)" autocomplete="new-password"><button class="btn set-user-password" data-user="${idx}" type="button">Ustaw / zmień</button>${u.role!=="Główny Koordynator"&&passwordIsSet(u)?`<button class="btn clear-user-password" data-user="${idx}" type="button">Usuń hasło</button>`:""}</div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px;min-width:310px">${Object.entries(ACCESS_LABELS).map(([key,label])=>`<label style="display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #ddd;border-radius:9px;background:#fff"><input type="checkbox" class="admin-access-check" data-user="${idx}" value="${key}" ${u.access.includes(key)?"checked":""} ${u.role==="Główny Koordynator"&&key==="admin"?"disabled":""}> <span>${label}</span></label>`).join("")}</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn primary save-user-access" data-user="${idx}" type="button">Zapisz uprawnienia</button><button class="btn reset-user-access" data-user="${idx}" type="button" ${String(u.userId||"").startsWith("custom-")?"disabled":""}>Domyślne</button></div></td></tr>`).join("");
- document.querySelectorAll(".save-user-profile").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],name=document.querySelector(`.admin-name-input[data-user="${idx}"]`).value,login=document.querySelector(`.admin-login-input[data-user="${idx}"]`).value;if(saveUserProfile(u,name,login)){alert("Dane użytkownika zostały zapisane.");renderAdmin()}});
- document.querySelectorAll(".set-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx],inp=document.querySelector(`.admin-password-input[data-user="${idx}"]`);if(setUserPassword(u,inp?.value||"")){if(inp)inp.value="";alert(`Hasło dla ${u.name} zostało zapisane.`);renderAdmin()}});
- document.querySelectorAll(".clear-user-password").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];if(confirm(`Usunąć hasło użytkownika ${u.name}?`)&&clearUserPassword(u))renderAdmin()});
- document.querySelectorAll(".save-user-access").forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.user),u=APP_USERS[idx];const access=[...document.querySelectorAll(`.admin-access-check[data-user="${idx}"]:checked`)].map(x=>x.value);if(saveUserPermissions(u.name,access)){renderAdmin()}});
- document.querySelectorAll(".reset-user-access").forEach(b=>b.onclick=()=>resetUserPermissions(APP_USERS[Number(b.dataset.user)].name));
- const md=shiftedMonth(adminMonthOffset), mk=monthKey(md); $("#adminMonthLabel").textContent=monthLabel(md); const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
- renderMonthlyReport(mk);
- $("#auditRows").innerHTML=logs.length?logs.map(a=>`<tr><td>${a.at}</td><td>${a.user}</td><td>${a.action}</td><td>${a.details||"—"}</td></tr>`).join(""):`<tr><td colspan="4">Brak zapisanych operacji w tym miesiącu.</td></tr>`;
+  if($("#adminUsersCount"))$("#adminUsersCount").textContent=APP_USERS.length;
+  const md=shiftedMonth(adminMonthOffset),mk=monthKey(md);
+  if($("#adminMonthLabel"))$("#adminMonthLabel").textContent=monthLabel(md);
+  const logs=auditLog.filter(a=>auditMonthKey(a.at)===mk);
+  renderMonthlyReport(mk);
+  const audit=$("#auditRows");
+  if(audit)audit.innerHTML=logs.length?logs.map(a=>`<tr><td>${escapeHtml(a.at)}</td><td>${escapeHtml(a.user)}</td><td>${escapeHtml(a.action)}</td><td>${escapeHtml(a.details||"—")}</td></tr>`).join(""):`<tr><td colspan="4">Brak zapisanych operacji w tym miesiącu.</td></tr>`;
 }
 if(!currentUser&&APP_USERS.length)currentUser=APP_USERS[0];
 persistActiveUser();renderUserSwitchers();
@@ -7374,6 +9259,15 @@ function updateCheckLook(){
 /* ---------- CAR DATABASE + SYNC ---------- */
 const defaultCars=releaseSeed.map(r=>({vin:r.vin,status:r.status==="WYDANE"?"WYJECHAŁ":"AKTYWNY"}));
 let fleetCars=storageJSON("toyotaFleetCarsDB3",[],"array").filter(x=>x&&typeof x==="object");
+
+const CLEAR_HANGER_NUMBERS_20260918_KEY="toyotaClearHangerNumbers20260918V1";
+try{
+  if(localStorage.getItem(CLEAR_HANGER_NUMBERS_20260918_KEY)!=="1"){
+    fleetCars.forEach(c=>{c.hangerNo=""});
+    localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+    localStorage.setItem(CLEAR_HANGER_NUMBERS_20260918_KEY,"1");
+  }
+}catch(e){}
 fleetCars.forEach(c=>{c.branch=normalizeBranch(c.branch)});
 
 // PLAN DEMONSTRACYJNY: 20 samochodów na najbliższy tydzień roboczy (31.08–04.09.2026).
@@ -7565,13 +9459,33 @@ function carExcelSourceButton(c){
   const src=carExcelSource(c);
   if(!src)return "";
   const diffBadge=carHasUnreviewedEquipmentDiff(c)?'<span class="equipment-diff-badge">⚠ ZMIANA DOPOSAŻENIA</span>':"";
-  return `${diffBadge}<button type="button" class="excel-source-btn car-excel-toggle" data-car-source="${escapeHtml(normalizeVin(c.vin))}" aria-expanded="false">📄 SPRAWDŹ WPIS Z EXCELA</button>`;
+  return `${diffBadge}<button type="button" class="excel-source-btn car-excel-toggle" data-car-source="${escapeHtml(normalizeVin(c.vin))}" aria-expanded="false">📄 SPRAWDŹ WPIS Z PLIKU</button>`;
 }
 function carExcelSourceDetail(c){
   const src=carExcelSource(c);
   if(!src)return "";
   const vin=normalizeVin(c.vin);
   const field=(label,value)=>`<div class="excel-source-field"><small>${escapeHtml(label)}</small><span>${escapeHtml(value||"—")}</span></div>`;
+
+  if(src.sourceType==="toyota_bielany"){
+    return `<tr class="excel-source-detail" id="car-source-${escapeHtml(vin)}" hidden><td colspan="7"><div class="excel-source-card">
+      <div class="excel-source-title"><strong>Oryginalny wiersz z pliku „DNA - Toyota Bielany”</strong><span class="muted">Wiersz Excel: ${escapeHtml(src.excelRow||"—")}</span></div>
+      <div class="excel-source-grid">
+        ${field("VIN",src.vin)}
+        ${field("Auto",src.auto)}
+        ${field("Firma / klient",src.firma)}
+        ${field("Lokalizacja (Komentarz)",src.komentarz)}
+        ${field("Miejsce źródłowe",src.miejsce)}
+        ${field("Uszko?",src.uszko)}
+        ${field("Data",src.data)}
+        ${field("Paliwo",src.paliwo)}
+        ${field("Użytkownik źródłowy",src.user)}
+        ${field("Data wejścia",src.datein)}
+      </div>
+      <div class="excel-source-note">Pole „Komentarz” z tego pliku jest w aplikacji traktowane jako lokalizacja samochodu.</div>
+    </div></td></tr>`;
+  }
+
   const diff=c.equipmentDiff||null;
   const diffHtml=diff && ((diff.added||[]).length || (diff.removed||[]).length) ? `<div class="equipment-diff-box">
       <strong>⚠ WYKRYTO ZMIANĘ DOPOSAŻENIA W ŹRÓDLE</strong>
@@ -7580,7 +9494,7 @@ function carExcelSourceDetail(c){
       <div class="equipment-diff-line muted">Nowe pozycje zostały dodane do checklisty jako niewykonane. Wcześniej wykonane, niezmienione pozycje zachowują swój stan.</div>
       ${diff.acknowledged?'<div class="equipment-diff-line" style="color:#168a45;font-weight:900">✓ Zmiana sprawdzona</div>':`<button type="button" class="equipment-diff-check" data-equipment-diff-ok="${escapeHtml(vin)}">✓ OZNACZ JAKO SPRAWDZONE</button>`}
     </div>`:"";
-  return `<tr class="excel-source-detail" id="car-source-${escapeHtml(vin)}" hidden><td colspan="6"><div class="excel-source-card">
+  return `<tr class="excel-source-detail" id="car-source-${escapeHtml(vin)}" hidden><td colspan="7"><div class="excel-source-card">
     <div class="excel-source-title"><strong>Oryginalny wiersz z arkusza „Herbowa”</strong><span class="muted">Wiersz Excel: ${escapeHtml(src.excelRow||"—")}</span></div>
     ${diffHtml}
     <div class="excel-source-equipment"><b>DOPOSAŻENIE — ORYGINALNY WPIS Z EXCELA</b>${escapeHtml(src.equipment||"Brak wpisu")}</div>
@@ -7607,6 +9521,120 @@ function carTireOrderButtonHtml(c){
   const labels={replace:"OPONY • DO WYMIANY",done:"OPONY • WYMIENIONE",shipping:"OPONY • DO WYSYŁKI",sent:"OPONY • WYSŁANE"};
   return `<button type="button" class="car-tire-order-btn state-${state}" data-car-tire-open="${escapeHtml(normalizeVin(c.vin))}">${labels[state]||"OPONY"}</button>`;
 }
+function carHangerNo(c){
+  return String(c?.hangerNo||"").trim();
+}
+function carHangerHtml(c){
+  const no=carHangerNo(c);
+  const vin=normalizeVin(c?.vin);
+  return `<input
+    type="text"
+    class="car-hanger-input"
+    data-car-hanger-vin="${escapeHtml(vin)}"
+    value="${escapeHtml(no)}"
+    placeholder="Wpisz nr zawieszki"
+    autocomplete="off"
+    spellcheck="false"
+    aria-label="Numer zawieszki dla VIN ${escapeHtml(vin)}"
+  >`;
+}
+function saveCarHangerNo(vin,value,input){
+  const n=normalizeVin(vin);
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(!c)return;
+
+  const next=String(value||"").trim();
+  const prev=carHangerNo(c);
+  if(next===prev)return;
+
+  c.hangerNo=next;
+  saveCars();
+
+  logAction(
+    "Zmiana numeru zawieszki",
+    `${n} • ${prev||"brak"} → ${next||"brak"}`
+  );
+
+  if(input){
+    input.value=next;
+    input.classList.add("saved");
+    setTimeout(()=>input.classList.remove("saved"),900);
+  }
+}
+function carEquipmentPreviewButton(c){
+  return `<button type="button" class="car-equipment-preview-btn" data-equipment-preview="${escapeHtml(c?.vin||"")}">Podgląd doposażenia</button>`;
+}
+function carVinCellHtml(c){
+  const raw=String(c?.vin||"");
+  const branch=branchLabel(carBranch(c));
+  const damage=c?.transportDamage===true;
+  return `<div class="car-vin-line"><span>${escapeHtml(raw)}</span><button type="button" class="vin-copy-btn" data-copy-vin="${escapeHtml(raw)}" title="Kopiuj VIN" aria-label="Kopiuj VIN">⧉</button></div>
+    <div class="car-branch">${escapeHtml(branch)}</div>
+    ${damage?`<div class="car-transport-damage-badge">! SZKODA TRANSPORTOWA</div>`:""}`;
+}
+async function copyCarVin(button){
+  const value=String(button?.dataset?.copyVin||"");
+  if(!value)return;
+  let copied=false;
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(value);
+      copied=true;
+    }
+  }catch(e){}
+  if(!copied){
+    try{
+      const ta=document.createElement("textarea");
+      ta.value=value;ta.setAttribute("readonly","");
+      ta.style.position="fixed";ta.style.opacity="0";
+      document.body.appendChild(ta);ta.select();
+      copied=document.execCommand("copy");
+      ta.remove();
+    }catch(e){}
+  }
+  if(copied&&button){
+    const old=button.innerHTML;
+    button.innerHTML="✓";
+    button.classList.add("copied");
+    setTimeout(()=>{button.innerHTML=old;button.classList.remove("copied")},1100);
+  }
+}
+
+let equipmentPreviewVin="";
+
+function openEquipmentPreview(vin){
+  const n=normalizeVin(vin);
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(!c)return;
+
+  equipmentPreviewVin=n;
+  const eq=getCarReleaseEquipment(c.vin);
+  const textValue=String(
+    c.equipment ||
+    (eq?.items?.map(x=>x.name).join(", ")||"") ||
+    c.sourceRow?.equipment ||
+    ""
+  ).trim();
+
+  $("#equipmentPreviewTitle").textContent=c.vin||"Doposażenie";
+  $("#equipmentPreviewMeta").textContent=`${c.client||"Brak klienta"} • zawieszka ${carHangerNo(c)||"—"}`;
+  $("#equipmentPreviewText").value=textValue;
+  $("#equipmentPreviewBackdrop").hidden=false;
+  document.body.classList.add("equipment-preview-open");
+}
+
+function closeEquipmentPreview(){
+  if($("#equipmentPreviewBackdrop"))$("#equipmentPreviewBackdrop").hidden=true;
+  equipmentPreviewVin="";
+  document.body.classList.remove("equipment-preview-open");
+}
+
+function editCarFromEquipmentPreview(){
+  const vin=equipmentPreviewVin;
+  closeEquipmentPreview();
+  if(vin)openCarEdit(vin);
+}
+
 function orderTiresFromCarList(vin){
   const n=normalizeVin(vin),c=fleetCars.find(x=>normalizeVin(x.vin)===n);if(!c)return;
   if(tireWorkflowState(n)==="none"){
@@ -7626,7 +9654,7 @@ function renderCars(){
     const eq=getCarReleaseEquipment(c.vin);
     const equipment=eq?eq.items.map(x=>x.name).join(" "):"";
     const src=carExcelSource(c);
-    return `${c.vin} ${c.status} ${c.client||""} ${equipment} ${src?.equipment||""} ${src?.orderNo||""}`.toLowerCase().includes(q);
+    return `${c.vin} ${c.status} ${carHangerNo(c)} ${c.transportDamage?"szkoda transportowa":""} ${c.client||""} ${c.company||""} ${c.model||""} ${c.location||""} ${c.sourceSite||""} ${equipment} ${src?.equipment||""} ${src?.orderNo||""}`.toLowerCase().includes(q);
   }).sort((a,b)=>{
     const isK1=c=>batteryTests.some(t=>normalizeVin(t.vin)===normalizeVin(c.vin)&&t.away);
     const rank=c=>c.status==="WYJECHAŁ"?2:(isK1(c)?1:0);
@@ -7646,13 +9674,13 @@ function renderCars(){
     const sourceButton=carExcelSourceButton(c);
     const sourceDetail=carExcelSourceDetail(c);
     if(!eq || !eq.items.length){
-      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell" style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}"><div class="car-equipment-empty">Brak wpisanego doposażenia</div>${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack">${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
+      return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${carVinCellHtml(c)}</td><td class="car-client-cell">${c.client?escapeHtml(c.client):'<span class="car-client-empty">—</span>'}</td><td class="car-hanger-cell">${carHangerHtml(c)}</td><td class="car-equipment-cell" style="color:${issued?'#7c3f00':(k1?'#5b21b6':'#6b7280')}"><div class="car-equipment-empty">Brak wpisanego doposażenia</div>${carEquipmentPreviewButton(c)}${sourceButton}</td><td><b>${issued?'WYDANY':(k1?'K1':'—')}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack"><button type="button" class="car-edit-btn" data-edit-car="${escapeHtml(c.vin)}">Edytuj</button>${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
     }
     const done=eq.items.filter(x=>x.done).length, total=eq.items.length;
     const allDone=done===total;
     const itemHtml=`<div class="car-equipment-list">${eq.items.map(x=>`<span class="car-equipment-chip ${x.done?"done":"todo"}">${x.done?"✓":"○"} ${escapeHtml(x.name)}</span>`).join("")}</div>`;
     const state=issued?"WYDANY":(k1?"K1":(allDone?"DOPOSAŻONY":`${done}/${total} WYKONANE`));
-    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${escapeHtml(c.vin)}<div class="car-branch">${escapeHtml(branchLabel(carBranch(c)))}</div></td><td><span class="car-status ${issued?'car-departed':(k1?'car-k1':'car-ready')}">${issued?'WYDANY':(k1?'K1':escapeHtml(c.status))}</span></td><td class="car-equipment-cell">${itemHtml}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack">${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
+    return `<tr class="${issued?'car-issued-row':(k1?'car-k1-row':'')}"><td class="vin-cell">${carVinCellHtml(c)}</td><td class="car-client-cell">${c.client?escapeHtml(c.client):'<span class="car-client-empty">—</span>'}</td><td class="car-hanger-cell">${carHangerHtml(c)}</td><td class="car-equipment-cell">${itemHtml}${carEquipmentPreviewButton(c)}${sourceButton}</td><td><b style="color:${issued?'#7c3f00':(k1?'#5b21b6':(allDone?'#168a45':'#b42318'))}">${state}</b></td><td>${carPlatesButtonHtml(c)}</td><td><div class="car-actions-stack"><button type="button" class="car-edit-btn" data-edit-car="${escapeHtml(c.vin)}">Edytuj</button>${carMountOrderButtonHtml(c)}${carTireOrderButtonHtml(c)}</div></td></tr>${sourceDetail}`;
   }).join(""):`<tr><td colspan="6" style="padding:22px;text-align:center;color:#6b7280">Brak wyników</td></tr>`;
 
   document.querySelectorAll("[data-car-source]").forEach(btn=>{
@@ -7662,7 +9690,7 @@ function renderCars(){
       const willOpen=row.hidden;
       row.hidden=!willOpen;
       btn.setAttribute("aria-expanded",willOpen?"true":"false");
-      btn.textContent=willOpen?"▲ UKRYJ WPIS Z EXCELA":"📄 SPRAWDŹ WPIS Z EXCELA";
+      btn.textContent=willOpen?"▲ UKRYJ WPIS Z PLIKU":"📄 SPRAWDŹ WPIS Z PLIKU";
     };
   });
   document.querySelectorAll("[data-equipment-diff-ok]").forEach(btn=>{
@@ -7678,29 +9706,229 @@ function renderCars(){
       renderCars();
     };
   });
+  document.querySelectorAll("[data-equipment-preview]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();openEquipmentPreview(btn.dataset.equipmentPreview)});
+  document.querySelectorAll("[data-edit-car]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();openCarEdit(btn.dataset.editCar)});
+  document.querySelectorAll("[data-copy-vin]").forEach(btn=>btn.onclick=e=>{e.stopPropagation();copyCarVin(btn)});
+  document.querySelectorAll("[data-car-hanger-vin]").forEach(input=>{
+    input.onblur=()=>saveCarHangerNo(input.dataset.carHangerVin,input.value,input);
+    input.onkeydown=e=>{
+      if(e.key==="Enter"){
+        e.preventDefault();
+        saveCarHangerNo(input.dataset.carHangerVin,input.value,input);
+        input.blur();
+      }
+    };
+  });
   document.querySelectorAll("[data-car-plates]").forEach(btn=>btn.onclick=()=>toggleCarPlatesInCar(btn.dataset.carPlates));
   document.querySelectorAll("[data-car-mount-order]").forEach(btn=>btn.onclick=()=>openCarMountOrder(btn.dataset.carMountOrder));
   document.querySelectorAll("[data-car-tire-order]").forEach(btn=>btn.onclick=()=>orderTiresFromCarList(btn.dataset.carTireOrder));
   document.querySelectorAll("[data-car-tire-open]").forEach(btn=>btn.onclick=()=>{tiresStage=tireWorkflowState(btn.dataset.carTireOpen);renderTires();show("tiresView")});
   if(typeof scheduleMobileModuleUi==="function")scheduleMobileModuleUi();
 }
+let editingCarOriginalVin="";
+
+function openCarEdit(vin){
+  const n=normalizeVin(vin);
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===n);
+  if(!c)return;
+
+  editingCarOriginalVin=n;
+  $("#editCarVin").value=c.vin||"";
+  $("#editCarHangerNo").value=carHangerNo(c);
+  $("#editCarBranch").value=carBranch(c);
+  $("#editCarModel").value=c.model||"";
+  $("#editCarClient").value=c.client||"";
+  $("#editCarCompany").value=c.company||c.sourceRow?.firma||"";
+  $("#editCarEquipment").value=c.equipment||"";
+
+  const damage=!!c.transportDamage;
+  const damageBtn=$("#editCarTransportDamage");
+  damageBtn.setAttribute("aria-pressed",damage?"true":"false");
+  damageBtn.classList.toggle("active",damage);
+
+  const msg=$("#carEditMessage");
+  if(msg){msg.textContent="";msg.className="message"}
+
+  $("#carEditTitle").textContent=c.vin||"Samochód";
+  $("#carEditSubtitle").textContent=branchLabel(carBranch(c));
+  $("#carEditBackdrop").hidden=false;
+  document.body.classList.add("car-edit-open");
+}
+
+function closeCarEdit(){
+  if($("#carEditBackdrop"))$("#carEditBackdrop").hidden=true;
+  document.body.classList.remove("car-edit-open");
+  editingCarOriginalVin="";
+}
+
+function toggleEditCarDamage(){
+  const btn=$("#editCarTransportDamage");if(!btn)return;
+  const active=btn.getAttribute("aria-pressed")!=="true";
+  btn.setAttribute("aria-pressed",active?"true":"false");
+  btn.classList.toggle("active",active);
+}
+
+function replaceVinEverywhere(oldVin,newVin){
+  const oldN=normalizeVin(oldVin),newN=normalizeVin(newVin);
+  if(!oldN||!newN||oldN===newN)return;
+
+  releaseData.forEach(r=>{if(normalizeVin(r.vin)===oldN)r.vin=newVin});
+  mountJobs.forEach(j=>{if(normalizeVin(j.vin)===oldN)j.vin=newVin});
+  tireManualCars.forEach(t=>{
+    if(normalizeVin(t.vin)===oldN)t.vin=newVin;
+    if(normalizeVin(t.displayId)===oldN)t.displayId=newVin;
+  });
+  transportOrders.forEach(o=>{if(normalizeVin(o.vehicle)===oldN)o.vehicle=newVin});
+  warehouseStock.forEach(o=>{if(normalizeVin(o.vin)===oldN)o.vin=newVin});
+  batteryTests.forEach(b=>{if(normalizeVin(b.vin)===oldN)b.vin=newVin});
+  washRecords.forEach(w=>{if(normalizeVin(w.vehicle)===oldN)w.vehicle=newVin});
+
+  try{
+    localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData));
+    localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs));
+    localStorage.setItem("toyotaTiresManualCarsV1",JSON.stringify(tireManualCars));
+    localStorage.setItem("toyotaTransportOrdersV1",JSON.stringify(transportOrders));
+    localStorage.setItem("toyotaWarehouseOrdersV2",JSON.stringify(warehouseStock));
+    localStorage.setItem("toyotaBatteryTestsV1",JSON.stringify(batteryTests));
+    localStorage.setItem("toyotaWashRecordsV1",JSON.stringify(washRecords));
+  }catch(e){}
+}
+
+function saveCarEdit(){
+  const original=editingCarOriginalVin;
+  const c=fleetCars.find(x=>normalizeVin(x.vin)===original);
+  const msg=$("#carEditMessage");
+  if(!c)return;
+
+  const vin=normalizeVin($("#editCarVin").value);
+  const hangerNo=String($("#editCarHangerNo").value||"").trim();
+  const branch=$("#editCarBranch").value==="ALEJE"?"ALEJE":"HERBOWA";
+  const location=String(c.location||"").trim();
+  const model=String($("#editCarModel").value||"").trim();
+  const client=String($("#editCarClient").value||"").trim();
+  const company=String($("#editCarCompany").value||"").trim();
+  const equipment=String($("#editCarEquipment").value||"").trim();
+  const damage=$("#editCarTransportDamage").getAttribute("aria-pressed")==="true";
+
+  if(vin.length<5){
+    if(msg){msg.textContent="Wpisz poprawny VIN.";msg.className="message error"}
+    return;
+  }
+  if(fleetCars.some(x=>x!==c&&normalizeVin(x.vin)===vin)){
+    if(msg){msg.textContent="Samochód z takim VIN-em już istnieje w bazie.";msg.className="message error"}
+    return;
+  }
+
+  const oldVin=c.vin;
+  const oldDamage=!!c.transportDamage;
+  const oldWorkItems=Array.isArray(c.workItems)?c.workItems:[];
+
+  c.vin=vin;
+  c.hangerNo=hangerNo;
+  c.branch=branch;
+  c.location=location;
+  c.model=model;
+  c.client=client;
+  c.company=company;
+  c.equipment=equipment;
+  c.workItems=parseReleaseWorkItems(equipment).map(name=>{
+    const prev=oldWorkItems.find(x=>String(x.name||"").trim().toLowerCase()===String(name).trim().toLowerCase());
+    return {name,done:!!prev?.done};
+  });
+
+  c.transportDamage=damage;
+  if(damage&&!oldDamage){
+    c.transportDamageAt=new Date().toISOString();
+    c.transportDamageBy=currentUser?.name||"";
+  }else if(!damage){
+    c.transportDamageAt="";
+    c.transportDamageBy="";
+  }
+
+  // Jeśli zmieniono VIN, aktualizujemy wszystkie powiązane moduły.
+  if(normalizeVin(oldVin)!==vin)replaceVinEverywhere(oldVin,vin);
+
+  // Jeśli auto ma wydanie, synchronizujemy podstawowe dane i listę prac.
+  releaseData.forEach(r=>{
+    if(normalizeVin(r.vin)!==vin)return;
+    r.client=client||r.client||"";
+    r.model=model||r.model||"";
+    if(equipment){
+      const oldItems=Array.isArray(r.workItems)?r.workItems:[];
+      r.info=equipment;
+      r.workItems=parseReleaseWorkItems(equipment).map(name=>{
+        const prev=oldItems.find(x=>String(x.name||"").trim().toLowerCase()===String(name).trim().toLowerCase());
+        return {name,done:!!prev?.done};
+      });
+      normalizeReleaseRequirements(r);
+    }
+  });
+
+  saveCars();
+  try{localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData))}catch(e){}
+  syncBatteryCars();
+
+  logAction(
+    "Edycja samochodu",
+    `${oldVin}${normalizeVin(oldVin)!==vin?` → ${vin}`:""} • zawieszka ${hangerNo||"brak"}${client?` • klient: ${client}`:""}${company?` • firma: ${company}`:""} • ${branchLabel(branch)}${damage?" • SZKODA TRANSPORTOWA":""}`
+  );
+
+  closeCarEdit();
+  renderCars();
+  try{renderMainDashboard();renderMobileDashboard()}catch(e){}
+}
+
+function toggleNewCarTransportDamage(){
+  const btn=$("#newCarTransportDamage");if(!btn)return;
+  const active=btn.getAttribute("aria-pressed")!=="true";
+  btn.setAttribute("aria-pressed",active?"true":"false");
+  btn.classList.toggle("active",active);
+}
 function addCar(){
   const vin=normalizeVin($("#newVin").value);const msg=$("#addCarMessage");
   if(vin.length<4){msg.textContent="VIN musi mieć co najmniej 4 znaki.";msg.className="message error";return}
   if(fleetCars.some(r=>normalizeVin(r.vin)===vin)){msg.textContent="Ten VIN już istnieje w bazie.";msg.className="message error";return}
   const equipment=$("#newCarEquipment") ? $("#newCarEquipment").value.trim() : "";
-  fleetCars.unshift({vin,status:"AKTYWNY",branch:currentBranch,equipment,platesInCar:false,workItems:parseReleaseWorkItems(equipment).map(name=>({name,done:false}))});saveCars();logAction("Dodanie samochodu",`${vin} • ${branchLabel()}${equipment?` • Doposażenie: ${equipment}`:""}`);syncBatteryCars();$("#newVin").value="";if($("#newCarEquipment"))$("#newCarEquipment").value="";msg.textContent=`Dodano VIN ${vin} do oddziału ${branchLabel()}${equipment?" wraz z listą doposażenia":""}. Samochód pojawił się również w Testach akumulatorów.`;msg.className="message ok";renderCars();
-}
-function renderVinSuggestions(){
-  const q=normalizeVin($("#vinLookup").value);$("#vinLookup").value=q;const box=$("#vinSuggestions"),msg=$("#vinLookupMessage");
-  if(q.length<4){box.classList.remove("open");box.innerHTML="";msg.textContent="Wpisz ostatnie 4–6 znaków VIN-u.";return}
-  const branchCars=fleetCars.filter(r=>carBranch(r)===currentBranch);const ending=branchCars.filter(r=>normalizeVin(r.vin).endsWith(q));const containing=branchCars.filter(r=>!normalizeVin(r.vin).endsWith(q)&&normalizeVin(r.vin).includes(q));const m=[...ending,...containing].slice(0,8);
-  if(!m.length){box.classList.remove("open");msg.textContent="Brak pasującego VIN-u.";msg.className="message error";return}
-  box.innerHTML=m.map(r=>`<div class="vin-option" data-vin="${r.vin}"><div class="vin-full">${r.vin}</div><div class="vin-meta">${r.status}</div></div>`).join("");box.classList.add("open");msg.textContent=`Znaleziono ${m.length}.`;msg.className="message ok";
-  box.querySelectorAll(".vin-option").forEach(o=>o.onclick=()=>{$("#vinLookup").value=o.dataset.vin;box.classList.remove("open");msg.textContent=`Pełny VIN: ${o.dataset.vin}`});
-}
+  const hangerNo=$("#newCarHangerNo") ? $("#newCarHangerNo").value.trim() : "";
+  const client=$("#newCarClient") ? $("#newCarClient").value.trim() : "";
+  const selectedBranch=$("#newCarBranch")?.value==="ALEJE"?"ALEJE":"HERBOWA";
+  const transportDamage=$("#newCarTransportDamage")?.getAttribute("aria-pressed")==="true";
 
+  fleetCars.unshift({
+    vin,
+    status:"AKTYWNY",
+    branch:selectedBranch,
+    hangerNo,
+    client,
+    equipment,
+    transportDamage,
+    transportDamageAt:transportDamage?new Date().toISOString():"",
+    transportDamageBy:transportDamage?(currentUser?.name||""):"",
+    platesInCar:false,
+    workItems:parseReleaseWorkItems(equipment).map(name=>({name,done:false}))
+  });
+  saveCars();
 
+  logAction(
+    "Dodanie samochodu",
+    `${vin} • ${branchLabel(selectedBranch)}${hangerNo?` • Zawieszka: ${hangerNo}`:""}${client?` • Klient: ${client}`:""}${equipment?` • Doposażenie: ${equipment}`:""}${transportDamage?" • SZKODA TRANSPORTOWA":""}`
+  );
+
+  syncBatteryCars();
+  $("#newVin").value="";
+  if($("#newCarHangerNo"))$("#newCarHangerNo").value="";
+  if($("#newCarClient"))$("#newCarClient").value="";
+  if($("#newCarBranch"))$("#newCarBranch").value=currentBranch==="ALEJE"?"ALEJE":"HERBOWA";
+  if($("#newCarEquipment"))$("#newCarEquipment").value="";
+  if($("#newCarTransportDamage")){
+    $("#newCarTransportDamage").setAttribute("aria-pressed","false");
+    $("#newCarTransportDamage").classList.remove("active");
+  }
+
+  msg.textContent=`Dodano VIN ${vin} do oddziału ${branchLabel(selectedBranch)}${hangerNo?` • zawieszka ${hangerNo}`:""}${client?` • klient ${client}`:""}${transportDamage?" • oznaczono szkodę transportową":""}. Samochód pojawił się również w Testach akumulatorów.`;
+  msg.className="message ok";
+  renderCars();
+}
 
 /* ---------- GLOBAL SEARCH + AUTOMATIC ARCHIVE ---------- */
 function archivedCars(){return fleetCars.filter(c=>c.status==="WYJECHAŁ" || releaseData.some(r=>normalizeVin(r.vin)===normalizeVin(c.vin)&&r.status==="WYDANE"))}
@@ -7880,6 +10108,7 @@ function mobileSectionForView(id){
   if(["washView","washPendingView","washDoneView","washBonusView"].includes(id))return ["MYJNIA","Obsługa myjni"];
   if(id==="tasksView")return ["ZADANIA","Zadania"];
   if(id==="archiveView")return ["HISTORIA","Archiwum"];
+  if(id==="adminUsersView")return ["SYSTEM","Użytkownicy i dostęp"];
   if(["adminView","bonusAdminView"].includes(id))return ["SYSTEM","Administrator"];
   return ["START","Panel główny"];
 }
@@ -7910,7 +10139,7 @@ function renderGlobalVinSearch(){
   if(!hits.length){out.classList.add("open");out.innerHTML='<div class="muted">Nie znaleziono samochodu.</div>';return}
   const c=hits[0], rel=releaseData.filter(r=>normalizeVin(r.vin)===normalizeVin(c.vin)).sort((a,b)=>`${b.date||""} ${b.time||""}`.localeCompare(`${a.date||""} ${a.time||""}`))[0],eq=getCarReleaseEquipment(c.vin);
   const done=eq?.items?.filter(x=>x.done).length||0,total=eq?.items?.length||0,arch=c.status==="WYJECHAŁ"||rel?.status==="WYDANE";
-  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||c.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Miejsce:</b> ${rel?.place||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
+  out.classList.add("open");out.innerHTML=`<div class="gr-vin">${c.vin}</div><div class="gr-grid"><div><b>Status:</b> ${arch?"WYDANY":c.status}</div><div><b>Wydanie:</b> ${rel?`${formatIso(rel.date)} ${rel.time||""}`:"nie zaplanowano"}</div><div><b>Klient:</b> ${rel?.client||c.client||"—"}</div><div><b>Doposażenie:</b> ${total?`${done}/${total} wykonane`:"brak"}</div><div><b>Lokalizacja:</b> ${rel?.place||c.location||c.sourceSite||"—"}</div><div><b>Gotowość:</b> ${rel?.releaseReady?"TAK":"NIE"}</div></div>`;
   addMobileRecentVin(c.vin);
 }
 
@@ -8677,6 +10906,176 @@ function tireRelatedRelease(vin){
 function tireDisplayId(c){return c?.manualTireEntry?String(c.displayId||c.vin||""):String(c?.vin||"")}
 function tireDisplayModel(c){return c?.manualTireEntry?String(c.model||""):String(tireRelatedRelease(c?.vin)?.model||c?.model||"")}
 function tireDisplayClient(c){return c?.manualTireEntry?String(c.client||""):String(tireRelatedRelease(c?.vin)?.client||c?.client||"")}
+
+let tiresScannerStream=null;
+let tiresScannerFrame=0;
+let tiresScannerDetector=null;
+let tiresScannerBusy=false;
+let tiresScannerLastDetect=0;
+
+function normalizeScannedVin(raw){
+  let s=String(raw||"").toUpperCase().trim();
+  s=s.replace(/^VIN\s*[:#-]?\s*/i,"");
+  const compact=s.replace(/[^A-Z0-9]/g,"").replace(/[IOQ]/g,"");
+  if(/^[A-HJ-NPR-Z0-9]{17}$/.test(compact))return compact;
+
+  const match=String(raw||"").toUpperCase().match(/[A-HJ-NPR-Z0-9]{17}/);
+  return match?match[0]:"";
+}
+
+function stopTiresVinScanner(){
+  if(tiresScannerFrame)cancelAnimationFrame(tiresScannerFrame);
+  tiresScannerFrame=0;
+  tiresScannerBusy=false;
+  if(tiresScannerStream){
+    tiresScannerStream.getTracks().forEach(track=>track.stop());
+    tiresScannerStream=null;
+  }
+  const video=$("#tiresScannerVideo");
+  if(video){
+    try{video.pause()}catch(e){}
+    video.srcObject=null;
+  }
+}
+
+function closeTiresVinScanner(){
+  stopTiresVinScanner();
+  const modal=$("#tiresScannerBackdrop");
+  if(modal)modal.hidden=true;
+  document.body.classList.remove("tires-scanner-open");
+}
+
+function applyScannedTireVin(raw){
+  const vin=normalizeScannedVin(raw);
+  const status=$("#tiresScannerStatus");
+  if(!vin){
+    if(status){
+      status.textContent="Nie udało się odczytać pełnego 17-znakowego VIN-u. Spróbuj ponownie albo wpisz VIN ręcznie.";
+      status.className="tires-scanner-status error";
+    }
+    return false;
+  }
+
+  const fleetCar=fleetCars.find(c=>normalizeVin(c.vin)===vin);
+  const workflowCar=tireEntityForVin(vin);
+
+  $("#tiresAddVin").value=vin;
+  if(fleetCar){
+    if($("#tiresAddModel"))$("#tiresAddModel").value=fleetCar.model||tireDisplayModel(fleetCar)||"";
+    if($("#tiresAddClient"))$("#tiresAddClient").value=fleetCar.client||tireDisplayClient(fleetCar)||"";
+  }
+
+  closeTiresVinScanner();
+
+  const msg=$("#tiresAddMessage");
+  const state=workflowCar?tireWorkflowState(vin):"none";
+  if(state!=="none"){
+    tiresStage=state;
+    if($("#tiresSearch"))$("#tiresSearch").value=vin;
+    renderTires();
+    if(msg){
+      const labels={replace:"Do wymiany",done:"Wymienione",shipping:"Do wysyłki",sent:"Opony wysłane"};
+      msg.textContent=`Zeskanowano VIN ${vin}. Samochód jest już w module Opony — sekcja „${labels[state]||state}”.`;
+      msg.className="message ok";
+    }
+  }else{
+    if(msg){
+      msg.textContent=`Zeskanowano VIN ${vin}. Możesz teraz kliknąć „Dodaj do wymiany”.`;
+      msg.className="message ok";
+    }
+    $("#tiresAddVin")?.focus();
+  }
+  return true;
+}
+
+async function scanTiresVinFrame(){
+  const modal=$("#tiresScannerBackdrop");
+  const video=$("#tiresScannerVideo");
+  if(!modal||modal.hidden||!video||!tiresScannerDetector)return;
+
+  const now=performance.now();
+  if(!tiresScannerBusy&&video.readyState>=2&&now-tiresScannerLastDetect>220){
+    tiresScannerBusy=true;
+    tiresScannerLastDetect=now;
+    try{
+      const codes=await tiresScannerDetector.detect(video);
+      for(const code of codes||[]){
+        if(applyScannedTireVin(code.rawValue||""))return;
+      }
+    }catch(e){}
+    finally{tiresScannerBusy=false}
+  }
+  tiresScannerFrame=requestAnimationFrame(scanTiresVinFrame);
+}
+
+async function openTiresVinScanner(){
+  const modal=$("#tiresScannerBackdrop");
+  const status=$("#tiresScannerStatus");
+  const manual=$("#tiresScannerManualVin");
+  if(!modal)return;
+
+  stopTiresVinScanner();
+  modal.hidden=false;
+  document.body.classList.add("tires-scanner-open");
+  if(manual)manual.value="";
+  if(status){
+    status.textContent="Uruchamianie aparatu…";
+    status.className="tires-scanner-status";
+  }
+
+  if(!("BarcodeDetector" in window)){
+    if(status){
+      status.textContent="Ta przeglądarka nie obsługuje automatycznego skanowania kodu VIN. Wpisz VIN ręcznie poniżej.";
+      status.className="tires-scanner-status warning";
+    }
+    manual?.focus();
+    return;
+  }
+
+  try{
+    const wanted=["code_128","code_39","code_93","codabar","qr_code","data_matrix"];
+    let formats=wanted;
+    if(typeof BarcodeDetector.getSupportedFormats==="function"){
+      const supported=await BarcodeDetector.getSupportedFormats();
+      formats=wanted.filter(f=>supported.includes(f));
+    }
+    tiresScannerDetector=new BarcodeDetector(formats.length?{formats}:undefined);
+
+    tiresScannerStream=await navigator.mediaDevices.getUserMedia({
+      video:{
+        facingMode:{ideal:"environment"},
+        width:{ideal:1920},
+        height:{ideal:1080}
+      },
+      audio:false
+    });
+
+    const video=$("#tiresScannerVideo");
+    video.srcObject=tiresScannerStream;
+    await video.play();
+
+    if(status){
+      status.textContent="Skaner działa. Trzymaj kod VIN nieruchomo wewnątrz ramki.";
+      status.className="tires-scanner-status ok";
+    }
+    tiresScannerFrame=requestAnimationFrame(scanTiresVinFrame);
+  }catch(err){
+    stopTiresVinScanner();
+    if(status){
+      const denied=String(err?.name||"").includes("NotAllowed");
+      status.textContent=denied
+        ?"Brak dostępu do aparatu. Zezwól na użycie kamery albo wpisz VIN ręcznie."
+        :"Nie udało się uruchomić aparatu. Wpisz VIN ręcznie poniżej.";
+      status.className="tires-scanner-status error";
+    }
+    manual?.focus();
+  }
+}
+
+function useManualTiresScannerVin(){
+  const raw=$("#tiresScannerManualVin")?.value||"";
+  applyScannedTireVin(raw);
+}
 
 function addCarToTires(){
   const msg=$("#tiresAddMessage");
@@ -9713,16 +12112,6 @@ const mountJobsSeed=[
 ];
 
 let mountJobs=storageJSON("toyotaMountJobsV3",[],"array").filter(x=>x&&typeof x==="object");
-let mountArchiveBackfillChanged=false;
-mountJobs.forEach(j=>{
-  if(j?.closed===true){
-    if(!j.archiveBranch){j.archiveBranch=mountJobBranch(j);mountArchiveBackfillChanged=true}
-    if(!j.archiveClosedAt&&j.closedAt){j.archiveClosedAt=j.closedAt;mountArchiveBackfillChanged=true}
-  }
-});
-if(mountArchiveBackfillChanged){
-  try{localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs))}catch(e){}
-}
 
 // PRZYKŁAD W APLIKACJI: ten sam samochód wykonany przez obu doposażeniowców.
 // Dodawany tylko raz, żeby można było od razu zobaczyć oznaczenie WSPÓLNY SAMOCHÓD
@@ -10188,10 +12577,10 @@ function mountJobRowHtml(r){
   const dateAttr=String(r.date||"").replace(/"/g,'&quot;');
   const vinAttr=String(r.vin||"").replace(/"/g,'&quot;');
   const action=r.closed
-    ? `<span class="mount-badge yes mount-status-closed">ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${escapeHtml(r.closedBy||"")}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`
+    ? `<span class="mount-badge yes">ZLECENIE ZAMKNIĘTE</span><div class="muted" style="margin-top:5px">${escapeHtml(r.closedBy||"")}${r.closedAt?` • ${new Date(r.closedAt).toLocaleString("pl-PL")}`:""}</div>`
     : r.manualAssignment
       ? `<button class="mount-edit-btn" type="button" data-edit-vin="${vinAttr}" data-edit-date="${dateAttr}">Otwórz zlecenie</button>`
-      : `${done?'<span class="mount-badge mount-status-waiting">DO ZAMKNIĘCIA</span>':""}<button class="mount-edit-btn" style="${done?"margin-top:6px":""}" type="button" data-edit-vin="${vinAttr}" data-edit-date="${dateAttr}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${vinAttr}" data-close-date="${dateAttr}">ZAMKNIJ ZLECENIE</button>`:""}`;
+      : `<button class="mount-edit-btn" type="button" data-edit-vin="${vinAttr}" data-edit-date="${dateAttr}">Edytuj</button>${coord&&done?`<button class="mount-close-btn" style="margin-top:6px" type="button" data-close-vin="${vinAttr}" data-close-date="${dateAttr}">ZAMKNIJ ZLECENIE</button>`:""}`;
   return `<tr class="${done?"completed":""} ${r.manualAssignment?"mount-assigned-row":""} ${r.manualEntry?"mount-manual-row":""} ${r.closed?"mount-closed-row":""}">
       <td>${escapeHtml(r.date||"")}</td>
       <td>${mountBranchBadge(mountJobBranch(r))}</td>
@@ -10233,41 +12622,10 @@ function bindMountRows(scope,fromDone=false){
       const workers=[...new Set(sameVinJobs.map(j=>j.owner).filter(Boolean))];
       if(!confirm(`Zamknąć zlecenie dla VIN ${job.vin}${workers.length>1?`?\n\nWspólny samochód: ${workers.join(" + ")}`:"?"}`))return;
       const closedAt=new Date().toISOString(),closedBy=currentUser?.name||"";
-      sameVinJobs.forEach(j=>{
-        j.closed=true;
-        j.closedAt=closedAt;
-        j.closedBy=closedBy;
-        j.archiveBranch=mountJobBranch(j);
-        j.archiveClosedAt=closedAt;
-      });
+      sameVinJobs.forEach(j=>{j.closed=true;j.closedAt=closedAt;j.closedBy=closedBy;});
       saveMountJobs();
-
-      // Status został zapisany jako zamknięty — od tego momentu każdy render
-      // ma pokazywać "ZAMKNIĘTE" w kolumnie STATUS.
       logAction("Zamknięcie zlecenia doposażenia",`${job.vin} • ${workers.join(" + ")}`);
-
-      // Zlecenie znika z "Do zamknięcia", pozostaje w historii wykonania
-      // i od razu otwieramy Archiwum, aby koordynator widział rezultat operacji.
-      renderMountTable();
-      renderMountDoneTable();
-      renderMountClosedTable();
-      refreshMountDependentViews();
-
-      // Zamknięcie następuje "teraz", dlatego Archiwum otwieramy na bieżącym miesiącu.
-      mountMonthOffset=0;
-      show("mountClosedList");
-      renderMountClosedTable();
-
-      // Podświetl właśnie zamknięty samochód w Archiwum.
-      requestAnimationFrame(()=>{
-        const target=[...document.querySelectorAll("#mountClosedRows tr.mount-closed-row")]
-          .find(row=>row.querySelector(".vin-cell")?.textContent?.includes(job.vin));
-        if(target){
-          target.classList.add("mount-just-closed");
-          target.scrollIntoView({behavior:"smooth",block:"center"});
-          setTimeout(()=>target.classList.remove("mount-just-closed"),2600);
-        }
-      });
+      renderMountTable();renderMountDoneTable();renderMountClosedTable();refreshMountDependentViews();
     };
   });
   scope.querySelectorAll(".mount-done-toggle").forEach(cb=>{
@@ -10386,53 +12744,22 @@ function renderMountDoneTable(){
   tbody.innerHTML=jobs.length?mountGroupedRowsHtml(jobs):`<tr><td colspan="11" style="padding:24px;text-align:center;color:#6b7280">Brak wykonanych zleceń oczekujących na zamknięcie.</td></tr>`;
   bindMountRows(tbody,true);
 }
-function mountArchiveMonthKey(job){
-  // Po zamknięciu zlecenie ma być widoczne w miesiącu, w którym zostało zamknięte.
-  // Przed zamknięciem (wykonane / do zamknięcia) pozostaje w miesiącu wykonania.
-  if(job?.closed&&job.closedAt){
-    const d=new Date(job.closedAt);
-    if(!isNaN(d))return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
-  }
-  return mountJobMonthKey(job?.date);
-}
-function mountArchiveVisibleInCurrentBranch(job){
-  if(!job)return false;
-  // Archiwum jest historią. Nie opieramy go o aktualną lokalizację auta
-  // na liście floty, bo samochód mógł już zmienić oddział lub zniknąć z listy.
-  return normalizeBranch(job.archiveBranch||mountJobBranch(job))===currentBranch;
-}
-function mountArchiveIsCompleted(job){
-  // closed=true jest stanem końcowym i ma pierwszeństwo nad późniejszymi
-  // zmianami danych powiązanych z samochodem.
-  return !!job&&(job.closed===true||mountJobIsCompleted(job));
-}
 function renderMountClosedTable(){
   const md=shiftedMonth(mountMonthOffset),label=$("#mountClosedMonthLabel");
   if(label)label.textContent=monthLabel(md);
   const mk=monthKey(md);
 
   const jobs=mountJobs
-    .filter(j=>j.owner===selectedOwner&&mountArchiveMonthKey(j)===mk&&mountArchiveIsCompleted(j)&&mountArchiveVisibleInCurrentBranch(j))
+    .filter(j=>j.owner===selectedOwner&&mountJobMonthKey(j.date)===mk&&mountJobIsCompleted(j)&&mountJobVisibleInCurrentBranch(j))
     .sort((a,b)=>{
-      // Najnowsze zamknięcia są zawsze na górze Archiwum.
-      if(!!a.closed!==!!b.closed)return a.closed?-1:1;
       const aTime=String(a.closedAt||a.updatedAt||a.date||"");
       const bTime=String(b.closedAt||b.updatedAt||b.date||"");
       return bTime.localeCompare(aTime)||String(a.vin||"").localeCompare(String(b.vin||""));
     });
 
   const unique=[...new Set(jobs.map(j=>normalizeVin(j.vin)).filter(Boolean))].length;
-  const totalHours=jobs.reduce((sum,j)=>{
-    const raw=String(j.hours??"").replace(",",".").trim();
-    const value=Number(raw);
-    return sum+(Number.isFinite(value)?value:0);
-  },0);
-  const totalHoursText=Number.isInteger(totalHours)?String(totalHours):totalHours.toFixed(1).replace(".",",");
-
   if($("#mountClosedOwnerTitle"))$("#mountClosedOwnerTitle").textContent=`${selectedOwner} — archiwum`;
   if($("#mountClosedBadge"))$("#mountClosedBadge").textContent=`${jobs.length} ${jobs.length===1?"wpis":"wpisów"} • ${unique} ${unique===1?"auto":"aut"}`;
-  if($("#mountClosedTotalHours"))$("#mountClosedTotalHours").textContent=`${totalHoursText} h`;
-  if($("#mountClosedHoursMeta"))$("#mountClosedHoursMeta").textContent=`${jobs.length} ${jobs.length===1?"wpis montażowy":"wpisów montażowych"} • ${unique} ${unique===1?"samochód":"samochodów"}`;
 
   const tbody=$("#mountClosedRows");
   if(!tbody)return;
@@ -10752,7 +13079,230 @@ document.addEventListener("click",(e)=>{
 
 
 /* ---------- MYJNIA ---------- */
+
 let washRecords=storageJSON("toyotaWashRecordsV1",[],"array").filter(x=>x&&typeof x==="object");
+
+/* ===== IMPORT DNA - TOYOTA BIELANY • 18.09.2026 =====
+   Zastępuje całą dotychczasową bazę samochodów dokładnie 100 rekordami
+   z przesłanego pliku. Kolumna "Komentarz" = lokalizacja w aplikacji.
+   Dodatkowo tworzy kilka startowych przykładów w modułach operacyjnych. */
+const TOYOTA_BIELANY_IMPORT_KEY="toyotaBielanyDNA100_20260918_V3";
+if(!localStorage.getItem(TOYOTA_BIELANY_IMPORT_KEY)){
+  const importedCars=[{"vin":"JTDKBCBB10A609319","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:53:38","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":2,"vin":"JTDKBCBB10A609319","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 12:53:38"}},{"vin":"JTDKBCBB10A610440","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:53:20","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":3,"vin":"JTDKBCBB10A610440","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 12:53:20"}},{"vin":"JTDKBCBB10A609515","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:53:09","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":4,"vin":"JTDKBCBB10A609515","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 12:53:09"}},{"vin":"JTDKGCGB60A220623","status":"AKTYWNY","branch":"HERBOWA","client":"Volodymyr Knysh DVK GROUP","model":"040 Pure White","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:52:42","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":5,"vin":"JTDKGCGB60A220623","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"040 Pure White","komentarz":"Zawieszka: ;","firma":"Volodymyr Knysh DVK GROUP","user":"Patryk Jarosz","datein":"2026-09-18 12:52:42"}},{"vin":"JTHBGBD1802001757","status":"AKTYWNY","branch":"HERBOWA","client":"GONTAREK WIESŁAW","model":"ES Czarny metalik","location":"Zawieszka: ;","sourceSite":"WOLA ŁĄCKA 55","sourceUser":"Tomasz Dąbrowski","sourceDateIn":"2026-09-18 12:35:29","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":6,"vin":"JTHBGBD1802001757","uszko":"Nie","miejsce":"WOLA ŁĄCKA 55","data":"in: 2026-09-18out","paliwo":"","auto":"ES Czarny metalik","komentarz":"Zawieszka: ;","firma":"GONTAREK WIESŁAW","user":"Tomasz Dąbrowski","datein":"2026-09-18 12:35:29"}},{"vin":"JTHBGBD1702003192","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"ES Sou","location":"Zawieszka: ;","sourceSite":"WOLA ŁĄCKA 55","sourceUser":"Tomasz Dąbrowski","sourceDateIn":"2026-09-18 12:35:02","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":7,"vin":"JTHBGBD1702003192","uszko":"Nie","miejsce":"WOLA ŁĄCKA 55","data":"in: 2026-09-18out","paliwo":"","auto":"ES Sou","komentarz":"Zawieszka: ;","firma":"","user":"Tomasz Dąbrowski","datein":"2026-09-18 12:35:02"}},{"vin":"JTHB21B1002281282","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"ES Sonic Grey","location":"Zawieszka: ;","sourceSite":"WOLA ŁĄCKA 55","sourceUser":"Tomasz Dąbrowski","sourceDateIn":"2026-09-18 12:34:40","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":8,"vin":"JTHB21B1002281282","uszko":"Nie","miejsce":"WOLA ŁĄCKA 55","data":"in: 2026-09-18out","paliwo":"","auto":"ES Sonic Grey","komentarz":"Zawieszka: ;","firma":"","user":"Tomasz Dąbrowski","datein":"2026-09-18 12:34:40"}},{"vin":"WD9800R Corolla l.m.","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:01:18","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":9,"vin":"WD9800R Corolla l.m.","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"","komentarz":"Zawieszka: ;","firma":"","user":"Patryk Jarosz","datein":"2026-09-18 12:01:18"}},{"vin":"WD9801R Corolla l.m","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 12:00:57","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":10,"vin":"WD9801R Corolla l.m","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"","komentarz":"Zawieszka: ;","firma":"","user":"Patryk Jarosz","datein":"2026-09-18 12:00:57"}},{"vin":"JTDKBCBB20A609264","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:23:11","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":11,"vin":"JTDKBCBB20A609264","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 10:23:11"}},{"vin":"JTDKBCBB10A609224","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:22:55","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":12,"vin":"JTDKBCBB10A609224","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 10:22:55"}},{"vin":"JTDKBCBB20A609412","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:22:43","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":13,"vin":"JTDKBCBB20A609412","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 10:22:43"}},{"vin":"JTDKBCBB10A610924","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:22:23","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":14,"vin":"JTDKBCBB10A610924","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 10:22:23"}},{"vin":"JTPABACAX0R080544","status":"AKTYWNY","branch":"HERBOWA","client":"SEMANI MAŁGORZATA ANISZKIEWICZ","model":"C_HR Imperial Red + Astral Black","location":"Zawieszka: ;  Zawieszka: 57;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:16:36","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":15,"vin":"JTPABACAX0R080544","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"C_HR Imperial Red + Astral Black","komentarz":"Zawieszka: ;  Zawieszka: 57;","firma":"SEMANI MAŁGORZATA ANISZKIEWICZ","user":"Patryk Jarosz","datein":"2026-09-18 10:16:36"}},{"vin":"SB1ZB3AE40E302069","status":"AKTYWNY","branch":"HERBOWA","client":"Ślusarczyk MARCIN","model":"COROLLA_HB_TS Storm Grey","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:15:27","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":16,"vin":"SB1ZB3AE40E302069","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"COROLLA_HB_TS Storm Grey","komentarz":"Zawieszka: ;","firma":"Ślusarczyk MARCIN","user":"Patryk Jarosz","datein":"2026-09-18 10:15:27"}},{"vin":"JTDAANBC900056217","status":"AKTYWNY","branch":"HERBOWA","client":"Antczak Teresa","model":"AYGO_X Celestial Grey","location":"Zawieszka: 16;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-18 10:07:31","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":17,"vin":"JTDAANBC900056217","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-18out","paliwo":"","auto":"AYGO_X Celestial Grey","komentarz":"Zawieszka: 16;","firma":"Antczak Teresa","user":"Daniel Racki","datein":"2026-09-18 10:07:31"}},{"vin":"YARKBBC3600478035","status":"AKTYWNY","branch":"HERBOWA","client":"MIODUSZEWSKA BEATA","model":"YARIS Storm Grey","location":"Zawieszka: 56;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-18 10:06:15","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":18,"vin":"YARKBBC3600478035","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-18out","paliwo":"","auto":"YARIS Storm Grey","komentarz":"Zawieszka: 56;","firma":"MIODUSZEWSKA BEATA","user":"Daniel Racki","datein":"2026-09-18 10:06:15"}},{"vin":"WD4651R YARIS E.C.","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 10:00:13","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":19,"vin":"WD4651R YARIS E.C.","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"","komentarz":"Zawieszka: ;","firma":"","user":"Patryk Jarosz","datein":"2026-09-18 10:00:13"}},{"vin":"JTHYBBAH702045730","status":"AKTYWNY","branch":"HERBOWA","client":"Marzena Wnukowska-Bąk","model":"UX Czarny metalik","location":"Zawieszka: ;","sourceSite":"KLAUDYNY 1","sourceUser":"Jacek Sawinski","sourceDateIn":"2026-09-18 07:51:56","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":20,"vin":"JTHYBBAH702045730","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-18out","paliwo":"","auto":"UX Czarny metalik","komentarz":"Zawieszka: ;","firma":"Marzena Wnukowska-Bąk","user":"Jacek Sawinski","datein":"2026-09-18 07:51:56"}},{"vin":"JTNABACB609014252","status":"AKTYWNY","branch":"HERBOWA","client":"SAMSIK AGNIESZKA","model":"COROLLA_CROSS Czarny","location":"Zawieszka: ; 29","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:22:30","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":21,"vin":"JTNABACB609014252","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"COROLLA_CROSS Czarny","komentarz":"Zawieszka: ; 29","firma":"SAMSIK AGNIESZKA","user":"Patryk Jarosz","datein":"2026-09-18 07:22:30"}},{"vin":"JTNABACB909014519","status":"AKTYWNY","branch":"HERBOWA","client":"OLASIK ROBERT","model":"COROLLA_CROSS Plat Pearl White+Astral Black","location":"Zawieszka: ;  Zawieszka: 47;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:20:21","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":22,"vin":"JTNABACB909014519","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"COROLLA_CROSS Plat Pearl White+Astral Black","komentarz":"Zawieszka: ;  Zawieszka: 47;","firma":"OLASIK ROBERT","user":"Patryk Jarosz","datein":"2026-09-18 07:20:21"}},{"vin":"JTNAGACK003097732","status":"AKTYWNY","branch":"HERBOWA","client":"Górski KRYSTIAN","model":"CAMRY 1L5 Precious Metal","location":"Zawieszka: ; 39","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:19:25","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":23,"vin":"JTNAGACK003097732","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"CAMRY 1L5 Precious Metal","komentarz":"Zawieszka: ; 39","firma":"Górski KRYSTIAN","user":"Patryk Jarosz","datein":"2026-09-18 07:19:25"}},{"vin":"JTM5CAAV20D331863","status":"AKTYWNY","branch":"HERBOWA","client":"SZCZEPAŃSKI ANDRZEJ TOMASZ","model":"RAV4 218 Attitude Black","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:17:53","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":24,"vin":"JTM5CAAV20D331863","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"RAV4 218 Attitude Black","komentarz":"Zawieszka: ;","firma":"SZCZEPAŃSKI ANDRZEJ TOMASZ","user":"Patryk Jarosz","datein":"2026-09-18 07:17:53"}},{"vin":"SB1ZB3AE70E301563","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"COROLLA_HB_TS Storm Grey","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:17:25","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":25,"vin":"SB1ZB3AE70E301563","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"COROLLA_HB_TS Storm Grey","komentarz":"Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-18 07:17:25"}},{"vin":"SB1ZC3CE60E062436","status":"AKTYWNY","branch":"HERBOWA","client":"Marek Święchowicz","model":"COROLLA_HB_TS Biała perła","location":"Zawieszka: ;  Zawieszka: 46;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-18 07:11:48","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":26,"vin":"SB1ZC3CE60E062436","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-18out","paliwo":"","auto":"COROLLA_HB_TS Biała perła","komentarz":"Zawieszka: ;  Zawieszka: 46;","firma":"Marek Święchowicz","user":"Patryk Jarosz","datein":"2026-09-18 07:11:48"}},{"vin":"JTNADADB709040772","status":"AKTYWNY","branch":"HERBOWA","client":"Gutowski JACEK KRZYSZTOF","model":"COROLLA_CROSS Srebrny","location":"Zawieszka: 77;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:47:18","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":27,"vin":"JTNADADB709040772","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_CROSS Srebrny","komentarz":"Zawieszka: 77;","firma":"Gutowski JACEK KRZYSZTOF","user":"Tomasz Kurach","datein":"2026-09-17 16:47:18"}},{"vin":"JTNABACB909014472","status":"AKTYWNY","branch":"HERBOWA","client":"Kowalski Andrzej","model":"COROLLA_CROSS Srebrny","location":"Zawieszka: 5;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:46:01","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":28,"vin":"JTNABACB909014472","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_CROSS Srebrny","komentarz":"Zawieszka: 5;","firma":"Kowalski Andrzej","user":"Tomasz Kurach","datein":"2026-09-17 16:46:01"}},{"vin":"JTM5EAAV00J021433","status":"AKTYWNY","branch":"HERBOWA","client":"NAGÓRKO WALDEMAR","model":"RAV4 1L6 Massive Grey","location":"Zawieszka: 95;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:44:42","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":29,"vin":"JTM5EAAV00J021433","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"RAV4 1L6 Massive Grey","komentarz":"Zawieszka: 95;","firma":"NAGÓRKO WALDEMAR","user":"Tomasz Kurach","datein":"2026-09-17 16:44:42"}},{"vin":"NMTBD3BEX0R133402","status":"AKTYWNY","branch":"HERBOWA","client":"PIETRZAK UBEZPIECZENIA AGNIESZKA PIETRZAK","model":"COROLLA_SEDAN Czerwony","location":"Zawieszka: 66;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:43:18","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":30,"vin":"NMTBD3BEX0R133402","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_SEDAN Czerwony","komentarz":"Zawieszka: 66;","firma":"PIETRZAK UBEZPIECZENIA AGNIESZKA PIETRZAK","user":"Tomasz Kurach","datein":"2026-09-17 16:43:18"}},{"vin":"YARVNFC13RZ138764","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"PROACE_VERSO Titanium Grey","location":"Zawieszka: 52;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:18:54","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":31,"vin":"YARVNFC13RZ138764","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"PROACE_VERSO Titanium Grey","komentarz":"Zawieszka: 52;","firma":"","user":"Tomasz Kurach","datein":"2026-09-17 16:18:54"}},{"vin":"YARKBBC3700480330","status":"AKTYWNY","branch":"HERBOWA","client":"GOSPODARSTWO ROLNE","model":"YARIS Biały","location":"Zawieszka: 21;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-17 16:17:35","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":32,"vin":"YARKBBC3700480330","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"YARIS Biały","komentarz":"Zawieszka: 21;","firma":"GOSPODARSTWO ROLNE","user":"Tomasz Kurach","datein":"2026-09-17 16:17:35"}},{"vin":"WD9525R RAV4 L.M.","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"","location":"Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-17 14:00:35","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":33,"vin":"WD9525R RAV4 L.M.","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"","komentarz":"Zawieszka: ;","firma":"","user":"Patryk Jarosz","datein":"2026-09-17 14:00:35"}},{"vin":"JTFBEBHB200743620","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"HILUX Platinum White Pearl","location":"Zawieszka: 18;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 13:01:21","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":34,"vin":"JTFBEBHB200743620","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"HILUX Platinum White Pearl","komentarz":"Zawieszka: 18;","firma":"","user":"Daniel Racki","datein":"2026-09-17 13:01:21"}},{"vin":"JTM5EAAV50J016387","status":"AKTYWNY","branch":"HERBOWA","client":"GOSPODARSTWO ROLNE JAN GRALAK","model":"RAV4 218 Attitude Black","location":"Zawieszka: 94;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 12:59:31","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":35,"vin":"JTM5EAAV50J016387","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-17out","paliwo":"","auto":"RAV4 218 Attitude Black","komentarz":"Zawieszka: 94;","firma":"GOSPODARSTWO ROLNE JAN GRALAK","user":"Daniel Racki","datein":"2026-09-17 12:59:31"}},{"vin":"JTDKGCGB10A222215","status":"AKTYWNY","branch":"HERBOWA","client":"SZAJEWSKA HANNA DOROTA","model":"1K3 Celestial Grey","location":"Zawieszka: ;  Zawieszka: 12;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-17 10:28:39","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":36,"vin":"JTDKGCGB10A222215","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"1K3 Celestial Grey","komentarz":"Zawieszka: ;  Zawieszka: 12;","firma":"SZAJEWSKA HANNA DOROTA","user":"Patryk Jarosz","datein":"2026-09-17 10:28:39"}},{"vin":"YARKBBC3X00477129","status":"AKTYWNY","branch":"HERBOWA","client":"\"DROSED\" SPÓŁKA AKCYJNA","model":"YARIS Celestial Grey","location":"Zawieszka: ;  Zawieszka: 1;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-17 10:28:08","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":37,"vin":"YARKBBC3X00477129","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"YARIS Celestial Grey","komentarz":"Zawieszka: ;  Zawieszka: 1;","firma":"\"DROSED\" SPÓŁKA AKCYJNA","user":"Patryk Jarosz","datein":"2026-09-17 10:28:08"}},{"vin":"JTM5DABV80J009029","status":"AKTYWNY","branch":"HERBOWA","client":"Me Like You Marta Roman","model":"RAV4 2SQ Avant-garde bronze/Eclipse Black","location":"Zawieszka: 23;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:54:45","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":38,"vin":"JTM5DABV80J009029","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"RAV4 2SQ Avant-garde bronze/Eclipse Black","komentarz":"Zawieszka: 23;","firma":"Me Like You Marta Roman","user":"Daniel Racki","datein":"2026-09-17 08:54:45"}},{"vin":"JTNADADB109040489","status":"AKTYWNY","branch":"HERBOWA","client":"WAGI PŁOCK CIARKA PIOTR","model":"COROLLA_CROSS Biała perła","location":"Zawieszka: 34;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:52:12","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":39,"vin":"JTNADADB109040489","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"COROLLA_CROSS Biała perła","komentarz":"Zawieszka: 34;","firma":"WAGI PŁOCK CIARKA PIOTR","user":"Daniel Racki","datein":"2026-09-17 08:52:12"}},{"vin":"JTPAAAAA70R249537","status":"AKTYWNY","branch":"HERBOWA","client":"KOWALCZYK-ZASADA MARTA","model":"C_HR Shimmering Silver","location":"Zawieszka: 27;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:49:21","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":40,"vin":"JTPAAAAA70R249537","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"C_HR Shimmering Silver","komentarz":"Zawieszka: 27;","firma":"KOWALCZYK-ZASADA MARTA","user":"Daniel Racki","datein":"2026-09-17 08:49:21"}},{"vin":"SB1ZB3AE80E280142","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"COROLLA_HB_TS Biały","location":"Zawieszka: 81;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:46:49","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":41,"vin":"SB1ZB3AE80E280142","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"COROLLA_HB_TS Biały","komentarz":"Zawieszka: 81;","firma":"","user":"Daniel Racki","datein":"2026-09-17 08:46:49"}},{"vin":"JTFBEBHB000744572","status":"AKTYWNY","branch":"HERBOWA","client":"GOSPODARSTWO OGRODNICZE GRZEGORZ ANDRZEJEWSKI","model":"HILUX Sulfur","location":"Zawieszka: 37;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:43:56","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":42,"vin":"JTFBEBHB000744572","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"HILUX Sulfur","komentarz":"Zawieszka: 37;","firma":"GOSPODARSTWO OGRODNICZE GRZEGORZ ANDRZEJEWSKI","user":"Daniel Racki","datein":"2026-09-17 08:43:56"}},{"vin":"JTMBBBBD70J025762","status":"AKTYWNY","branch":"HERBOWA","client":"NOTITIA-PLUS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ JULIUSZA SŁOWACKIEGO","model":"C_HR_PLUS_BEV Volcano Orange","location":"Zawieszka: 97;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-17 08:40:39","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":43,"vin":"JTMBBBBD70J025762","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-16out","paliwo":"","auto":"C_HR_PLUS_BEV Volcano Orange","komentarz":"Zawieszka: 97;","firma":"NOTITIA-PLUS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ JULIUSZA SŁOWACKIEGO","user":"Daniel Racki","datein":"2026-09-17 08:40:39"}},{"vin":"JTNACABB709009446","status":"AKTYWNY","branch":"HERBOWA","client":"DR IRENA ERIS SPÓŁKA AKCYJNA","model":"COROLLA_CROSS Czarny","location":"Zawieszka: ;  Zawieszka: 21;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:50:16","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":44,"vin":"JTNACABB709009446","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_CROSS Czarny","komentarz":"Zawieszka: ;  Zawieszka: 21;","firma":"DR IRENA ERIS SPÓŁKA AKCYJNA","user":"Igor Gieruszka","datein":"2026-09-17 07:50:16"}},{"vin":"JTNAGACK703096805","status":"AKTYWNY","branch":"HERBOWA","client":"Cichocki Daniel","model":"CAMRY 4Y6 Precious Bronze","location":"Zawieszka: ;  Zawieszka: 30;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:48:00","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":45,"vin":"JTNAGACK703096805","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"CAMRY 4Y6 Precious Bronze","komentarz":"Zawieszka: ;  Zawieszka: 30;","firma":"Cichocki Daniel","user":"Igor Gieruszka","datein":"2026-09-17 07:48:00"}},{"vin":"JTNAGACK703100741","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"CAMRY 4Y6 Precious Bronze","location":"nagrobki Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:47:11","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":46,"vin":"JTNAGACK703100741","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"CAMRY 4Y6 Precious Bronze","komentarz":"nagrobki Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Igor Gieruszka","datein":"2026-09-17 07:47:11"}},{"vin":"JTM5CAAVX0J011515","status":"AKTYWNY","branch":"HERBOWA","client":"ALCON POLSKA SP.Z.O.O.","model":"RAV4 M40 Dark Blue/Eclipse Black","location":"Karta PDS Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:46:22","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":47,"vin":"JTM5CAAVX0J011515","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"RAV4 M40 Dark Blue/Eclipse Black","komentarz":"Karta PDS Zawieszka: ;","firma":"ALCON POLSKA SP.Z.O.O.","user":"Igor Gieruszka","datein":"2026-09-17 07:46:22"}},{"vin":"JTMBABAD10J026572","status":"AKTYWNY","branch":"HERBOWA","client":"Filipski Tomasz","model":"C_HR_PLUS_BEV Volcano Orange/Attitude Black","location":"Zawieszka: ;  Zawieszka: 76;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:45:39","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":48,"vin":"JTMBABAD10J026572","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"C_HR_PLUS_BEV Volcano Orange/Attitude Black","komentarz":"Zawieszka: ;  Zawieszka: 76;","firma":"Filipski Tomasz","user":"Igor Gieruszka","datein":"2026-09-17 07:45:39"}},{"vin":"SB1ZB3AE60E301571","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"COROLLA_HB_TS Storm Grey","location":"Nagrobki Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:45:20","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":49,"vin":"SB1ZB3AE60E301571","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_HB_TS Storm Grey","komentarz":"Nagrobki Zawieszka: ;","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Igor Gieruszka","datein":"2026-09-17 07:45:20"}},{"vin":"JTNADADB509039894","status":"AKTYWNY","branch":"HERBOWA","client":"Przepiórka KACPER","model":"COROLLA_CROSS Srebrny","location":"Zawieszka: ;","sourceSite":"KLAUDYNY 1","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:44:02","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":50,"vin":"JTNADADB509039894","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_CROSS Srebrny","komentarz":"Zawieszka: ;","firma":"Przepiórka KACPER","user":"Igor Gieruszka","datein":"2026-09-17 07:44:02"}},{"vin":"JTMBBBBD60J024294","status":"AKTYWNY","branch":"HERBOWA","client":"RIJK ZWAAN POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR_PLUS_BEV Czarny metalik","location":"Zawieszka: ;  Zawieszka: 16;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:39:00","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":51,"vin":"JTMBBBBD60J024294","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"C_HR_PLUS_BEV Czarny metalik","komentarz":"Zawieszka: ;  Zawieszka: 16;","firma":"RIJK ZWAAN POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-17 07:39:00"}},{"vin":"JTM5EAAV70J024989","status":"AKTYWNY","branch":"HERBOWA","client":"OŻAROWSKI SYLWESTER","model":"RAV4 218 Attitude Black","location":"Zawieszka: ;  Zawieszka: 80;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:37:57","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":52,"vin":"JTM5EAAV70J024989","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"RAV4 218 Attitude Black","komentarz":"Zawieszka: ;  Zawieszka: 80;","firma":"OŻAROWSKI SYLWESTER","user":"Igor Gieruszka","datein":"2026-09-17 07:37:57"}},{"vin":"JTNABACB709014373","status":"AKTYWNY","branch":"HERBOWA","client":"ASTRIAP JAROSŁAW","model":"COROLLA_CROSS Mud Bath","location":"Zawieszka: ;  Zawieszka: 83;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-17 07:36:16","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":53,"vin":"JTNABACB709014373","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-17out","paliwo":"","auto":"COROLLA_CROSS Mud Bath","komentarz":"Zawieszka: ;  Zawieszka: 83;","firma":"ASTRIAP JAROSŁAW","user":"Igor Gieruszka","datein":"2026-09-17 07:36:16"}},{"vin":"JTJCCBAZ502046146","status":"AKTYWNY","branch":"HERBOWA","client":"MOTORSPORT SOLUTIONS JAKUB WYSOCKI","model":"NX Czerwony Radiant","location":"Zawieszka: ;","sourceSite":"KLAUDYNY 1","sourceUser":"Jacek Sawinski","sourceDateIn":"2026-09-16 12:49:38","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":54,"vin":"JTJCCBAZ502046146","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-16out","paliwo":"","auto":"NX Czerwony Radiant","komentarz":"Zawieszka: ;","firma":"MOTORSPORT SOLUTIONS JAKUB WYSOCKI","user":"Jacek Sawinski","datein":"2026-09-16 12:49:38"}},{"vin":"JTHAAAAE401077867","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"LBX Cement Gray BITONE","location":"Zawieszka: 40;","sourceSite":"KLAUDYNY 1","sourceUser":"Marcin Grzywacz","sourceDateIn":"2026-09-15 08:38:49","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":55,"vin":"JTHAAAAE401077867","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-15out","paliwo":"","auto":"LBX Cement Gray BITONE","komentarz":"Zawieszka: 40;","firma":"","user":"Marcin Grzywacz","datein":"2026-09-15 08:38:49"}},{"vin":"JTEACDBJ00K035789","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"LAND_CRUISER 229 Neutral Black","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:32:24","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":56,"vin":"JTEACDBJ00K035789","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"LAND_CRUISER 229 Neutral Black","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"","user":"Igor Gieruszka","datein":"2026-09-15 07:32:24"}},{"vin":"JTM5CAAV20J011766","status":"AKTYWNY","branch":"HERBOWA","client":"KANIUK ARKADIUSZ ARTUR","model":"RAV4 218 Attitude Black","location":"PDS Do elektryków Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:31:45","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":57,"vin":"JTM5CAAV20J011766","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"RAV4 218 Attitude Black","komentarz":"PDS Do elektryków Zawieszka: ;","firma":"KANIUK ARKADIUSZ ARTUR","user":"Igor Gieruszka","datein":"2026-09-15 07:31:45"}},{"vin":"JTM5EAAV30J024679","status":"AKTYWNY","branch":"HERBOWA","client":"PYTKA TOMASZ MARCIN","model":"RAV4 2SQ Avant-garde bronze/Eclipse Black","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"KLAUDYNY 1","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:31:08","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":58,"vin":"JTM5EAAV30J024679","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-15out","paliwo":"","auto":"RAV4 2SQ Avant-garde bronze/Eclipse Black","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"PYTKA TOMASZ MARCIN","user":"Igor Gieruszka","datein":"2026-09-15 07:31:08"}},{"vin":"JTNAGACK103096685","status":"AKTYWNY","branch":"HERBOWA","client":"Wełpa ŁUKASZ","model":"CAMRY 089 Platinum White Pearl","location":"\\mostek klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:30:21","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":59,"vin":"JTNAGACK103096685","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 089 Platinum White Pearl","komentarz":"\\mostek klucze w srodku Zawieszka: ;","firma":"Wełpa ŁUKASZ","user":"Igor Gieruszka","datein":"2026-09-15 07:30:21"}},{"vin":"JTNAGACK403099399","status":"AKTYWNY","branch":"HERBOWA","client":"LIPIEC ALEKSANDRA","model":"CAMRY 1L5 Precious Metal","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:29:36","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":60,"vin":"JTNAGACK403099399","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 1L5 Precious Metal","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"LIPIEC ALEKSANDRA","user":"Igor Gieruszka","datein":"2026-09-15 07:29:36"}},{"vin":"JTNAGACK203095321","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"CAMRY 040 Pure White","location":"bagno1 klucze w srodku  Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:28:14","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":61,"vin":"JTNAGACK203095321","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 040 Pure White","komentarz":"bagno1 klucze w srodku  Zawieszka: ;","firma":"","user":"Igor Gieruszka","datein":"2026-09-15 07:28:14"}},{"vin":"JTNAGACK403075491","status":"AKTYWNY","branch":"HERBOWA","client":"Iwańska ELŻBIETA","model":"CAMRY 040 Pure White","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:27:05","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":62,"vin":"JTNAGACK403075491","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 040 Pure White","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"Iwańska ELŻBIETA","user":"Igor Gieruszka","datein":"2026-09-15 07:27:05"}},{"vin":"JTNAGACK603075816","status":"AKTYWNY","branch":"HERBOWA","client":"Knap GRZEGORZ","model":"CAMRY 040 Pure White","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:25:58","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":63,"vin":"JTNAGACK603075816","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 040 Pure White","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"Knap GRZEGORZ","user":"Igor Gieruszka","datein":"2026-09-15 07:25:58"}},{"vin":"JTPAAAAA50R221610","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Storm Grey/Black","location":"Zawieszka: ;  Zawieszka: 88;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:25:13","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":64,"vin":"JTPAAAAA50R221610","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR Storm Grey/Black","komentarz":"Zawieszka: ;  Zawieszka: 88;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:25:13"}},{"vin":"YAREDYHP7RJ140060","status":"AKTYWNY","branch":"HERBOWA","client":"SYSTEMAIR SERVICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"PROACE_CITY BIAŁY","location":"mostek klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:22:35","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":65,"vin":"YAREDYHP7RJ140060","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"PROACE_CITY BIAŁY","komentarz":"mostek klucze w srodku Zawieszka: ;","firma":"SYSTEMAIR SERVICE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:22:35"}},{"vin":"JTNABACB709014132","status":"AKTYWNY","branch":"ALEJE","client":"","model":"COROLLA_CROSS Storm Grey/Black","location":"Zawieszka: ; Aleje TOY","sourceSite":"","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:21:25","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":66,"vin":"JTNABACB709014132","uszko":"Nie","miejsce":"","data":"in: 2026-09-15out","paliwo":"","auto":"COROLLA_CROSS Storm Grey/Black","komentarz":"Zawieszka: ; Aleje TOY","firma":"","user":"Igor Gieruszka","datein":"2026-09-15 07:21:25"}},{"vin":"JTMBBBBD20J024504","status":"AKTYWNY","branch":"ALEJE","client":"STUDIO DN JOANNA ROSZKOWSKA","model":"C_HR_PLUS_BEV Czarny metalik","location":"Zawieszka: ; Aleje TOY","sourceSite":"","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:20:18","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":67,"vin":"JTMBBBBD20J024504","uszko":"Nie","miejsce":"","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR_PLUS_BEV Czarny metalik","komentarz":"Zawieszka: ; Aleje TOY","firma":"STUDIO DN JOANNA ROSZKOWSKA","user":"Igor Gieruszka","datein":"2026-09-15 07:20:18"}},{"vin":"JTJCJBGA402043259","status":"AKTYWNY","branch":"HERBOWA","client":"SEMANI MAŁGORZATA ANISZKIEWICZ","model":"RX Graphite Black 223","location":"Zawieszka: ;  Zawieszka: 40;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:19:09","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":68,"vin":"JTJCJBGA402043259","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"RX Graphite Black 223","komentarz":"Zawieszka: ;  Zawieszka: 40;","firma":"SEMANI MAŁGORZATA ANISZKIEWICZ","user":"Igor Gieruszka","datein":"2026-09-15 07:19:09"}},{"vin":"JTPABACA00R072534","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Shimmering Silver","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:18:26","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":69,"vin":"JTPABACA00R072534","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR Shimmering Silver","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:18:26"}},{"vin":"JTPABACA60R072523","status":"AKTYWNY","branch":"ALEJE","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Shimmering Silver","location":"Zawieszka: ; Aleje TOY","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:17:53","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":70,"vin":"JTPABACA60R072523","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR Shimmering Silver","komentarz":"Zawieszka: ; Aleje TOY","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:17:53"}},{"vin":"JTPABACAX0R072329","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Dark Teal","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:17:15","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":71,"vin":"JTPABACAX0R072329","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR Dark Teal","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:17:15"}},{"vin":"JTM5CAAV60J011530","status":"AKTYWNY","branch":"HERBOWA","client":"ALCON POLSKA SP.Z.O.O.","model":"RAV4 M40 Dark Blue/Eclipse Black","location":"PDS Do elektryków Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:16:27","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":72,"vin":"JTM5CAAV60J011530","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"RAV4 M40 Dark Blue/Eclipse Black","komentarz":"PDS Do elektryków Zawieszka: ;","firma":"ALCON POLSKA SP.Z.O.O.","user":"Igor Gieruszka","datein":"2026-09-15 07:16:27"}},{"vin":"JTEACDBJ10K023201","status":"AKTYWNY","branch":"HERBOWA","client":"NOVA RYSZARD MOLASY","model":"LAND_CRUISER Brązowy","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:15:32","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":73,"vin":"JTEACDBJ10K023201","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"LAND_CRUISER Brązowy","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"NOVA RYSZARD MOLASY","user":"Igor Gieruszka","datein":"2026-09-15 07:15:32"}},{"vin":"SB1ZC3CE70E062445","status":"AKTYWNY","branch":"HERBOWA","client":"DPS SYSTEMS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"COROLLA_HB_TS Biały","location":"mostek klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:14:12","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":74,"vin":"SB1ZC3CE70E062445","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"COROLLA_HB_TS Biały","komentarz":"mostek klucze w srodku Zawieszka: ;","firma":"DPS SYSTEMS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:14:12"}},{"vin":"SB1ZC3CE80E062437","status":"AKTYWNY","branch":"HERBOWA","client":"DPS SYSTEMS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"COROLLA_HB_TS Biały","location":"70 Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:13:26","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":75,"vin":"SB1ZC3CE80E062437","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"COROLLA_HB_TS Biały","komentarz":"70 Zawieszka: ;","firma":"DPS SYSTEMS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:13:26"}},{"vin":"YAREDYHTXRJ130507","status":"AKTYWNY","branch":"HERBOWA","client":"ONTIMO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"PROACE_CITY BIAŁY","location":"bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:12:32","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":76,"vin":"YAREDYHTXRJ130507","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"PROACE_CITY BIAŁY","komentarz":"bagno1 klucze w srodku Zawieszka: ;","firma":"ONTIMO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:12:32"}},{"vin":"JTPABACA50R072612","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Shimmering Silver","location":"Zawieszka: ;  Zawieszka: 89;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:11:39","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":77,"vin":"JTPABACA50R072612","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"C_HR Shimmering Silver","komentarz":"Zawieszka: ;  Zawieszka: 89;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:11:39"}},{"vin":"JTNAGACK903075678","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"CAMRY 040 Pure White","location":"79 Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:10:53","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":78,"vin":"JTNAGACK903075678","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"CAMRY 040 Pure White","komentarz":"79 Zawieszka: ;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-15 07:10:53"}},{"vin":"SB1ZC3CE00E061489","status":"AKTYWNY","branch":"HERBOWA","client":"Brzezińska AGNIESZKA","model":"COROLLA_HB_TS Biała perła","location":"mostek klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-15 07:09:39","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":79,"vin":"SB1ZC3CE00E061489","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-15out","paliwo":"","auto":"COROLLA_HB_TS Biała perła","komentarz":"mostek klucze w srodku Zawieszka: ;","firma":"Brzezińska AGNIESZKA","user":"Igor Gieruszka","datein":"2026-09-15 07:09:39"}},{"vin":"JTDAANBC700048178","status":"AKTYWNY","branch":"HERBOWA","client":"Sztorc HUBERT","model":"AYGO_X Biały","location":"Zawieszka: ;  Zawieszka: 57;","sourceSite":"KLAUDYNY 1","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-14 16:06:02","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":80,"vin":"JTDAANBC700048178","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-14out 2026-09-18","paliwo":"Tak","auto":"AYGO_X Biały","komentarz":"Zawieszka: ;  Zawieszka: 57;","firma":"Sztorc HUBERT","user":"Patryk Jarosz","datein":"2026-09-14 16:06:02"}},{"vin":"YARVPFC38RZ155510","status":"AKTYWNY","branch":"HERBOWA","client":"FIRE-WALL SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ SPÓŁKA KOMANDYTOWA","model":"PROACE Icy White","location":"Zawieszka: ;  Zawieszka: 32;  montaż ble!!!!!","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-14 16:05:51","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":81,"vin":"YARVPFC38RZ155510","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"PROACE Icy White","komentarz":"Zawieszka: ;  Zawieszka: 32;  montaż ble!!!!!","firma":"FIRE-WALL SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ SPÓŁKA KOMANDYTOWA","user":"Patryk Jarosz","datein":"2026-09-14 16:05:51"}},{"vin":"JTDKBCBB00A611028","status":"AKTYWNY","branch":"HERBOWA","client":"COCA-COLA HBC POLSKA SP. ZO.O.","model":"YARIS_CROSS Czarny","location":"Zawieszka: ; Nagrobki","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-14 16:05:40","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":82,"vin":"JTDKBCBB00A611028","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"YARIS_CROSS Czarny","komentarz":"Zawieszka: ; Nagrobki","firma":"COCA-COLA HBC POLSKA SP. ZO.O.","user":"Patryk Jarosz","datein":"2026-09-14 16:05:40"}},{"vin":"YARKBBC3900477946","status":"AKTYWNY","branch":"HERBOWA","client":"WOJTCZUK-TUREK AGNIESZKA","model":"YARIS Czarny","location":"Zawieszka: ;  Zawieszka: 42;","sourceSite":"HERBOWA 16","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-14 16:05:25","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":83,"vin":"YARKBBC3900477946","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"YARIS Czarny","komentarz":"Zawieszka: ;  Zawieszka: 42;","firma":"WOJTCZUK-TUREK AGNIESZKA","user":"Patryk Jarosz","datein":"2026-09-14 16:05:25"}},{"vin":"YARTDDEF7RG092696","status":"AKTYWNY","branch":"HERBOWA","client":"X2 BIKE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"PROACE_MAX_BEV BIAŁY","location":"Zawieszka: ;  Zawieszka: M6;","sourceSite":"KLAUDYNY 1","sourceUser":"Patryk Jarosz","sourceDateIn":"2026-09-14 16:05:09","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":84,"vin":"YARTDDEF7RG092696","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-14out","paliwo":"","auto":"PROACE_MAX_BEV BIAŁY","komentarz":"Zawieszka: ;  Zawieszka: M6;","firma":"X2 BIKE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Patryk Jarosz","datein":"2026-09-14 16:05:09"}},{"vin":"JTDKBCBB50A617472","status":"AKTYWNY","branch":"HERBOWA","client":"GÓRECKI MARIAN","model":"YARIS_CROSS Biały","location":"Zawieszka: 74;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-14 13:15:41","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":85,"vin":"JTDKBCBB50A617472","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-14out","paliwo":"","auto":"YARIS_CROSS Biały","komentarz":"Zawieszka: 74;","firma":"GÓRECKI MARIAN","user":"Tomasz Kurach","datein":"2026-09-14 13:15:41"}},{"vin":"JTDKGCGB00A219497","status":"AKTYWNY","branch":"HERBOWA","client":"\"Dicar\" Sosnowska Iwona","model":"M27 Precious Bronze/Night Sky Black","location":"Zawieszka: 41;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-14 13:13:46","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":86,"vin":"JTDKGCGB00A219497","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-14out","paliwo":"","auto":"M27 Precious Bronze/Night Sky Black","komentarz":"Zawieszka: 41;","firma":"\"Dicar\" Sosnowska Iwona","user":"Tomasz Kurach","datein":"2026-09-14 13:13:46"}},{"vin":"JTDKGCGB70A222218","status":"AKTYWNY","branch":"HERBOWA","client":"DICAR Iwona Sosnowska Grażyna Nieznaj Spółka Cywilna","model":"M27 Precious Bronze/Night Sky Black","location":"Zawieszka: 71;","sourceSite":"KUTNOWSKA 20","sourceUser":"Tomasz Kurach","sourceDateIn":"2026-09-14 13:05:59","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":87,"vin":"JTDKGCGB70A222218","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-14out","paliwo":"","auto":"M27 Precious Bronze/Night Sky Black","komentarz":"Zawieszka: 71;","firma":"DICAR Iwona Sosnowska Grażyna Nieznaj Spółka Cywilna","user":"Tomasz Kurach","datein":"2026-09-14 13:05:59"}},{"vin":"JTDKBCBB70A623287","status":"AKTYWNY","branch":"HERBOWA","client":"","model":"","location":"Bagno 1 klucze w srodku nie ma w dna Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 11:48:49","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":88,"vin":"JTDKBCBB70A623287","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"","komentarz":"Bagno 1 klucze w srodku nie ma w dna Zawieszka: ;","firma":"","user":"Igor Gieruszka","datein":"2026-09-14 11:48:49"}},{"vin":"JTNAGACK503096639","status":"AKTYWNY","branch":"HERBOWA","client":"KUPIS MIROSŁAW","model":"CAMRY 4Y6 Precious Bronze","location":"Zawieszka: 29;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:24:48","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":89,"vin":"JTNAGACK503096639","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out 2026-09-18","paliwo":"","auto":"CAMRY 4Y6 Precious Bronze","komentarz":"Zawieszka: 29;","firma":"KUPIS MIROSŁAW","user":"Igor Gieruszka","datein":"2026-09-14 07:24:48"}},{"vin":"JTM5CAAV40J011669","status":"AKTYWNY","branch":"HERBOWA","client":"ALCON POLSKA SP.Z.O.O.","model":"RAV4 M40 Dark Blue/Eclipse Black","location":"po pds, mostek klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:24:36","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":90,"vin":"JTM5CAAV40J011669","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"RAV4 M40 Dark Blue/Eclipse Black","komentarz":"po pds, mostek klucze w srodku Zawieszka: ;","firma":"ALCON POLSKA SP.Z.O.O.","user":"Igor Gieruszka","datein":"2026-09-14 07:24:36"}},{"vin":"JTPABACA90R072791","status":"AKTYWNY","branch":"HERBOWA","client":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"C_HR Biała perła","location":"ma blendy+brak paliwa Zawieszka: 72;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:24:18","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":91,"vin":"JTPABACA90R072791","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"C_HR Biała perła","komentarz":"ma blendy+brak paliwa Zawieszka: 72;","firma":"RONSON DEVELOPMENT MANAGEMENT SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Igor Gieruszka","datein":"2026-09-14 07:24:18"}},{"vin":"JTM5EAAV40J020494","status":"AKTYWNY","branch":"HERBOWA","client":"Stępień TOMASZ","model":"RAV4 2VP Platinum White Pearl/Eclipse Black","location":"Zawieszka: ;  Zawieszka: 52;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:24:02","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":92,"vin":"JTM5EAAV40J020494","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"RAV4 2VP Platinum White Pearl/Eclipse Black","komentarz":"Zawieszka: ;  Zawieszka: 52;","firma":"Stępień TOMASZ","user":"Igor Gieruszka","datein":"2026-09-14 07:24:02"}},{"vin":"SB1ZB3AEX0E299873","status":"AKTYWNY","branch":"HERBOWA","client":"Steriscience Sp. z.o.o.","model":"COROLLA_HB_TS Precious Silver","location":"Bagno1 klucze w srodku Zawieszka: ;","sourceSite":"HERBOWA 16","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:23:47","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":93,"vin":"SB1ZB3AEX0E299873","uszko":"Nie","miejsce":"HERBOWA 16","data":"in: 2026-09-14out","paliwo":"","auto":"COROLLA_HB_TS Precious Silver","komentarz":"Bagno1 klucze w srodku Zawieszka: ;","firma":"Steriscience Sp. z.o.o.","user":"Igor Gieruszka","datein":"2026-09-14 07:23:47"}},{"vin":"JTPABACA30R068266","status":"AKTYWNY","branch":"HERBOWA","client":"FIRMA HANDLOWA \"TRZYNASTKA\" Euzebiusz Marek Nowak","model":"C_HR Plat Pearl White+Astral Black","location":"// Zawieszka: ;","sourceSite":"KLAUDYNY 1","sourceUser":"Igor Gieruszka","sourceDateIn":"2026-09-14 07:23:30","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":94,"vin":"JTPABACA30R068266","uszko":"Nie","miejsce":"KLAUDYNY 1","data":"in: 2026-09-14out","paliwo":"","auto":"C_HR Plat Pearl White+Astral Black","komentarz":"// Zawieszka: ;","firma":"FIRMA HANDLOWA \"TRZYNASTKA\" Euzebiusz Marek Nowak","user":"Igor Gieruszka","datein":"2026-09-14 07:23:30"}},{"vin":"JTPAAAAA60R265096","status":"AKTYWNY","branch":"HERBOWA","client":"TOMASZEWSKI DARIUSZ","model":"C_HR Storm Grey","location":"Zawieszka: 89;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 15:30:07","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":95,"vin":"JTPAAAAA60R265096","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"C_HR Storm Grey","komentarz":"Zawieszka: 89;","firma":"TOMASZEWSKI DARIUSZ","user":"Daniel Racki","datein":"2026-09-11 15:30:07"}},{"vin":"SB1ZB3AE30E292022","status":"AKTYWNY","branch":"HERBOWA","client":"\"PRACOSŁAW\" SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","model":"COROLLA_HB_TS Storm Grey","location":"Zawieszka: 96;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 15:26:53","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":96,"vin":"SB1ZB3AE30E292022","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"COROLLA_HB_TS Storm Grey","komentarz":"Zawieszka: 96;","firma":"\"PRACOSŁAW\" SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ","user":"Daniel Racki","datein":"2026-09-11 15:26:53"}},{"vin":"JTPAAAAA40R265579","status":"AKTYWNY","branch":"HERBOWA","client":"Franczak Jerzy","model":"C_HR Storm Grey","location":"Zawieszka: 99;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 15:25:24","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":97,"vin":"JTPAAAAA40R265579","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"C_HR Storm Grey","komentarz":"Zawieszka: 99;","firma":"Franczak Jerzy","user":"Daniel Racki","datein":"2026-09-11 15:25:24"}},{"vin":"JTHAAAAE301074524","status":"AKTYWNY","branch":"HERBOWA","client":"BEKSA WIESŁAW","model":"LBX Sonic Grey","location":"Zawieszka: 94;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 11:22:27","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":98,"vin":"JTHAAAAE301074524","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"LBX Sonic Grey","komentarz":"Zawieszka: 94;","firma":"BEKSA WIESŁAW","user":"Daniel Racki","datein":"2026-09-11 11:22:27"}},{"vin":"JTPAAAAA60R237704","status":"AKTYWNY","branch":"HERBOWA","client":"PRO ARTI OGRÓD I WNĘTRZE MAGDALENA KOLASIŃSKA","model":"C_HR Biały","location":"Wypalenie listw kierowcy oraz pasażera , prawdopodobnie zaschnięta chemia Zawieszka: 82;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 11:19:34","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":99,"vin":"JTPAAAAA60R237704","uszko":"Tak","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"C_HR Biały","komentarz":"Wypalenie listw kierowcy oraz pasażera , prawdopodobnie zaschnięta chemia Zawieszka: 82;","firma":"PRO ARTI OGRÓD I WNĘTRZE MAGDALENA KOLASIŃSKA","user":"Daniel Racki","datein":"2026-09-11 11:19:34"}},{"vin":"JTNACABB309009136","status":"AKTYWNY","branch":"HERBOWA","client":"KARPIŃSKI TADEUSZ","model":"COROLLA_CROSS Srebrny","location":"Zawieszka: 59;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 11:18:15","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":100,"vin":"JTNACABB309009136","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out","paliwo":"","auto":"COROLLA_CROSS Srebrny","komentarz":"Zawieszka: 59;","firma":"KARPIŃSKI TADEUSZ","user":"Daniel Racki","datein":"2026-09-11 11:18:15"}},{"vin":"JTEACDBJ20K034594","status":"AKTYWNY","branch":"HERBOWA","client":"STEFAŃSKI JACEK","model":"LAND_CRUISER 229 Neutral Black","location":"Zawieszka: 14;","sourceSite":"KUTNOWSKA 20","sourceUser":"Daniel Racki","sourceDateIn":"2026-09-11 11:16:33","source":"Toyota Bielany","sourceRow":{"sourceType":"toyota_bielany","excelRow":101,"vin":"JTEACDBJ20K034594","uszko":"Nie","miejsce":"KUTNOWSKA 20","data":"in: 2026-09-11out 2026-09-18","paliwo":"","auto":"LAND_CRUISER 229 Neutral Black","komentarz":"Zawieszka: 14;","firma":"STEFAŃSKI JACEK","user":"Daniel Racki","datein":"2026-09-11 11:16:33"}}];
+
+  fleetCars=importedCars.map(c=>({
+    ...c,
+    hangerNo:"",
+    status:"AKTYWNY",
+    equipment:"",
+    workItems:[],
+    platesInCar:false
+  }));
+
+  // Czysty start danych zależnych od samochodów.
+  releaseData=[];
+  mountJobs=[];
+  tireManualCars=[];
+  transportOrders=[];
+  warehouseStock=[];
+  batteryTests=[];
+  washRecords=[];
+
+  const at=i=>fleetCars[i]||null;
+  const nowIso=new Date().toISOString();
+  const today=isoToday();
+  const tomorrow=nextWorkingDayIso(today);
+  const yesterday=addDaysIso(today,-1);
+  const dayAfter=addDaysIso(tomorrow,1);
+  const plDate=v=>{
+    const [y,m,d]=String(v||today).split("-");
+    return `${d}.${m}.${y}`;
+  };
+  const setWork=(i,equipment,done=false)=>{
+    const c=at(i);if(!c)return null;
+    c.equipment=equipment;
+    c.workItems=parseReleaseWorkItems(equipment).map(name=>({name,done:!!done}));
+    return c;
+  };
+  const makeRelease=(id,c,date,time,info,status="W TRAKCIE",ready=false)=>{
+    const r={
+      id,date,time,
+      client:c.client||"—",
+      model:c.model||"—",
+      vin:c.vin,
+      place:c.location||c.sourceSite||"",
+      info,
+      workItems:parseReleaseWorkItems(info).map(name=>({name,done:ready})),
+      status,
+      releaseReady:!!ready,
+      fuelReady:!!ready,
+      tiresReady:false,
+      mountOrdered:!ready
+    };
+    normalizeReleaseRequirements(r);
+    r.releaseReady=!!ready;
+    r.fuelReady=!!ready;
+    if(status==="WYDANE"){r.status="WYDANE";r.releaseReady=true;r.fuelReady=true;}
+    else r.status=status;
+    return r;
+  };
+
+  // ----- WYDANIA: kilka samochodów z nowej bazy
+  const r0=setWork(0,"Alarm, ID CAN",false);
+  const r1=setWork(1,"Alarm",true);
+  const r2=setWork(2,"Dywaniki gumowe",false);
+  const r3=setWork(3,"Alarm, hak holowniczy",false);
+  const r4=at(4);
+  if(r0)releaseData.push(makeRelease(26091801,r0,today,"09:00",r0.equipment,"W TRAKCIE",false));
+  if(r1)releaseData.push(makeRelease(26091802,r1,today,"13:30",r1.equipment,"GOTOWY",true));
+  if(r2)releaseData.push(makeRelease(26091803,r2,tomorrow,"09:30",r2.equipment,"W TRAKCIE",false));
+  if(r3)releaseData.push(makeRelease(26091804,r3,tomorrow,"14:00",r3.equipment,"W TRAKCIE",false));
+  if(r4){
+    const rr=makeRelease(26091805,r4,yesterday,"15:00","", "WYDANE",true);
+    releaseData.push(rr);
+    r4.status="WYJECHAŁ";
+  }
+
+  // ----- DOPOSAŻENIA: w toku, do zamknięcia, zamknięte + pilne zlecenie
+  const m5=setWork(5,"Alarm, ID CAN",false);
+  const m6=setWork(6,"Alarm, czujniki parkowania",true);
+  const m7=setWork(7,"ID CAN, META",true);
+  const m8=setWork(8,"Hak holowniczy",false);
+  if(m5)mountJobs.push({
+    owner:"Mateusz Bodnar",date:plDate(today),vin:m5.vin,branch:m5.branch,
+    alarm:true,alarmCode:"26184",alarmCompleted:false,
+    idCan:true,idCanCompleted:false,meta:false,extra:false,extraDesc:"",
+    hours:"",notes:"Przykładowy montaż z nowej bazy",closed:false
+  });
+  if(m6)mountJobs.push({
+    owner:"Jakub Grzywacz",date:plDate(today),vin:m6.vin,branch:m6.branch,
+    alarm:true,alarmCode:"48216",alarmCompleted:true,
+    idCan:false,meta:false,extra:true,extraDesc:"czujniki parkowania",extraCompleted:true,
+    hours:"2.5",notes:"Wykonane — czeka na zamknięcie",closed:false
+  });
+  if(m7)mountJobs.push({
+    owner:"Mateusz Bodnar",date:plDate(today),vin:m7.vin,branch:m7.branch,
+    alarm:false,idCan:true,idCanCompleted:true,meta:true,metaCompleted:true,
+    extra:false,extraDesc:"",hours:"3",notes:"Zlecenie zamknięte — przykład",
+    closed:true,closedAt:nowIso,closedBy:"Igor Gieruszka"
+  });
+  if(m8){
+    ["Mateusz Bodnar","Jakub Grzywacz"].forEach(owner=>mountJobs.push({
+      owner,date:plDate(today),vin:m8.vin,branch:m8.branch,
+      alarm:false,idCan:false,meta:false,extra:true,extraDesc:"Hak holowniczy",extraCompleted:false,
+      hours:"",notes:"Pilne zlecenie startowe",closed:false,
+      manualAssignment:true,urgentManual:true,tasks:["Hak holowniczy"],
+      assignedAt:nowIso,assignedBy:"Igor Gieruszka",assignmentNotes:"Przykład po imporcie nowej bazy"
+    }));
+  }
+
+  // ----- OPONY: po jednym aucie w każdym etapie
+  const tireStages=[
+    [9,"replace"],[10,"done"],[11,"shipping"],[12,"sent"]
+  ];
+  tireStages.forEach(([idx,state])=>{
+    const c=at(idx);if(!c)return;
+    c.tiresRequested=true;c.tiresRequestedAt=nowIso;c.tiresRequestedBy="Igor Gieruszka";
+    c.tiresChanged=["done","shipping","sent"].includes(state);
+    c.tiresChangedAt=c.tiresChanged?nowIso:"";c.tiresChangedBy=c.tiresChanged?"Igor Gieruszka":"";
+    c.tiresShipping=["shipping","sent"].includes(state);
+    c.tiresShippingAt=c.tiresShipping?nowIso:"";c.tiresShippingBy=c.tiresShipping?"Igor Gieruszka":"";
+    c.tiresSent=state==="sent";
+    c.tiresSentAt=c.tiresSent?nowIso:"";c.tiresSentBy=c.tiresSent?"Igor Gieruszka":"";
+  });
+
+  // ----- TRANSPORT: kilka etapów, w tym kampania serwisowa
+  const driver=APP_USERS.find(u=>String(u.baseName||u.name)==="Andrzej Kruszewski");
+  const transportSeed=[
+    [13,"standard","waiting",false],
+    [14,"standard","transit",true],
+    [15,"service_campaign","service",false],
+    [16,"standard","delivered",false]
+  ];
+  transportSeed.forEach(([idx,kind,stage,urgent],n)=>{
+    const c=at(idx);if(!c)return;
+    const from=c.location||c.sourceSite||"Herbowa 16";
+    const to=kind==="service_campaign"?"Klaudyny 1":"Herbowa 16";
+    transportOrders.push({
+      id:`tr-import-${n+1}`,vehicle:c.vin,kind,from,to,
+      returnTo:kind==="service_campaign"?from:"",
+      due:`${tomorrow}T${String(9+n).padStart(2,"0")}:00`,
+      notes:"Przykładowy transport po imporcie bazy",urgent:!!urgent,
+      executorType:"driver",driverUserId:String(driver?.userId||""),driverName:driver?.name||"Andrzej Kruszewski",externalCompany:"",
+      branch:c.branch,stage,createdAt:nowIso,createdBy:"Igor Gieruszka",
+      startedAt:["transit","service","delivered"].includes(stage)?nowIso:"",startedBy:["transit","service","delivered"].includes(stage)?"Andrzej Kruszewski":"",
+      serviceAt:stage==="service"?nowIso:"",serviceBy:stage==="service"?"Andrzej Kruszewski":"",
+      returnReadyAt:"",returnReadyBy:"",returnStartedAt:"",returnStartedBy:"",
+      deliveredAt:stage==="delivered"?nowIso:"",deliveredBy:stage==="delivered"?"Andrzej Kruszewski":""
+    });
+  });
+
+  // ----- MAGAZYN: zamówienia części dla kilku samochodów
+  const warehouseSeed=[
+    [17,"equipment","Alarm, ID CAN","MAG/2609/001",false],
+    [18,"equipment","Hak holowniczy, dywaniki gumowe","MAG/2609/002",false],
+    [19,"tires","Opony zimowe przód, opony zimowe tył","MAG/2609/003",false],
+    [20,"equipment","Czujniki parkowania, apteczka","MAG/2609/004",true]
+  ];
+  warehouseSeed.forEach(([idx,category,part,orderNo,complete],n)=>{
+    const c=at(idx);if(!c)return;
+    const parts=String(part).split(",").map(x=>x.trim()).filter(Boolean);
+    const issuedParts={},issueHistory=[];
+    if(n===1 && parts[0]){
+      issuedParts["0"]={at:nowIso,by:"Piotr Malinowski"};
+      issueHistory.push({id:`whist-seed-${n}-0`,type:"issued",partIndex:0,part:parts[0],at:nowIso,by:"Piotr Malinowski"});
+    }
+    if(complete){
+      parts.forEach((p,i)=>{
+        issuedParts[String(i)]={at:nowIso,by:"Bartosz Syta"};
+        issueHistory.push({id:`whist-seed-${n}-${i}`,type:"issued",partIndex:i,part:p,at:nowIso,by:"Bartosz Syta"});
+      });
+    }
+    warehouseStock.push({
+      id:`who-import-${n+1}`,category,branch:"HERBOWA",vin:c.vin,part,orderNo,
+      issuedParts,issueHistory,
+      warehouseNote:n===0?"Czekamy na dostawę części.":"",
+      warehouseNoteAt:n===0?nowIso:"",warehouseNoteBy:n===0?"Piotr Malinowski":"",
+      createdAt:nowIso,createdBy:"Igor Gieruszka",
+      completedAt:complete?nowIso:"",completedBy:complete?"Bartosz Syta":""
+    });
+  });
+
+  // ----- AKUMULATORY: cała baza trafia do modułu, kilka rekordów ma przykładowe stany
+  batteryTests=fleetCars.filter(c=>c.status!=="WYJECHAŁ").map(c=>({vin:c.vin,lastTest:"",nextTest:""}));
+  if(batteryTests[24]){batteryTests[24].lastTest=today;batteryTests[24].nextTest=addDaysIso(today,14);}
+  if(batteryTests[25]){batteryTests[25].lastTest=addDaysIso(today,-15);batteryTests[25].nextTest=addDaysIso(today,-1);}
+  if(batteryTests[26]){batteryTests[26].away=true;batteryTests[26].awayDate=today;}
+
+  // ----- MYJNIA: kilka aut do mycia i kilka już wykonanych
+  const w21=at(21),w22=at(22),w23=at(23),w24=at(24);
+  if(w21)washRecords.push({id:2609182101,vehicle:w21.vin,source:"manual",client:w21.client||"",model:w21.model||"",place:w21.location||"",washedAt:"",washedBy:"",extra:""});
+  if(w22)washRecords.push({id:2609182201,vehicle:w22.vin,source:"manual",client:w22.client||"",model:w22.model||"",place:w22.location||"",washedAt:"",washedBy:"",extra:""});
+  if(w23)washRecords.push({id:2609182301,vehicle:w23.vin,source:"manual",client:w23.client||"",model:w23.model||"",place:w23.location||"",washedAt:nowIso,washedDate:today,washedBy:"Konrad Dąbrowski",extra:""});
+  if(w24)washRecords.push({id:2609182401,vehicle:w24.vin,source:"manual",client:w24.client||"",model:w24.model||"",place:w24.location||"",washedAt:nowIso,washedDate:today,washedBy:"Konrad Dąbrowski",extra:""});
+
+  // Synchronizacja listy prac z wydaniami dla aut występujących w obu modułach.
+  releaseData.forEach(r=>{
+    const c=fleetCars.find(x=>normalizeVin(x.vin)===normalizeVin(r.vin));
+    if(c && r.info){
+      c.equipment=r.info;
+      c.workItems=(r.workItems||[]).map(x=>({name:x.name,done:!!x.done}));
+    }
+  });
+
+  // Zapis kompletnego nowego stanu.
+  localStorage.setItem("toyotaFleetCarsDB3",JSON.stringify(fleetCars));
+  localStorage.setItem("toyotaFleetDemoV2",JSON.stringify(releaseData));
+  localStorage.setItem("toyotaMountJobsV3",JSON.stringify(mountJobs));
+  localStorage.setItem("toyotaTiresManualCarsV1",JSON.stringify(tireManualCars));
+  localStorage.setItem("toyotaTransportOrdersV1",JSON.stringify(transportOrders));
+  localStorage.setItem("toyotaWarehouseOrdersV2",JSON.stringify(warehouseStock));
+  localStorage.setItem("toyotaBatteryTestsV1",JSON.stringify(batteryTests));
+  localStorage.setItem("toyotaWashRecordsV1",JSON.stringify(washRecords));
+  localStorage.removeItem("toyotaMobileRecentVinsV1");
+  localStorage.setItem(TOYOTA_BIELANY_IMPORT_KEY,"1");
+}
+
 let washBonusWorks=storageJSON("toyotaWashBonusWorksV1",[],"array").filter(x=>x&&typeof x==="object");
 function saveWashBonus(){localStorage.setItem("toyotaWashBonusWorksV1",JSON.stringify(washBonusWorks))}
 function renderWashBonus(){const box=$("#washBonusList");if(!box)return;const month=(washSelectedDay||washTargetDay()).slice(0,7);const rows=washBonusWorks.filter(x=>String(x.date||x.createdAt||"").slice(0,7)===month).sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||"")));box.innerHTML=rows.length?rows.map(x=>`<div class="wash-bonus-row"><b>${fmtDate(x.date)}</b><div>${x.text}<div class="muted">${x.user||"Konrad Dąbrowski"}</div></div><button class="btn wash-bonus-del" data-id="${x.id}" type="button">Usuń</button></div>`).join(""):'<div class="muted">Brak dodatkowych prac do premii.</div>';document.querySelectorAll(".wash-bonus-del").forEach(b=>b.onclick=()=>{washBonusWorks=washBonusWorks.filter(x=>String(x.id)!==String(b.dataset.id));saveWashBonus();logAction("Usunięcie dodatkowej pracy myjni","");renderWashBonus()})}
@@ -10967,7 +13517,22 @@ if($("#cancelCarMountOrder"))$("#cancelCarMountOrder").onclick=closeCarMountOrde
 if($("#saveCarMountOrder"))$("#saveCarMountOrder").onclick=saveCarMountOrder;
 if($("#carMountOrderBackdrop"))$("#carMountOrderBackdrop").onclick=e=>{if(e.target===$("#carMountOrderBackdrop"))closeCarMountOrder()};
 
-$("#addCarBtn").onclick=addCar;$("#newVin").onkeydown=e=>{if(e.key==="Enter")addCar()};$("#carSearch").oninput=renderCars;$("#vinLookup").oninput=renderVinSuggestions;
+$("#addCarBtn").onclick=addCar;
+if($("#newCarTransportDamage"))$("#newCarTransportDamage").onclick=toggleNewCarTransportDamage;
+$("#newVin").onkeydown=e=>{if(e.key==="Enter")addCar()};
+if($("#newCarHangerNo"))$("#newCarHangerNo").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();$("#newCarClient")?.focus()}};
+if($("#newCarClient"))$("#newCarClient").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();$("#newCarEquipment")?.focus()}};
+$("#carSearch").oninput=renderCars;
+if($("#newCarBranch"))$("#newCarBranch").value=currentBranch==="ALEJE"?"ALEJE":"HERBOWA";
+if($("#carEditClose"))$("#carEditClose").onclick=closeCarEdit;
+if($("#cancelCarEdit"))$("#cancelCarEdit").onclick=closeCarEdit;
+if($("#saveCarEdit"))$("#saveCarEdit").onclick=saveCarEdit;
+if($("#editCarTransportDamage"))$("#editCarTransportDamage").onclick=toggleEditCarDamage;
+if($("#carEditBackdrop"))$("#carEditBackdrop").onclick=e=>{if(e.target===$("#carEditBackdrop"))closeCarEdit()};
+if($("#equipmentPreviewClose"))$("#equipmentPreviewClose").onclick=closeEquipmentPreview;
+if($("#equipmentPreviewDone"))$("#equipmentPreviewDone").onclick=closeEquipmentPreview;
+if($("#equipmentPreviewEdit"))$("#equipmentPreviewEdit").onclick=editCarFromEquipmentPreview;
+if($("#equipmentPreviewBackdrop"))$("#equipmentPreviewBackdrop").onclick=e=>{if(e.target===$("#equipmentPreviewBackdrop"))closeEquipmentPreview()};
 
 $("#openBattery").onclick=()=>{if(!hasAccess("battery"))return;logAction("Otwarcie modułu","Testy akumulatorów");renderBattery();show("batteryView")};
 $("#backMainFromBattery").onclick=()=>show("mainHome");
@@ -10993,6 +13558,12 @@ if($("#transportSearch"))$("#transportSearch").oninput=renderTransport;
 document.querySelectorAll("[data-transport-stage]").forEach(btn=>btn.onclick=()=>{transportStage=btn.dataset.transportStage;renderTransport()});
 if($("#tiresSearch"))$("#tiresSearch").oninput=renderTires;
 if($("#tiresAddBtn"))$("#tiresAddBtn").onclick=addCarToTires;
+if($("#tiresScanVinBtn"))$("#tiresScanVinBtn").onclick=openTiresVinScanner;
+if($("#tiresScannerClose"))$("#tiresScannerClose").onclick=closeTiresVinScanner;
+if($("#tiresScannerCancel"))$("#tiresScannerCancel").onclick=closeTiresVinScanner;
+if($("#tiresScannerUseManual"))$("#tiresScannerUseManual").onclick=useManualTiresScannerVin;
+if($("#tiresScannerManualVin"))$("#tiresScannerManualVin").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();useManualTiresScannerVin()}};
+if($("#tiresScannerBackdrop"))$("#tiresScannerBackdrop").onclick=e=>{if(e.target===$("#tiresScannerBackdrop"))closeTiresVinScanner()};
 if($("#tiresAddVin"))$("#tiresAddVin").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();addCarToTires()}};
 document.querySelectorAll("[data-tires-stage]").forEach(btn=>btn.onclick=()=>{tiresStage=btn.dataset.tiresStage;renderTires()});
 
@@ -11012,6 +13583,9 @@ if($("#taskEscalationOpenTasks"))$("#taskEscalationOpenTasks").onclick=()=>{task
 if($("#backMainFromTasks"))$("#backMainFromTasks").onclick=()=>show("mainHome");
 $("#openAdmin").onclick=()=>{if(!hasAccess("admin"))return;renderAdmin();show("adminView")};
 $("#backMainFromAdmin").onclick=()=>show("mainHome");
+if($("#openAdminUsers"))$("#openAdminUsers").onclick=()=>{if(!hasAccess("admin"))return;renderAdminUsers();show("adminUsersView");logAction("Otwarcie modułu","Użytkownicy i dostęp")};
+if($("#backAdminUsersToAdmin"))$("#backAdminUsersToAdmin").onclick=()=>{renderAdmin();show("adminView")};
+if($("#adminUsersSearch"))$("#adminUsersSearch").oninput=renderAdminUsers;
 $("#clearAuditBtn").onclick=()=>{if(!hasAccess("admin"))return;if(confirm("Wyczyścić historię działań na tym urządzeniu?")){auditLog=[];localStorage.setItem("toyotaAuditLogV1","[]");renderAdmin();}};
 $("#closeMonthBtn").onclick=closeSelectedMonth;$("#exportMonthlyReport").onclick=exportSelectedReport;$("#printMonthlyReport").onclick=printSelectedReport;
 
@@ -11029,6 +13603,8 @@ try{
 }catch(e){console.warn("Mobile UI enhancer:",e)}
 
 window.__FLEET_BOOT_OK=true;
+
+document.addEventListener("visibilitychange",()=>{if(document.hidden)stopTiresVinScanner()});
 </script>
 
 </body>
