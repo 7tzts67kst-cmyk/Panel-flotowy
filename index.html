@@ -6423,6 +6423,33 @@ body.tires-scanner-open{overflow:hidden}
   }
 }
 
+
+/* ===== OPONY — POPRAWKA SKANERA VIN NA iPHONE ===== */
+.tires-scanner-camera video{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  background:#0b1220!important;
+  z-index:1!important;
+}
+.tires-scanner-frame{
+  z-index:3!important;
+}
+.tires-scanner-camera-label{
+  z-index:4!important;
+}
+.tires-scanner-camera:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,0,0,.05),transparent 28%,transparent 72%,rgba(0,0,0,.08));
+}
+
 </style>
 <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
@@ -7364,7 +7391,7 @@ body.tires-scanner-open{overflow:hidden}
         <div>
           <small>OPONY • SKANER VIN</small>
           <h2 id="tiresScannerTitle">Zeskanuj VIN</h2>
-          <span>Skieruj aparat na kod kreskowy z numerem VIN.</span>
+          <span>Skieruj aparat na kod kreskowy VIN. Skaner będzie próbował aż odczyta pełne 17 znaków.</span>
         </div>
         <button class="tires-scanner-close" id="tiresScannerClose" type="button">×</button>
       </div>
@@ -7374,7 +7401,7 @@ body.tires-scanner-open{overflow:hidden}
         <div class="tires-scanner-frame" aria-hidden="true">
           <span></span>
         </div>
-        <div class="tires-scanner-camera-label">Umieść kod VIN w ramce</div>
+        <div class="tires-scanner-camera-label">Umieść cały kod VIN w ramce</div>
       </div>
 
       <div class="tires-scanner-status" id="tiresScannerStatus">
@@ -10912,25 +10939,102 @@ let tiresScannerFrame=0;
 let tiresScannerDetector=null;
 let tiresScannerBusy=false;
 let tiresScannerLastDetect=0;
+let tiresScannerZXingReader=null;
+let tiresScannerZXingControls=null;
+let tiresScannerZXingPromise=null;
+let tiresScannerEngine="";
+let tiresScannerAccepted=false;
+
+function isAppleMobileBrowser(){
+  const ua=String(navigator.userAgent||"");
+  const touchMac=navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1;
+  return /iPhone|iPad|iPod/i.test(ua)||touchMac;
+}
 
 function normalizeScannedVin(raw){
-  let s=String(raw||"").toUpperCase().trim();
-  s=s.replace(/^VIN\s*[:#-]?\s*/i,"");
-  const compact=s.replace(/[^A-Z0-9]/g,"").replace(/[IOQ]/g,"");
-  if(/^[A-HJ-NPR-Z0-9]{17}$/.test(compact))return compact;
+  const original=String(raw||"").toUpperCase().trim();
+  if(!original)return "";
 
-  const match=String(raw||"").toUpperCase().match(/[A-HJ-NPR-Z0-9]{17}/);
-  return match?match[0]:"";
+  let compact=original
+    .replace(/^VIN\s*[:#-]?\s*/i,"")
+    .replace(/[^A-Z0-9]/g,"");
+
+  if(compact.startsWith("VIN")&&compact.length>17)compact=compact.slice(3);
+
+  // Najpierw szukamy dokładnego VIN-u istniejącego już w naszej bazie.
+  const known=[...fleetCars,...tireManualCars]
+    .map(c=>normalizeVin(c?.vin||c?.displayId||""))
+    .filter(v=>/^[A-HJ-NPR-Z0-9]{17}$/.test(v));
+  for(const vin of known){
+    if(compact.includes(vin))return vin;
+  }
+
+  // Częsty błąd OCR/skanera: I/O/Q zamiast 1/0.
+  const fixLookalikes=v=>String(v||"")
+    .replace(/I/g,"1")
+    .replace(/[OQ]/g,"0");
+
+  const direct=fixLookalikes(compact);
+  if(/^[A-HJ-NPR-Z0-9]{17}$/.test(direct))return direct;
+
+  // Niektóre etykiety kodują dodatkowy prefiks/sufiks.
+  // Przeglądamy wszystkie 17-znakowe okna i wybieramy poprawnego kandydata.
+  if(compact.length>17){
+    const candidates=[];
+    for(let i=0;i<=compact.length-17;i++){
+      const candidate=fixLookalikes(compact.slice(i,i+17));
+      if(/^[A-HJ-NPR-Z0-9]{17}$/.test(candidate))candidates.push(candidate);
+    }
+    for(const candidate of candidates){
+      if(known.includes(candidate))return candidate;
+    }
+    if(candidates.length===1)return candidates[0];
+  }
+
+  return "";
+}
+
+function setTiresScannerStatus(message,type=""){
+  const status=$("#tiresScannerStatus");
+  if(!status)return;
+  status.textContent=message;
+  status.className=`tires-scanner-status${type?` ${type}`:""}`;
+}
+
+function loadTiresZXing(){
+  if(window.ZXingBrowser?.BrowserMultiFormatReader)return Promise.resolve(window.ZXingBrowser);
+  if(tiresScannerZXingPromise)return tiresScannerZXingPromise;
+
+  tiresScannerZXingPromise=new Promise((resolve,reject)=>{
+    const script=document.createElement("script");
+    script.src="https://unpkg.com/@zxing/browser@0.2.1/umd/zxing-browser.min.js";
+    script.async=true;
+    script.onload=()=>{
+      if(window.ZXingBrowser?.BrowserMultiFormatReader)resolve(window.ZXingBrowser);
+      else reject(new Error("ZXing nie został załadowany"));
+    };
+    script.onerror=()=>reject(new Error("Nie udało się pobrać skanera ZXing"));
+    document.head.appendChild(script);
+  });
+  return tiresScannerZXingPromise;
 }
 
 function stopTiresVinScanner(){
   if(tiresScannerFrame)cancelAnimationFrame(tiresScannerFrame);
   tiresScannerFrame=0;
   tiresScannerBusy=false;
+
+  try{tiresScannerZXingControls?.stop?.()}catch(e){}
+  tiresScannerZXingControls=null;
+  tiresScannerZXingReader=null;
+  tiresScannerDetector=null;
+  tiresScannerEngine="";
+
   if(tiresScannerStream){
     tiresScannerStream.getTracks().forEach(track=>track.stop());
     tiresScannerStream=null;
   }
+
   const video=$("#tiresScannerVideo");
   if(video){
     try{video.pause()}catch(e){}
@@ -10945,17 +11049,23 @@ function closeTiresVinScanner(){
   document.body.classList.remove("tires-scanner-open");
 }
 
-function applyScannedTireVin(raw){
+function applyScannedTireVin(raw,{silentInvalid=false}={}){
+  if(tiresScannerAccepted)return true;
+
   const vin=normalizeScannedVin(raw);
-  const status=$("#tiresScannerStatus");
   if(!vin){
-    if(status){
-      status.textContent="Nie udało się odczytać pełnego 17-znakowego VIN-u. Spróbuj ponownie albo wpisz VIN ręcznie.";
-      status.className="tires-scanner-status error";
+    // Odczyt z kamery może być częściowy. Nie pokazujemy błędu i nie
+    // przerywamy pracy skanera — po prostu próbujemy dalej.
+    if(!silentInvalid){
+      setTiresScannerStatus(
+        "To nie jest pełny 17-znakowy VIN. Popraw wpis lub spróbuj ponownie.",
+        "error"
+      );
     }
     return false;
   }
 
+  tiresScannerAccepted=true;
   const fleetCar=fleetCars.find(c=>normalizeVin(c.vin)===vin);
   const workflowCar=tireEntityForVin(vin);
 
@@ -10980,7 +11090,9 @@ function applyScannedTireVin(raw){
     }
   }else{
     if(msg){
-      msg.textContent=`Zeskanowano VIN ${vin}. Możesz teraz kliknąć „Dodaj do wymiany”.`;
+      msg.textContent=fleetCar
+        ? `Zeskanowano VIN ${vin}. Samochód znaleziony w bazie — możesz kliknąć „Dodaj do wymiany”.`
+        : `Zeskanowano VIN ${vin}. Możesz teraz kliknąć „Dodaj do wymiany”.`;
       msg.className="message ok";
     }
     $("#tiresAddVin")?.focus();
@@ -10991,90 +11103,149 @@ function applyScannedTireVin(raw){
 async function scanTiresVinFrame(){
   const modal=$("#tiresScannerBackdrop");
   const video=$("#tiresScannerVideo");
-  if(!modal||modal.hidden||!video||!tiresScannerDetector)return;
+  if(!modal||modal.hidden||!video||!tiresScannerDetector||tiresScannerAccepted)return;
 
   const now=performance.now();
-  if(!tiresScannerBusy&&video.readyState>=2&&now-tiresScannerLastDetect>220){
+  if(!tiresScannerBusy&&video.readyState>=2&&now-tiresScannerLastDetect>300){
     tiresScannerBusy=true;
     tiresScannerLastDetect=now;
     try{
       const codes=await tiresScannerDetector.detect(video);
       for(const code of codes||[]){
-        if(applyScannedTireVin(code.rawValue||""))return;
+        if(applyScannedTireVin(code.rawValue||"",{silentInvalid:true}))return;
       }
     }catch(e){}
     finally{tiresScannerBusy=false}
   }
+
   tiresScannerFrame=requestAnimationFrame(scanTiresVinFrame);
+}
+
+async function startNativeTiresScanner(video){
+  if(!("BarcodeDetector" in window))throw new Error("BarcodeDetector unavailable");
+
+  const wanted=["code_128","code_39","code_93","codabar","qr_code","data_matrix"];
+  let formats=wanted;
+  if(typeof BarcodeDetector.getSupportedFormats==="function"){
+    const supported=await BarcodeDetector.getSupportedFormats();
+    formats=wanted.filter(f=>supported.includes(f));
+  }
+  if(!formats.length)throw new Error("Brak obsługiwanych formatów kodu");
+
+  tiresScannerDetector=new BarcodeDetector({formats});
+  tiresScannerEngine="native";
+  setTiresScannerStatus("Skaner działa. Szukam pełnego VIN-u…","ok");
+  tiresScannerFrame=requestAnimationFrame(scanTiresVinFrame);
+}
+
+async function startZXingTiresScanner(video){
+  const ZX=await loadTiresZXing();
+  if(!ZX?.BrowserMultiFormatReader)throw new Error("ZXing unavailable");
+
+  tiresScannerZXingReader=new ZX.BrowserMultiFormatReader(
+    undefined,
+    {delayBetweenScanAttempts:180,delayBetweenScanSuccess:500}
+  );
+  tiresScannerEngine="zxing";
+
+  // Skanujemy istniejący podgląd wideo, więc kamera nie jest uruchamiana drugi raz.
+  tiresScannerZXingControls=await tiresScannerZXingReader.decodeFromVideoElement(
+    video,
+    (result,error,controls)=>{
+      if(controls)tiresScannerZXingControls=controls;
+      if(!result||tiresScannerAccepted)return;
+      let raw="";
+      try{
+        raw=typeof result.getText==="function"?result.getText():(result.text||result.rawValue||String(result));
+      }catch(e){}
+      applyScannedTireVin(raw,{silentInvalid:true});
+    }
+  );
+  setTiresScannerStatus("Skaner działa. Szukam pełnego VIN-u…","ok");
+}
+
+async function prepareTiresCamera(){
+  if(!navigator.mediaDevices?.getUserMedia)throw new Error("Brak obsługi kamery");
+
+  tiresScannerStream=await navigator.mediaDevices.getUserMedia({
+    video:{
+      facingMode:{ideal:"environment"},
+      width:{ideal:1280},
+      height:{ideal:720}
+    },
+    audio:false
+  });
+
+  const video=$("#tiresScannerVideo");
+  if(!video)throw new Error("Brak podglądu kamery");
+  video.muted=true;
+  video.setAttribute("playsinline","");
+  video.setAttribute("autoplay","");
+  video.srcObject=tiresScannerStream;
+
+  if(video.readyState<1){
+    await new Promise((resolve,reject)=>{
+      const done=()=>{cleanup();resolve()};
+      const fail=()=>{cleanup();reject(new Error("Błąd podglądu kamery"))};
+      const cleanup=()=>{
+        video.removeEventListener("loadedmetadata",done);
+        video.removeEventListener("error",fail);
+      };
+      video.addEventListener("loadedmetadata",done,{once:true});
+      video.addEventListener("error",fail,{once:true});
+      setTimeout(done,1800);
+    });
+  }
+  await video.play();
+  return video;
 }
 
 async function openTiresVinScanner(){
   const modal=$("#tiresScannerBackdrop");
-  const status=$("#tiresScannerStatus");
   const manual=$("#tiresScannerManualVin");
   if(!modal)return;
 
   stopTiresVinScanner();
+  tiresScannerAccepted=false;
   modal.hidden=false;
   document.body.classList.add("tires-scanner-open");
   if(manual)manual.value="";
-  if(status){
-    status.textContent="Uruchamianie aparatu…";
-    status.className="tires-scanner-status";
-  }
-
-  if(!("BarcodeDetector" in window)){
-    if(status){
-      status.textContent="Ta przeglądarka nie obsługuje automatycznego skanowania kodu VIN. Wpisz VIN ręcznie poniżej.";
-      status.className="tires-scanner-status warning";
-    }
-    manual?.focus();
-    return;
-  }
+  setTiresScannerStatus("Uruchamianie aparatu…");
 
   try{
-    const wanted=["code_128","code_39","code_93","codabar","qr_code","data_matrix"];
-    let formats=wanted;
-    if(typeof BarcodeDetector.getSupportedFormats==="function"){
-      const supported=await BarcodeDetector.getSupportedFormats();
-      formats=wanted.filter(f=>supported.includes(f));
+    const video=await prepareTiresCamera();
+
+    // Na iPhone/iPad używamy ZXing jako pierwszego silnika.
+    // Na pozostałych urządzeniach najpierw korzystamy z natywnego BarcodeDetector.
+    if(isAppleMobileBrowser()){
+      try{
+        await startZXingTiresScanner(video);
+      }catch(zxingErr){
+        await startNativeTiresScanner(video);
+      }
+    }else{
+      try{
+        await startNativeTiresScanner(video);
+      }catch(nativeErr){
+        await startZXingTiresScanner(video);
+      }
     }
-    tiresScannerDetector=new BarcodeDetector(formats.length?{formats}:undefined);
-
-    tiresScannerStream=await navigator.mediaDevices.getUserMedia({
-      video:{
-        facingMode:{ideal:"environment"},
-        width:{ideal:1920},
-        height:{ideal:1080}
-      },
-      audio:false
-    });
-
-    const video=$("#tiresScannerVideo");
-    video.srcObject=tiresScannerStream;
-    await video.play();
-
-    if(status){
-      status.textContent="Skaner działa. Trzymaj kod VIN nieruchomo wewnątrz ramki.";
-      status.className="tires-scanner-status ok";
-    }
-    tiresScannerFrame=requestAnimationFrame(scanTiresVinFrame);
   }catch(err){
     stopTiresVinScanner();
-    if(status){
-      const denied=String(err?.name||"").includes("NotAllowed");
-      status.textContent=denied
-        ?"Brak dostępu do aparatu. Zezwól na użycie kamery albo wpisz VIN ręcznie."
-        :"Nie udało się uruchomić aparatu. Wpisz VIN ręcznie poniżej.";
-      status.className="tires-scanner-status error";
-    }
+    const denied=String(err?.name||"").includes("NotAllowed")||String(err?.name||"").includes("Security");
+    setTiresScannerStatus(
+      denied
+        ?"Brak dostępu do aparatu. Zezwól na kamerę w Safari albo wpisz VIN ręcznie poniżej."
+        :"Nie udało się uruchomić automatycznego skanera. Wpisz VIN ręcznie poniżej.",
+      "error"
+    );
     manual?.focus();
   }
 }
 
 function useManualTiresScannerVin(){
   const raw=$("#tiresScannerManualVin")?.value||"";
-  applyScannedTireVin(raw);
+  applyScannedTireVin(raw,{silentInvalid:false});
 }
 
 function addCarToTires(){
